@@ -119,4 +119,60 @@ class Moduleconfig extends Admin
             ->fetch();
     }
 
+
+
+    /**
+     * 编辑
+     * @param int $id
+     * @author 蔡伟明 <314013107@qq.com>
+     * @return mixed
+     */
+    public function edit($id = 0)
+    {
+        if ($id === 0) $this->error('参数错误');
+
+        // 保存数据
+        if ($this->request->isPost()) {
+            // 表单数据
+            $data = $this->request->post();
+
+            // 验证
+            $result = $this->validate($data, 'Moduleconfig');
+            if(true !== $result) $this->error($result);
+            // 原配置内容
+            $config  = ModuleconfigModel::where('id', $id)->find();
+            $details = '原数据：分组('.$config['group_name'].')、类型('.$config['field_type'].')、标题('.$config['title'].')、名称('.$config['name'].')';
+
+            if ($config = ModuleconfigModel::update($data)) {
+                cache('system_config', null);
+                $forward = $this->request->param('_pop') == 1 ? null : cookie('__forward__');
+                // 记录行为
+                action_log('moduleconfig_edit', 'admin_moduleconfig', $config['id'], UID, $details);
+                $this->success('编辑成功', $forward, '_parent_reload');
+            } else {
+                $this->error('编辑失败');
+            }
+        }
+
+        // 获取数据
+        $info = ModuleconfigModel::get($id);
+
+        // 使用ZBuilder快速创建表单
+        return ZBuilder::make('form')
+            ->setPageTitle('编辑')
+            ->addHidden('id')
+            ->addText('title', '字段标题', '一般由中文组成，仅用于显示')
+            ->addText('name', '字段名称')
+            ->addText('group_name','分组名称')
+            ->addStatic('module_name','模块标识','',$info['module_name'])
+            ->addSelect('field_type', '字段类型', '', config('database_data_type'))
+            ->addText('default_value','默认值','',0)
+            ->addText('field_hints','字段提示')
+            ->addRadio('is_required','是否必填','',['必填','不必填'],0)
+            ->addRadio('status','是否启用','',['禁用','启用'],1)
+            ->addText('sort', '排序', '', 100)
+            ->setFormData($info)
+            ->fetch();
+    }
+
 }
