@@ -1589,11 +1589,11 @@ function GenerateFile($file_name = null, $name)
             //如果传过的值有下划线,需要把下划线后面的单词首字母变成大写
             $data_xhx[$i] = explode('_', $datas[$i]);
             $data_xhx_count[$i] = count($data_xhx[$i]);
-            for ($j = 0; $j < $data_xhx_count[$i]; $j++) {
-                $data[$i][$j] = ucfirst($data_xhx[$i][$j]);
-                $datainfo[$i] = $data_xhx[$i][$j];
-            }
-            $datarow[$i] = implode('', $data[$i]);
+//            for ($j = 0; $j < $data_xhx_count[$i]; $j++) {
+//                $data[$i][$j] = ucfirst($data_xhx[$i][$j]);
+//                $datainfo[$i] = $data_xhx[$i][$j];
+//            }
+            $datarow[$i] = convertUnderline($datas[$i]);
             //生成对应文件
             if (!file_exists($pathhome . DS . $datarow[$i] . '.php')) {
                 fopen($pathhome . DS . $datarow[$i] . '.php', "w");
@@ -1647,6 +1647,7 @@ INFO;
             if (!file_exists($pathadmin . DS . $datarow[$i] . '.php')) {
                 fopen($pathadmin . DS . $datarow[$i] . '.php', "w");
                 //写入对应php文件
+                $database_prefix =config('database.prefix');
                 $contentadmin[$i] = <<<INFO
 <?php
 // +----------------------------------------------------------------------
@@ -1662,6 +1663,11 @@ namespace app\\{$name}\\admin;
 
 use app\admin\controller\Admin;
 use app\common\\builder\ZBuilder;
+
+use app\admin\model\Model as ModelModel;
+use app\\{$name}\\model\\{$datarow[$i]} as {$datarow[$i]}Model;
+use app\admin\model\Field as FieldModel;
+
 class  {$datarow[$i]} extends Admin
 {
 
@@ -1671,8 +1677,27 @@ class  {$datarow[$i]} extends Admin
      */
     public function index()
     {
+        //获取数据
+        \$dataList = {$datarow[$i]}Model::all();
+        //获取当前所在
+        \$datamodelID = ModelModel::where(array('table' => '{$database_prefix}{$name}_{$datas[$i]}','status'=>1))->value('id');
+        \$datafile = FieldModel::where(array('model' => \$datamodelID,'status'=>1,'show'=>1))->field('id,name,title')->select();
 
-        return \$this->fetch(); // 渲染模板
+        foreach (\$datafile as \$key => \$value) {
+            \$names = \$value['name'];
+            \$title = \$value['title'];
+            \$data[] = [\$names, \$title];
+        }
+
+        // 使用ZBuilder快速创建数据表格
+        return ZBuilder::make('table')
+            ->addColumn('__INDEX__', '#')
+            ->addColumns(\$data)
+            ->addColumn('right_button', '操作', 'btn')
+            ->addTopButtons('back,add,delete')
+            ->addRightButtons('edit,delete')
+            ->setRowList(\$dataList)
+            ->fetch();
     }
     
     /**
@@ -1694,6 +1719,8 @@ INFO;
             if (!file_exists($pathmodel . DS . $datarow[$i] . '.php')) {
                 fopen($pathmodel . DS . $datarow[$i] . '.php', "w");
                 //写入对应php文件
+                $strtoupper_name = strtoupper($name);
+                $strtoupper_data = strtoupper($datas[$i]);
                 $contentmodel[$i] = <<<INFO
 <?php
 // +----------------------------------------------------------------------
@@ -1711,7 +1738,19 @@ use think\Model as ThinkModel;
 
 class  {$datarow[$i]} extends ThinkModel
 {
-
+    // 设置当前模型对应的完整数据表名称
+    protected \$table = '__{$strtoupper_name}_{$strtoupper_data}__';
+    // 自动写入时间戳
+    protected \$autoWriteTimestamp = true;
+     //设置主键，如果不同请修改
+    protected \$pk = 'id';
+    //自定义初始化
+    protected function initialize()
+    {
+        //需要调用`Model`的`initialize`方法
+        parent::initialize();
+        //TODO:自定义的初始化
+    }
 
 }
 INFO;
@@ -1783,6 +1822,11 @@ class  Databasetable extends Validate
     protected \$message = [
         
     ];
+    
+    // 定义验证场景
+    protected \$scene = [
+        //例子:'name' => ['name']
+    ];
 
 }
 INFO;
@@ -1841,7 +1885,7 @@ class  Databasetable extends Admin
 
 		// 字段管理按钮
 		\$btnField = [
-			'title' => '字段管理',
+			'title' => '模型管理',
 			'icon'  => 'fa fa-fw fa-navicon',
 			'href'  => url('admin/field/index', ['id' => '__id__'])
 		];
@@ -1908,7 +1952,7 @@ class  Databasetable extends Admin
 				// 创建菜单节点
 				\$map = [
 					'module' => \$mashu,
-					'title'  => \$data['title']
+					'pid'  => 0
 				];
 				\$menu_data = [
 					"module"      => \$mashu,
@@ -2363,10 +2407,11 @@ if (!function_exists('get_model_title')) {
     }
 }
 
-/**
- * 根据文件名新建后台和前台对应的文件
- * 自动生成文件
- */
-//function  automatic_generation_of_files(){
-//
-//}
+//将下划线命名转换为驼峰式命名
+function convertUnderline ( $str , $ucfirst = true)
+{
+    while(($pos = strpos($str , '_'))!==false)
+        $str = substr($str , 0 , $pos).substr($str , $pos+1);
+
+    return $ucfirst ? ucfirst($str) : $str;
+}

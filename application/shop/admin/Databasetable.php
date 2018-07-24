@@ -51,7 +51,12 @@ class  Databasetable extends Admin
             'icon'  => 'glyphicon glyphicon-sort-by-attributes-alt',
             'href'  => url('admin/fieldnode/index', ['group'=>'__name__'])
         ];
-
+        // 配置参数
+        $btnFieldCof = [
+            'title' => '配置管理',
+            'icon'  => 'glyphicon glyphicon-sort-by-attributes-alt',
+            'href'  => url('admin/moduleconfig/index', ['group'=>$mashu])
+        ];
 		// 使用ZBuilder快速创建数据表格
 		return ZBuilder::make('table')
 			->setSearch(['name' => '标识', 'title' => '标题']) // 设置搜索框
@@ -69,7 +74,7 @@ class  Databasetable extends Admin
 			])
             //->addValidate('ModelModel', 'title,sort') // 添加快捷编辑的验证器
 			->addFilter('type', ['系统', '普通', '独立'])
-			->addTopButtons('add') // 批量添加顶部按钮
+			->addTopButtons(['back','add','custom' => $btnFieldCof]) // 批量添加顶部按钮
 			->addRightButtons(['edit', 'custom' => $btnField,'customnode'=>$btnFieldNode, 'delete' => ['data-tips' => '删除模型将同时删除该模型下的所有字段，且无法恢复。']]) // 批量添加右侧按钮
 			->setRowList($data_list) // 设置表格数据
 			->fetch(); // 渲染模板
@@ -89,7 +94,7 @@ class  Databasetable extends Admin
 		if ($this->request->isPost()) {
 			$data = $this->request->post();
             GenerateFile($data['table'],$mashu);
-            $datamingzi =  $mashu."/{$data['table']}/index";
+            $datamingzi =  $mashu."/".convertUnderline($data['table'])."/index";
 			if ($data['table'] == '') {
 				$data['table'] = config('database.prefix') . $mashu .'_'. $data['table'];
 			} else {

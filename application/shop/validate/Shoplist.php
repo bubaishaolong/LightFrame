@@ -8,14 +8,20 @@
 // +----------------------------------------------------------------------
 // | 开源协议 ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
-namespace app\shop\model;
+namespace app\shop\validate;
 
-use think\Model as ThinkModel;
+use think\Validate;
 
-class  Goods extends ThinkModel
+class  Shoplist extends Validate
 {
-    // 设置当前模型对应的完整数据表名称
-    protected $table = '__SHOP_GOODS__';
-    // 自动写入时间戳
-    protected $autoWriteTimestamp = true;
+    //定义验证规则
+    protected $rule = [
+      
+    ];
+
+    //定义验证提示
+    protected $message = [
+        
+    ];
+
 }
