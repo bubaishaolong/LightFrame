@@ -1,0 +1,12 @@
+{extend name="$_admin_base_layout" /}
+
+
+
+{block name="script"}
+<script src="__ADMIN_JS__/core/jquery.countTo.min.js"></script>
+<script>
+    jQuery(function () {
+        App.initHelpers(['appear-countTo']);
+    });
+</script>
+{/block}

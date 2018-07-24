@@ -1,0 +1,1 @@
+DROP TABLE IF EXISTS `cj_shop_goods`;
