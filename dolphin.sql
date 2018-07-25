@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2018-07-24 09:16:38
+Date: 2018-07-25 17:43:15
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -46,7 +46,7 @@ CREATE TABLE `cj_admin_action` (
   `create_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
   `update_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=100 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='系统行为表';
+) ENGINE=MyISAM AUTO_INCREMENT=157 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='系统行为表';
 
 -- ----------------------------
 -- Records of cj_admin_action
@@ -93,63 +93,6 @@ INSERT INTO `cj_admin_action` VALUES ('39', 'admin', 'module_export', '导出模
 INSERT INTO `cj_admin_action` VALUES ('40', 'admin', 'packet_install', '安装数据包', '安装数据包', '', '[user|get_nickname] 安装了数据包：[details]', '1', '1480308342', '1480308342');
 INSERT INTO `cj_admin_action` VALUES ('41', 'admin', 'packet_uninstall', '卸载数据包', '卸载数据包', '', '[user|get_nickname] 卸载了数据包：[details]', '1', '1480308372', '1480308372');
 INSERT INTO `cj_admin_action` VALUES ('42', 'admin', 'system_config_update', '更新系统设置', '更新系统设置', '', '[user|get_nickname] 更新了系统设置：[details]', '1', '1480309555', '1480309642');
-INSERT INTO `cj_admin_action` VALUES ('43', 'cms', 'slider_delete', '删除滚动图片', '删除滚动图片', '', '[user|get_nickname] 删除了滚动图片：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('44', 'cms', 'slider_edit', '编辑滚动图片', '编辑滚动图片', '', '[user|get_nickname] 编辑了滚动图片：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('45', 'cms', 'slider_add', '添加滚动图片', '添加滚动图片', '', '[user|get_nickname] 添加了滚动图片：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('46', 'cms', 'document_delete', '删除文档', '删除文档', '', '[user|get_nickname] 删除了文档：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('47', 'cms', 'document_restore', '还原文档', '还原文档', '', '[user|get_nickname] 还原了文档：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('48', 'cms', 'nav_disable', '禁用导航', '禁用导航', '', '[user|get_nickname] 禁用了导航：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('49', 'cms', 'nav_enable', '启用导航', '启用导航', '', '[user|get_nickname] 启用了导航：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('50', 'cms', 'nav_delete', '删除导航', '删除导航', '', '[user|get_nickname] 删除了导航：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('51', 'cms', 'nav_edit', '编辑导航', '编辑导航', '', '[user|get_nickname] 编辑了导航：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('52', 'cms', 'nav_add', '添加导航', '添加导航', '', '[user|get_nickname] 添加了导航：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('53', 'cms', 'model_disable', '禁用内容模型', '禁用内容模型', '', '[user|get_nickname] 禁用了内容模型：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('54', 'cms', 'model_enable', '启用内容模型', '启用内容模型', '', '[user|get_nickname] 启用了内容模型：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('55', 'cms', 'model_delete', '删除内容模型', '删除内容模型', '', '[user|get_nickname] 删除了内容模型：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('56', 'cms', 'model_edit', '编辑内容模型', '编辑内容模型', '', '[user|get_nickname] 编辑了内容模型：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('57', 'cms', 'model_add', '添加内容模型', '添加内容模型', '', '[user|get_nickname] 添加了内容模型：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('58', 'cms', 'menu_disable', '禁用导航菜单', '禁用导航菜单', '', '[user|get_nickname] 禁用了导航菜单：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('59', 'cms', 'menu_enable', '启用导航菜单', '启用导航菜单', '', '[user|get_nickname] 启用了导航菜单：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('60', 'cms', 'menu_delete', '删除导航菜单', '删除导航菜单', '', '[user|get_nickname] 删除了导航菜单：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('61', 'cms', 'menu_edit', '编辑导航菜单', '编辑导航菜单', '', '[user|get_nickname] 编辑了导航菜单：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('62', 'cms', 'menu_add', '添加导航菜单', '添加导航菜单', '', '[user|get_nickname] 添加了导航菜单：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('63', 'cms', 'link_disable', '禁用友情链接', '禁用友情链接', '', '[user|get_nickname] 禁用了友情链接：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('64', 'cms', 'link_enable', '启用友情链接', '启用友情链接', '', '[user|get_nickname] 启用了友情链接：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('65', 'cms', 'link_delete', '删除友情链接', '删除友情链接', '', '[user|get_nickname] 删除了友情链接：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('66', 'cms', 'link_edit', '编辑友情链接', '编辑友情链接', '', '[user|get_nickname] 编辑了友情链接：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('67', 'cms', 'link_add', '添加友情链接', '添加友情链接', '', '[user|get_nickname] 添加了友情链接：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('68', 'cms', 'field_disable', '禁用模型字段', '禁用模型字段', '', '[user|get_nickname] 禁用了模型字段：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('69', 'cms', 'field_enable', '启用模型字段', '启用模型字段', '', '[user|get_nickname] 启用了模型字段：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('70', 'cms', 'field_delete', '删除模型字段', '删除模型字段', '', '[user|get_nickname] 删除了模型字段：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('71', 'cms', 'field_edit', '编辑模型字段', '编辑模型字段', '', '[user|get_nickname] 编辑了模型字段：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('72', 'cms', 'field_add', '添加模型字段', '添加模型字段', '', '[user|get_nickname] 添加了模型字段：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('73', 'cms', 'column_disable', '禁用栏目', '禁用栏目', '', '[user|get_nickname] 禁用了栏目：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('74', 'cms', 'column_enable', '启用栏目', '启用栏目', '', '[user|get_nickname] 启用了栏目：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('75', 'cms', 'column_delete', '删除栏目', '删除栏目', '', '[user|get_nickname] 删除了栏目：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('76', 'cms', 'column_edit', '编辑栏目', '编辑栏目', '', '[user|get_nickname] 编辑了栏目：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('77', 'cms', 'column_add', '添加栏目', '添加栏目', '', '[user|get_nickname] 添加了栏目：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('78', 'cms', 'advert_type_disable', '禁用广告分类', '禁用广告分类', '', '[user|get_nickname] 禁用了广告分类：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('79', 'cms', 'advert_type_enable', '启用广告分类', '启用广告分类', '', '[user|get_nickname] 启用了广告分类：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('80', 'cms', 'advert_type_delete', '删除广告分类', '删除广告分类', '', '[user|get_nickname] 删除了广告分类：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('81', 'cms', 'advert_type_edit', '编辑广告分类', '编辑广告分类', '', '[user|get_nickname] 编辑了广告分类：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('82', 'cms', 'advert_type_add', '添加广告分类', '添加广告分类', '', '[user|get_nickname] 添加了广告分类：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('83', 'cms', 'advert_disable', '禁用广告', '禁用广告', '', '[user|get_nickname] 禁用了广告：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('84', 'cms', 'advert_enable', '启用广告', '启用广告', '', '[user|get_nickname] 启用了广告：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('85', 'cms', 'advert_delete', '删除广告', '删除广告', '', '[user|get_nickname] 删除了广告：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('86', 'cms', 'advert_edit', '编辑广告', '编辑广告', '', '[user|get_nickname] 编辑了广告：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('87', 'cms', 'advert_add', '添加广告', '添加广告', '', '[user|get_nickname] 添加了广告：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('88', 'cms', 'document_disable', '禁用文档', '禁用文档', '', '[user|get_nickname] 禁用了文档：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('89', 'cms', 'document_enable', '启用文档', '启用文档', '', '[user|get_nickname] 启用了文档：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('90', 'cms', 'document_trash', '回收文档', '回收文档', '', '[user|get_nickname] 回收了文档：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('91', 'cms', 'document_edit', '编辑文档', '编辑文档', '', '[user|get_nickname] 编辑了文档：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('92', 'cms', 'document_add', '添加文档', '添加文档', '', '[user|get_nickname] 添加了文档：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('93', 'cms', 'slider_enable', '启用滚动图片', '启用滚动图片', '', '[user|get_nickname] 启用了滚动图片：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('94', 'cms', 'slider_disable', '禁用滚动图片', '禁用滚动图片', '', '[user|get_nickname] 禁用了滚动图片：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('95', 'cms', 'support_add', '添加客服', '添加客服', '', '[user|get_nickname] 添加了客服：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('96', 'cms', 'support_edit', '编辑客服', '编辑客服', '', '[user|get_nickname] 编辑了客服：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('97', 'cms', 'support_delete', '删除客服', '删除客服', '', '[user|get_nickname] 删除了客服：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('98', 'cms', 'support_enable', '启用客服', '启用客服', '', '[user|get_nickname] 启用了客服：[details]', '1', '1532137776', '1532137776');
-INSERT INTO `cj_admin_action` VALUES ('99', 'cms', 'support_disable', '禁用客服', '禁用客服', '', '[user|get_nickname] 禁用了客服：[details]', '1', '1532137776', '1532137776');
 
 -- ----------------------------
 -- Table structure for cj_admin_attachment
@@ -226,7 +169,7 @@ INSERT INTO `cj_admin_config` VALUES ('7', 'web_site_copyright', '版权信息',
 INSERT INTO `cj_admin_config` VALUES ('8', 'web_site_icp', '备案信息', 'base', 'text', '', '', '调用方式：<code>config(\'web_site_icp\')</code>', '', '', '', '', '', '2', '', '', '', '', '1475241441', '1477710441', '9', '1');
 INSERT INTO `cj_admin_config` VALUES ('9', 'web_site_statistics', '站点统计', 'base', 'textarea', '', '', '网站统计代码，支持百度、Google、cnzz等，调用方式：<code>config(\'web_site_statistics\')</code>', '', '', '', '', '', '2', '', '', '', '', '1475241498', '1477710455', '10', '1');
 INSERT INTO `cj_admin_config` VALUES ('10', 'config_group', '配置分组', 'system', 'array', 'base:基本\r\nsystem:系统\r\nupload:上传\r\ndevelop:开发\r\ndatabase:数据库', '', '', '', '', '', '', '', '2', '', '', '', '', '1475241716', '1477649446', '100', '1');
-INSERT INTO `cj_admin_config` VALUES ('11', 'form_item_type', '配置类型', 'system', 'array', 'text:单行文本\r\ntextarea:多行文本\r\nstatic:静态文本\r\npassword:密码\r\ncheckbox:复选框\r\nradio:单选按钮\r\ndate:日期\r\ndatetime:日期+时间\r\nhidden:隐藏\r\nswitch:开关\r\narray:数组\r\nselect:下拉框\r\nlinkage:普通联动下拉框\r\nlinkages:快速联动下拉框\r\nimage:单张图片\r\nimages:多张图片\r\nfile:单个文件\r\nfiles:多个文件\r\nueditor:UEditor 编辑器\r\nwangeditor:wangEditor 编辑器\r\neditormd:markdown 编辑器\r\nckeditor:ckeditor 编辑器\r\nicon:字体图标\r\ntags:标签\r\nnumber:数字\r\nbmap:百度地图\r\ncolorpicker:取色器\r\njcrop:图片裁剪\r\nmasked:格式文本\r\nrange:范围\r\ntime:时间', '', '', '', '', '', '', '', '2', '', '', '', '', '1475241835', '1495853193', '100', '1');
+INSERT INTO `cj_admin_config` VALUES ('11', 'form_item_type', '配置类型', 'system', 'array', 'text:单行文本 text\r\ntextarea:多行文本 textarea\r\nstatic:静态文本 static\r\npassword:密码 password\r\ncheckbox:复选框 checkbox\r\nradio:单选按钮 radio\r\ndate:日期 date\r\ndatetime:日期时间 datetime\r\nhidden:隐藏 hidden\r\nswitch:开关 switch\r\narray:数组 array\r\nselect:下拉框 select\r\nlinkage:普通联动下拉框 linkage\r\nlinkages:快速联动下拉框 linkages\r\nimage:单张图片 image\r\nimages:多张图片 images\r\nfile:单个文件 file\r\nfiles:多个文件 files\r\nueditor:UEditor 编辑器 ueditor\r\nwangeditor:wangEditor 编辑器 wangeditor\r\neditormd:markdown 编辑器 editormd\r\nckeditor:ckeditor 编辑器 ckeditor\r\nicon:字体图标 icon\r\ntags:标签 tags\r\nnumber:数字 number\r\nbmap:百度地图 bmap\r\ncolorpicker:取色器 colorpicker\r\njcrop:图片裁剪 jcrop\r\nmasked:格式文本 masked\r\nrange:范围 range\r\ntime:时间 time', '', '', '', '', '', '', '', '2', '', '', '', '', '1475241835', '1532501082', '100', '1');
 INSERT INTO `cj_admin_config` VALUES ('12', 'upload_file_size', '文件上传大小限制', 'upload', 'text', '0', '', '0为不限制大小，单位：kb', '', '', '', '', '', '2', '', '', '', '', '1475241897', '1477663520', '100', '1');
 INSERT INTO `cj_admin_config` VALUES ('13', 'upload_file_ext', '允许上传的文件后缀', 'upload', 'tags', 'doc,docx,xls,xlsx,ppt,pptx,pdf,wps,txt,rar,zip,gz,bz2,7z', '', '多个后缀用逗号隔开，不填写则不限制类型', '', '', '', '', '', '2', '', '', '', '', '1475241975', '1477649489', '100', '1');
 INSERT INTO `cj_admin_config` VALUES ('14', 'upload_image_size', '图片上传大小限制', 'upload', 'text', '0', '', '0为不限制大小，单位：kb', '', '', '', '', '', '2', '', '', '', '', '1475242015', '1477663529', '100', '1');
@@ -289,22 +232,28 @@ CREATE TABLE `cj_admin_field` (
   `data_type` varchar(255) NOT NULL DEFAULT '' COMMENT '数据类型',
   `length` varchar(50) NOT NULL DEFAULT '' COMMENT '长度',
   `is_null` tinyint(2) NOT NULL DEFAULT '0' COMMENT '是否为空',
+  `new_type` varchar(255) DEFAULT '' COMMENT '新增类型',
+  `edit_type` varchar(255) DEFAULT '' COMMENT '编辑类型',
+  `list_type` varchar(255) DEFAULT '' COMMENT '列表类型',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=306 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='文档字段表';
+) ENGINE=MyISAM AUTO_INCREMENT=395 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='文档字段表';
 
 -- ----------------------------
 -- Records of cj_admin_field
 -- ----------------------------
-INSERT INTO `cj_admin_field` VALUES ('305', 'status', '状态', 'radio', 'tinyint(2) NOT NULL', '1', '0:禁用\n1:启用', '', '0', '1', '61', '', '', '', '', '', '2', '', '', '', '', '1532338164', '1532338164', '100', '1', '', '', '0');
-INSERT INTO `cj_admin_field` VALUES ('304', 'delete_time', '删除时间', 'datetime', 'int(11) UNSIGNED NOT NULL', '0', null, '', '0', '1', '61', '', '', '', '', '', '2', '', '', '', '', '1532338164', '1532338164', '100', '1', '', '', '0');
-INSERT INTO `cj_admin_field` VALUES ('303', 'update_time', '更新时间', 'datetime', 'int(11) UNSIGNED NOT NULL', '0', null, '', '0', '1', '61', '', '', '', '', '', '2', '', '', '', '', '1532338164', '1532338164', '100', '1', '', '', '0');
-INSERT INTO `cj_admin_field` VALUES ('302', 'create_time', '创建时间', 'datetime', 'int(11) UNSIGNED NOT NULL', '0', null, '', '0', '1', '61', '', '', '', '', '', '2', '', '', '', '', '1532338164', '1532338164', '100', '1', '', '', '0');
-INSERT INTO `cj_admin_field` VALUES ('301', 'id', 'id', 'text', 'int(11) UNSIGNED NOT NULL', null, null, '', '0', '1', '61', '', '', '', '', '', '2', '', '', '', '', '1532338164', '1532338164', '100', '1', '', '', '0');
-INSERT INTO `cj_admin_field` VALUES ('296', 'id', 'id', 'text', 'int(11) UNSIGNED NOT NULL', null, null, '', '0', '1', '60', '', '', '', '', '', '2', '', '', '', '', '1532335346', '1532335346', '100', '1', '', '', '0');
-INSERT INTO `cj_admin_field` VALUES ('297', 'create_time', '创建时间', 'datetime', 'int(11) UNSIGNED NOT NULL', '0', null, '', '0', '1', '60', '', '', '', '', '', '2', '', '', '', '', '1532335346', '1532335346', '100', '1', '', '', '0');
-INSERT INTO `cj_admin_field` VALUES ('298', 'update_time', '更新时间', 'datetime', 'int(11) UNSIGNED NOT NULL', '0', null, '', '0', '1', '60', '', '', '', '', '', '2', '', '', '', '', '1532335346', '1532335346', '100', '1', '', '', '0');
-INSERT INTO `cj_admin_field` VALUES ('299', 'delete_time', '删除时间', 'datetime', 'int(11) UNSIGNED NOT NULL', '0', null, '', '0', '1', '60', '', '', '', '', '', '2', '', '', '', '', '1532335346', '1532335346', '100', '1', '', '', '0');
-INSERT INTO `cj_admin_field` VALUES ('300', 'status', '状态', 'radio', 'tinyint(2)  not null', '1', '0:禁用\r\n1:启用', '', '0', '1', '60', '', '', '', '', '', '0', '', '', '', '', '1532335346', '1532336617', '100', '1', 'tinyint', '2', '0');
+INSERT INTO `cj_admin_field` VALUES ('370', 'status', '状态', 'radio', 'tinyint(2) NOT NULL', '1', '0:禁用\n1:启用', '', '0', '1', '75', '', '', '', '', '', '2', '', '', '', '', '1532490563', '1532490563', '100', '1', '', '', '0', '1', null, 'text');
+INSERT INTO `cj_admin_field` VALUES ('369', 'delete_time', '删除时间', 'datetime', 'int(11) UNSIGNED NOT NULL', '0', null, '', '0', '1', '75', '', '', '', '', '', '2', '', '', '', '', '1532490563', '1532490563', '100', '1', '', '', '0', 'hidden', null, 'hidden');
+INSERT INTO `cj_admin_field` VALUES ('368', 'update_time', '更新时间', 'datetime', 'int(11) UNSIGNED NOT NULL', '0', null, '', '0', '1', '75', '', '', '', '', '', '2', '', '', '', '', '1532490563', '1532490563', '100', '1', '', '', '0', 'hidden', null, 'text');
+INSERT INTO `cj_admin_field` VALUES ('367', 'create_time', '创建时间', 'datetime', 'int(11) UNSIGNED NOT NULL', '0', null, '', '0', '1', '75', '', '', '', '', '', '2', '', '', '', '', '1532490563', '1532490563', '100', '1', '', '', '0', 'hidden', null, '');
+INSERT INTO `cj_admin_field` VALUES ('366', 'id', 'id', 'text', 'int(11) UNSIGNED NOT NULL', null, null, '', '0', '1', '75', '', '', '', '', '', '2', '', '', '', '', '1532490563', '1532490563', '1', '1', '', '', '0', 'hidden', null, '');
+INSERT INTO `cj_admin_field` VALUES ('356', 'id', 'id', 'text', 'int(11) UNSIGNED NOT NULL', null, null, '', '0', '1', '73', '', '', '', '', '', '2', '', '', '', '', '1532490029', '1532490029', '100', '1', 'int', '11', '0', '1', null, '');
+INSERT INTO `cj_admin_field` VALUES ('357', 'create_time', '创建时间', 'datetime', 'int(11) UNSIGNED NOT NULL', '0', null, '', '0', '1', '73', '', '', '', '', '', '2', '', '', '', '', '1532490029', '1532490029', '100', '1', 'int', '11', '0', '0', null, '');
+INSERT INTO `cj_admin_field` VALUES ('358', 'update_time', '更新时间', 'datetime', 'int(11) UNSIGNED NOT NULL', '0', null, '', '0', '1', '73', '', '', '', '', '', '2', '', '', '', '', '1532490029', '1532490029', '100', '1', 'int', '11', '0', '0', null, '');
+INSERT INTO `cj_admin_field` VALUES ('359', 'delete_time', '删除时间', 'datetime', 'int(11) UNSIGNED NOT NULL', '0', null, '', '0', '1', '73', '', '', '', '', '', '2', '', '', '', '', '1532490029', '1532490029', '100', '1', 'int', '11', '0', '0', null, '');
+INSERT INTO `cj_admin_field` VALUES ('360', 'status', '状态', 'radio', 'tinyint(2) NOT NULL', '1', '0:禁用\n1:启用', '', '0', '1', '73', '', '', '', '', '', '2', '', '', '', '', '1532490029', '1532490029', '100', '1', 'tinyint', '1', '0', 'hidden', null, '');
+INSERT INTO `cj_admin_field` VALUES ('378', 'user_token', '用户', 'text', 'varchar(255)  not null', '', '', '', '0', '1', '75', '', '', '', '', '', '0', '', '', '', '', '1532502407', '1532502407', '3', '1', 'varchar', '255', '0', '1', '', '');
+INSERT INTO `cj_admin_field` VALUES ('380', 'title', '标题', 'text', 'varchar(255)  NOT NULL', '', '', '', '0', '1', '75', '', '', '', '', '', '0', '', '', '', '', '1532502767', '1532502767', '2', '1', 'varchar', '255', '0', '1', '', '');
+INSERT INTO `cj_admin_field` VALUES ('394', 'liste', '列表', 'text', 'varchar(255)  NOT NULL', '', '', '', '0', '1', '75', '', '', '', '', '', '0', '', '', '', '', '1532509193', '1532509193', '100', '1', 'varchar', '255', '0', '', '', 'text');
 
 -- ----------------------------
 -- Table structure for cj_admin_hook
@@ -419,7 +368,7 @@ CREATE TABLE `cj_admin_log` (
   KEY `action_ip_ix` (`action_ip`) USING BTREE,
   KEY `action_id_ix` (`action_id`) USING BTREE,
   KEY `user_id_ix` (`user_id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=100 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='行为日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=111 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='行为日志表';
 
 -- ----------------------------
 -- Records of cj_admin_log
@@ -523,6 +472,17 @@ INSERT INTO `cj_admin_log` VALUES ('96', '31', '1', '2130706433', 'admin_menu', 
 INSERT INTO `cj_admin_log` VALUES ('97', '31', '1', '2130706433', 'admin_menu', '426', '超级管理员 编辑了节点：节点ID(426)', '1', '1532334223');
 INSERT INTO `cj_admin_log` VALUES ('98', '32', '1', '2130706433', 'admin_menu', '451', '超级管理员 删除了节点：节点ID(451),节点标题(会员),节点链接(shop/member/index)', '1', '1532334568');
 INSERT INTO `cj_admin_log` VALUES ('99', '30', '1', '2130706433', 'admin_menu', '458', '超级管理员 添加了节点：所属模块(shop),所属节点ID(457),节点标题(商品分类),节点链接(shop/goods/add)', '1', '1532335602');
+INSERT INTO `cj_admin_log` VALUES ('100', '30', '1', '2130706433', 'admin_menu', '460', '超级管理员 添加了节点：所属模块(admin),所属节点ID(33),节点标题(模块配置信息),节点链接(add/moduleconfig/index)', '1', '1532412266');
+INSERT INTO `cj_admin_log` VALUES ('101', '31', '1', '2130706433', 'admin_menu', '460', '超级管理员 编辑了节点：节点ID(460)', '1', '1532412379');
+INSERT INTO `cj_admin_log` VALUES ('102', '32', '1', '2130706433', 'admin_menu', '460', '超级管理员 删除了节点：节点ID(460),节点标题(模块配置信息),节点链接(admin/moduleconfig/index)', '1', '1532412392');
+INSERT INTO `cj_admin_log` VALUES ('103', '30', '1', '2130706433', 'admin_menu', '467', '超级管理员 添加了节点：所属模块(admin),所属节点ID(33),节点标题(模块配置信息),节点链接(admin/moduleconfig/index)', '1', '1532412418');
+INSERT INTO `cj_admin_log` VALUES ('104', '16', '1', '2130706433', 'admin_config', '1', '超级管理员 编辑了配置：字段(title)，原值(站点开关)，新值：(站点开关1)', '1', '1532484190');
+INSERT INTO `cj_admin_log` VALUES ('105', '16', '1', '2130706433', 'admin_config', '1', '超级管理员 编辑了配置：字段(title)，原值(站点开关1)，新值：(站点开关)', '1', '1532484196');
+INSERT INTO `cj_admin_log` VALUES ('106', '35', '1', '2130706433', 'admin_module', '0', '超级管理员 安装了模块：门户', '1', '1532485010');
+INSERT INTO `cj_admin_log` VALUES ('107', '36', '1', '2130706433', 'admin_module', '0', '超级管理员 卸载了模块：门户', '1', '1532495511');
+INSERT INTO `cj_admin_log` VALUES ('108', '16', '1', '2130706433', 'admin_config', '11', '超级管理员 编辑了配置：原数据：分组(system)、类型(array)、标题(配置类型)、名称(form_item_type)', '1', '1532501081');
+INSERT INTO `cj_admin_log` VALUES ('109', '32', '1', '2130706433', 'admin_menu', '582', '超级管理员 删除了节点：节点ID(582),节点标题(用户金额),节点链接(shop/usermoney/index)', '1', '1532506617');
+INSERT INTO `cj_admin_log` VALUES ('110', '30', '1', '2130706433', 'admin_menu', '583', '超级管理员 添加了节点：所属模块(shop),所属节点ID(580),节点标题(新增),节点链接(shop/menber/add)', '1', '1532506668');
 
 -- ----------------------------
 -- Table structure for cj_admin_menu
@@ -545,7 +505,7 @@ CREATE TABLE `cj_admin_menu` (
   `status` tinyint(2) NOT NULL DEFAULT '1' COMMENT '状态',
   `params` varchar(255) NOT NULL DEFAULT '' COMMENT '参数',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=460 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='后台菜单表';
+) ENGINE=MyISAM AUTO_INCREMENT=584 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='后台菜单表';
 
 -- ----------------------------
 -- Records of cj_admin_menu
@@ -665,15 +625,13 @@ INSERT INTO `cj_admin_menu` VALUES ('233', '225', 'admin', '更新图标', '', '
 INSERT INTO `cj_admin_menu` VALUES ('234', '20', 'user', '快速编辑', '', 'module_admin', 'user/index/quickedit', '_self', '0', '1526028258', '1526028258', '100', '0', '1', '');
 INSERT INTO `cj_admin_menu` VALUES ('235', '67', 'user', '快速编辑', '', 'module_admin', 'user/role/quickedit', '_self', '0', '1526028282', '1526028282', '100', '0', '1', '');
 INSERT INTO `cj_admin_menu` VALUES ('398', '33', 'admin', '新增', '', 'module_admin', 'admin/module/add', '_self', '0', '1532229273', '1532229273', '100', '0', '1', '');
-INSERT INTO `cj_admin_menu` VALUES ('458', '457', 'shop', '商品分类', '', 'module_admin', 'shop/goods/add', '_self', '0', '1532335602', '1532335602', '100', '0', '1', '');
 INSERT INTO `cj_admin_menu` VALUES ('453', '33', 'admin', '节点删除', '', 'module_admin', 'admin/fieldnode/delete', '_self', '0', '1532331307', '1532331307', '100', '0', '1', '');
 INSERT INTO `cj_admin_menu` VALUES ('454', '33', 'admin', '节点添加', '', 'module_admin', 'admin/fieldnode/add', '_self', '0', '1532331334', '1532331334', '100', '0', '1', '');
-INSERT INTO `cj_admin_menu` VALUES ('459', '426', 'shop', '订单表', 'fa fa-fw fa-th-list', 'module_admin', 'shop/order/index', '_self', '0', '1532338164', '1532338164', '100', '0', '1', '');
-INSERT INTO `cj_admin_menu` VALUES ('457', '426', 'shop', '商品管理', 'fa fa-fw fa-th-list', 'module_admin', 'shop/goods/index', '_self', '0', '1532335347', '1532335347', '100', '0', '1', '');
-INSERT INTO `cj_admin_menu` VALUES ('434', '431', 'shop', '删除', '', 'module_admin', 'admin/field/delete', '_self', '0', '1532311581', '1532311581', '100', '0', '1', '');
-INSERT INTO `cj_admin_menu` VALUES ('433', '431', 'shop', '编辑', '', 'module_admin', 'admin/field/edit', '_self', '0', '1532311581', '1532311581', '100', '0', '1', '');
-INSERT INTO `cj_admin_menu` VALUES ('432', '431', 'shop', '新增', '', 'module_admin', 'admin/field/add', '_self', '0', '1532311581', '1532311581', '100', '0', '1', '');
-INSERT INTO `cj_admin_menu` VALUES ('431', '427', 'shop', '字段管理', '', 'module_admin', 'admin/field/index', '_self', '0', '1532311581', '1532311581', '100', '0', '0', '');
+INSERT INTO `cj_admin_menu` VALUES ('472', '467', 'admin', '禁用', '', 'module_admin', 'admin/moduleconfig/disable', '_self', '0', '1532412418', '1532412418', '100', '0', '1', '');
+INSERT INTO `cj_admin_menu` VALUES ('434', '431', 'admin', '删除', '', 'module_admin', 'admin/field/delete', '_self', '0', '1532311581', '1532311581', '100', '0', '1', '');
+INSERT INTO `cj_admin_menu` VALUES ('433', '431', 'admin', '编辑', '', 'module_admin', 'admin/field/edit', '_self', '0', '1532311581', '1532311581', '100', '0', '1', '');
+INSERT INTO `cj_admin_menu` VALUES ('432', '431', 'admin', '新增', '', 'module_admin', 'admin/field/add', '_self', '0', '1532311581', '1532311581', '100', '0', '1', '');
+INSERT INTO `cj_admin_menu` VALUES ('431', '427', 'admin', '字段管理', '', 'module_admin', 'admin/field/index', '_self', '0', '1532311581', '1532311581', '100', '0', '0', '');
 INSERT INTO `cj_admin_menu` VALUES ('430', '427', 'shop', '删除', '', 'module_admin', 'shop/databasetable/delete', '_self', '0', '1532311581', '1532311581', '100', '0', '0', '');
 INSERT INTO `cj_admin_menu` VALUES ('429', '427', 'shop', '编辑', '', 'module_admin', 'shop/databasetable/edit', '_self', '0', '1532311581', '1532311581', '100', '0', '0', '');
 INSERT INTO `cj_admin_menu` VALUES ('428', '427', 'shop', '新增', '', 'module_admin', 'shop/databasetable/add', '_self', '0', '1532311581', '1532311581', '100', '0', '0', '');
@@ -681,6 +639,15 @@ INSERT INTO `cj_admin_menu` VALUES ('427', '426', 'shop', '模型管理', 'fa fa
 INSERT INTO `cj_admin_menu` VALUES ('426', '0', 'shop', '商城', 'fa fa-fw fa-newspaper-o', 'module_admin', 'shop/index/index', '_self', '0', '1532311581', '1532334223', '100', '0', '1', '');
 INSERT INTO `cj_admin_menu` VALUES ('452', '33', 'admin', '节点编辑', '', 'module_admin', 'admin/fieldnode/edit', '_self', '0', '1532331225', '1532331225', '100', '0', '1', '');
 INSERT INTO `cj_admin_menu` VALUES ('444', '33', 'admin', '节点列表', '', 'module_admin', 'admin/fieldnode/index', '_self', '0', '1532324929', '1532331158', '100', '0', '1', '');
+INSERT INTO `cj_admin_menu` VALUES ('471', '467', 'admin', '启用', '', 'module_admin', 'admin/moduleconfig/enable', '_self', '0', '1532412418', '1532412418', '100', '0', '1', '');
+INSERT INTO `cj_admin_menu` VALUES ('470', '467', 'admin', '删除', '', 'module_admin', 'admin/moduleconfig/delete', '_self', '0', '1532412418', '1532412418', '100', '0', '1', '');
+INSERT INTO `cj_admin_menu` VALUES ('469', '467', 'admin', '编辑', '', 'module_admin', 'admin/moduleconfig/edit', '_self', '0', '1532412418', '1532412418', '100', '0', '1', '');
+INSERT INTO `cj_admin_menu` VALUES ('468', '467', 'admin', '新增', '', 'module_admin', 'admin/moduleconfig/add', '_self', '0', '1532412418', '1532412418', '100', '0', '1', '');
+INSERT INTO `cj_admin_menu` VALUES ('467', '33', 'admin', '模块配置信息', '', 'module_admin', 'admin/moduleconfig/index', '_self', '0', '1532412418', '1532412418', '100', '0', '1', '');
+INSERT INTO `cj_admin_menu` VALUES ('473', '467', 'admin', '快速编辑', '', 'module_admin', 'admin/moduleconfig/quickedit', '_self', '0', '1532412418', '1532412418', '100', '0', '1', '');
+INSERT INTO `cj_admin_menu` VALUES ('578', '426', 'shop', '会员管理', 'fa fa-fw fa-film', 'module_admin', 'shop/userlist/index', '_self', '0', '1532490029', '1532490029', '100', '0', '1', '');
+INSERT INTO `cj_admin_menu` VALUES ('583', '580', 'shop', '新增', '', 'module_admin', 'shop/menber/add', '_self', '0', '1532506668', '1532506668', '100', '0', '1', '');
+INSERT INTO `cj_admin_menu` VALUES ('580', '426', 'shop', '数据表', 'fa fa-fw fa-repeat', 'module_admin', 'shop/menber/index', '_self', '0', '1532490563', '1532490563', '100', '0', '1', '');
 
 -- ----------------------------
 -- Table structure for cj_admin_message
@@ -720,13 +687,13 @@ CREATE TABLE `cj_admin_model` (
   `update_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
   `status` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '状态',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=62 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='内容模型表';
+) ENGINE=MyISAM AUTO_INCREMENT=78 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='内容模型表';
 
 -- ----------------------------
 -- Records of cj_admin_model
 -- ----------------------------
-INSERT INTO `cj_admin_model` VALUES ('61', 'shop', '订单表', 'cj_shop_order', '2', 'fa fa-fw fa-maxcdn', '100', '0', '1532338164', '1532338314', '1');
-INSERT INTO `cj_admin_model` VALUES ('60', 'shop', '商品管理', 'cj_shop_goods', '2', 'fa fa-fw fa-th-list', '100', '0', '1532335346', '1532335346', '1');
+INSERT INTO `cj_admin_model` VALUES ('75', 'shop', '数据表', 'cj_shop_menber', '2', 'fa fa-fw fa-repeat', '100', '0', '1532490563', '1532490563', '1');
+INSERT INTO `cj_admin_model` VALUES ('73', 'shop', '会员管理', 'cj_shop_user_list', '2', 'fa fa-fw fa-film', '100', '0', '1532490029', '1532490029', '1');
 
 -- ----------------------------
 -- Table structure for cj_admin_module
@@ -750,14 +717,41 @@ CREATE TABLE `cj_admin_module` (
   `sort` int(11) NOT NULL DEFAULT '100' COMMENT '排序',
   `status` tinyint(2) NOT NULL DEFAULT '1' COMMENT '状态',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='模块表';
+) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='模块表';
 
 -- ----------------------------
 -- Records of cj_admin_module
 -- ----------------------------
 INSERT INTO `cj_admin_module` VALUES ('1', 'admin', '系统', 'fa fa-fw fa-gear', '系统模块，DolphinPHP的核心模块', 'DolphinPHP', 'http://www.dolphinphp.com', '', '', '1.0.0', 'admin.dolphinphp.module', '1', '1468204902', '1468204902', '100', '1');
 INSERT INTO `cj_admin_module` VALUES ('2', 'user', '用户', 'fa fa-fw fa-user', '用户模块，DolphinPHP自带模块', 'DolphinPHP', 'http://www.dolphinphp.com', '', '', '1.0.0', 'user.dolphinphp.module', '1', '1468204902', '1468204902', '100', '1');
-INSERT INTO `cj_admin_module` VALUES ('21', 'shop', '商城', '', '的萨达萨达sad', ' 的sad', '大的', null, null, '1.0.0.2', 'shop.caijion.module', '0', '1532311581', '1532311581', '100', '1');
+INSERT INTO `cj_admin_module` VALUES ('21', 'shop', '商城', '', '的萨达萨达sad', ' 的sad', '大的', '', '', '1.0.0.2', 'shop.caijion.module', '0', '1532311581', '1532485213', '100', '1');
+
+-- ----------------------------
+-- Table structure for cj_admin_module_config
+-- ----------------------------
+DROP TABLE IF EXISTS `cj_admin_module_config`;
+CREATE TABLE `cj_admin_module_config` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(64) NOT NULL DEFAULT '' COMMENT '字段名称',
+  `title` varchar(32) NOT NULL DEFAULT '' COMMENT '字段标题',
+  `group_name` varchar(32) NOT NULL DEFAULT '' COMMENT '分组名称',
+  `default_value` int(11) NOT NULL DEFAULT '0' COMMENT '默认值',
+  `module_name` varchar(255) NOT NULL DEFAULT '' COMMENT '模块标识',
+  `field_type` varchar(255) NOT NULL DEFAULT '' COMMENT '字段类型',
+  `field_hints` varchar(255) NOT NULL DEFAULT '' COMMENT '字段提示',
+  `is_required` tinyint(2) NOT NULL DEFAULT '0' COMMENT '1,必填  0,不必填',
+  `status` tinyint(2) NOT NULL DEFAULT '1' COMMENT '状态：0禁用，1启用',
+  `sort` int(11) NOT NULL DEFAULT '100' COMMENT '排序',
+  `create_time` int(11) unsigned DEFAULT '0' COMMENT '创建时间',
+  `update_time` int(11) unsigned DEFAULT '0' COMMENT '更新时间',
+  `delete_time` int(11) DEFAULT '0' COMMENT '删除时间',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='模块配置信息';
+
+-- ----------------------------
+-- Records of cj_admin_module_config
+-- ----------------------------
+INSERT INTO `cj_admin_module_config` VALUES ('1', 'name_time', '时间', '时间管理', '11', 'shop', 'int', '这是时间', '0', '1', '100', '1532423546', '1532425421', '0');
 
 -- ----------------------------
 -- Table structure for cj_admin_packet
@@ -904,339 +898,6 @@ CREATE TABLE `cj_ceshi_user` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for cj_cms_advert
--- ----------------------------
-DROP TABLE IF EXISTS `cj_cms_advert`;
-CREATE TABLE `cj_cms_advert` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `typeid` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '分类id',
-  `tagname` varchar(30) NOT NULL DEFAULT '' COMMENT '广告位标识',
-  `ad_type` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '广告类型',
-  `timeset` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '时间限制:0-永不过期,1-在设内时间内有效',
-  `start_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '开始时间',
-  `end_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '结束时间',
-  `name` varchar(60) NOT NULL DEFAULT '' COMMENT '广告位名称',
-  `content` text NOT NULL COMMENT '广告内容',
-  `expcontent` text NOT NULL COMMENT '过期显示内容',
-  `create_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
-  `update_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
-  `status` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '状态',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='广告表';
-
--- ----------------------------
--- Records of cj_cms_advert
--- ----------------------------
-
--- ----------------------------
--- Table structure for cj_cms_advert_type
--- ----------------------------
-DROP TABLE IF EXISTS `cj_cms_advert_type`;
-CREATE TABLE `cj_cms_advert_type` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(32) NOT NULL DEFAULT '' COMMENT '分类名称',
-  `create_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
-  `update_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
-  `status` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '状态',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='广告分类表';
-
--- ----------------------------
--- Records of cj_cms_advert_type
--- ----------------------------
-
--- ----------------------------
--- Table structure for cj_cms_column
--- ----------------------------
-DROP TABLE IF EXISTS `cj_cms_column`;
-CREATE TABLE `cj_cms_column` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `pid` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '父级id',
-  `name` varchar(32) NOT NULL DEFAULT '' COMMENT '栏目名称',
-  `model` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '文档模型id',
-  `url` varchar(255) NOT NULL DEFAULT '' COMMENT '链接',
-  `target` varchar(16) NOT NULL DEFAULT '_self' COMMENT '链接打开方式',
-  `content` text NOT NULL COMMENT '内容',
-  `icon` varchar(64) NOT NULL DEFAULT '' COMMENT '字体图标',
-  `index_template` varchar(32) NOT NULL DEFAULT '' COMMENT '封面模板',
-  `list_template` varchar(32) NOT NULL DEFAULT '' COMMENT '列表页模板',
-  `detail_template` varchar(32) NOT NULL DEFAULT '' COMMENT '详情页模板',
-  `post_auth` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '投稿权限',
-  `create_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
-  `update_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
-  `sort` int(11) NOT NULL DEFAULT '100' COMMENT '排序',
-  `status` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '状态',
-  `hide` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '是否隐藏',
-  `rank_auth` int(11) NOT NULL DEFAULT '0' COMMENT '浏览权限，-1待审核，0为开放浏览，大于0则为对应的用户角色id',
-  `type` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '栏目属性：0-最终列表栏目，1-外部链接，2-频道封面',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='栏目表';
-
--- ----------------------------
--- Records of cj_cms_column
--- ----------------------------
-
--- ----------------------------
--- Table structure for cj_cms_document
--- ----------------------------
-DROP TABLE IF EXISTS `cj_cms_document`;
-CREATE TABLE `cj_cms_document` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `cid` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '栏目id',
-  `model` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '文档模型ID',
-  `title` varchar(256) NOT NULL DEFAULT '' COMMENT '标题',
-  `shorttitle` varchar(32) NOT NULL DEFAULT '' COMMENT '简略标题',
-  `uid` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '用户ID',
-  `flag` set('j','p','b','s','a','f','c','h') DEFAULT NULL COMMENT '自定义属性',
-  `view` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '阅读量',
-  `comment` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '评论数',
-  `good` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '点赞数',
-  `bad` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '踩数',
-  `mark` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '收藏数量',
-  `create_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
-  `update_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
-  `sort` int(11) NOT NULL DEFAULT '100' COMMENT '排序',
-  `status` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '状态',
-  `trash` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '回收站',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='文档基础表';
-
--- ----------------------------
--- Records of cj_cms_document
--- ----------------------------
-
--- ----------------------------
--- Table structure for cj_cms_field
--- ----------------------------
-DROP TABLE IF EXISTS `cj_cms_field`;
-CREATE TABLE `cj_cms_field` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '字段名称',
-  `name` varchar(32) NOT NULL,
-  `title` varchar(32) NOT NULL DEFAULT '' COMMENT '字段标题',
-  `type` varchar(32) NOT NULL DEFAULT '' COMMENT '字段类型',
-  `define` varchar(128) NOT NULL DEFAULT '' COMMENT '字段定义',
-  `value` text COMMENT '默认值',
-  `options` text COMMENT '额外选项',
-  `tips` varchar(256) NOT NULL DEFAULT '' COMMENT '提示说明',
-  `fixed` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '是否为固定字段',
-  `show` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '是否显示',
-  `model` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '所属文档模型id',
-  `ajax_url` varchar(256) NOT NULL DEFAULT '' COMMENT '联动下拉框ajax地址',
-  `next_items` varchar(256) NOT NULL DEFAULT '' COMMENT '联动下拉框的下级下拉框名，多个以逗号隔开',
-  `param` varchar(32) NOT NULL DEFAULT '' COMMENT '联动下拉框请求参数名',
-  `format` varchar(32) NOT NULL DEFAULT '' COMMENT '格式，用于格式文本',
-  `table` varchar(32) NOT NULL DEFAULT '' COMMENT '表名，只用于快速联动类型',
-  `level` tinyint(2) unsigned NOT NULL DEFAULT '2' COMMENT '联动级别，只用于快速联动类型',
-  `key` varchar(32) NOT NULL DEFAULT '' COMMENT '键字段，只用于快速联动类型',
-  `option` varchar(32) NOT NULL DEFAULT '' COMMENT '值字段，只用于快速联动类型',
-  `pid` varchar(32) NOT NULL DEFAULT '' COMMENT '父级id字段，只用于快速联动类型',
-  `ak` varchar(32) NOT NULL DEFAULT '' COMMENT '百度地图appkey',
-  `create_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
-  `update_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
-  `sort` int(11) NOT NULL DEFAULT '100' COMMENT '排序',
-  `status` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '状态',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='文档字段表';
-
--- ----------------------------
--- Records of cj_cms_field
--- ----------------------------
-INSERT INTO `cj_cms_field` VALUES ('1', 'id', 'ID', 'text', 'int(11) UNSIGNED NOT NULL', '0', '', 'ID', '0', '0', '0', '', '', '', '', '', '0', '', '', '', '', '1480562978', '1480562978', '100', '1');
-INSERT INTO `cj_cms_field` VALUES ('2', 'cid', '栏目', 'select', 'int(11) UNSIGNED NOT NULL', '0', '', '请选择所属栏目', '0', '0', '0', '', '', '', '', '', '0', '', '', '', '', '1480562978', '1480562978', '100', '1');
-INSERT INTO `cj_cms_field` VALUES ('3', 'uid', '用户ID', 'text', 'int(11) UNSIGNED NOT NULL', '0', '', '', '0', '0', '0', '', '', '', '', '', '0', '', '', '', '', '1480563110', '1480563110', '100', '1');
-INSERT INTO `cj_cms_field` VALUES ('4', 'model', '模型ID', 'text', 'int(11) UNSIGNED NOT NULL', '0', '', '', '0', '0', '0', '', '', '', '', '', '0', '', '', '', '', '1480563110', '1480563110', '100', '1');
-INSERT INTO `cj_cms_field` VALUES ('5', 'title', '标题', 'text', 'varchar(128) NOT NULL', '', '', '文档标题', '0', '1', '0', '', '', '', '', '', '0', '', '', '', '', '1480575844', '1480576134', '1', '1');
-INSERT INTO `cj_cms_field` VALUES ('6', 'shorttitle', '简略标题', 'text', 'varchar(32) NOT NULL', '', '', '简略标题', '0', '1', '0', '', '', '', '', '', '0', '', '', '', '', '1480575844', '1480576134', '1', '1');
-INSERT INTO `cj_cms_field` VALUES ('7', 'flag', '自定义属性', 'checkbox', 'set(\'j\',\'p\',\'b\',\'s\',\'a\',\'f\',\'h\',\'c\') NULL DEFAULT NULL', '', 'j:跳转\r\np:图片\r\nb:加粗\r\ns:滚动\r\na:特荐\r\nf:幻灯\r\nh:头条\r\nc:推荐', '自定义属性', '0', '1', '0', '', '', '', '', '', '0', '', '', '', '', '1480671258', '1480671258', '100', '1');
-INSERT INTO `cj_cms_field` VALUES ('8', 'view', '阅读量', 'text', 'int(11) UNSIGNED NOT NULL', '0', '', '', '0', '1', '0', '', '', '', '', '', '0', '', '', '', '', '1480563149', '1480563149', '100', '1');
-INSERT INTO `cj_cms_field` VALUES ('9', 'comment', '评论数', 'text', 'int(11) UNSIGNED NOT NULL', '0', '', '', '0', '0', '0', '', '', '', '', '', '0', '', '', '', '', '1480563189', '1480563189', '100', '1');
-INSERT INTO `cj_cms_field` VALUES ('10', 'good', '点赞数', 'text', 'int(11) UNSIGNED NOT NULL', '0', '', '', '0', '0', '0', '', '', '', '', '', '0', '', '', '', '', '1480563279', '1480563279', '100', '1');
-INSERT INTO `cj_cms_field` VALUES ('11', 'bad', '踩数', 'text', 'int(11) UNSIGNED NOT NULL', '0', '', '', '0', '0', '0', '', '', '', '', '', '0', '', '', '', '', '1480563330', '1480563330', '100', '1');
-INSERT INTO `cj_cms_field` VALUES ('12', 'mark', '收藏数量', 'text', 'int(11) UNSIGNED NOT NULL', '0', '', '', '0', '0', '0', '', '', '', '', '', '0', '', '', '', '', '1480563372', '1480563372', '100', '1');
-INSERT INTO `cj_cms_field` VALUES ('13', 'create_time', '创建时间', 'datetime', 'int(11) UNSIGNED NOT NULL', '0', '', '', '0', '0', '0', '', '', '', '', '', '0', '', '', '', '', '1480563406', '1480563406', '100', '1');
-INSERT INTO `cj_cms_field` VALUES ('14', 'update_time', '更新时间', 'datetime', 'int(11) UNSIGNED NOT NULL', '0', '', '', '0', '0', '0', '', '', '', '', '', '0', '', '', '', '', '1480563432', '1480563432', '100', '1');
-INSERT INTO `cj_cms_field` VALUES ('15', 'sort', '排序', 'text', 'int(11) NOT NULL', '100', '', '', '0', '1', '0', '', '', '', '', '', '0', '', '', '', '', '1480563510', '1480563510', '100', '1');
-INSERT INTO `cj_cms_field` VALUES ('16', 'status', '状态', 'radio', 'tinyint(2) UNSIGNED NOT NULL', '1', '0:禁用\r\n1:启用', '', '0', '1', '0', '', '', '', '', '', '0', '', '', '', '', '1480563576', '1480563576', '100', '1');
-INSERT INTO `cj_cms_field` VALUES ('17', 'trash', '回收站', 'text', 'tinyint(2) UNSIGNED NOT NULL', '0', '', '', '0', '0', '0', '', '', '', '', '', '0', '', '', '', '', '1480563576', '1480563576', '100', '1');
-INSERT INTO `cj_cms_field` VALUES ('18', 'id', '文档id', 'text', 'int(11) UNSIGNED NOT NULL', null, null, '', '0', '0', '1', '', '', '', '', '', '0', '', '', '', '', '1532138364', '1532138364', '100', '1');
-INSERT INTO `cj_cms_field` VALUES ('19', 'cid', '栏目', 'static', 'int(11) UNSIGNED NOT NULL', '0', null, '', '0', '0', '1', '', '', '', '', '', '0', '', '', '', '', '1532138364', '1532138364', '100', '1');
-INSERT INTO `cj_cms_field` VALUES ('20', 'uid', '用户id', 'text', 'int(11) UNSIGNED NOT NULL', '0', null, '', '0', '0', '1', '', '', '', '', '', '0', '', '', '', '', '1532138364', '1532138364', '100', '1');
-INSERT INTO `cj_cms_field` VALUES ('21', 'model', '文档模型', 'text', 'int(11) UNSIGNED NOT NULL', '0', null, '', '0', '0', '1', '', '', '', '', '', '0', '', '', '', '', '1532138364', '1532138364', '100', '1');
-INSERT INTO `cj_cms_field` VALUES ('22', 'title', '标题', 'text', 'varchar(256) NOT NULL', null, null, '', '0', '1', '1', '', '', '', '', '', '0', '', '', '', '', '1532138364', '1532138364', '100', '1');
-INSERT INTO `cj_cms_field` VALUES ('23', 'create_time', '创建时间', 'datetime', 'int(11) UNSIGNED NOT NULL', '0', null, '', '0', '0', '1', '', '', '', '', '', '0', '', '', '', '', '1532138364', '1532138364', '100', '1');
-INSERT INTO `cj_cms_field` VALUES ('24', 'update_time', '更新时间', 'datetime', 'int(11) UNSIGNED NOT NULL', '0', null, '', '0', '0', '1', '', '', '', '', '', '0', '', '', '', '', '1532138364', '1532138364', '100', '1');
-INSERT INTO `cj_cms_field` VALUES ('25', 'sort', '排序', 'text', 'int(11) UNSIGNED NOT NULL', '100', null, '', '0', '1', '1', '', '', '', '', '', '0', '', '', '', '', '1532138364', '1532138364', '100', '1');
-INSERT INTO `cj_cms_field` VALUES ('26', 'status', '状态', 'radio', 'tinyint(2) NOT NULL', '1', '0:禁用\n1:启用', '', '0', '1', '1', '', '', '', '', '', '0', '', '', '', '', '1532138364', '1532138364', '100', '1');
-INSERT INTO `cj_cms_field` VALUES ('27', 'view', '点击量', 'text', 'int(11) UNSIGNED NOT NULL', '0', null, '', '0', '0', '1', '', '', '', '', '', '0', '', '', '', '', '1532138364', '1532138364', '100', '1');
-INSERT INTO `cj_cms_field` VALUES ('28', 'trash', '回收站', 'radio', 'tinyint(2) NOT NULL', '0', null, '', '0', '0', '1', '', '', '', '', '', '0', '', '', '', '', '1532138364', '1532138364', '100', '1');
-
--- ----------------------------
--- Table structure for cj_cms_link
--- ----------------------------
-DROP TABLE IF EXISTS `cj_cms_link`;
-CREATE TABLE `cj_cms_link` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `type` tinyint(2) unsigned NOT NULL DEFAULT '1' COMMENT '类型：1-文字链接，2-图片链接',
-  `title` varchar(128) NOT NULL DEFAULT '' COMMENT '链接标题',
-  `url` varchar(255) NOT NULL DEFAULT '' COMMENT '链接地址',
-  `logo` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '链接LOGO',
-  `contact` varchar(255) NOT NULL DEFAULT '' COMMENT '联系方式',
-  `sort` int(11) NOT NULL DEFAULT '100',
-  `status` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '状态',
-  `create_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
-  `update_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='有钱链接表';
-
--- ----------------------------
--- Records of cj_cms_link
--- ----------------------------
-
--- ----------------------------
--- Table structure for cj_cms_menu
--- ----------------------------
-DROP TABLE IF EXISTS `cj_cms_menu`;
-CREATE TABLE `cj_cms_menu` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `nid` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '导航id',
-  `pid` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '父级id',
-  `column` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '栏目id',
-  `page` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '单页id',
-  `type` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '类型：0-栏目链接，1-单页链接，2-自定义链接',
-  `title` varchar(128) NOT NULL DEFAULT '' COMMENT '菜单标题',
-  `url` varchar(255) NOT NULL DEFAULT '' COMMENT '链接',
-  `css` varchar(64) NOT NULL DEFAULT '' COMMENT 'css类',
-  `rel` varchar(64) NOT NULL DEFAULT '' COMMENT '链接关系网',
-  `target` varchar(16) NOT NULL DEFAULT '' COMMENT '打开方式',
-  `create_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
-  `update_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
-  `sort` int(11) NOT NULL DEFAULT '100' COMMENT '排序',
-  `status` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '状态',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='菜单表';
-
--- ----------------------------
--- Records of cj_cms_menu
--- ----------------------------
-INSERT INTO `cj_cms_menu` VALUES ('1', '1', '0', '0', '0', '2', '首页', 'cms/index/index', '', '', '_self', '1492345605', '1492345605', '100', '1');
-INSERT INTO `cj_cms_menu` VALUES ('2', '2', '0', '0', '0', '2', '关于我们', 'http://www.dolphinphp.com', '', '', '_self', '1492346763', '1492346763', '100', '1');
-INSERT INTO `cj_cms_menu` VALUES ('3', '3', '0', '0', '0', '2', '开发文档', 'http://www.kancloud.cn/ming5112/dolphinphp', '', '', '_self', '1492346812', '1492346812', '100', '1');
-INSERT INTO `cj_cms_menu` VALUES ('4', '3', '0', '0', '0', '2', '开发者社区', 'http://bbs.dolphinphp.com/', '', '', '_self', '1492346832', '1492346832', '100', '1');
-INSERT INTO `cj_cms_menu` VALUES ('5', '1', '0', '0', '0', '2', '二级菜单', 'http://www.dolphinphp.com', '', '', '_self', '1492347372', '1492347510', '100', '1');
-INSERT INTO `cj_cms_menu` VALUES ('6', '1', '5', '0', '0', '2', '子菜单', 'http://www.dolphinphp.com', '', '', '_self', '1492347388', '1492347520', '100', '1');
-
--- ----------------------------
--- Table structure for cj_cms_model
--- ----------------------------
-DROP TABLE IF EXISTS `cj_cms_model`;
-CREATE TABLE `cj_cms_model` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(32) NOT NULL DEFAULT '' COMMENT '模型名称',
-  `title` varchar(32) NOT NULL DEFAULT '' COMMENT '模型标题',
-  `table` varchar(64) NOT NULL DEFAULT '' COMMENT '附加表名称',
-  `type` tinyint(2) NOT NULL DEFAULT '1' COMMENT '模型类别：0-系统模型，1-普通模型，2-独立模型',
-  `icon` varchar(64) NOT NULL,
-  `sort` int(11) NOT NULL DEFAULT '100' COMMENT '排序',
-  `system` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '是否系统模型',
-  `create_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
-  `update_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
-  `status` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '状态',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='内容模型表';
-
--- ----------------------------
--- Records of cj_cms_model
--- ----------------------------
-INSERT INTO `cj_cms_model` VALUES ('1', 'ceshi', '测试', 'cj_cms_document_ceshi', '2', 'fa fa-fw fa-home', '100', '0', '1532138364', '1532138364', '1');
-
--- ----------------------------
--- Table structure for cj_cms_nav
--- ----------------------------
-DROP TABLE IF EXISTS `cj_cms_nav`;
-CREATE TABLE `cj_cms_nav` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `tag` varchar(32) NOT NULL DEFAULT '' COMMENT '导航标识',
-  `title` varchar(32) NOT NULL DEFAULT '' COMMENT '菜单标题',
-  `create_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
-  `update_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
-  `status` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '状态',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='导航表';
-
--- ----------------------------
--- Records of cj_cms_nav
--- ----------------------------
-INSERT INTO `cj_cms_nav` VALUES ('1', 'main_nav', '顶部导航', '1492345083', '1492345083', '1');
-INSERT INTO `cj_cms_nav` VALUES ('2', 'about_nav', '底部关于', '1492346685', '1492346685', '1');
-INSERT INTO `cj_cms_nav` VALUES ('3', 'support_nav', '服务与支持', '1492346715', '1492346715', '1');
-
--- ----------------------------
--- Table structure for cj_cms_page
--- ----------------------------
-DROP TABLE IF EXISTS `cj_cms_page`;
-CREATE TABLE `cj_cms_page` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(64) NOT NULL DEFAULT '' COMMENT '单页标题',
-  `content` mediumtext NOT NULL COMMENT '单页内容',
-  `keywords` varchar(32) NOT NULL DEFAULT '' COMMENT '关键词',
-  `description` varchar(250) NOT NULL DEFAULT '' COMMENT '页面描述',
-  `template` varchar(32) NOT NULL DEFAULT '' COMMENT '模板文件',
-  `cover` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '单页封面',
-  `view` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '阅读量',
-  `create_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
-  `update_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
-  `status` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '状态',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='单页表';
-
--- ----------------------------
--- Records of cj_cms_page
--- ----------------------------
-
--- ----------------------------
--- Table structure for cj_cms_slider
--- ----------------------------
-DROP TABLE IF EXISTS `cj_cms_slider`;
-CREATE TABLE `cj_cms_slider` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(32) NOT NULL DEFAULT '' COMMENT '标题',
-  `cover` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '封面id',
-  `url` varchar(255) NOT NULL DEFAULT '' COMMENT '链接地址',
-  `create_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
-  `update_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
-  `sort` int(11) unsigned NOT NULL DEFAULT '100' COMMENT '排序',
-  `status` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '状态',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='滚动图片表';
-
--- ----------------------------
--- Records of cj_cms_slider
--- ----------------------------
-
--- ----------------------------
--- Table structure for cj_cms_support
--- ----------------------------
-DROP TABLE IF EXISTS `cj_cms_support`;
-CREATE TABLE `cj_cms_support` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(128) NOT NULL DEFAULT '' COMMENT '客服名称',
-  `qq` varchar(16) NOT NULL DEFAULT '' COMMENT 'QQ',
-  `msn` varchar(100) NOT NULL DEFAULT '' COMMENT 'msn',
-  `taobao` varchar(100) NOT NULL DEFAULT '' COMMENT 'taobao',
-  `alibaba` varchar(100) NOT NULL DEFAULT '' COMMENT 'alibaba',
-  `skype` varchar(100) NOT NULL DEFAULT '' COMMENT 'skype',
-  `status` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '状态',
-  `sort` int(11) unsigned NOT NULL DEFAULT '100' COMMENT '排序',
-  `create_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
-  `update_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='客服表';
-
--- ----------------------------
--- Records of cj_cms_support
--- ----------------------------
-
--- ----------------------------
 -- Table structure for cj_mashu_goods
 -- ----------------------------
 DROP TABLE IF EXISTS `cj_mashu_goods`;
@@ -1271,35 +932,43 @@ CREATE TABLE `cj_mashu_mashu` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for cj_shop_goods
+-- Table structure for cj_shop_menber
 -- ----------------------------
-DROP TABLE IF EXISTS `cj_shop_goods`;
-CREATE TABLE `cj_shop_goods` (
+DROP TABLE IF EXISTS `cj_shop_menber`;
+CREATE TABLE `cj_shop_menber` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
   `create_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
   `update_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
   `sort` int(11) NOT NULL DEFAULT '100' COMMENT '排序',
-  `status` tinyint(2) NOT NULL COMMENT '状态',
+  `status` tinyint(2) unsigned NOT NULL DEFAULT '1' COMMENT '状态',
+  `user_token` varchar(255) NOT NULL COMMENT '用户',
+  `title` varchar(255) DEFAULT NULL,
+  `liste` varchar(255) NOT NULL COMMENT '列表',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='商品管理模型表';
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='数据表模型表';
 
 -- ----------------------------
--- Records of cj_shop_goods
+-- Records of cj_shop_menber
 -- ----------------------------
+INSERT INTO `cj_shop_menber` VALUES ('2', '1532509044', '1532509044', '100', '1', '2', null, '');
+INSERT INTO `cj_shop_menber` VALUES ('3', '1532509055', '1532509055', '100', '1', '2', null, '');
+INSERT INTO `cj_shop_menber` VALUES ('4', '1532509261', '1532509261', '100', '1', '3', '3', '3');
+INSERT INTO `cj_shop_menber` VALUES ('5', '1532510021', '1532510021', '100', '1', '3', '4', '4');
+INSERT INTO `cj_shop_menber` VALUES ('6', '1532510871', '1532510871', '100', '1', '999', '999', '9999');
 
 -- ----------------------------
--- Table structure for cj_shop_order
+-- Table structure for cj_shop_user_list
 -- ----------------------------
-DROP TABLE IF EXISTS `cj_shop_order`;
-CREATE TABLE `cj_shop_order` (
+DROP TABLE IF EXISTS `cj_shop_user_list`;
+CREATE TABLE `cj_shop_user_list` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
   `create_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
   `update_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
   `sort` int(11) NOT NULL DEFAULT '100' COMMENT '排序',
   `status` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '状态',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='订单表模型表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='会员管理模型表';
 
 -- ----------------------------
--- Records of cj_shop_order
+-- Records of cj_shop_user_list
 -- ----------------------------
