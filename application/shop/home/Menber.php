@@ -10,7 +10,7 @@
 // +----------------------------------------------------------------------
 namespace app\shop\home;
 
-class  Shoplist extends Common
+class  Menber extends Common
 {
 
 

@@ -8,20 +8,10 @@
 // +----------------------------------------------------------------------
 // | 开源协议 ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
-namespace app\shop\validate;
+namespace app\shop\home;
 
-use think\Validate;
-
-class  Order extends Validate
+class  Userlist extends Common
 {
-    //定义验证规则
-    protected $rule = [
-      
-    ];
 
-    //定义验证提示
-    protected $message = [
-        
-    ];
 
 }

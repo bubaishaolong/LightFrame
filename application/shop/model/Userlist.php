@@ -8,20 +8,24 @@
 // +----------------------------------------------------------------------
 // | 开源协议 ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
-namespace app\shop\validate;
+namespace app\shop\model;
 
-use think\Validate;
+use think\Model as ThinkModel;
 
-class  Goods extends Validate
+class  Userlist extends ThinkModel
 {
-    //定义验证规则
-    protected $rule = [
-      
-    ];
-
-    //定义验证提示
-    protected $message = [
-        
-    ];
+    // 设置当前模型对应的完整数据表名称
+    protected $table = '__SHOP_USER_LIST__';
+    // 自动写入时间戳
+    protected $autoWriteTimestamp = true;
+     //设置主键，如果不同请修改
+    protected $pk = 'id';
+    //自定义初始化
+    protected function initialize()
+    {
+        //需要调用`Model`的`initialize`方法
+        parent::initialize();
+        //TODO:自定义的初始化
+    }
 
 }

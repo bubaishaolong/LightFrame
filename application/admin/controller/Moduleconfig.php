@@ -44,7 +44,7 @@ class Moduleconfig extends Admin
 
         // 使用ZBuilder快速创建数据表格
         return ZBuilder::make('table')
-            ->setPageTitle('配置管理')// 设置页面标题
+            ->setPageTitle($group.'模型配置管理')// 设置页面标题
 //            ->setTabNav($tab_list, $group) // 设置tab分页
             ->setSearch(['name' => '名称', 'title' => '标题'])// 设置搜索框
             ->addColumns([ // 批量添加数据列
@@ -66,7 +66,7 @@ class Moduleconfig extends Admin
             ->addFilter('name,title')// 添加标题字段筛选
             ->addFilter('type', config('form_item_type'))// 添加标题字段筛选
             ->addFilterMap('name,title', ['module_name' => $group])// 添加标题字段筛选条件
-            ->addTopButton('add', ['href' => url('add', ['group' => $group])], true)// 添加单个顶部按钮
+            ->addTopButtons('back,add', ['href' => url('add', ['group' => $group])], true)// 添加单个顶部按钮
             ->addTopButtons('enable,disable,delete')// 批量添加顶部按钮
             ->addRightButton('edit', [], true)
             ->addRightButton('delete')// 批量添加右侧按钮
@@ -173,6 +173,70 @@ class Moduleconfig extends Admin
             ->addText('sort', '排序', '', 100)
             ->setFormData($info)
             ->fetch();
+    }
+
+
+    /**
+     * 删除配置
+     * @param array $record 行为日志
+     * @author 蔡伟明 <314013107@qq.com>
+     * @return mixed
+     */
+    public function delete($record = [])
+    {
+        return $this->setStatus('delete');
+    }
+
+    /**
+     * 启用配置
+     * @param array $record 行为日志
+     * @author 蔡伟明 <314013107@qq.com>
+     * @return mixed
+     */
+    public function enable($record = [])
+    {
+        return $this->setStatus('enable');
+    }
+
+    /**
+     * 禁用配置
+     * @param array $record 行为日志
+     * @author 蔡伟明 <314013107@qq.com>
+     * @return mixed
+     */
+    public function disable($record = [])
+    {
+        return $this->setStatus('disable');
+    }
+    /**
+     * 设置配置状态：删除、禁用、启用
+     * @param string $type 类型：delete/enable/disable
+     * @param array $record
+     * @author 蔡伟明 <314013107@qq.com>
+     * @return mixed
+     */
+    public function setStatus($type = '', $record = [])
+    {
+        $ids        = $this->request->isPost() ? input('post.ids/a') : input('param.ids');
+        $uid_delete = is_array($ids) ? '' : $ids;
+        $ids        = ModuleconfigModel::where('id', 'in', $ids)->column('title');
+        return parent::setStatus($type, ['moduleconfig_'.$type, 'admin_config', $uid_delete, UID, implode('、', $ids)]);
+    }
+    /**
+     * 快速编辑
+     * @param array $record 行为日志
+     * @author 蔡伟明 <314013107@qq.com>
+     * @return mixed
+     */
+    public function quickEdit($record = [])
+    {
+
+        $id      = input('post.pk', '');
+        $field   = input('post.name', '');
+        $value   = input('post.value', '');
+        $config  = ModuleconfigModel::where('id', $id)->value($field);
+        $details = '字段(' . $field . ')，原值(' . $config . ')，新值：(' . $value . ')';
+        return parent::quickEdit(['moduleconfig_edit', 'admin_moduleconfig', $id, UID, $details]);
     }
 
 }

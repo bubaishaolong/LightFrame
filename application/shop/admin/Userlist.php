@@ -14,11 +14,10 @@ use app\admin\controller\Admin;
 use app\common\builder\ZBuilder;
 
 use app\admin\model\Model as ModelModel;
-use app\shop\model\Goods as GoodsModel;
+use app\shop\model\Userlist as UserlistModel;
 use app\admin\model\Field as FieldModel;
-use think\Cache;
 
-class  Goods extends Admin
+class  Userlist extends Admin
 {
 
     /**
@@ -28,17 +27,15 @@ class  Goods extends Admin
     public function index()
     {
         //获取数据
-        $dataList = GoodsModel::all();
+        $dataList = UserlistModel::all();
         //获取当前所在
-        // $map = $this->getMap();
-        $database_prefix =config('database.prefix');
-        $datamodelID = ModelModel::where(array('table' => $database_prefix.'shop_goods','status'=>1))->value('id');
+        $datamodelID = ModelModel::where(array('table' => 'cj_shop_user_list','status'=>1))->value('id');
         $datafile = FieldModel::where(array('model' => $datamodelID,'status'=>1,'show'=>1))->field('id,name,title')->select();
 
         foreach ($datafile as $key => $value) {
-            $name = $value['name'];
+            $names = $value['name'];
             $title = $value['title'];
-            $data[] = [$name, $title];
+            $data[] = [$names, $title];
         }
 
         // 使用ZBuilder快速创建数据表格
@@ -46,21 +43,21 @@ class  Goods extends Admin
             ->addColumn('__INDEX__', '#')
             ->addColumns($data)
             ->addColumn('right_button', '操作', 'btn')
-            ->addTopButtons('add,delete')
+            ->addTopButtons('back,add,delete')
             ->addRightButtons('edit,delete')
-            ->setRowList($dataList)->fetch();
+            ->setRowList($dataList)
+            ->fetch();
     }
-
+    
     /**
      *新增
      */
-    public function add()
-    {
-        // 显示添加页面
+     public function add(){
+       // 显示添加页面
         return ZBuilder::make('form')
-            ->addFormItems([['text', 'id', '标题', '说明']])
-            ->fetch();
-    }
-
+               ->addFormItems([['text','ID','标题','说明']])
+               ->fetch();
+     }
+    
 
 }

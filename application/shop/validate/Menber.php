@@ -12,7 +12,7 @@ namespace app\shop\validate;
 
 use think\Validate;
 
-class  Shoplist extends Validate
+class  Menber extends Validate
 {
     //定义验证规则
     protected $rule = [

@@ -15,14 +15,14 @@ use think\Validate;
 
 /**
  * 文档字段验证器
- * @package app\cms\validate
+ * @package app\admin\validate
  * @author 蔡伟明 <314013107@qq.com>
  */
 class Field extends Validate
 {
     //定义验证规则
     protected $rule = [
-        'name|字段名称'   => 'require|regex:^[a-z]\w{0,39}$|unique:cms_field,name^model',
+        'name|字段名称'   => 'require|regex:^[a-z]\w{0,39}$',
         'title|字段标题'  => 'require|length:1,30',
         'type|字段类型'   => 'require|length:1,30',
 //        'define|字段定义' => 'require|length:1,100',

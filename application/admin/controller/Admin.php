@@ -94,7 +94,6 @@ class Admin extends Common
 
     /**
      * 获取当前操作模型
-     * @author 蔡伟明 <314013107@qq.com>
      * @return object|\think\db\Query
      */
     final protected function getCurrModel()
@@ -102,13 +101,16 @@ class Admin extends Common
         $table_token = input('param._t', '');
         $module      = $this->request->module();
         $controller  = parse_name($this->request->controller());
-
         $table_token == '' && $this->error('缺少参数');
         !session('?'.$table_token) && $this->error('参数错误');
-
         $table_data = session($table_token);
         $table      = $table_data['table'];
-
+        //新增部分,判断模型是否存在
+        $model = ucfirst($controller);
+        $datamodel = model($model);
+        if(!$datamodel){
+            $this->error('找不到模型：'.$datamodel);
+        }
         $Model = null;
         if ($table_data['prefix'] == 2) {
             // 使用模型
@@ -123,8 +125,10 @@ class Admin extends Common
             if ($table_data['module'] != $module || $table_data['controller'] != $controller) {
                 $this->error('非法操作');
             }
-
-            $Model = $table_data['prefix'] == 0 ? Db::table($table) : Db::name($table);
+            //修改前
+            //$Model = $table_data['prefix'] == 0 ? Db::table($table) : Db::name($table);
+            //修改后
+            $Model = $table_data['prefix'] == 0 ? $datamodel : $datamodel;
         }
 
         return $Model;

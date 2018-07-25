@@ -1549,12 +1549,12 @@ INFO;
                 $dataadd[$i] = ['name' => $name, 'title' => $name, 'table' => $data[$i], 'type' => 2, 'system' => 0, 'status' => 1, 'create_time' => time(), 'update_time' => time(), 'icon' => 'fa fa-fw fa-home'];
                 $modelID = Db::table(config('database.prefix') . 'admin_model')->insertGetId($dataadd[$i]);
                 //把对应的子段插入admin_field
-                $datanameid[$i] = [['name' => 'id', 'title' => 'id', 'type' => 'text', 'define' => 'int(11) UNSIGNED NOT NULL', 'value' => '', 'options' => '', 'tips' => '', 'fixed' => 0, 'show' => 1, 'model' => $modelID, 'ajax_url' => '', 'level' => 0, 'table' => $data[$i], 'create_time' => time(), 'update_time' => time()],
+                $datanameid[$i] = [['name' => 'id', 'title' => 'id', 'type' => 'text', 'define' => 'int(11) UNSIGNED NOT NULL', 'value' => '', 'options' => '', 'tips' => '', 'fixed' => 0, 'show' => 1, 'model' => $modelID, 'ajax_url' => '', 'level' => 0, 'table' => $data[$i], 'create_time' => time(), 'update_time' => time(),'data_type'=>'int','length'=>11],
                     ['name' => 'status', 'title' => '状态', 'type' => 'radio', 'define' => 'tinyint(2) UNSIGNED NOT NULL', 'value' => 1, 'options' => '0:禁用
-1:启用', 'tips' => '', 'fixed' => 0, 'show' => 1, 'model' => $modelID, 'ajax_url' => '', 'level' => 0, 'table' => $data[$i], 'create_time' => time(), 'update_time' => time()],
-                    ['name' => 'create_time', 'title' => '创建时间', 'type' => 'datetime', 'define' => 'int(11) UNSIGNED NOT NULL', 'value' => 0, 'options' => '', 'tips' => '', 'fixed' => 0, 'show' => 1, 'model' => $modelID, 'ajax_url' => '', 'level' => 0, 'table' => $data[$i], 'create_time' => time(), 'update_time' => time()],
-                    ['name' => 'update_time', 'title' => '更新时间', 'type' => 'datetime', 'define' => 'int(11) UNSIGNED NOT NULL', 'value' => 0, 'options' => '', 'tips' => '', 'fixed' => 0, 'show' => 1, 'model' => $modelID, 'ajax_url' => '', 'level' => 0, 'table' => $data[$i], 'create_time' => time(), 'update_time' => time()],
-                    ['name' => 'delete_time', 'title' => '删除时间', 'type' => 'datetime', 'define' => 'int(11) UNSIGNED NOT NULL', 'value' => 0, 'options' => '', 'tips' => '', 'fixed' => 0, 'show' => 1, 'model' => $modelID, 'ajax_url' => '', 'level' => 0, 'table' => $data[$i], 'create_time' => time(), 'update_time' => time()]];
+1:启用', 'tips' => '', 'fixed' => 0, 'show' => 1, 'model' => $modelID, 'ajax_url' => '', 'level' => 0, 'table' => $data[$i], 'create_time' => time(), 'update_time' => time(),'data_type'=>'tinyint','length'=>1,'is_null'=>1],
+                    ['name' => 'create_time', 'title' => '创建时间', 'type' => 'datetime', 'define' => 'int(11) UNSIGNED NOT NULL', 'value' => 0, 'options' => '', 'tips' => '', 'fixed' => 0, 'show' => 1, 'model' => $modelID, 'ajax_url' => '', 'level' => 0, 'table' => $data[$i], 'create_time' => time(), 'update_time' => time(),'data_type'=>'int','length'=>11,'is_null'=>1],
+                    ['name' => 'update_time', 'title' => '更新时间', 'type' => 'datetime', 'define' => 'int(11) UNSIGNED NOT NULL', 'value' => 0, 'options' => '', 'tips' => '', 'fixed' => 0, 'show' => 1, 'model' => $modelID, 'ajax_url' => '', 'level' => 0, 'table' => $data[$i], 'create_time' => time(), 'update_time' => time(),'data_type'=>'int','length'=>11,'is_null'=>1],
+                    ['name' => 'delete_time', 'title' => '删除时间', 'type' => 'datetime', 'define' => 'int(11) UNSIGNED NOT NULL', 'value' => 0, 'options' => '', 'tips' => '', 'fixed' => 0, 'show' => 1, 'model' => $modelID, 'ajax_url' => '', 'level' => 0, 'table' => $data[$i], 'create_time' => time(), 'update_time' => time(),'data_type'=>'int','length'=>11,'is_null'=>1]];
                 Db::table(config('database.prefix') . 'admin_field')->insertAll($datanameid[$i]);
             } catch (\Exception $e) {
                 return false;
@@ -1647,7 +1647,7 @@ INFO;
             if (!file_exists($pathadmin . DS . $datarow[$i] . '.php')) {
                 fopen($pathadmin . DS . $datarow[$i] . '.php', "w");
                 //写入对应php文件
-                $database_prefix =config('database.prefix');
+                $database_prefix = config('database.prefix');
                 $contentadmin[$i] = <<<INFO
 <?php
 // +----------------------------------------------------------------------
@@ -1681,12 +1681,18 @@ class  {$datarow[$i]} extends Admin
         \$dataList = {$datarow[$i]}Model::all();
         //获取当前所在
         \$datamodelID = ModelModel::where(array('table' => '{$database_prefix}{$name}_{$datas[$i]}','status'=>1))->value('id');
-        \$datafile = FieldModel::where(array('model' => \$datamodelID,'status'=>1,'show'=>1))->field('id,name,title')->select();
+        \$datafile = FieldModel::where(array('model' => \$datamodelID,'status'=>1,'show'=>1,'list_type'=>['<>','hidden']))->field('id,name,title,list_type')->select();
 
         foreach (\$datafile as \$key => \$value) {
             \$names = \$value['name'];
             \$title = \$value['title'];
-            \$data[] = [\$names, \$title];
+            \$data_list =  \$value['list_type'].'.edit';
+            if(empty(\$value['list_type'])){
+                \$data_type_list = '';
+            }else{
+                \$data_type_list = \$data_list;
+            }
+            \$data[] = [\$names, \$title,\$data_type_list];
         }
 
         // 使用ZBuilder快速创建数据表格
@@ -1704,10 +1710,32 @@ class  {$datarow[$i]} extends Admin
      *新增
      */
      public function add(){
+       if(\$this->request->isPost()){
+             \$datas = \$this->request->Post();
+             //判断数据是否重复添加
+             \$datappp = MenberModel::where(\$datas)->find();
+             if(\$datappp){
+                 \$this->error('数据重复');
+             }
+             \$dataadd = MenberModel::create(\$datas);
+             if(\$dataadd){
+                 \$this->success('添加成功');
+             }
+         }
+         \$datamodelID = ModelModel::where(array('table' => '{$database_prefix}{$name}_{$datas[$i]}','status'=>1))->value('id');
+         \$datafile = FieldModel::where(array('model' => \$datamodelID,'status'=>1,'show'=>1,'new_type'=>['<>','hidden']))->field('type,name,title,tips')->select();
+         foreach (\$datafile as \$key => \$value) {
+             \$names = \$value['name'];
+             \$title = \$value['title'];
+             \$type = \$value['type'];
+             \$tips = \$value['tips'];
+             \$data[] = [\$type,\$names, \$title,\$tips];
+         }
        // 显示添加页面
         return ZBuilder::make('form')
-               ->addFormItems([['text','ID','标题','说明']])
+               ->addFormItems(\$data)
                ->fetch();
+     }
      }
     
 
@@ -1840,7 +1868,7 @@ INFO;
             if (!file_exists($pathsql . DS . 'uninstall.sql')) {
                 fopen($pathsql . DS . 'uninstall.sql', "w");
             }
-            if (!file_exists($pathadmin . DS .  'Databasetable.php')) {
+            if (!file_exists($pathadmin . DS . 'Databasetable.php')) {
                 fopen($pathadmin . DS . 'Databasetable.php', "w");
                 $DataTable = <<<INFO
 <?php
@@ -1949,14 +1977,10 @@ class  Databasetable extends Admin
 				if (false === ModelModel::createTable(\$model)) {
 					\$this->error('创建附加表失败');
 				}
-				// 创建菜单节点
-				\$map = [
-					'module' => \$mashu,
-					'pid'  => 0
-				];
+			
 				\$menu_data = [
 					"module"      => \$mashu,
-					"pid"         => Db::name('admin_menu')->where(\$map)->value('id'),
+					"pid"         => \$data['pid'],
 					"title"       =>\$data['title'],
 					"url_type"    => "module_admin",
 					"url_value"   => \$datamingzi,
@@ -1977,7 +2001,9 @@ class  Databasetable extends Admin
 		}
 
 		\$type_tips = '此选项添加后不可更改。如果为 <code>系统模型</code> 将禁止删除，对于 <code>独立模型</code>，将强制创建字段id,cid,uid,model,title,create_time,update_time,sort,status,trash,view';
-
+        \$datalists =Db::name('admin_menu')->where(array('module'=>\$mashu,'pid'=>0))->value('id');
+        \$dataarray = Db::name('admin_menu')->where(array('pid'=>\$datalists))->column('id,title');
+        \$dataarray[\$datalists] ='顶级菜单';
 		// 显示添加页面
 		return ZBuilder::make('form')
 			->addFormItems([
@@ -1985,6 +2011,7 @@ class  Databasetable extends Admin
 				['text', 'title', '表名', '可填写中文'],
 				['text', 'table', '数据表', '创建后不可更改。由小写字母、数字或下划线组成，如果不填写默认为 <code>'. config('database.prefix') . \$mashu.'_模型标识</code>，如果需要自定义，请务必填写系统表前缀，<code>#@__</code>表示当前系统表前缀'],
 				['radio', 'type', '模型类别', \$type_tips, ['系统模型', '普通模型', '独立模型(不使用主表)'], 1],
+				['select','pid','选择上级菜单','',\$dataarray],
 				['icon', 'icon', '图标'],
 				['radio', 'status', '立即启用', '', ['否', '是'], 1],
 				['text', 'sort', '排序', '', 100],
@@ -1995,7 +2022,7 @@ class  Databasetable extends Admin
 	/**
 	 * 编辑内容模型
 	 * @param null \$id 模型id
-	 * @author 蔡伟明 <314013107@qq.com>
+	 * @author 
 	 * @return mixed
 	 */
 	public function edit(\$id = null) {
@@ -2047,7 +2074,7 @@ class  Databasetable extends Admin
 	/**
 	 * 删除内容模型
 	 * @param null \$ids 内容模型id
-	 * @author 蔡伟明 <314013107@qq.com>
+	 * @author
 	 * @return mixed|void
 	 */
 	public function delete(\$ids = null)
@@ -2055,6 +2082,7 @@ class  Databasetable extends Admin
 		if (\$ids === null) \$this->error('参数错误');
 
 		\$model = ModelModel::where('id', \$ids)->find();
+		 \$datapp = explode(config('database.prefix').\$model['name'].'_',\$model['table']);
 		if (\$model['type'] == 0) {
 			\$this->error('禁止删除系统模型');
 		}
@@ -2069,7 +2097,19 @@ class  Databasetable extends Admin
 			if (false !== Db::name('admin_field')->where('model', \$ids)->delete()) {
 				cache(config('database.prefix').'model_list', null);
 				cache(config('database.prefix').'model_title_list', null);
-				return parent::delete();
+				\$request = Request::instance();
+                \$data = \$request->dispatch();
+                \$module = \$data['module'][0];
+                //删除菜单的列
+                \$datamingzi = \$module . "/{\$model['table']}/index";
+                if (false !== Db::name('admin_menu')->where('url_value', \$datamingzi)->delete()) {
+                //删除对用的文件及文件夹
+                if(\$datapp[1]){
+                    DeleteCorrespondingFile($name,\$datapp[1]);
+                }
+                    \$this->success('删除成功', 'index');
+                }
+               
 			} else {
 				return \$this->error('删除内容模型字段失败');
 			}
@@ -2384,10 +2424,10 @@ if (!function_exists('is_default_field')) {
      */
     function is_default_field($field = '')
     {
-        $system_fields = cache('cms_system_fields');
+        $system_fields = cache('admin_system_fields');
         if (!$system_fields) {
             $system_fields = Db::name('admin_field')->where('model', 0)->column('name');
-            cache('cms_system_fields', $system_fields);
+            cache('admins_system_fields', $system_fields);
         }
         return in_array($field, $system_fields, true);
     }
@@ -2408,10 +2448,81 @@ if (!function_exists('get_model_title')) {
 }
 
 //将下划线命名转换为驼峰式命名
-function convertUnderline ( $str , $ucfirst = true)
+function convertUnderline($str, $ucfirst = true)
 {
-    while(($pos = strpos($str , '_'))!==false)
-        $str = substr($str , 0 , $pos).substr($str , $pos+1);
+    while (($pos = strpos($str, '_')) !== false)
+        $str = substr($str, 0, $pos) . substr($str, $pos + 1);
 
     return $ucfirst ? ucfirst($str) : $str;
 }
+
+
+/**
+ * @param string $name 模块的名字
+ * @param string $filename 需要删除的文件及目录
+ * 根据删除的表 删除对应的文件
+ */
+function DeleteCorrespondingFile($name = '', $filename = '')
+{
+    //生成文件目录
+    $path = APP_PATH . $name;
+    //在这个目录下面生成固定的目录
+    $pathhome = $path . DS . 'home';
+    $pathadmin = $path . DS . 'admin';
+    $pathview = $path . DS . 'view';
+    $pathmodel = $path . DS . 'model';
+    $pathvalidate = $path . DS . 'validate';
+    $filenames = strpos($filename,'_');
+    if($filenames){
+        $dafilename = convertUnderline($filename);
+    }else{
+        $dafilename =  ucfirst($filename);
+    }
+    //删除对应的文件
+    if (file_exists($pathhome.'/'.$dafilename.'.php')) {
+        unlink($pathhome.'/'.$dafilename.'.php');
+    }
+    if (file_exists($pathadmin.'/'.$dafilename.'.php')) {
+        unlink($pathadmin.'/'.$dafilename.'.php');
+    }
+    if (file_exists($pathmodel.'/'.$dafilename.'.php')) {
+        unlink($pathmodel.'/'.$dafilename.'.php');
+    }
+    if (file_exists($pathvalidate.'/'.$dafilename.'.php')) {
+        unlink($pathvalidate.'/'.$dafilename.'.php');
+    }
+    //删除对应的文件夹及文件夹里面的文件
+    if(is_dir($pathview.'/admin/'.$filename)){
+        delDirAndFile($pathview.'/admin/'.$filename,1);
+    }
+    if(is_dir($pathview.'/'.$filename)){
+        delDirAndFile($pathview.'/'.$filename,1);
+    }
+}
+
+/**
+ * 删除目录及目录下所有文件或删除指定文件
+ * @param str $path   待删除目录路径
+ * @param int $delDir 是否删除目录，1或true删除目录，0或false则只删除文件保留目录（包含子目录）
+ * @return bool 返回删除状态
+ */
+function delDirAndFile($path, $delDir = FALSE) {
+    $handle = opendir($path);
+    if ($handle) {
+        while (false !== ( $item = readdir($handle) )) {
+            if ($item != "." && $item != "..")
+                is_dir("$path/$item") ? delDirAndFile("$path/$item", $delDir) : unlink("$path/$item");
+        }
+        closedir($handle);
+        if ($delDir)
+            return rmdir($path);
+    }else {
+        if (file_exists($path)) {
+            return unlink($path);
+        } else {
+            return FALSE;
+        }
+    }
+}
+
+

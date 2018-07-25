@@ -47,7 +47,7 @@ class Fieldnode extends Admin
                 ['url_value', '链接'],
                 ['right_button', '操作', 'btn']
             ])
-            ->setPageTitle('节点列表')
+            ->setPageTitle($group.'节点列表')
             ->addRightButtons(['delete']) // 批量添加右侧按钮
             ->addRightButtons(['custom'=>$btnFieldedit]) // 批量添加右侧按钮
             ->addTopButtons(['back',]) // 批量添加右侧按钮

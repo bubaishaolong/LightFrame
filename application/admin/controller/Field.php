@@ -19,7 +19,7 @@ use think\Request;
 
 /**
  * 字段管理控制器
- * @package app\cms\admin
+ * @package
  */
 class Field extends Admin
 {
@@ -39,10 +39,13 @@ class Field extends Admin
         // 数据列表
         $data_list = FieldModel::where($map)->order('id desc')->paginate();
 		$modeldata = Model::where(array('id'=>$id))->column('name');
+		$modeltable = Model::where(array('id'=>$id))->column('table');
         // 使用ZBuilder快速创建数据表格
         return ZBuilder::make('table')
             ->setSearch(['name' => '名称', 'title' => '标题']) // 设置搜索框
-            ->setPageTips('【显示】表示新增或编辑文档时是否显示该字段<br>【启用】表示前台是否显示')
+            ->setPageTips('')
+            ->setPageTips('【显示】表示新增或编辑文档时是否显示该字段<br>【启用】表示前台是否显示<br>注意 : ID是主键不能删除,不然数据表在查询的时候会报错', 'danger')
+            ->setPageTitle($modeltable[0].'表字段添加')
             ->addColumns([ // 批量添加数据列
                ['id', 'ID'],
                ['name', '名称'],
@@ -50,6 +53,13 @@ class Field extends Admin
                ['type', '类型', 'text', '', config('form_item_type')],
                ['create_time', '创建时间', 'datetime'],
                ['sort', '排序', 'text.edit'],
+               ['data_type', '数据类型', 'select',config('database_data_type')],
+               ['length', '数据长度', 'text.edit'],
+               ['value', '默认值', 'text.edit'],
+               ['is_null', '是否为空', 'switch'],
+               ['new_type', '新增类型', 'select',config('form_item_type')],
+               ['edit_type', '编辑类型', 'select',config('form_item_type')],
+               ['list_type', '列表类型', 'select',config('form_item_type')],
                ['show', '显示', 'switch'],
                ['status', '启用', 'switch'],
                ['right_button', '操作', 'btn']
@@ -57,7 +67,7 @@ class Field extends Admin
             ->addTopButton('back', ['href' => url($modeldata[0].'/databasetable/index')]) // 批量添加顶部按钮
             ->addTopButton('add', ['href' => url('add', ['model' => $id])]) // 添加顶部按钮
            // ->addTopButtons('enable,disable') // 批量添加顶部按钮
-            ->addRightButtons('delete') // 批量添加右侧按钮
+            ->addRightButton('delete',['href'=>url('delete', ['model' => $id,'ids'=>'__id__'])]) // 批量添加右侧按钮
             ->addRightButton('edit',['href'=>url('edit',['id'=>'__id__','model' => $id])]) // 批量添加右侧按钮
             ->replaceRightButton(['fixed' => 1], '<button class="btn btn-danger btn-xs" type="button" disabled>固定字段禁止操作</button>')
             ->setRowList($data_list) // 设置表格数据
@@ -89,7 +99,6 @@ class Field extends Admin
 
             $result = $this->validate($data, 'Field');
             if(true !== $result) $this->error($result);
-
             // 如果是快速联动
             switch ($data['type']) {
                 case 'linkages':
@@ -106,18 +115,18 @@ class Field extends Admin
                     break;
             }
             if($data['is_null'] ==0){
-            	$data['is_null'] = 'not null';
+            	$datas = 'NOT NULL';
 			}elseif ($data['is_null'] ==1){
-				$data['is_null'] = 'null';
+				$datas = 'NULL';
 			}
-            $data['define'] =$data['data_type'].'('.$data['length'] .')  '.$data['is_null'];
+            $data['define'] =$data['data_type'].'('.$data['length'] .')  '.$datas;
             if ($field = FieldModel::create($data)) {
                 $FieldModel = new FieldModel();
                 // 添加字段
                 if ($FieldModel->newField($data)) {
                      //记录行为
-                    $details    = '详情：文档模型('.get_model_title($data['model']).')、字段名称('.$data['name'].')、字段标题('.$data['title'].')、字段类型('.$data['type'].')';
-                    action_log('field_add', 'admin_field', $field['id'], UID, $details);
+                    $details    = '详情：文档模型('.$data['model'].')、字段名称('.$data['name'].')、字段标题('.$data['title'].')、字段类型('.$data['type'].')';
+                    //action_log('field_add', 'admin_field', $field['id'], UID, $details);
                     // 清除缓存
                     cache('admin_system_fields', null);
                     $this->success('新增成功', 'index?id=');
@@ -273,7 +282,7 @@ class Field extends Admin
      * @author 蔡伟明 <314013107@qq.com>
      * @return mixed
      */
-    public function delete($ids = null)
+    public function delete($ids = null,$model='')
     {
         if ($ids === null) $this->error('参数错误');
         $FieldModel = new FieldModel();
@@ -281,9 +290,9 @@ class Field extends Admin
         if ($FieldModel->deleteField($field)) {
             if ($FieldModel->where('id', $ids)->delete()) {
                 // 记录行为
-                $details = '详情：文档模型('.get_model_title($field['model']).')、字段名称('.$field['name'].')、字段标题('.$field['title'].')、字段类型('.$field['type'].')';
-                action_log('field_delete', 'admin_field', $ids, UID, $details);
-                $this->success('删除成功', cookie('__forward__'));
+                //$details = '详情：文档模型('.get_model_title($field['model']).')、字段名称('.$field['name'].')、字段标题('.$field['title'].')、字段类型('.$field['type'].')';
+                //action_log('field_delete', 'admin_field', $ids, UID, $details);
+                $this->success('删除成功', 'index?id='.$model);
             }
         }
         return $this->error('删除失败');
@@ -342,6 +351,6 @@ class Field extends Admin
         $value   = input('post.value', '');
         $config  = FieldModel::where('id', $id)->value($field);
         $details = '字段(' . $field . ')，原值(' . $config . ')，新值：(' . $value . ')';
-        return parent::quickEdit(['field_edit', 'cms_field', $id, UID, $details]);
+        return parent::quickEdit(['field_edit', 'admin_field', $id, UID, $details]);
     }
 }
