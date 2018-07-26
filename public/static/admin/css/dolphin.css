@@ -402,10 +402,10 @@ div.tagsinput {
 .table-builder thead .fa {
     padding-left: 5px;
 }
+/*white-space: nowrap;*/
 .table-builder > tbody > tr > td {
     vertical-align: middle;
     padding: 10px;
-    white-space: nowrap;
     min-width: 0;
     height: 48px;
     box-sizing: border-box;

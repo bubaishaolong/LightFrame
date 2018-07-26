@@ -67,7 +67,7 @@ class  Databasetable extends Admin
         return ZBuilder::make('table')
             ->setSearch(['name' => '标识', 'title' => '标题'])// 设置搜索框
 			->setPageTips('目前只能添加系统自带: <br>顶部按钮包括 : add,enable,disable,custom,back <br>
-右边按钮包括：edit,delete,custom', 'danger')
+右边按钮包括：edit,delete,disable,custom', 'danger')
             ->addColumns([ // 批量添加数据列
                 ['id', 'ID'],
                 ['icon', '图标', 'icon'],
