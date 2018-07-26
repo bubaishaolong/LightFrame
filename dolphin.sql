@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2018-07-25 17:43:15
+Date: 2018-07-26 17:42:33
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -127,6 +127,40 @@ CREATE TABLE `cj_admin_attachment` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for cj_admin_button
+-- ----------------------------
+DROP TABLE IF EXISTS `cj_admin_button`;
+CREATE TABLE `cj_admin_button` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL DEFAULT '' COMMENT '标题',
+  `name` varchar(255) NOT NULL DEFAULT '' COMMENT '按钮名称',
+  `icon` varchar(255) NOT NULL DEFAULT '' COMMENT '图标',
+  `module_id` int(11) NOT NULL COMMENT '所属表的ID',
+  `css_style` varchar(255) DEFAULT '' COMMENT 'css样式',
+  `url` varchar(255) NOT NULL DEFAULT '' COMMENT '链接的url(模块/模型/方法)',
+  `is_independent` tinyint(1) DEFAULT '1' COMMENT '是否独立  0 不独立 1  独立',
+  `open_type` tinyint(1) NOT NULL DEFAULT '2' COMMENT '打开显示类型 0右平滑  1弹窗 2 视图',
+  `show_style` tinyint(1) NOT NULL DEFAULT '0' COMMENT '显示样式  0是默认 1.主要  2.警告  3.危险',
+  `button_operation_type` tinyint(1) DEFAULT '0' COMMENT '按钮操作类型 0无操作  1 打开视图  2.打开url 3.ajax_post',
+  `view_width` varchar(255) DEFAULT '' COMMENT '视图宽高',
+  `param` varchar(255) DEFAULT '' COMMENT '携带参数php代码格式',
+  `sort` int(11) NOT NULL DEFAULT '100' COMMENT '排序',
+  `confirm` varchar(255) DEFAULT '' COMMENT '确认信息',
+  `status` tinyint(2) unsigned NOT NULL DEFAULT '1' COMMENT '状态',
+  `create_time` int(11) unsigned DEFAULT '0' COMMENT '创建时间',
+  `update_time` int(11) unsigned DEFAULT '0' COMMENT '更新时间',
+  `button_type` varchar(255) NOT NULL DEFAULT 'tab1' COMMENT '按钮的类型',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of cj_admin_button
+-- ----------------------------
+INSERT INTO `cj_admin_button` VALUES ('3', '新增', 'add', 'fa fa-fw fa-search', '75', '', 'admin/menu/add', '1', '0', '0', '0', '', '[\'model_id\'=>\'__id__\']', '100', '', '1', '1532586274', '1532586274', 'tab1');
+INSERT INTO `cj_admin_button` VALUES ('4', '编辑', 'edit', 'fa fa-fw fa-home', '75', '', '', '1', '0', '0', '0', '', '[\'model_id\'=>\'__id__\']', '100', '', '1', '1532586465', '1532586465', 'tab2');
+INSERT INTO `cj_admin_button` VALUES ('6', '编辑', 'add', 'fa fa-fw fa-star', '75', '', 'admin/menu/add', '1', '0', '0', '0', '', '[\'model_id\'=>\'__id__\']', '100', '', '0', '1532596267', '1532596267', 'tab1');
+
+-- ----------------------------
 -- Table structure for cj_admin_config
 -- ----------------------------
 DROP TABLE IF EXISTS `cj_admin_config`;
@@ -160,12 +194,12 @@ CREATE TABLE `cj_admin_config` (
 -- Records of cj_admin_config
 -- ----------------------------
 INSERT INTO `cj_admin_config` VALUES ('1', 'web_site_status', '站点开关', 'base', 'switch', '1', '', '站点关闭后将不能访问，后台可正常登录', '', '', '', '', '', '2', '', '', '', '', '1475240395', '1477403914', '1', '1');
-INSERT INTO `cj_admin_config` VALUES ('2', 'web_site_title', '站点标题', 'base', 'text', '海豚PHP', '', '调用方式：<code>config(\'web_site_title\')</code>', '', '', '', '', '', '2', '', '', '', '', '1475240646', '1477710341', '2', '1');
-INSERT INTO `cj_admin_config` VALUES ('3', 'web_site_slogan', '站点标语', 'base', 'text', '海豚PHP，极简、极速、极致', '', '站点口号，调用方式：<code>config(\'web_site_slogan\')</code>', '', '', '', '', '', '2', '', '', '', '', '1475240994', '1477710357', '3', '1');
+INSERT INTO `cj_admin_config` VALUES ('2', 'web_site_title', '站点标题', 'base', 'text', '简单框架', '', '调用方式：<code>config(\'web_site_title\')</code>', '', '', '', '', '', '2', '', '', '', '', '1475240646', '1477710341', '2', '1');
+INSERT INTO `cj_admin_config` VALUES ('3', 'web_site_slogan', '站点标语', 'base', 'text', '极简、极速、极致', '', '站点口号，调用方式：<code>config(\'web_site_slogan\')</code>', '', '', '', '', '', '2', '', '', '', '', '1475240994', '1477710357', '3', '1');
 INSERT INTO `cj_admin_config` VALUES ('4', 'web_site_logo', '站点LOGO', 'base', 'image', '', '', '', '', '', '', '', '', '2', '', '', '', '', '1475241067', '1475241067', '4', '1');
 INSERT INTO `cj_admin_config` VALUES ('5', 'web_site_description', '站点描述', 'base', 'textarea', '', '', '网站描述，有利于搜索引擎抓取相关信息', '', '', '', '', '', '2', '', '', '', '', '1475241186', '1475241186', '6', '1');
-INSERT INTO `cj_admin_config` VALUES ('6', 'web_site_keywords', '站点关键词', 'base', 'text', '海豚PHP、PHP开发框架、后台框架', '', '网站搜索引擎关键字', '', '', '', '', '', '2', '', '', '', '', '1475241328', '1475241328', '7', '1');
-INSERT INTO `cj_admin_config` VALUES ('7', 'web_site_copyright', '版权信息', 'base', 'text', 'Copyright © 2015-2017 DolphinPHP All rights reserved.', '', '调用方式：<code>config(\'web_site_copyright\')</code>', '', '', '', '', '', '2', '', '', '', '', '1475241416', '1477710383', '8', '1');
+INSERT INTO `cj_admin_config` VALUES ('6', 'web_site_keywords', '站点关键词', 'base', 'text', 'PHP开发框架、后台框架', '', '网站搜索引擎关键字', '', '', '', '', '', '2', '', '', '', '', '1475241328', '1475241328', '7', '1');
+INSERT INTO `cj_admin_config` VALUES ('7', 'web_site_copyright', '版权信息', 'base', 'text', 'Copyright © 2015-2017 All rights reserved.', '', '调用方式：<code>config(\'web_site_copyright\')</code>', '', '', '', '', '', '2', '', '', '', '', '1475241416', '1477710383', '8', '1');
 INSERT INTO `cj_admin_config` VALUES ('8', 'web_site_icp', '备案信息', 'base', 'text', '', '', '调用方式：<code>config(\'web_site_icp\')</code>', '', '', '', '', '', '2', '', '', '', '', '1475241441', '1477710441', '9', '1');
 INSERT INTO `cj_admin_config` VALUES ('9', 'web_site_statistics', '站点统计', 'base', 'textarea', '', '', '网站统计代码，支持百度、Google、cnzz等，调用方式：<code>config(\'web_site_statistics\')</code>', '', '', '', '', '', '2', '', '', '', '', '1475241498', '1477710455', '10', '1');
 INSERT INTO `cj_admin_config` VALUES ('10', 'config_group', '配置分组', 'system', 'array', 'base:基本\r\nsystem:系统\r\nupload:上传\r\ndevelop:开发\r\ndatabase:数据库', '', '', '', '', '', '', '', '2', '', '', '', '', '1475241716', '1477649446', '100', '1');
@@ -368,7 +402,7 @@ CREATE TABLE `cj_admin_log` (
   KEY `action_ip_ix` (`action_ip`) USING BTREE,
   KEY `action_id_ix` (`action_id`) USING BTREE,
   KEY `user_id_ix` (`user_id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=111 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='行为日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=129 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='行为日志表';
 
 -- ----------------------------
 -- Records of cj_admin_log
@@ -483,6 +517,24 @@ INSERT INTO `cj_admin_log` VALUES ('107', '36', '1', '2130706433', 'admin_module
 INSERT INTO `cj_admin_log` VALUES ('108', '16', '1', '2130706433', 'admin_config', '11', '超级管理员 编辑了配置：原数据：分组(system)、类型(array)、标题(配置类型)、名称(form_item_type)', '1', '1532501081');
 INSERT INTO `cj_admin_log` VALUES ('109', '32', '1', '2130706433', 'admin_menu', '582', '超级管理员 删除了节点：节点ID(582),节点标题(用户金额),节点链接(shop/usermoney/index)', '1', '1532506617');
 INSERT INTO `cj_admin_log` VALUES ('110', '30', '1', '2130706433', 'admin_menu', '583', '超级管理员 添加了节点：所属模块(shop),所属节点ID(580),节点标题(新增),节点链接(shop/menber/add)', '1', '1532506668');
+INSERT INTO `cj_admin_log` VALUES ('111', '42', '1', '2130706433', 'admin_config', '0', '超级管理员 更新了系统设置：分组(base)', '1', '1532567873');
+INSERT INTO `cj_admin_log` VALUES ('112', '42', '1', '2130706433', 'admin_config', '0', '超级管理员 更新了系统设置：分组(base)', '1', '1532567891');
+INSERT INTO `cj_admin_log` VALUES ('113', '30', '1', '2130706433', 'admin_menu', '584', '超级管理员 添加了节点：所属模块(shop),所属节点ID(427),节点标题(按钮配置),节点链接(shop/databasetable/buttonlist)', '1', '1532569288');
+INSERT INTO `cj_admin_log` VALUES ('114', '34', '1', '2130706433', 'admin_menu', '584', '超级管理员 禁用了节点：节点ID(584),节点标题(按钮配置),节点链接(shop/databasetable/buttonlist)', '1', '1532569298');
+INSERT INTO `cj_admin_log` VALUES ('115', '31', '1', '2130706433', 'admin_menu', '585', '超级管理员 编辑了节点：节点ID(585)', '1', '1532570070');
+INSERT INTO `cj_admin_log` VALUES ('116', '31', '1', '2130706433', 'admin_menu', '586', '超级管理员 编辑了节点：节点ID(586)', '1', '1532570087');
+INSERT INTO `cj_admin_log` VALUES ('117', '31', '1', '2130706433', 'admin_menu', '587', '超级管理员 编辑了节点：节点ID(587)', '1', '1532570101');
+INSERT INTO `cj_admin_log` VALUES ('118', '32', '1', '2130706433', 'admin_menu', '588', '超级管理员 删除了节点：节点ID(588),节点标题(启用),节点链接(shop/databasetable/enable)', '1', '1532570113');
+INSERT INTO `cj_admin_log` VALUES ('119', '32', '1', '2130706433', 'admin_menu', '589', '超级管理员 删除了节点：节点ID(589),节点标题(禁用),节点链接(shop/databasetable/disable)', '1', '1532570118');
+INSERT INTO `cj_admin_log` VALUES ('120', '31', '1', '2130706433', 'admin_menu', '590', '超级管理员 编辑了节点：节点ID(590)', '1', '1532570128');
+INSERT INTO `cj_admin_log` VALUES ('121', '32', '1', '2130706433', 'admin_menu', '584', '超级管理员 删除了节点：节点ID(584),节点标题(按钮配置),节点链接(shop/databasetable/buttonlist)', '1', '1532570932');
+INSERT INTO `cj_admin_log` VALUES ('122', '30', '1', '2130706433', 'admin_menu', '591', '超级管理员 添加了节点：所属模块(shop),所属节点ID(427),节点标题(按钮配置),节点链接(shop/databasetable/buttonlist)', '1', '1532571015');
+INSERT INTO `cj_admin_log` VALUES ('123', '34', '1', '2130706433', 'admin_menu', '591', '超级管理员 禁用了节点：节点ID(591),节点标题(按钮配置),节点链接(shop/databasetable/buttonlist)', '1', '1532571020');
+INSERT INTO `cj_admin_log` VALUES ('124', '30', '1', '2130706433', 'admin_menu', '592', '超级管理员 添加了节点：所属模块(shop),所属节点ID(591),节点标题(新增按钮),节点链接(shop/databasetable/buttonlistadd)', '1', '1532571667');
+INSERT INTO `cj_admin_log` VALUES ('125', '32', '1', '2130706433', 'admin_menu', '591', '超级管理员 删除了节点：节点ID(591),节点标题(按钮配置),节点链接(shop/databasetable/buttonlist)', '1', '1532582037');
+INSERT INTO `cj_admin_log` VALUES ('126', '30', '1', '2130706433', 'admin_menu', '593', '超级管理员 添加了节点：所属模块(admin),所属节点ID(33),节点标题(模型按钮配置),节点链接(admin/button/index)', '1', '1532582099');
+INSERT INTO `cj_admin_log` VALUES ('127', '34', '1', '2130706433', 'admin_menu', '593', '超级管理员 禁用了节点：节点ID(593),节点标题(模型按钮配置),节点链接(admin/button/index)', '1', '1532582121');
+INSERT INTO `cj_admin_log` VALUES ('128', '33', '1', '2130706433', 'admin_menu', '593', '超级管理员 启用了节点：节点ID(593),节点标题(模型按钮配置),节点链接(admin/button/index)', '1', '1532582140');
 
 -- ----------------------------
 -- Table structure for cj_admin_menu
@@ -505,7 +557,7 @@ CREATE TABLE `cj_admin_menu` (
   `status` tinyint(2) NOT NULL DEFAULT '1' COMMENT '状态',
   `params` varchar(255) NOT NULL DEFAULT '' COMMENT '参数',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=584 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='后台菜单表';
+) ENGINE=MyISAM AUTO_INCREMENT=600 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='后台菜单表';
 
 -- ----------------------------
 -- Records of cj_admin_menu
@@ -646,6 +698,13 @@ INSERT INTO `cj_admin_menu` VALUES ('468', '467', 'admin', '新增', '', 'module
 INSERT INTO `cj_admin_menu` VALUES ('467', '33', 'admin', '模块配置信息', '', 'module_admin', 'admin/moduleconfig/index', '_self', '0', '1532412418', '1532412418', '100', '0', '1', '');
 INSERT INTO `cj_admin_menu` VALUES ('473', '467', 'admin', '快速编辑', '', 'module_admin', 'admin/moduleconfig/quickedit', '_self', '0', '1532412418', '1532412418', '100', '0', '1', '');
 INSERT INTO `cj_admin_menu` VALUES ('578', '426', 'shop', '会员管理', 'fa fa-fw fa-film', 'module_admin', 'shop/userlist/index', '_self', '0', '1532490029', '1532490029', '100', '0', '1', '');
+INSERT INTO `cj_admin_menu` VALUES ('599', '593', 'admin', '快速编辑', '', 'module_admin', 'admin/button/quickedit', '_self', '0', '1532582099', '1532582099', '100', '0', '1', '');
+INSERT INTO `cj_admin_menu` VALUES ('593', '33', 'admin', '模型按钮配置', '', 'module_admin', 'admin/button/index', '_self', '0', '1532582100', '1532582100', '100', '0', '1', '');
+INSERT INTO `cj_admin_menu` VALUES ('594', '593', 'admin', '新增', '', 'module_admin', 'admin/button/add', '_self', '0', '1532582099', '1532582099', '100', '0', '1', '');
+INSERT INTO `cj_admin_menu` VALUES ('595', '593', 'admin', '编辑', '', 'module_admin', 'admin/button/edit', '_self', '0', '1532582099', '1532582099', '100', '0', '1', '');
+INSERT INTO `cj_admin_menu` VALUES ('596', '593', 'admin', '删除', '', 'module_admin', 'admin/button/delete', '_self', '0', '1532582099', '1532582099', '100', '0', '1', '');
+INSERT INTO `cj_admin_menu` VALUES ('597', '593', 'admin', '启用', '', 'module_admin', 'admin/button/enable', '_self', '0', '1532582099', '1532582099', '100', '0', '1', '');
+INSERT INTO `cj_admin_menu` VALUES ('598', '593', 'admin', '禁用', '', 'module_admin', 'admin/button/disable', '_self', '0', '1532582099', '1532582099', '100', '0', '1', '');
 INSERT INTO `cj_admin_menu` VALUES ('583', '580', 'shop', '新增', '', 'module_admin', 'shop/menber/add', '_self', '0', '1532506668', '1532506668', '100', '0', '1', '');
 INSERT INTO `cj_admin_menu` VALUES ('580', '426', 'shop', '数据表', 'fa fa-fw fa-repeat', 'module_admin', 'shop/menber/index', '_self', '0', '1532490563', '1532490563', '100', '0', '1', '');
 
@@ -682,18 +741,22 @@ CREATE TABLE `cj_admin_model` (
   `type` tinyint(2) NOT NULL DEFAULT '1' COMMENT '模型类别：0-系统模型，1-普通模型，2-独立模型',
   `icon` varchar(64) NOT NULL,
   `sort` int(11) NOT NULL DEFAULT '100' COMMENT '排序',
+  `is_top_button` tinyint(1) DEFAULT '1' COMMENT '顶部按钮是否启用  0不启用  1 启用',
+  `is_right_button` tinyint(1) DEFAULT '1' COMMENT '右侧按钮是否显示 0 不显示  1 显示',
+  `status` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '状态',
   `system` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '是否系统模型',
   `create_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
   `update_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
-  `status` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '状态',
+  `top_button_value` varchar(255) DEFAULT '' COMMENT '按钮配置内容',
+  `right_button_value` varchar(255) DEFAULT '' COMMENT '右侧按钮内容',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=MyISAM AUTO_INCREMENT=78 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='内容模型表';
 
 -- ----------------------------
 -- Records of cj_admin_model
 -- ----------------------------
-INSERT INTO `cj_admin_model` VALUES ('75', 'shop', '数据表', 'cj_shop_menber', '2', 'fa fa-fw fa-repeat', '100', '0', '1532490563', '1532490563', '1');
-INSERT INTO `cj_admin_model` VALUES ('73', 'shop', '会员管理', 'cj_shop_user_list', '2', 'fa fa-fw fa-film', '100', '0', '1532490029', '1532490029', '1');
+INSERT INTO `cj_admin_model` VALUES ('75', 'shop', '数据表', 'cj_shop_menber', '2', 'fa fa-fw fa-repeat', '100', '1', '1', '1', '0', '1532490563', '1532597195', '[\'title\'=>admin_losd,\'name\'=>带上伞,\'icon\'=>fa fa-fw fa-road,\'href\'=>url(admin/menu/add,[\'model_id\'=>$id])]', '');
+INSERT INTO `cj_admin_model` VALUES ('73', 'shop', '会员管理', 'cj_shop_user_list', '2', 'fa fa-fw fa-film', '100', '1', '1', '1', '0', '1532490029', '1532490029', null, '');
 
 -- ----------------------------
 -- Table structure for cj_admin_module
@@ -802,7 +865,7 @@ CREATE TABLE `cj_admin_plugin` (
 -- Records of cj_admin_plugin
 -- ----------------------------
 INSERT INTO `cj_admin_plugin` VALUES ('1', 'SystemInfo', '系统环境信息', 'fa fa-fw fa-info-circle', '在后台首页显示服务器信息', '蔡伟明', 'http://www.caiweiming.com', '{\"display\":\"1\",\"width\":\"6\"}', '1.0.0', 'system_info.ming.plugin', '0', '1477757503', '1477757503', '100', '1');
-INSERT INTO `cj_admin_plugin` VALUES ('2', 'DevTeam', '开发团队成员信息', 'fa fa-fw fa-users', '开发团队成员信息', '蔡伟明', 'http://www.caiweiming.com', '{\"display\":\"1\",\"width\":\"6\"}', '1.0.0', 'dev_team.ming.plugin', '0', '1477755780', '1477755780', '100', '1');
+INSERT INTO `cj_admin_plugin` VALUES ('2', 'DevTeam', '开发团队成员信息', 'fa fa-fw fa-users', '开发团队成员信息', '蔡伟明', 'http://www.caiweiming.com', '{\"display\":\"0\",\"width\":\"6\"}', '1.0.0', 'dev_team.ming.plugin', '0', '1477755780', '1477755780', '100', '1');
 
 -- ----------------------------
 -- Table structure for cj_admin_role
@@ -952,7 +1015,7 @@ CREATE TABLE `cj_shop_menber` (
 -- ----------------------------
 INSERT INTO `cj_shop_menber` VALUES ('2', '1532509044', '1532509044', '100', '1', '2', null, '');
 INSERT INTO `cj_shop_menber` VALUES ('3', '1532509055', '1532509055', '100', '1', '2', null, '');
-INSERT INTO `cj_shop_menber` VALUES ('4', '1532509261', '1532509261', '100', '1', '3', '3', '3');
+INSERT INTO `cj_shop_menber` VALUES ('4', '1532509261', '1532509261', '100', '1', '3', '3', '66');
 INSERT INTO `cj_shop_menber` VALUES ('5', '1532510021', '1532510021', '100', '1', '3', '4', '4');
 INSERT INTO `cj_shop_menber` VALUES ('6', '1532510871', '1532510871', '100', '1', '999', '999', '9999');
 
