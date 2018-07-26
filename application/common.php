@@ -1694,14 +1694,17 @@ class  {$datarow[$i]} extends Admin
             }
             \$data[] = [\$names, \$title,\$data_type_list];
         }
-
+		\$topbutton = ModelModel::where(array('id' => \$datamodelID, 'status' => 1, 'is_top_button' => 1))->value('top_button_value');
+		\$rightbutton = ModelModel::where(array('id' => \$datamodelID, 'status' => 1, 'is_right_button' => 1))->value('right_button_value');
         // 使用ZBuilder快速创建数据表格
         return ZBuilder::make('table')
             ->addColumn('__INDEX__', '#')
             ->addColumns(\$data)
             ->addColumn('right_button', '操作', 'btn')
-            ->addTopButtons('back,add,delete')
-            ->addRightButtons('edit,delete')
+            //->addTopButtons('back,add,delete')
+            //->addRightButtons('edit,delete')
+            ->addTopButtons(\$topbutton)
+			->addRightButtons(\$rightbutton)
             ->setRowList(\$dataList)
             ->fetch();
     }
@@ -1926,6 +1929,8 @@ class  Databasetable extends Admin
 		// 使用ZBuilder快速创建数据表格
 		return ZBuilder::make('table')
 			->setSearch(['name' => '标识', 'title' => '标题']) // 设置搜索框
+			->setPageTips('目前只能添加系统自带: <br>顶部按钮包括 : add,enable,disable,custom,back <br>
+右边按钮包括：edit,delete,custom', 'danger')
 			->addColumns([ // 批量添加数据列
 				['id', 'ID'],
 				['icon', '图标', 'icon'],
@@ -1936,7 +1941,9 @@ class  Databasetable extends Admin
 				['create_time', '创建时间', 'datetime'],
 				['sort', '排序', 'text.edit'],
 				['is_top_button', '顶部按钮', 'switch'],
+                ['top_button_value', '顶部按钮值', 'textarea.edit'],
                 ['is_right_button', '右侧按钮', 'switch'],
+                ['right_button_value', '右侧按钮值', 'textarea.edit'],
 				['status', '状态', 'switch'],
 				['right_button', '操作', 'btn']
 			])
@@ -1976,6 +1983,8 @@ class  Databasetable extends Admin
 				\$this->error('附加表已存在');
 			}
               \$data['name'] = \$mashu;
+              \$data['top_button_value'] = 'back,add';
+              \$data['right_button_value'] = 'edit,delete';
 			if (\$model = ModelModel::create(\$data)) {
 				// 创建附加表
 				if (false === ModelModel::createTable(\$model)) {
@@ -2072,6 +2081,8 @@ class  Databasetable extends Admin
 				['icon', 'icon', '图标'],
 				['radio', 'is_top_button', '顶部按钮', '', ['不显示', '显示'], 1],
                 ['radio', 'is_right_button', '右侧按钮', '', ['不显示', '显示'], 1],
+                ['textarea', 'top_button_value', '顶部按钮值'],
+                ['textarea', 'right_button_value', '右侧按钮值'],
 				['radio', 'status', '立即启用', '', ['否', '是']],
 				['text', 'sort', '排序'],
 			])
