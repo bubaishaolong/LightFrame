@@ -2,9 +2,9 @@
 // +----------------------------------------------------------------------
 // | 海豚PHP框架 [ DolphinPHP ]
 // +----------------------------------------------------------------------
-// | 版权所有 2016~2017 河源市卓锐科技有限公司 [ http://www.zrthink.com ]
+// | 版权所有 2016~2017  [  ]
 // +----------------------------------------------------------------------
-// | 官方网站: http://dolphinphp.com
+// |
 // +----------------------------------------------------------------------
 // | 开源协议 ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
@@ -16,7 +16,7 @@ use app\common\controller\Plugin;
 /**
  * 演示插件
  * @package plugin\HelloWorld
- * @author 蔡伟明 <314013107@qq.com>
+ * @author 无名氏
  */
 class HelloWorld extends Plugin
 {
@@ -185,7 +185,7 @@ class HelloWorld extends Plugin
     /**
      * page_tips钩子方法
      * @param $params
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      */
     public function pageTips(&$params)
     {
@@ -199,7 +199,7 @@ class HelloWorld extends Plugin
      * 安装方法必须实现
      * 一般只需返回true即可
      * 如果安装前有需要实现一些业务，可在此方法实现
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return bool
      */
     public function install(){
@@ -210,7 +210,7 @@ class HelloWorld extends Plugin
      * 卸载方法必须实现
      * 一般只需返回true即可
      * 如果安装前有需要实现一些业务，可在此方法实现
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return bool
      */
     public function uninstall(){

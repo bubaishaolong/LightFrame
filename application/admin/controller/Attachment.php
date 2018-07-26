@@ -2,9 +2,9 @@
 // +----------------------------------------------------------------------
 // | 海豚PHP框架 [ DolphinPHP ]
 // +----------------------------------------------------------------------
-// | 版权所有 2016~2017 河源市卓锐科技有限公司 [ http://www.zrthink.com ]
+// | 版权所有 2016~2017  [  ]
 // +----------------------------------------------------------------------
-// | 官方网站: http://dolphinphp.com
+// |
 // +----------------------------------------------------------------------
 // | 开源协议 ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
@@ -26,7 +26,7 @@ class Attachment extends Admin
 {
     /**
      * 附件列表
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      */
     public function index()
     {
@@ -85,7 +85,7 @@ class Attachment extends Admin
      * @param string $dir 保存的目录:images,files,videos,voices
      * @param string $from 来源，wangeditor：wangEditor编辑器, ueditor:ueditor编辑器, editormd:editormd编辑器等
      * @param string $module 来自哪个模块
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function upload($dir = '', $from = '', $module = '')
@@ -103,7 +103,7 @@ class Attachment extends Admin
      * @param string $dir 附件存放的目录
      * @param string $from 来源
      * @param string $module 来自哪个模块
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return string|\think\response\Json
      */
     private function saveFile($dir = '', $from = '', $module = '')
@@ -375,7 +375,7 @@ class Attachment extends Admin
 
     /**
      * 处理ueditor上传
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return string|\think\response\Json
      */
     private function ueditor(){
@@ -441,7 +441,7 @@ class Attachment extends Admin
 
     /**
      * 保存涂鸦（ueditor）
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return \think\response\Json
      */
     private function saveScrawl()
@@ -492,7 +492,7 @@ class Attachment extends Admin
      * 显示附件列表（ueditor）
      * @param string $type 类型
      * @param $config
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return \think\response\Json
      */
     private function showFile($type = '', $config){
@@ -552,7 +552,7 @@ class Attachment extends Admin
 
     /**
      * 处理Jcrop图片裁剪
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      */
     private function jcrop()
     {
@@ -662,7 +662,7 @@ class Attachment extends Admin
      * @param string $save_name 缩略图名
      * @param string $thumb_size 尺寸
      * @param string $thumb_type 裁剪类型
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return string 缩略图路径
      */
     private function create_thumb($file = '', $dir = '', $save_name = '', $thumb_size = '', $thumb_type = '')
@@ -692,7 +692,7 @@ class Attachment extends Admin
      * @param string $watermark_img 水印图片id
      * @param string $watermark_pos 水印位置
      * @param string $watermark_alpha 水印透明度
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      */
     private function create_water($file = '', $watermark_img = '', $watermark_pos = '', $watermark_alpha = '')
     {
@@ -715,7 +715,7 @@ class Attachment extends Admin
      * @param string $path 路径
      * @param string $allowFiles 允许查看的类型
      * @param array $files 文件列表
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return array|null
      */
     public function getfiles($path = '', $allowFiles = '', &$files = array())
@@ -744,7 +744,7 @@ class Attachment extends Admin
     /**
      * 启用附件
      * @param array $record 行为日志
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function enable($record = [])
@@ -755,7 +755,7 @@ class Attachment extends Admin
     /**
      * 禁用附件
      * @param array $record 行为日志
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function disable($record = [])
@@ -767,7 +767,7 @@ class Attachment extends Admin
      * 设置附件状态：删除、禁用、启用
      * @param string $type 类型：delete/enable/disable
      * @param array $record
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function setStatus($type = '', $record = [])
@@ -780,7 +780,7 @@ class Attachment extends Admin
     /**
      * 删除附件
      * @param string $ids 附件id
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function delete($ids = '')
@@ -814,7 +814,7 @@ class Attachment extends Admin
     /**
      * 快速编辑
      * @param array $record 行为日志
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function quickEdit($record = [])

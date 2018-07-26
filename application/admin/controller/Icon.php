@@ -2,9 +2,9 @@
 // +----------------------------------------------------------------------
 // | 海豚PHP框架 [ DolphinPHP ]
 // +----------------------------------------------------------------------
-// | 版权所有 2016~2017 河源市卓锐科技有限公司 [ http://www.zrthink.com ]
+// | 版权所有 2016~2017  [  ]
 // +----------------------------------------------------------------------
-// | 官方网站: http://dolphinphp.com
+// |
 // +----------------------------------------------------------------------
 // | 开源协议 ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
@@ -23,7 +23,7 @@ class Icon extends Admin
 {
     /**
      * 图标列表
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function index()
@@ -61,7 +61,7 @@ class Icon extends Admin
 
     /**
      * 新增
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function add()
@@ -126,7 +126,7 @@ class Icon extends Admin
     /**
      * 图标列表
      * @param string $id
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function items($id = '')
@@ -161,7 +161,7 @@ class Icon extends Admin
     /**
      * 更新图标
      * @param string $id
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      */
     public function reload($id = '')
     {

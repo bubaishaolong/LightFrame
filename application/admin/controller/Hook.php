@@ -2,9 +2,9 @@
 // +----------------------------------------------------------------------
 // | 海豚PHP框架 [ DolphinPHP ]
 // +----------------------------------------------------------------------
-// | 版权所有 2016~2017 河源市卓锐科技有限公司 [ http://www.zrthink.com ]
+// | 版权所有 2016~2017  [  ]
 // +----------------------------------------------------------------------
-// | 官方网站: http://dolphinphp.com
+// |
 // +----------------------------------------------------------------------
 // | 开源协议 ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
@@ -24,7 +24,7 @@ class Hook extends Admin
 {
     /**
      * 钩子管理
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function index()
@@ -62,7 +62,7 @@ class Hook extends Admin
 
     /**
      * 新增
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      */
     public function add()
     {
@@ -97,7 +97,7 @@ class Hook extends Admin
     /**
      * 编辑
      * @param int $id 钩子id
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      */
     public function edit($id = 0)
     {
@@ -145,7 +145,7 @@ class Hook extends Admin
     /**
      * 快速编辑（启用/禁用）
      * @param string $status 状态
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function quickEdit($status = '')
@@ -165,7 +165,7 @@ class Hook extends Admin
     /**
      * 启用
      * @param array $record 行为日志内容
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function enable($record = [])
@@ -176,7 +176,7 @@ class Hook extends Admin
     /**
      * 禁用
      * @param array $record 行为日志内容
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function disable($record = [])
@@ -187,7 +187,7 @@ class Hook extends Admin
     /**
      * 删除钩子
      * @param array $record 行为日志内容
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function delete($record = [])
@@ -205,7 +205,7 @@ class Hook extends Admin
      * 设置状态
      * @param string $type 类型
      * @param array $record 行为日志内容
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function setStatus($type = '', $record = [])

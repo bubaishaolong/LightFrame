@@ -2,9 +2,9 @@
 // +----------------------------------------------------------------------
 // | 海豚PHP框架 [ DolphinPHP ]
 // +----------------------------------------------------------------------
-// | 版权所有 2016~2017 河源市卓锐科技有限公司 [ http://www.zrthink.com ]
+// | 版权所有 2016~2017  [  ]
 // +----------------------------------------------------------------------
-// | 官方网站: http://dolphinphp.com
+// |
 // +----------------------------------------------------------------------
 // | 开源协议 ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
@@ -29,7 +29,7 @@ class Excel extends Common
      * @param array $expTableData 数据
      * @param array $mergeCells 合并单元格
      * @author HongPing <hongping626@qq.com>
-     * @alter 蔡伟明 <314013107@qq.com>
+     * @alter 无名氏
      */
     public function export($expTitle = '', $expCellName = [], $expTableData = [], $mergeCells = [])
     {
@@ -111,7 +111,7 @@ class Excel extends Common
      * @param null $where 查询依据，做配合查询使用
      * @param null $main_field 作为判断导入模式依据的主要字段，比如指定为KSH，则用KSH这个字段来判断是否已存在数据库
      * @author HongPing <hongping626@qq.com>
-     * @alter 蔡伟明 <314013107@qq.com>
+     * @alter 无名氏
      * @return array
      */
     public function import($file, $table = null, $fields = null, $type = 0, $where = null, $main_field = null)
@@ -299,7 +299,7 @@ class Excel extends Common
      * 导出多工作表Excel
      * @param array $datas 数据，每个数组要包含'xls_name','xls_cell','data_list'
      * @param string $fileName 导出文件名
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      */
     public function exportMulti($datas = [], $fileName = '')
     {

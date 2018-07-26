@@ -2,9 +2,9 @@
 // +----------------------------------------------------------------------
 // | 海豚PHP框架 [ DolphinPHP ]
 // +----------------------------------------------------------------------
-// | 版权所有 2016~2017 河源市卓锐科技有限公司 [ http://www.zrthink.com ]
+// | 版权所有 2016~2017  [  ]
 // +----------------------------------------------------------------------
-// | 官方网站: http://dolphinphp.com
+// |
 // +----------------------------------------------------------------------
 // | 开源协议 ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
@@ -28,7 +28,7 @@ class Column extends Admin
 {
     /**
      * 栏目列表
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function index()
@@ -85,7 +85,7 @@ class Column extends Admin
     /**
      * 新增栏目
      * @param int $pid 父级id
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function add($pid = 0)
@@ -140,7 +140,7 @@ class Column extends Admin
     /**
      * 编辑栏目
      * @param string $id 栏目id
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      */
     public function edit($id = '')
     {
@@ -200,7 +200,7 @@ class Column extends Admin
     /**
      * 删除栏目
      * @param null $ids 栏目id
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function delete($ids = null)
@@ -225,7 +225,7 @@ class Column extends Admin
     /**
      * 启用栏目
      * @param array $record 行为日志
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function enable($record = [])
@@ -236,7 +236,7 @@ class Column extends Admin
     /**
      * 禁用栏目
      * @param array $record 行为日志
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function disable($record = [])
@@ -248,7 +248,7 @@ class Column extends Admin
      * 设置栏目状态：删除、禁用、启用
      * @param string $type 类型：enable/disable
      * @param array $record
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function setStatus($type = '', $record = [])
@@ -262,7 +262,7 @@ class Column extends Admin
     /**
      * 快速编辑
      * @param array $record 行为日志
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function quickEdit($record = [])

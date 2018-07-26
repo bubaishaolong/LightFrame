@@ -2,9 +2,9 @@
 // +----------------------------------------------------------------------
 // | 海豚PHP框架 [ DolphinPHP ]
 // +----------------------------------------------------------------------
-// | 版权所有 2016~2017 河源市卓锐科技有限公司 [ http://www.zrthink.com ]
+// | 版权所有 2016~2017  [  ]
 // +----------------------------------------------------------------------
-// | 官方网站: http://dolphinphp.com
+// |
 // +----------------------------------------------------------------------
 // | 开源协议 ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
@@ -21,7 +21,7 @@ class Common extends Controller
 {
     /**
      * 初始化
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      */
     protected function _initialize()
     {
@@ -35,7 +35,7 @@ class Common extends Controller
 
     /**
      * 获取筛选条件
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @alter 小乌 <82950492@qq.com>
      * @return array
      */
@@ -115,7 +115,7 @@ class Common extends Controller
      * 获取字段排序
      * @param string $extra_order 额外的排序字段
      * @param bool $before 额外排序字段是否前置
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return string
      */
     final protected function getOrder($extra_order = '', $before = false)
@@ -139,7 +139,7 @@ class Common extends Controller
      * 渲染插件模板
      * @param string $template 模板名称
      * @param string $suffix 模板后缀
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     final protected function pluginView($template = '', $suffix = '', $vars = [], $replace = [], $config = [])

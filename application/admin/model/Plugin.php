@@ -2,9 +2,9 @@
 // +----------------------------------------------------------------------
 // | 海豚PHP框架 [ DolphinPHP ]
 // +----------------------------------------------------------------------
-// | 版权所有 2016~2017 河源市卓锐科技有限公司 [ http://www.zrthink.com ]
+// | 版权所有 2016~2017  [  ]
 // +----------------------------------------------------------------------
-// | 官方网站: http://dolphinphp.com
+// |
 // +----------------------------------------------------------------------
 // | 开源协议 ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
@@ -35,7 +35,7 @@ class Plugin extends Model
      * 获取所有插件信息
      * @param string $keyword 查找关键词
      * @param string $status 查找状态
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return array|bool
      */
     public function getAll($keyword = '', $status = '')
@@ -204,7 +204,7 @@ class Plugin extends Model
     /**
      * 检查插件插件信息是否完整
      * @param string $info 插件插件信息
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return bool
      */
     private function checkInfo($info = '')
@@ -222,7 +222,7 @@ class Plugin extends Model
      * 获取插件配置
      * @param string $name 插件名称
      * @param string $item 指定返回的插件配置项
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return array|mixed
      */
     public static function getConfig($name = '', $item = '')

@@ -2,9 +2,9 @@
 // +----------------------------------------------------------------------
 // | 海豚PHP框架 [ DolphinPHP ]
 // +----------------------------------------------------------------------
-// | 版权所有 2016~2017 河源市卓锐科技有限公司 [ http://www.zrthink.com ]
+// | 版权所有 2016~2017  [  ]
 // +----------------------------------------------------------------------
-// | 官方网站: http://dolphinphp.com
+// |
 // +----------------------------------------------------------------------
 // | 开源协议 ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
@@ -215,7 +215,7 @@ class Database
      * @param string $path 导出路径
      * @param string $prefix 表前缀
      * @param integer $export_data 是否导出数据
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return bool
      */
     public static function export($tables = [], $path = '', $prefix = '', $export_data = 1){
@@ -243,7 +243,7 @@ class Database
      * @param  array $tables 表名
      * @param  string $path 导出路径
      * @param string $prefix 表前缀
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return bool
      */
     public static function exportUninstall($tables = [], $path = '', $prefix = ''){
@@ -271,7 +271,7 @@ class Database
      * @param string  $table 表名
      * @param integer $export_data 是否导出数据
      * @param integer $start 起始行数
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return string
      */
     private static function getSql($table = '', $export_data = 0, $start = 0)

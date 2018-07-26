@@ -2,9 +2,9 @@
 // +----------------------------------------------------------------------
 // | 海豚PHP框架 [ DolphinPHP ]
 // +----------------------------------------------------------------------
-// | 版权所有 2016~2017 河源市卓锐科技有限公司 [ http://www.zrthink.com ]
+// | 版权所有 2016~2017  [  ]
 // +----------------------------------------------------------------------
-// | 官方网站: http://dolphinphp.com
+// |
 // +----------------------------------------------------------------------
 // | 开源协议 ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
@@ -44,7 +44,7 @@ class Role extends Model
      * @param null $id 需要隐藏的角色id
      * @param string $default 默认第一个菜单项，默认为“顶级角色”，如果为false则不显示，也可传入其他名称
      * @param null $filter 角色id，过滤显示指定角色及其子角色
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public static function getTree($id = null, $default = '', $filter = null)
@@ -94,7 +94,7 @@ class Role extends Model
     /**
      * 获取所有子角色id
      * @param string $pid 父级id
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return array
      */
     public static function getChildsId($pid = '')
@@ -110,7 +110,7 @@ class Role extends Model
      * 检查访问权限
      * @param int $id 需要检查的节点ID，默认检查当前操作节点
      * @param bool $url 是否为节点url，默认为节点id
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return bool
      */
     public static function checkAuth($id = 0, $url = false)
@@ -144,7 +144,7 @@ class Role extends Model
 
     /**
      * 读取当前角色权限
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function roleAuth()
@@ -166,7 +166,7 @@ class Role extends Model
      * 根据节点id获取所有角色id和权限
      * @param string $menu_id 节点id
      * @param bool $menu_auth 是否返回所有节点权限
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return array
      */
     public static function getRoleWithMenu($menu_id = '', $menu_auth = false)
@@ -181,7 +181,7 @@ class Role extends Model
     /**
      * 根据角色id获取权限
      * @param array $role 角色id
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return array
      */
     public static function getAuthWithRole($role = [])
@@ -193,7 +193,7 @@ class Role extends Model
      * 重设权限
      * @param null $pid 父级id
      * @param array $new_auth 新权限
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      */
     public static function resetAuth($pid = null, $new_auth = [])
     {

@@ -2,9 +2,9 @@
 // +----------------------------------------------------------------------
 // | 海豚PHP框架 [ DolphinPHP ]
 // +----------------------------------------------------------------------
-// | 版权所有 2016~2017 河源市卓锐科技有限公司 [ http://www.zrthink.com ]
+// | 版权所有 2016~2017  [  ]
 // +----------------------------------------------------------------------
-// | 官方网站: http://dolphinphp.com
+// |
 // +----------------------------------------------------------------------
 // | 开源协议 ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
@@ -27,7 +27,7 @@ class Access extends Model
      * 获取用户授权节点
      * @param int $uid 用户id
      * @param string $group 权限分组，可以以点分开模型名称和分组名称，如user.group
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return array|bool
      */
     public function getAuthNode($uid = 0, $group = '')
@@ -57,7 +57,7 @@ class Access extends Model
      * @param int $uid 用户id
      * @param string $group $group 权限分组，可以以点分开模型名称和分组名称，如user.group
      * @param int $node 需要检查的节点id
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return bool
      */
     public function checkAuthNode($uid = 0, $group = '', $node = 0)

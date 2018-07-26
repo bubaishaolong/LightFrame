@@ -2,9 +2,9 @@
 // +----------------------------------------------------------------------
 // | 海豚PHP框架 [ DolphinPHP ]
 // +----------------------------------------------------------------------
-// | 版权所有 2016~2017 河源市卓锐科技有限公司 [ http://www.zrthink.com ]
+// | 版权所有 2016~2017  [  ]
 // +----------------------------------------------------------------------
-// | 官方网站: http://dolphinphp.com
+// |
 // +----------------------------------------------------------------------
 // | 开源协议 ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
@@ -21,7 +21,7 @@ use Qiniu\Storage\UploadManager;
 /**
  * 七牛上传插件
  * @package plugins\QiNiu
- * @author 蔡伟明 <314013107@qq.com>
+ * @author 无名氏
  */
 class QiNiu extends Plugin
 {
@@ -60,7 +60,7 @@ class QiNiu extends Plugin
      * 上传附件
      * @param string $file 文件对象
      * @param array $params 参数
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function uploadAttachment($file = '', $params = [])
@@ -197,7 +197,7 @@ class QiNiu extends Plugin
 
     /**
      * 安装方法
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return bool
      */
     public function install(){
@@ -230,7 +230,7 @@ class QiNiu extends Plugin
 
     /**
      * 卸载方法
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return bool
      */
     public function uninstall(){

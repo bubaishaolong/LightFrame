@@ -2,9 +2,9 @@
 // +----------------------------------------------------------------------
 // | 海豚PHP框架 [ DolphinPHP ]
 // +----------------------------------------------------------------------
-// | 版权所有 2016~2017 河源市卓锐科技有限公司 [ http://www.zrthink.com ]
+// | 版权所有 2016~2017  [  ]
 // +----------------------------------------------------------------------
-// | 官方网站: http://dolphinphp.com
+// |
 // +----------------------------------------------------------------------
 // | 开源协议 ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
@@ -26,7 +26,7 @@ class Field extends Admin
     /**
      * 字段列表
      * @param null $id 文档模型id
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      */
     public function index($id = null)
     {
@@ -78,7 +78,7 @@ class Field extends Admin
     /**
      * 新增字段
      * @param string $model 文档模型id
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function add($model = '')
@@ -188,7 +188,7 @@ class Field extends Admin
     /**
      * 编辑字段
      * @param null $id 字段id
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function edit($id = null,$model='')
@@ -279,7 +279,7 @@ class Field extends Admin
     /**
      * 删除字段
      * @param null $ids 字段id
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function delete($ids = null,$model='')
@@ -301,7 +301,7 @@ class Field extends Admin
     /**
      * 启用字段
      * @param array $record 行为日志
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function enable($record = [])
@@ -312,7 +312,7 @@ class Field extends Admin
     /**
      * 禁用字段
      * @param array $record 行为日志
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function disable($record = [])
@@ -324,7 +324,7 @@ class Field extends Admin
      * 设置字段状态：删除、禁用、启用
      * @param string $type 类型：enable/disable
      * @param array $record
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function setStatus($type = '', $record = [])
@@ -341,7 +341,7 @@ class Field extends Admin
     /**
      * 快速编辑
      * @param array $record 行为日志
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function quickEdit($record = [])

@@ -57,6 +57,12 @@ class  Databasetable extends Admin
             'icon' => 'glyphicon glyphicon-sort-by-attributes-alt',
             'href' => url('admin/moduleconfig/index', ['group' => $mashu])
         ];
+        // 配置参数
+        $btnButton = [
+            'title' => '按钮配置',
+            'icon' => 'fa fa-fw fa-address-card-o',
+            'href' => url('admin/button/index', ['group' => $mashu,'id'=>'__id__'])
+        ];
         // 使用ZBuilder快速创建数据表格
         return ZBuilder::make('table')
             ->setSearch(['name' => '标识', 'title' => '标题'])// 设置搜索框
@@ -69,20 +75,24 @@ class  Databasetable extends Admin
                 ['type', '模型', 'text', '', ['系统', '普通', '独立']],
                 ['create_time', '创建时间', 'datetime'],
                 ['sort', '排序', 'text'],
+                ['is_top_button', '顶部按钮', 'switch'],
+                ['is_right_button', '右侧按钮', 'switch'],
                 ['status', '状态', 'switch'],
                 ['right_button', '操作', 'btn']
             ])
             //->addValidate('ModelModel', 'title,sort') // 添加快捷编辑的验证器
             ->addFilter('type', ['系统', '普通', '独立'])
             ->addTopButtons(['back', 'add', 'custom' => $btnFieldCof])// 批量添加顶部按钮
-            ->addRightButtons(['edit', 'custom' => $btnField, 'customnode' => $btnFieldNode, 'delete' => ['data-tips' => '删除模型将同时删除该模型下的所有字段，且无法恢复。']])// 批量添加右侧按钮
+            ->addRightButton('custombutton' , $btnButton,true)
+            ->addRightButton('customnode' , $btnFieldNode,true)
+            ->addRightButtons(['custom' => $btnField,'edit', 'delete' => ['data-tips' => '删除模型将同时删除该模型下的所有字段，且无法恢复。']])// 批量添加右侧按钮,'custombutton'=>$btnButton,'customnode' => $btnFieldNode, 'custom' => $btnField,
             ->setRowList($data_list)// 设置表格数据
             ->fetch(); // 渲染模板
     }
 
     /**
      * 新增内容模型
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function add()
@@ -155,6 +165,8 @@ class  Databasetable extends Admin
                 ['radio', 'type', '模型类别', $type_tips, ['系统模型', '普通模型', '独立模型(不使用主表)'], 1],
                 ['select','pid','选择上级菜单','',$dataarray],
                 ['icon', 'icon', '图标'],
+                ['radio', 'is_top_button', '顶部按钮', '', ['不显示', '显示'], 1],
+                ['radio', 'is_right_button', '右侧按钮', '', ['不显示', '显示'], 1],
                 ['radio', 'status', '立即启用', '', ['否', '是'], 1],
                 ['text', 'sort', '排序', '', 100],
             ])
@@ -164,7 +176,7 @@ class  Databasetable extends Admin
     /**
      * 编辑内容模型
      * @param null $id 模型id
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function edit($id = null)
@@ -207,6 +219,8 @@ class  Databasetable extends Admin
                 ['static', 'table', '附加表'],
                 ['text', 'title', '模型标题', '可填写中文'],
                 ['icon', 'icon', '图标'],
+                ['radio', 'is_top_button', '顶部按钮', '', ['不显示', '显示'], 1],
+                ['radio', 'is_right_button', '右侧按钮', '', ['不显示', '显示'], 1],
                 ['radio', 'status', '立即启用', '', ['否', '是']],
                 ['text', 'sort', '排序'],
             ])
@@ -217,7 +231,7 @@ class  Databasetable extends Admin
     /**
      * 删除内容模型
      * @param null $ids 内容模型id
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed|void
      */
     public function delete($ids = null)

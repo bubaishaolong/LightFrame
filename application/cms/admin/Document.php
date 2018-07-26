@@ -2,9 +2,9 @@
 // +----------------------------------------------------------------------
 // | 海豚PHP框架 [ DolphinPHP ]
 // +----------------------------------------------------------------------
-// | 版权所有 2016~2017 河源市卓锐科技有限公司 [ http://www.zrthink.com ]
+// | 版权所有 2016~2017  [  ]
 // +----------------------------------------------------------------------
-// | 官方网站: http://dolphinphp.com
+// |
 // +----------------------------------------------------------------------
 // | 开源协议 ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
@@ -27,7 +27,7 @@ class Document extends Admin
 {
     /**
      * 文档列表
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      */
     public function index()
     {
@@ -67,7 +67,7 @@ class Document extends Admin
      * 添加文档
      * @param int $cid 栏目id
      * @param string $model 模型id
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function add($cid = 0, $model = '')
@@ -162,7 +162,7 @@ class Document extends Admin
      * 编辑文档
      * @param null $id 文档id
      * @param string $model 模型id
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function edit($id = null, $model = '')
@@ -243,7 +243,7 @@ class Document extends Admin
      * 删除文档(不是彻底删除，而是移动到回收站)
      * @param null $ids 文档id
      * @param string $table 数据表
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function delete($ids = null, $table = '')
@@ -266,7 +266,7 @@ class Document extends Admin
     /**
      * 启用文档
      * @param array $record 行为日志
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function enable($record = [])
@@ -277,7 +277,7 @@ class Document extends Admin
     /**
      * 禁用文档
      * @param array $record 行为日志
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function disable($record = [])
@@ -289,7 +289,7 @@ class Document extends Admin
      * 设置文档状态：删除、禁用、启用
      * @param string $type 类型：enable/disable
      * @param array $record
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function setStatus($type = '', $record = [])
@@ -304,7 +304,7 @@ class Document extends Admin
     /**
      * 快速编辑
      * @param array $record 行为日志
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function quickEdit($record = [])

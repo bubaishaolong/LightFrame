@@ -2,9 +2,9 @@
 // +----------------------------------------------------------------------
 // | 海豚PHP框架 [ DolphinPHP ]
 // +----------------------------------------------------------------------
-// | 版权所有 2016~2017 河源市卓锐科技有限公司 [ http://www.zrthink.com ]
+// | 版权所有 2016~2017  [  ]
 // +----------------------------------------------------------------------
-// | 官方网站: http://dolphinphp.com
+// |
 // +----------------------------------------------------------------------
 // | 开源协议 ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
@@ -24,7 +24,7 @@ class Admin extends Common
 {
     /**
      * 插件管理页
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function index()
@@ -88,7 +88,7 @@ class Admin extends Common
 
     /**
      * 新增
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      */
     public function add()
     {
@@ -122,7 +122,7 @@ class Admin extends Common
 
     /**
      * 编辑
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      */
     public function edit()
     {
@@ -161,7 +161,7 @@ class Admin extends Common
 
     /**
      * 插件自定义方法
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function testTable()
@@ -186,7 +186,7 @@ class Admin extends Common
      * @param string $table
      * @param string $name
      * @param string $age
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function testForm($id = '', $table = '', $name = '', $age = '')
@@ -206,7 +206,7 @@ class Admin extends Common
 
     /**
      * 自定义页面
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function testPage()

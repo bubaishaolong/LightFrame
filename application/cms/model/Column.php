@@ -2,9 +2,9 @@
 // +----------------------------------------------------------------------
 // | 海豚PHP框架 [ DolphinPHP ]
 // +----------------------------------------------------------------------
-// | 版权所有 2016~2017 河源市卓锐科技有限公司 [ http://www.zrthink.com ]
+// | 版权所有 2016~2017  [  ]
 // +----------------------------------------------------------------------
-// | 官方网站: http://dolphinphp.com
+// |
 // +----------------------------------------------------------------------
 // | 开源协议 ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
@@ -30,7 +30,7 @@ class Column extends ThinkModel
      * 标题获取器
      * @param $value
      * @param $data
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      */
     protected function getTitleAttr($value, $data) {
         switch ($data['type']) {
@@ -43,7 +43,7 @@ class Column extends ThinkModel
 
     /**
      * 获取栏目列表
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return array|mixed
      */
     public static function getList()
@@ -63,7 +63,7 @@ class Column extends ThinkModel
      * 获取树状栏目
      * @param int $id 需要隐藏的栏目id
      * @param string $default 默认第一个节点项，默认为“顶级栏目”，如果为false则不显示，也可传入其他名称
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return array|mixed
      */
     public static function getTreeList($id = 0, $default = '')
@@ -98,7 +98,7 @@ class Column extends ThinkModel
     /**
      * 获取所有子栏目id
      * @param int $pid 父级id
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return array
      */
     public static function getChildsId($pid = 0)
@@ -113,7 +113,7 @@ class Column extends ThinkModel
     /**
      * 获取指定栏目数据
      * @param int $cid 栏目id
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed|static
      */
     public static function getInfo($cid = 0)

@@ -2,9 +2,9 @@
 // +----------------------------------------------------------------------
 // | 海豚PHP框架 [ DolphinPHP ]
 // +----------------------------------------------------------------------
-// | 版权所有 2016~2017 河源市卓锐科技有限公司 [ http://www.zrthink.com ]
+// | 版权所有 2016~2017  [  ]
 // +----------------------------------------------------------------------
-// | 官方网站: http://dolphinphp.com
+// |
 // +----------------------------------------------------------------------
 // | 开源协议 ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
@@ -26,7 +26,7 @@ class Model extends Admin
 {
     /**
      * 内容模型列表
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      */
     public function index()
     {
@@ -66,7 +66,7 @@ class Model extends Admin
 
     /**
      * 新增内容模型
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function add()
@@ -140,7 +140,7 @@ class Model extends Admin
     /**
      * 编辑内容模型
      * @param null $id 模型id
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function edit($id = null) {
@@ -191,7 +191,7 @@ class Model extends Admin
     /**
      * 删除内容模型
      * @param null $ids 内容模型id
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed|void
      */
     public function delete($ids = null)

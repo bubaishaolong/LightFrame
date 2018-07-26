@@ -2,9 +2,9 @@
 // +----------------------------------------------------------------------
 // | 海豚PHP框架 [ DolphinPHP ]
 // +----------------------------------------------------------------------
-// | 版权所有 2016~2017 河源市卓锐科技有限公司 [ http://www.zrthink.com ]
+// | 版权所有 2016~2017  [  ]
 // +----------------------------------------------------------------------
-// | 官方网站: http://dolphinphp.com
+// |
 // +----------------------------------------------------------------------
 // | 开源协议 ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
@@ -34,7 +34,7 @@ class Barcode extends Common
      *  scale - 比例
      *  rotation - 旋转角度
      *  font_size - 字体大小
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      *
      * 示例：
      * plugin_action('Barcode/Barcode/generate', ['123', ['font_size' => 12,....]])
@@ -97,7 +97,7 @@ class Barcode extends Common
 
     /**
      * 显示错误图片
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      */
     private function showError() {
         header('Content-Type: image/png');

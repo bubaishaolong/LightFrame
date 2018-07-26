@@ -20,21 +20,21 @@ use think\Cache;
  * @package app\admin\controller
  * 生成菜单节点
  */
-
 class Fieldnode extends Admin
 {
 
-    public function index($group = ''){
+    public function index($group = '')
+    {
         // 生成对应的类文件
         $btnFieldClass = [
             'title' => '添加',
-            'icon'  => 'glyphicon glyphicon-book',
-            'href'  => url('admin/fieldnode/add', ['module' => $group])
+            'icon' => 'glyphicon glyphicon-book',
+            'href' => url('admin/fieldnode/add', ['module' => $group])
         ];
         $btnFieldedit = [
             'title' => '编辑',
-            'icon'  => 'glyphicon glyphicon-book',
-            'href'  => url('admin/fieldnode/edit', ['id'=>'__id__','module' => $group])
+            'icon' => 'glyphicon glyphicon-book',
+            'href' => url('admin/fieldnode/edit', ['id' => '__id__', 'module' => $group])
         ];
         $data_list = MenuModel::getMenusByGroup($group);
         //dump($data_list);die;
@@ -43,15 +43,16 @@ class Fieldnode extends Admin
                 ['id', 'ID'],
                 ['pid', 'PID'],
                 ['module', '模块', 'text'],
-                ['title', '编辑','text'],
+                ['title', '编辑', 'text'],
                 ['url_value', '链接'],
+                ['status', '是否启用', 'switch'],
                 ['right_button', '操作', 'btn']
             ])
-            ->setPageTitle($group.'节点列表')
-            ->addRightButtons(['delete']) // 批量添加右侧按钮
-            ->addRightButtons(['custom'=>$btnFieldedit]) // 批量添加右侧按钮
-            ->addTopButtons(['back',]) // 批量添加右侧按钮
-            ->addTopButtons(['custom' => $btnFieldClass]) // 批量添加顶部按钮
+            ->setPageTitle($group . '节点列表')
+            ->addRightButtons(['delete'])// 批量添加右侧按钮
+            ->addRightButtons(['custom' => $btnFieldedit])// 批量添加右侧按钮
+            //->addTopButtons(['back']) // 批量添加右侧按钮
+            ->addTopButtons(['custom' => $btnFieldClass])// 批量添加顶部按钮
             ->setRowList($data_list)
             ->fetch();
     }
@@ -72,7 +73,7 @@ class Fieldnode extends Admin
             // 验证
             $result = $this->validate($data, 'Menu');
             // 验证失败 输出错误信息
-            if(true !== $result) $this->error($result);
+            if (true !== $result) $this->error($result);
 
             // 顶部节点url检查
             if ($data['pid'] == 0 && $data['url_value'] == '' && ($data['url_type'] == 'module_admin' || $data['url_type'] == 'module_home')) {
@@ -92,7 +93,7 @@ class Fieldnode extends Admin
                 }
                 Cache::clear();
                 // 记录行为
-                $details = '所属模块('.$data['module'].'),所属节点ID('.$data['pid'].'),节点标题('.$data['title'].'),节点链接('.$data['url_value'].')';
+                $details = '所属模块(' . $data['module'] . '),所属节点ID(' . $data['pid'] . '),节点标题(' . $data['title'] . '),节点链接(' . $data['url_value'] . ')';
                 action_log('menu_add', 'admin_menu', $menu['id'], UID, $details);
                 $this->success('新增成功', 'index');
             } else {
@@ -132,7 +133,7 @@ class Fieldnode extends Admin
      * @param int $id 节点ID
      * @return mixed
      */
-    public function edit($id = 0,$module = '')
+    public function edit($id = 0, $module = '')
     {
         if ($id === 0) $this->error('缺少参数');
 
@@ -143,7 +144,7 @@ class Fieldnode extends Admin
             // 验证
             $result = $this->validate($data, 'Menu');
             // 验证失败 输出错误信息
-            if(true !== $result) $this->error($result);
+            if (true !== $result) $this->error($result);
 
             // 顶部节点url检查
             if ($data['pid'] == 0 && $data['url_value'] == '' && ($data['url_type'] == 'module_admin' || $data['url_type'] == 'module_home')) {
@@ -163,9 +164,9 @@ class Fieldnode extends Admin
             if (MenuModel::update($data)) {
                 Cache::clear();
                 // 记录行为
-                $details = '节点ID('.$id.')';
+                $details = '节点ID(' . $id . ')';
                 action_log('menu_edit', 'admin_menu', $id, UID, $details);
-                $this->success('编辑成功', 'fieldnode/index?group='.$module);
+                $this->success('编辑成功', 'fieldnode/index?group=' . $module);
             } else {
                 $this->error('编辑失败');
             }
@@ -203,7 +204,7 @@ class Fieldnode extends Admin
     /**
      * 删除节点
      * @param array $record 行为日志内容
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function delete($record = [])
@@ -222,7 +223,7 @@ class Fieldnode extends Admin
         if (MenuModel::destroy($all_ids)) {
             Cache::clear();
             // 记录行为
-            $details = '节点ID('.$id.'),节点标题('.$menu['title'].'),节点链接('.$menu['url_value'].')';
+            $details = '节点ID(' . $id . '),节点标题(' . $menu['title'] . '),节点链接(' . $menu['url_value'] . ')';
             action_log('menu_delete', 'admin_menu', $id, UID, $details);
             $this->success('删除成功');
         } else {
@@ -234,11 +235,11 @@ class Fieldnode extends Admin
      * 添加子节点
      * @param array $data 节点数据
      * @param string $pid 父节点id
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      */
     private function createChildNode($data = [], $pid = '')
     {
-        $url_value  = substr($data['url_value'], 0, strrpos($data['url_value'], '/')).'/';
+        $url_value = substr($data['url_value'], 0, strrpos($data['url_value'], '/')) . '/';
         $child_node = [];
         $data['pid'] = $pid;
 
@@ -263,7 +264,7 @@ class Fieldnode extends Admin
                     $data['title'] = '快速编辑';
                     break;
             }
-            $data['url_value']   = $url_value.$item;
+            $data['url_value'] = $url_value . $item;
             $data['create_time'] = $this->request->time();
             $data['update_time'] = $this->request->time();
             $child_node[] = $data;
@@ -274,18 +275,19 @@ class Fieldnode extends Admin
             $MenuModel->insertAll($child_node);
         }
     }
+
     /**
      * 设置角色权限
      * @param string $role_id 角色id
      * @param array $roles 角色id
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      */
     private function setRoleMenu($role_id = '', $roles = [])
     {
         $RoleModel = new RoleModel();
 
         // 该节点的所有子节点，包括本身节点
-        $menu_child   = MenuModel::getChildsId($role_id);
+        $menu_child = MenuModel::getChildsId($role_id);
         $menu_child[] = (int)$role_id;
         // 该节点的所有上下级节点
         $menu_all = MenuModel::getLinkIds($role_id);
@@ -309,10 +311,10 @@ class Fieldnode extends Admin
             if ($role_diff) {
                 $role_del_auth = [];
                 foreach ($role_diff as $role) {
-                    $auth     = json_decode($role_menu_auth[$role], true);
+                    $auth = json_decode($role_menu_auth[$role], true);
                     $auth_new = array_diff($auth, $menu_child);
                     $role_del_auth[] = [
-                        'id'        => $role,
+                        'id' => $role,
                         'menu_auth' => array_values($auth_new)
                     ];
                 }
@@ -330,7 +332,7 @@ class Fieldnode extends Admin
                         $auth = array_unique(array_merge($auth, $menu_all));
                     }
                     $role_update_auth[] = [
-                        'id'        => $role,
+                        'id' => $role,
                         'menu_auth' => array_values($auth)
                     ];
                 }
@@ -340,12 +342,12 @@ class Fieldnode extends Admin
             }
         } else {
             $role_menu_auth = RoleModel::getRoleWithMenu($role_id, true);
-            $role_del_auth  = [];
+            $role_del_auth = [];
             foreach ($role_menu_auth as $role => $auth) {
-                $auth     = json_decode($auth, true);
+                $auth = json_decode($auth, true);
                 $auth_new = array_diff($auth, $menu_child);
                 $role_del_auth[] = [
-                    'id'        => $role,
+                    'id' => $role,
                     'menu_auth' => array_values($auth_new)
                 ];
             }

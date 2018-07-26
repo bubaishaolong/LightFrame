@@ -2,9 +2,9 @@
 // +----------------------------------------------------------------------
 // | 海豚PHP框架 [ DolphinPHP ]
 // +----------------------------------------------------------------------
-// | 版权所有 2016~2017 河源市卓锐科技有限公司 [ http://www.zrthink.com ]
+// | 版权所有 2016~2017  [  ]
 // +----------------------------------------------------------------------
-// | 官方网站: http://dolphinphp.com
+// |
 // +----------------------------------------------------------------------
 // | 开源协议 ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
@@ -85,7 +85,7 @@ class Index extends Admin
 
     /**
      * 新增
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function add()
@@ -145,7 +145,7 @@ class Index extends Admin
     /**
      * 编辑
      * @param null $id 用户id
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function edit($id = null)
@@ -240,7 +240,7 @@ class Index extends Admin
      * 授权
      * @param string $tab tab分组名
      * @param int $uid 用户id
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function access($tab = '', $uid = 0)
@@ -392,7 +392,7 @@ class Index extends Admin
     /**
      * 删除用户
      * @param array $ids 用户id
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function delete($ids = [])
@@ -404,7 +404,7 @@ class Index extends Admin
     /**
      * 启用用户
      * @param array $ids 用户id
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function enable($ids = [])
@@ -416,7 +416,7 @@ class Index extends Admin
     /**
      * 禁用用户
      * @param array $ids 用户id
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function disable($ids = [])
@@ -429,7 +429,7 @@ class Index extends Admin
      * 设置用户状态：删除、禁用、启用
      * @param string $type 类型：delete/enable/disable
      * @param array $record
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function setStatus($type = '', $record = [])
@@ -459,7 +459,7 @@ class Index extends Admin
     /**
      * 快速编辑
      * @param array $record 行为日志
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function quickEdit($record = [])

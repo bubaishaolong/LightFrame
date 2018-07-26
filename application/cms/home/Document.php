@@ -2,9 +2,9 @@
 // +----------------------------------------------------------------------
 // | 海豚PHP框架 [ DolphinPHP ]
 // +----------------------------------------------------------------------
-// | 版权所有 2016~2017 河源市卓锐科技有限公司 [ http://www.zrthink.com ]
+// | 版权所有 2016~2017  [  ]
 // +----------------------------------------------------------------------
-// | 官方网站: http://dolphinphp.com
+// |
 // +----------------------------------------------------------------------
 // | 开源协议 ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
@@ -26,7 +26,7 @@ class Document extends Common
      * 文档详情页
      * @param null $id 文档id
      * @param string $model 独立模型id
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return mixed
      */
     public function detail($id = null, $model = '')
@@ -63,7 +63,7 @@ class Document extends Common
     /**
      * 获取栏目面包屑导航
      * @param int $id 栏目id
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      */
     private function getBreadcrumb($id)
     {
@@ -80,7 +80,7 @@ class Document extends Common
      * 获取上一篇文档
      * @param int $id 当前文档id
      * @param string $model 独立模型id
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return array|false|\PDOStatement|string|\think\Model
      */
     private function getPrev($id, $model = '')
@@ -114,7 +114,7 @@ class Document extends Common
      * 获取下一篇文档
      * @param int $id 当前文档id
      * @param string $model 独立模型id
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return array|false|\PDOStatement|string|\think\Model
      */
     private function getNext($id, $model = '')

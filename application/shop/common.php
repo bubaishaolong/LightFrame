@@ -10,7 +10,7 @@ if (!function_exists('table_exist')) {
     /**
      * 检查附加表是否存在
      * @param string $table_name 附加表名
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return string
      */
     function table_exist($table_name = '')

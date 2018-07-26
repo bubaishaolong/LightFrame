@@ -11,6 +11,7 @@
 namespace app\shop\admin;
 
 use app\admin\controller\Admin;
+use app\admin\model\Button as ButtonModel;
 use app\common\builder\ZBuilder;
 
 use app\admin\model\Model as ModelModel;
@@ -31,7 +32,6 @@ class  Menber extends Admin
         //获取当前所在
         $datamodelID = ModelModel::where(array('table' => 'cj_shop_menber','status'=>1))->value('id');
         $datafile = FieldModel::where(array('model' => $datamodelID,'status'=>1,'show'=>1,'list_type'=>['<>','hidden']))->field('id,name,title,list_type')->order('sort asc')->select();
-
         foreach ($datafile as $key => $value) {
             $names = $value['name'];
             $title = $value['title'];
@@ -43,14 +43,12 @@ class  Menber extends Admin
             }
             $data[] = [$names, $title,$data_type_list];
         }
-
-        //dump($data);die;
         // 使用ZBuilder快速创建数据表格
         return ZBuilder::make('table')
             ->addColumn('__INDEX__', '#')
             ->addColumns($data)
             ->addColumn('right_button', '操作', 'btn')
-            ->addTopButtons('back,add,delete')
+            ->addTopButtons('back,add')
             ->addRightButtons('edit,delete')
             ->setRowList($dataList)
             ->fetch();
@@ -87,10 +85,6 @@ class  Menber extends Admin
                ->fetch();
      }
 
-
-     public function edit(){
-
-     }
     
 
 }

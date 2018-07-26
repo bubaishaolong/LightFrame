@@ -2,9 +2,9 @@
 // +----------------------------------------------------------------------
 // | 海豚PHP框架 [ DolphinPHP ]
 // +----------------------------------------------------------------------
-// | 版权所有 2016~2017 河源市卓锐科技有限公司 [ http://www.zrthink.com ]
+// | 版权所有 2016~2017  [  ]
 // +----------------------------------------------------------------------
-// | 官方网站: http://dolphinphp.com
+// |
 // +----------------------------------------------------------------------
 // | 开源协议 ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
@@ -29,7 +29,7 @@ class Packet extends Model
 
     /**
      * 获取所有数据包列表
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return array|bool
      */
     public function getAll()
@@ -59,7 +59,7 @@ class Packet extends Model
     /**
      * 从文件获取数据包信息
      * @param string $name 数据包名称
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return array|mixed
      */
     public static function getInfoFromFile($name = '')
@@ -77,7 +77,7 @@ class Packet extends Model
     /**
      * 安装数据包
      * @param string $name 数据包名
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return bool
      */
     public static function install($name = '')
@@ -109,7 +109,7 @@ class Packet extends Model
     /**
      * 卸载数据包
      * @param string $name 数据包名
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return bool
      */
     public static function uninstall($name = '')

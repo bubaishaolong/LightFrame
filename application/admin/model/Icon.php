@@ -2,9 +2,9 @@
 // +----------------------------------------------------------------------
 // | 海豚PHP框架 [ DolphinPHP ]
 // +----------------------------------------------------------------------
-// | 版权所有 2016~2017 河源市卓锐科技有限公司 [ http://www.zrthink.com ]
+// | 版权所有 2016~2017  [  ]
 // +----------------------------------------------------------------------
-// | 官方网站: http://dolphinphp.com
+// |
 // +----------------------------------------------------------------------
 // | 开源协议 ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
@@ -27,7 +27,7 @@ class Icon extends Model
 
     /**
      * 图标列表
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return \think\model\relation\HasMany
      */
     public function icons()
@@ -37,7 +37,7 @@ class Icon extends Model
 
     /**
      * 获取图标css链接
-     * @author 蔡伟明 <314013107@qq.com>
+     * @author 无名氏
      * @return false|\PDOStatement|string|\think\Collection
      */
     public static function getUrls()
