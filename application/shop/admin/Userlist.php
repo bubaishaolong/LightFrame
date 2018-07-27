@@ -30,16 +30,30 @@ class  Userlist extends Admin
         $dataList = UserlistModel::all();
         //获取当前所在
         $datamodelID = ModelModel::where(array('table' => 'cj_shop_user_list','status'=>1))->value('id');
-        $datafile = FieldModel::where(array('model' => $datamodelID,'status'=>1,'show'=>1))->field('id,name,title')->select();
+        $datafile = FieldModel::where(array('model' => $datamodelID,'status'=>1,'show'=>1))->field('id,name,title,is_search')->select();
 
         foreach ($datafile as $key => $value) {
             $names = $value['name'];
             $title = $value['title'];
             $data[] = [$names, $title];
-        }
 
+        }
+        //搜索查询可以搜索的字段
+        $datafilesea = FieldModel::where(array('model' => $datamodelID,'status'=>1,'show'=>1,'is_search'=>1))->field('id,name,title,is_search')->select();
+        if($datafilesea){
+            foreach ($datafilesea as $key => $value) {
+                $names = $value['name'];
+                $title = $value['title'];
+                $data_search[$names] = $title;
+
+            }
+        }else{
+            $data_search = '';
+        }
+        //dump($data_search);die;
         // 使用ZBuilder快速创建数据表格
         return ZBuilder::make('table')
+            ->setSearch($data_search)
             ->addColumn('__INDEX__', '#')
             ->addColumns($data)
             ->addColumn('right_button', '操作', 'btn')

@@ -1694,10 +1694,23 @@ class  {$datarow[$i]} extends Admin
             }
             \$data[] = [\$names, \$title,\$data_type_list];
         }
+        //搜索查询可以搜索的字段
+        \$datafilesea = FieldModel::where(array('model' => \$datamodelID,'status'=>1,'show'=>1,'is_search'=>1))->field('id,name,title,is_search')->select();
+        if(\$datafilesea){
+            foreach (\$datafilesea as \$key => \$value) {
+                \$names = \$value['name'];
+                \$title = \$value['title'];
+                \$data_search[\$names] = \$title;
+
+            }
+        }else{
+            \$data_search = '';
+        }
 		\$topbutton = ModelModel::where(array('id' => \$datamodelID, 'status' => 1, 'is_top_button' => 1))->value('top_button_value');
 		\$rightbutton = ModelModel::where(array('id' => \$datamodelID, 'status' => 1, 'is_right_button' => 1))->value('right_button_value');
         // 使用ZBuilder快速创建数据表格
         return ZBuilder::make('table')
+         ->setSearch(\$data_search)
             ->addColumn('__INDEX__', '#')
             ->addColumns(\$data)
             ->addColumn('right_button', '操作', 'btn')
@@ -1925,6 +1938,12 @@ class  Databasetable extends Admin
             'title' => '生成菜单节点',
             'icon'  => 'glyphicon glyphicon-sort-by-attributes-alt',
             'href'  => url('admin/fieldnode/index', ['group'=>'__name__'])
+        ];
+         // 配置参数
+        \$btnButton = [
+            'title' => '按钮配置',
+            'icon' => 'fa fa-fw fa-address-card-o',
+            'href' => url('admin/button/index', ['group' => $mashu,'id'=>'__id__'])
         ];
 		// 使用ZBuilder快速创建数据表格
 		return ZBuilder::make('table')

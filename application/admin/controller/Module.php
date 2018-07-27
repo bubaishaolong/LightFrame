@@ -886,7 +886,7 @@ INFO;
 		$type_tips = '此选项添加后不可更改。如果为 <code>系统模型</code> 将禁止删除，对于 <code>独立模型</code>，将强制创建字段id,create_time,update_time';
 
 		// 使用ZBuilder构建表单页面，并将页面标题设置为“添加”
-        return ZBuilder::make('form')->setPageTitle('添加')->setPageTips('添加需要的模块', 'danger')
+        return ZBuilder::make('form')->setPageTitle('添加')->setPageTips($type_tips.'添加需要的模块', 'danger')
             ->addFormItems([
                 ['text', 'name', '模块名称（标识）','由小写字母、数字或下划线组成，不能以数字开头'],
                 ['text', 'title', '模块标题','有中文组成'],

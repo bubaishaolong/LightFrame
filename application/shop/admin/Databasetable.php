@@ -225,8 +225,8 @@ class  Databasetable extends Admin
                 ['static', 'table', '附加表'],
                 ['text', 'title', '模型标题', '可填写中文'],
                 ['icon', 'icon', '图标'],
-                ['radio', 'is_top_button', '顶部按钮'],
-                ['radio', 'is_right_button', '右侧按钮'],
+                ['radio', 'is_top_button', '顶部按钮','',['不显示','显示'],1],
+                ['radio', 'is_right_button', '右侧按钮','',['不显示','显示'],1],
                 ['textarea', 'top_button_value', '顶部按钮值'],
                 ['textarea', 'right_button_value', '右侧按钮值'],
                 ['radio', 'status', '立即启用', '', ['否', '是']],
@@ -283,6 +283,30 @@ class  Databasetable extends Admin
         } else {
             $this->error('删除内容模型表失败');
         }
+    }
+
+
+    /**
+     * 快速编辑
+     * @param array $record 行为日志
+     * @author 无名氏
+     * @return mixed
+     */
+    public function quickEdit($record = [])
+    {
+        $id      = input('post.pk', '');
+        $field   = input('post.name', '');
+        $value   = input('post.value', '');
+        $config  = ModelModel::where('id', $id)->value($field);
+        //$details = '字段(' . $field . ')，原值(' . $config . ')，新值：(' . $value . ')';
+        $where = array('id'=>$id,$field=>$config);
+        $update[$field] = $value;
+        $updateInfo = ModelModel::update($update,$where);
+        if($updateInfo){
+            $this->success('快速编辑成功','index');
+        }
+
+        //return parent::quickEdit(['model_edit', 'admin_model', $id, UID, $details]);
     }
 
 }

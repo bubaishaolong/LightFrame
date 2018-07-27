@@ -15,13 +15,22 @@ use think\Validate;
 class  Userlist extends Validate
 {
     //定义验证规则
-    protected $rule = [
-      
-    ];
-
+    // 定义验证规则
+    
+   protected $rule = [
+  'id|id' => 'require',
+  'create_time|创建时间' => 'max:11',
+  'update_time|更新时间' => 'max:11',
+  'delete_time|删除时间' => 'max:11',
+  'status|状态' => 'max:1',
+  'mem|测试' => 'max:255',
+  'user|用户' => 'require|regex:^[a-zA-Z]\\w{0,39}$|max:128',
+  'token|通知' => 'max:128',
+];
     //定义验证提示
     protected $message = [
-        
+        'name.regex' => '模型标识由小写字母、数字或下划线组成，不能以数字开头',
+        'table.regex' => '附加表由小写字母、数字或下划线组成，不能以数字开头',
     ];
 
 }

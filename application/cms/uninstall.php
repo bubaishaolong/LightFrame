@@ -19,7 +19,6 @@ $clear = $this->request->get('clear');
 if ($clear == 1) {
     // 内容模型的表名列表
     $table_list = Db::name('cms_model')->column('table');
-
     if ($table_list) {
         foreach ($table_list as $table) {
             // 删除内容模型表
