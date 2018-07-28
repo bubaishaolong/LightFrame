@@ -75,18 +75,19 @@ class  Databasetable extends Admin
                 ['name', '所属模块'],
                 ['table', '数据表'],
                 ['type', '模型', 'text', '', ['系统', '普通', '独立']],
-                ['create_time', '创建时间', 'datetime'],
                 ['sort', '排序', 'text'],
                 ['is_top_button', '顶部按钮', 'switch'],
                 ['top_button_value', '顶部按钮值', 'textarea.edit'],
                 ['is_right_button', '右侧按钮', 'switch'],
                 ['right_button_value', '右侧按钮值', 'textarea.edit'],
                 ['status', '状态', 'switch'],
+				['create_time', '创建时间', 'datetime'],
                 ['right_button', '操作', 'btn']
             ])
             //->addValidate('ModelModel', 'title,sort') // 添加快捷编辑的验证器
             ->addFilter('type', ['系统', '普通', '独立'])
-            ->addTopButtons(['back', 'add', 'custom' => $btnFieldCof])// 批量添加顶部按钮
+            ->addTopButtons(['back', 'add'])// 批量添加顶部按钮
+            ->addTopButton('custom' , $btnFieldCof ,true)// 批量添加顶部按钮
             ->addRightButton('custombutton' , $btnButton,true)
             ->addRightButton('customnode' , $btnFieldNode,true)
             ->addRightButtons(['custom' => $btnField,'edit', 'delete' => ['data-tips' => '删除模型将同时删除该模型下的所有字段，且无法恢复。']])// 批量添加右侧按钮,'custombutton'=>$btnButton,'customnode' => $btnFieldNode, 'custom' => $btnField,

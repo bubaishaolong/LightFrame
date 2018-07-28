@@ -66,7 +66,7 @@ class Moduleconfig extends Admin
             ->addFilter('name,title')// 添加标题字段筛选
             ->addFilter('type', config('form_item_type'))// 添加标题字段筛选
             ->addFilterMap('name,title', ['module_name' => $group])// 添加标题字段筛选条件
-            ->addTopButtons('back,add', ['href' => url('add', ['group' => $group])], true)// 添加单个顶部按钮
+            ->addTopButtons('add', ['href' => url('add', ['group' => $group])], true)// 添加单个顶部按钮
             ->addTopButtons('enable,disable,delete')// 批量添加顶部按钮
             ->addRightButton('edit', [], true)
             ->addRightButton('delete')// 批量添加右侧按钮
