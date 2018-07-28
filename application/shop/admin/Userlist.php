@@ -27,7 +27,13 @@ class  Userlist extends Admin
     public function index()
     {
         //获取数据
-        $dataList = UserlistModel::all();
+		// 获取排序
+		$order = $this->getOrder();
+        // 获取筛选
+		$map = $this->getMap();
+		$dataList = UserlistModel::where($order)->where($map)->order('id desc')->paginate();
+		// 分页数据
+		$page = $dataList->render();
         //获取当前所在
         $datamodelID = ModelModel::where(array('table' => 'cj_shop_user_list','status'=>1))->value('id');
         $datafile = FieldModel::where(array('model' => $datamodelID,'status'=>1,'show'=>1))->field('id,name,title,is_search')->select();
@@ -50,16 +56,22 @@ class  Userlist extends Admin
         }else{
             $data_search = '';
         }
-        //dump($data_search);die;
+		$datafilesea = FieldModel::where(array('model' => $datamodelID,'status'=>1,'show'=>1,'is_filter'=>1))->column('id,name');
+		if(!$datafilesea){
+			$datafilesea = '';
+		}
+       // dump($datafilesea[0]);die;
         // 使用ZBuilder快速创建数据表格
         return ZBuilder::make('table')
             ->setSearch($data_search)
+			->addFilter($datafilesea)
             ->addColumn('__INDEX__', '#')
             ->addColumns($data)
             ->addColumn('right_button', '操作', 'btn')
             ->addTopButtons('back,add,delete')
             ->addRightButtons('edit,delete')
             ->setRowList($dataList)
+			->setPages($page) // 设置分页数据
             ->fetch();
     }
     

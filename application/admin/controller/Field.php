@@ -14,6 +14,7 @@ namespace app\admin\controller;
 use app\common\builder\ZBuilder;
 use app\admin\model\Model as ModelModel;
 use app\admin\model\Field as FieldModel;
+use app\admin\model\Menu as MenuModel;
 use think\Db;
 use think\Request;
 
@@ -83,12 +84,18 @@ class Field extends Admin
         $data_list = FieldModel::where($map)->order('id desc')->paginate();
         $modeldata = ModelModel::where(array('id' => $id))->column('name');
         $modeltable = ModelModel::where(array('id' => $id))->column('table');
-        // 授权按钮
+        // 生成校验规则
         $btn_access = [
             'title' => '生成校验规则',
             'icon' => 'fa fa-fw fa-key',
             'href' => url('admin/field/field_checkout', ['model' =>$id])
         ];
+//        //生成菜单
+//		$btn_menu = [
+//			'title' => '生成菜单',
+//			'icon' => 'fa fa-fw fa-home',
+//			'href' => url('admin/field/generate_menu', ['model' =>$id])
+//		];
         // 使用ZBuilder快速创建数据表格
         return ZBuilder::make('table')
             ->setSearch(['name' => '名称', 'title' => '标题'])// 设置搜索框
@@ -147,18 +154,21 @@ class Field extends Admin
                 ['length', '数据长度', 'text.edit'],
                 ['value', '默认值', 'text.edit'],
                 ['is_null', '是否为空', 'switch'],
-                ['new_type', '新增类型', 'select', config('form_item_type')],
+                ['new_type', '新增类型', 'select', config('form_item_type'),'','add'],
                 ['edit_type', '编辑类型', 'select', config('form_item_type')],
                 ['list_type', '列表类型', 'select', config('form_item_type')],
                 ['field_check', '校验', 'textarea.edit'],
                 ['show', '显示', 'switch'],
                 ['is_search', '搜索', 'switch'],
+                ['is_filter', '过滤', 'switch'],
+                ['is_total', '总计', 'switch'],
                 ['status', '启用', 'switch'],
                 ['right_button', '操作', 'btn']
             ])
             ->addTopButton('back', ['href' => url($modeldata[0] . '/databasetable/index')])// 批量添加顶部按钮
             ->addTopButton('add', ['href' => url('add', ['model' => $id])])// 添加顶部按钮
             ->addTopButton('custom', $btn_access)
+            //->addTopButton('customs', $btn_menu,true)
             // ->addTopButtons('enable,disable') // 批量添加顶部按钮
             ->addRightButton('delete', ['href' => url('delete', ['model' => $id, 'ids' => '__id__'])])// 批量添加右侧按钮
             ->addRightButton('edit', ['href' => url('edit', ['id' => '__id__', 'model' => $id])])// 批量添加右侧按钮
@@ -529,4 +539,63 @@ INFO;
         }
 
     }
+
+	/**
+	 * @param string $model
+	 * 自动生成菜单节点
+	 */
+//    public function generate_menu($model = ''){
+//		$modeldata = ModelModel::where(array('id' => $model))->value('name');
+//		$modeltable = ModelModel::where(array('id' => $model))->value('table');
+//		$modeltitle = ModelModel::where(array('id' => $model))->value('title');
+//		// 保存数据
+//		if ($this->request->isPost()) {
+//			$data = $this->request->post('', null, 'trim');
+//			dump($data);die;
+//			// 验证
+//			$result = $this->validate($data, 'Menu');
+//			// 验证失败 输出错误信息
+//			if(true !== $result) $this->error($result);
+//
+//			// 顶部节点url检查
+//			if ($data['pid'] == 0 && $data['url_value'] == '' && ($data['url_type'] == 'module_admin' || $data['url_type'] == 'module_home')) {
+//				$this->error('顶级节点的节点链接不能为空');
+//			}
+//			$data['auto_create'] =1;
+//			if ($menu = MenuModel::create($data)) {
+//				// 自动创建子节点
+//				if ($data['auto_create'] == 1 && !empty($data['child_node'])) {
+//					unset($data['icon']);
+//					unset($data['params']);
+//					$this->createChildNode($data, $menu['id']);
+//				}
+//				// 添加角色权限
+//				if (isset($data['role'])) {
+//					$this->setRoleMenu($menu['id'], $data['role']);
+//				}
+//				Cache::clear();
+//				// 记录行为
+//				$details = '所属模块('.$data['module'].'),所属节点ID('.$data['pid'].'),节点标题('.$data['title'].'),节点链接('.$data['url_value'].')';
+//				action_log('menu_add', 'admin_menu', $menu['id'], UID, $details);
+//				$this->success('新增成功', cookie('__forward__'));
+//			} else {
+//				$this->error('新增失败');
+//			}
+//		}
+////		//找到当前的模型
+////		$perix = config('database.prefix').$modeldata.'_';
+////		$moudel_moudel = str_replace($perix,'',$modeltable);
+////		$mingName = lcfirst(convertUnderline($moudel_moudel));
+//		$pid = MenuModel::where(array('pid'=>0,'module'=>$modeldata))->value('id');
+//		return ZBuilder::make('form')
+//			->addFormItems([
+//				['select', 'pid', '所属节点', '所属上级节点', MenuModel::getMenuTree(0, '', $modeldata), $pid],
+//				['text', 'title', '节点标题','',$modeltitle],
+//				['radio', 'url_type', '链接类型', '', ['module_admin' => '模块链接(后台)', 'module_home' => '模块链接(前台)', 'link' => '普通链接'], 'module_admin']
+//			])
+//			->addCheckbox('child_node', '子节点', '仅上面选项为【是】时起作用', ['add' => '新增', 'edit' => '编辑', 'delete' => '删除', 'enable' => '启用', 'disable' => '禁用', 'quickedit' => '快速编辑'], 'add,edit,delete,enable,disable,quickedit')
+//			->addRadio('url_target', '打开方式', '', ['_self' => '当前窗口', '_blank' => '新窗口'], '_self')
+//			->addIcon('icon', '图标', '导航图标')
+//			->fetch();
+//	}
 }

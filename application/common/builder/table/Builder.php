@@ -2047,17 +2047,17 @@ class Builder extends ZBuilder
                             }
                             break;
                         case 'select2': // tag编辑(有BUG)
-//                            if ($column['default']) {
-//                                $source = json_encode($column['default']);
-//                                $row[$column['name'].'__'.$column['type']] = '<a href="javascript:void(0);"
-//                                    class="select2-edit"
-//                                    data-table="'.$this->_table_name.'"
-//                                    data-value="'.$row[$column['name']].'"
-//                                    data-type="select2"
-//                                    data-source=\''.$source.'\'
-//                                    data-pk="'.$row['_primary_key_value'].'"
-//                                    data-name="'.$column['name'].'">'.$row[$column['name']].'</a>';
-//                            }
+                            if ($column['default']) {
+                                $source = json_encode($column['default']);
+                                $row[$column['name'].'__'.$column['type']] = '<a href="javascript:void(0);"
+                                    class="select2-edit"
+                                    data-table="'.$this->_table_name.'"
+                                    data-value="'.$row[$column['name']].'"
+                                    data-type="select2"
+                                    data-source=\''.$source.'\'
+                                    data-pk="'.$row['_primary_key_value'].'"
+                                    data-name="'.$column['name'].'">'.$row[$column['name']].'</a>';
+                            }
                             break;
                         case 'callback': // 调用回调方法
                             unset($column['field']);

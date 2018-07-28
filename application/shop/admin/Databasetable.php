@@ -129,12 +129,6 @@ class  Databasetable extends Admin
                 if (false === ModelModel::createTable($model)) {
                     $this->error('创建附加表失败');
                 }
-                // 创建菜单节点
-//                $map = [
-//                    'module' => $mashu,
-//                    'pid' => $data['pid']
-//                ];
-
                 $menu_data = [
                     "module" => $mashu,
                     //"pid" => Db::name('admin_menu')->where($map)->value('id'),
@@ -147,10 +141,32 @@ class  Databasetable extends Admin
                     "online_hide" => "0",
                     "sort" => "100",
                 ];
-                MenuModel::create($menu_data);
-
+				$menu = MenuModel::create($menu_data);
+//				$dataaray = ['add','edit','delete'];
+//				for ($i=0;$i<3 ;$i++){
+//					$url_type =  $mashu . "/" . convertUnderline($data['table']) . "/".$dataaray[$i];
+//					if($dataaray[$i] == 'add'){
+//						$data_title ='新增';
+//					}elseif ($dataaray[$i] == 'edit'){
+//						$data_title ='编辑';
+//					}elseif ($dataaray[$i] == 'delete'){
+//						$data_title ='删除';
+//					}
+//					$menu_datas = [
+//						"module" => $mashu,
+//						//"pid" => Db::name('admin_menu')->where($map)->value('id'),
+//						"pid" => $menu['id'],
+//						"title" => $data_title,
+//						"url_type" => "module_admin",
+//						"url_value" => $url_type,
+//						"url_target" => "_self",
+//						"online_hide" => "1",
+//						"sort" => "100",
+//					];
+//					MenuModel::create($menu_datas);
+//				}
+//				unset($data);
                 // 记录行为
-
                 Cache::clear();
                 $this->success('新增成功', 'index');
             } else {
@@ -308,5 +324,50 @@ class  Databasetable extends Admin
 
         //return parent::quickEdit(['model_edit', 'admin_model', $id, UID, $details]);
     }
+
+	/**
+	 * 添加子节点
+	 * @param array $data 节点数据
+	 * @param string $pid 父节点id
+	 * @author 无名氏
+	 */
+	private function createChildNode($data = [], $pid = '')
+	{
+		$url_value  = substr($data['url_value'], 0, strrpos($data['url_value'], '/')).'/';
+		$child_node = [];
+		$data['pid'] = $pid;
+
+		foreach ($data['child_node'] as $item) {
+			switch ($item) {
+				case 'add':
+					$data['title'] = '新增';
+					break;
+				case 'edit':
+					$data['title'] = '编辑';
+					break;
+				case 'delete':
+					$data['title'] = '删除';
+					break;
+				case 'enable':
+					$data['title'] = '启用';
+					break;
+				case 'disable':
+					$data['title'] = '禁用';
+					break;
+				case 'quickedit':
+					$data['title'] = '快速编辑';
+					break;
+			}
+			$data['url_value']   = $url_value.$item;
+			$data['create_time'] = $this->request->time();
+			$data['update_time'] = $this->request->time();
+			$child_node[] = $data;
+		}
+
+		if ($child_node) {
+			$MenuModel = new MenuModel();
+			$MenuModel->insertAll($child_node);
+		}
+	}
 
 }

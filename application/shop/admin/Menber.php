@@ -28,7 +28,12 @@ class  Menber extends Admin
 	public function index()
 	{
 		//获取数据
-		$dataList = MenberModel::all();
+		$order = $this->getOrder();
+		// 获取筛选
+		$map = $this->getMap();
+		$dataList = MenberModel::where($order)->where($map)->paginate();
+		// 分页数据
+		$page = $dataList->render();
 		//获取当前所在
 		$datamodelID = ModelModel::where(array('table' => 'cj_shop_menber', 'status' => 1))->value('id');
 		$datafile = FieldModel::where(array('model' => $datamodelID, 'status' => 1, 'show' => 1, 'list_type' => ['<>', 'hidden']))->field('id,name,title,list_type')->order('sort asc')->select();
@@ -58,9 +63,15 @@ class  Menber extends Admin
         }
 		$topbutton = ModelModel::where(array('id' => $datamodelID, 'status' => 1, 'is_top_button' => 1))->value('top_button_value');
 		$rightbutton = ModelModel::where(array('id' => $datamodelID, 'status' => 1, 'is_right_button' => 1))->value('right_button_value');
+
+		$datafilesea = FieldModel::where(array('model' => $datamodelID,'status'=>1,'show'=>1,'is_filter'=>1))->column('id,name');
+		if(!$datafilesea){
+			$datafilesea = '';
+		}
 		// 使用ZBuilder快速创建数据表格
 		return ZBuilder::make('table')
             ->setSearch($data_search)
+			->addFilter($datafilesea)
 			->addColumn('__INDEX__', '#')
 			->addColumns($data)
 			->addColumn('right_button', '操作', 'btn')
@@ -69,6 +80,7 @@ class  Menber extends Admin
 			->addTopButtons($topbutton)
 			->addRightButtons($rightbutton)
 			->setRowList($dataList)
+			->setPages($page) // 设置分页数据
 			->fetch();
 	}
 

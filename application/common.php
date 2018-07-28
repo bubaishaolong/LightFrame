@@ -12,6 +12,7 @@
 use think\Db;
 use think\View;
 use app\user\model\User;
+use app\admin\model\Moduleconfig;
 
 
 // 应用公共文件
@@ -1677,8 +1678,14 @@ class  {$datarow[$i]} extends Admin
      */
     public function index()
     {
+    //获取数据
+		\$order = \$this->getOrder();
+		// 获取筛选
+		\$map = \$this->getMap();
         //获取数据
-        \$dataList = {$datarow[$i]}Model::all();
+        \$dataList = {$datarow[$i]}Model::where(\$order)->where(\$map)->order('id desc')->paginate();
+		// 分页数据
+		\$page = \$dataList->render();
         //获取当前所在
         \$datamodelID = ModelModel::where(array('table' => '{$database_prefix}{$name}_{$datas[$i]}','status'=>1))->value('id');
         \$datafile = FieldModel::where(array('model' => \$datamodelID,'status'=>1,'show'=>1,'list_type'=>['<>','hidden']))->field('id,name,title,list_type')->select();
@@ -1708,9 +1715,14 @@ class  {$datarow[$i]} extends Admin
         }
 		\$topbutton = ModelModel::where(array('id' => \$datamodelID, 'status' => 1, 'is_top_button' => 1))->value('top_button_value');
 		\$rightbutton = ModelModel::where(array('id' => \$datamodelID, 'status' => 1, 'is_right_button' => 1))->value('right_button_value');
+		\$datafilesea = FieldModel::where(array('model' => \$datamodelID,'status'=>1,'show'=>1,'is_filter'=>1))->column('id,name');
+		if(!\$datafilesea){
+			\$datafilesea = '';
+		}
         // 使用ZBuilder快速创建数据表格
         return ZBuilder::make('table')
-         ->setSearch(\$data_search)
+            ->setSearch(\$data_search)
+            ->addFilter(\$datafilesea)
             ->addColumn('__INDEX__', '#')
             ->addColumns(\$data)
             ->addColumn('right_button', '操作', 'btn')
@@ -1719,6 +1731,7 @@ class  {$datarow[$i]} extends Admin
             ->addTopButtons(\$topbutton)
 			->addRightButtons(\$rightbutton)
             ->setRowList(\$dataList)
+            ->setPages(\$page) // 设置分页数据
             ->fetch();
     }
     
@@ -1752,9 +1765,7 @@ class  {$datarow[$i]} extends Admin
                ->addFormItems(\$data)
                ->fetch();
      }
-     }
     
-
 }
 INFO;
                 // 写入到文件
@@ -2283,7 +2294,7 @@ use think\Exception;
 
 if (\$clear == 1) {
     // 内容模型的表名列表
-    \$table_list = Db::name('cms_model')->column('table');
+    \$table_list = Db::name('admin_model')->column('table');
 
     if (\$table_list) {
         foreach (\$table_list as \$table) {
@@ -2563,4 +2574,11 @@ function delDirAndFile($path, $delDir = FALSE) {
     }
 }
 
+/**
+ * @param string $module 所属模块
+ * 获取配置
+ */
+function getConfigure($module = ''){
+	return Moduleconfig::where(array('module_name'=>$module,'status'=>1))->order('sort asc')->column('name,title,group_name,default_value,field_type,sort');
+}
 

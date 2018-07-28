@@ -50,7 +50,7 @@ class Fieldnode extends Admin
             ])
             ->setPageTitle($group . '节点列表')
             ->addRightButtons(['delete'])// 批量添加右侧按钮
-            ->addRightButtons(['custom' => $btnFieldedit])// 批量添加右侧按钮
+            ->addRightButton('custom', $btnFieldedit,true)// 批量添加右侧按钮
             //->addTopButtons(['back']) // 批量添加右侧按钮
             ->addTopButtons(['custom' => $btnFieldClass])// 批量添加顶部按钮
             ->setRowList($data_list)
@@ -166,7 +166,7 @@ class Fieldnode extends Admin
                 // 记录行为
                 $details = '节点ID(' . $id . ')';
                 action_log('menu_edit', 'admin_menu', $id, UID, $details);
-                $this->success('编辑成功', 'fieldnode/index?group=' . $module);
+                $this->success('编辑成功', null, '_parent_reload');
             } else {
                 $this->error('编辑失败');
             }
