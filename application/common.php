@@ -1693,7 +1693,12 @@ class  {$datarow[$i]} extends Admin
         foreach (\$datafile as \$key => \$value) {
             \$names = \$value['name'];
             \$title = \$value['title'];
-            \$data_list =  \$value['list_type'].'.edit';
+            \$datavalues = \$value['list_type'];
+			if(\$datavalues == 'text' || \$datavalues == 'date' || \$datavalues == 'time' || \$datavalues == 'datetime' || \$datavalues == 'textarea'){
+				\$data_list = \$value['list_type'] . '.edit';
+			}else{
+				\$data_list = \$value['list_type'];
+			}
             if(empty(\$value['list_type'])){
                 \$data_type_list = '';
             }else{
@@ -1742,29 +1747,62 @@ class  {$datarow[$i]} extends Admin
        if(\$this->request->isPost()){
              \$datas = \$this->request->Post();
              //判断数据是否重复添加
-             \$datappp = MenberModel::where(\$datas)->find();
+             \$datappp ={$datarow[$i]}Model::where(\$datas)->find();
              if(\$datappp){
                  \$this->error('数据重复');
              }
-             \$dataadd = MenberModel::create(\$datas);
+             \$dataadd = {$datarow[$i]}Model::create(\$datas);
              if(\$dataadd){
-                 \$this->success('添加成功');
+                 \$this->success('添加成功','index');
              }
          }
          \$datamodelID = ModelModel::where(array('table' => '{$database_prefix}{$name}_{$datas[$i]}','status'=>1))->value('id');
-         \$datafile = FieldModel::where(array('model' => \$datamodelID,'status'=>1,'show'=>1,'new_type'=>['<>','hidden']))->field('type,name,title,tips')->select();
+         \$datafile = FieldModel::where(array('model' => \$datamodelID,'status'=>1,'show'=>1,'new_type'=>['<>','hidden']))->field('type,name,title,tips,new_type')->order('sort asc')->select();
          foreach (\$datafile as \$key => \$value) {
              \$names = \$value['name'];
              \$title = \$value['title'];
              \$type = \$value['type'];
              \$tips = \$value['tips'];
-             \$data[] = [\$type,\$names, \$title,\$tips];
+             \$new_type = \$value['new_type'];
+             \$data[] = [\$new_type,\$names, \$title,\$tips];
          }
        // 显示添加页面
         return ZBuilder::make('form')
                ->addFormItems(\$data)
                ->fetch();
      }
+     public function edit(\$id=''){
+		if(\$this->request->isPost()){
+			\$data= \$this->request->post();
+			if(isset(\$data['status']) == 'on'){
+				\$data['status'] = 1;
+			}else{
+				\$data['status'] = 0;
+			}
+			{$datarow[$i]}Model::update(\$data);
+			// 验证
+			//\$result = \$this->validate(\$data, '{$datarow[$i]}.edit');
+			\$this->success('编辑成功', 'index');
+		}
+		\$datamodelID = ModelModel::where(array('table' => '{$database_prefix}{$name}_{$datas[$i]}', 'status' => 1))->value('id');
+		\$datafile = FieldModel::where(array('model' => \$datamodelID, 'status' => 1, 'show' => 1, 'edit_type' => ['<>', 'hidden']))->field('type,name,title,tips,edit_type')->select();
+		foreach (\$datafile as \$key => \$value) {
+			\$names = \$value['name'];
+			\$title = \$value['title'];
+			//\$type = \$value['type'];
+			\$tips = \$value['tips'];
+			\$edit_type = \$value['edit_type'];
+			\$data[] = [\$edit_type, \$names, \$title, \$tips];
+		}
+		// 模型信息
+		\$info = {$datarow[$i]}Model::get(\$id);
+		// 显示编辑页面
+		return ZBuilder::make('form')
+			->addFormItem('hidden','id')
+			->addFormItems(\$data)
+			->setFormData(\$info)
+			->fetch();
+	}
     
 }
 INFO;
@@ -1790,13 +1828,15 @@ INFO;
 namespace app\\{$name}\\model;
 
 use think\Model as ThinkModel;
-
+use traits\model\SoftDelete;
 class  {$datarow[$i]} extends ThinkModel
 {
     // 设置当前模型对应的完整数据表名称
     protected \$table = '__{$strtoupper_name}_{$strtoupper_data}__';
     // 自动写入时间戳
     protected \$autoWriteTimestamp = true;
+    //软删
+	use SoftDelete;
      //设置主键，如果不同请修改
     protected \$pk = 'id';
     //自定义初始化

@@ -27,7 +27,7 @@ class Fieldnode extends Admin
     {
         // 生成对应的类文件
         $btnFieldClass = [
-            'title' => '添加',
+            'title' => '新增',
             'icon' => 'glyphicon glyphicon-book',
             'href' => url('admin/fieldnode/add', ['module' => $group])
         ];
@@ -43,7 +43,7 @@ class Fieldnode extends Admin
                 ['id', 'ID'],
                 ['pid', 'PID'],
                 ['module', '模块', 'text'],
-                ['title', '编辑', 'text'],
+                ['title', '菜单', 'text'],
                 ['url_value', '链接'],
                 ['status', '是否启用', 'switch'],
                 ['right_button', '操作', 'btn']
@@ -52,7 +52,7 @@ class Fieldnode extends Admin
             ->addRightButtons(['delete'])// 批量添加右侧按钮
             ->addRightButton('custom', $btnFieldedit,true)// 批量添加右侧按钮
             //->addTopButtons(['back']) // 批量添加右侧按钮
-            ->addTopButtons(['custom' => $btnFieldClass])// 批量添加顶部按钮
+            ->addTopButton('customs', $btnFieldClass,true)// 批量添加顶部按钮
             ->setRowList($data_list)
             ->fetch();
     }
@@ -356,4 +356,26 @@ class Fieldnode extends Admin
             }
         }
     }
+	/**
+	 * 快速编辑
+	 * @param array $record 行为日志
+	 * @author 无名氏
+	 * @return mixed
+	 */
+	public function quickEdit($record = [])
+	{
+		$id      = input('post.pk', '');
+		$field   = input('post.name', '');
+		$value   = input('post.value', '');
+		$config  = MenuModel::where('id', $id)->value($field);
+		//$details = '字段(' . $field . ')，原值(' . $config . ')，新值：(' . $value . ')';
+		$where = array('id'=>$id,$field=>$config);
+		$update[$field] = $value;
+		$updateInfo = MenuModel::update($update,$where);
+		if($updateInfo){
+			$this->success('快速编辑成功','index');
+		}
+
+//		return parent::quickEdit(['model_edit', 'admin_model', $id, UID, $details]);
+	}
 }
