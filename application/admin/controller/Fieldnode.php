@@ -9,6 +9,7 @@
 namespace app\admin\controller;
 
 
+use app\admin\model\Model;
 use app\common\builder\ZBuilder;
 use app\admin\model\Module as ModuleModel;
 use app\admin\model\Menu as MenuModel;
@@ -23,7 +24,7 @@ use think\Cache;
 class Fieldnode extends Admin
 {
 
-    public function index($group = '')
+    public function index($group = '',$id ='')
     {
         // 生成对应的类文件
         $btnFieldClass = [
@@ -36,9 +37,17 @@ class Fieldnode extends Admin
             'icon' => 'glyphicon glyphicon-book',
             'href' => url('admin/fieldnode/edit', ['id' => '__id__', 'module' => $group])
         ];
-        $data_list = MenuModel::getMenusByGroup($group);
+        //$data_list = MenuModel::getMenusByGroup($group);
+        $map['module'] = $group;
+        $tables = Model::where(array('id'=>$id,'name'=>$group,'status'=>1))->value('table');
+        if($tables){
+            $ex = explode('cj_shop_',$tables);
+            $map['url_value'] = ['like','%'.lcfirst(convertUnderline($ex[1])).'%'];
+        }
+        $data_list = MenuModel::where($map)->order('sort,id')->select();
         //dump($data_list);die;
         return ZBuilder::make('table')
+            //->setPageTitle(lcfirst(convertUnderline($ex[1])).'节点列表')
             ->addColumns([ // 批量添加数据列
                 ['id', 'ID'],
                 ['pid', 'PID'],
@@ -48,7 +57,6 @@ class Fieldnode extends Admin
                 ['status', '是否启用', 'switch'],
                 ['right_button', '操作', 'btn']
             ])
-            ->setPageTitle($group . '节点列表')
             ->addRightButtons(['delete'])// 批量添加右侧按钮
             ->addRightButton('custom', $btnFieldedit,true)// 批量添加右侧按钮
             //->addTopButtons(['back']) // 批量添加右侧按钮
@@ -102,7 +110,7 @@ class Fieldnode extends Admin
         }
         // 使用ZBuilder快速创建表单
         return ZBuilder::make('form')
-            ->setPageTitle('新增节点')
+            ->setPageTitle('新增菜单节点')
             ->addLinkage('module', '所属模块', '', ModuleModel::getModule(), $module, url('ajax/getModuleMenus'), 'pid')
             ->addFormItems([
                 ['select', 'pid', '所属节点', '所属上级节点', MenuModel::getMenuTree(0, '', $module)],
@@ -113,7 +121,7 @@ class Fieldnode extends Admin
                 'text',
                 'url_value',
                 '节点链接',
-                "可留空，如果是模块链接，请填写<code>模块/控制器/操作</code>，如：<code>admin/menu/add</code>。如果是普通链接，则直接填写url地址，如：<code>http://www.xxxxx.com</code>"
+                "可留空，如果是模块链接，请填写<code>模块/控制器/操作</code>，如：<code>$module/menu/add</code>。如果是普通链接，则直接填写url地址，如：<code>http://www.xxxxx.com</code>"
             )
             ->addText('params', '参数', '如：a=1&b=2')
             ->addSelect('role', '角色', '除超级管理员外，拥有该节点权限的角色', RoleModel::where('id', 'neq', 1)->column('id,name'), '', 'multiple')

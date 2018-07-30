@@ -73,26 +73,32 @@ class  Menber extends Admin
 		if (!$datafilesea) {
 			$datafilesea = '';
 		}
-//		$topbuttonID = ModelModel::where(array('id' => $datamodelID, 'status' => 1, 'is_top_button' => 1))->value('id');
-//		//$rightbuttonID =  ModelModel::where(array('id' => $datamodelID, 'status' => 1, 'is_right_button' => 1))->value('id');
-//		$datassss = ButtonModel::where(array('module_id' => $topbuttonID, 'status' => 1))->select();
-//		foreach ($datassss as $key => $v) {
-//			$dataone['title'] = $v['title'];
-//			$dataone['icon'] = $v['icon'];
-//			$ddd = explode('=>',$v['param']);
-//			$dataone['href'] = url($v['url'], $v['param']);
-//		}
-//
+//        $module_id =ButtonModel::where(array('module_id'=>$datamodelID,'status' => 1,'button_type'=>'tab1'))->select();
+//		foreach ($module_id as $key=>$value){
+//            $gatakey['title'] = $value['title'];
+//            $gatakey['name'] = $value['name'];
+//            $gatakey['icon'] = $value['icon'];
+//		    $dataarr= explode(',',$value['param']);
+//		    for ($i=0;$i<count($dataarr);$i++){
+//                $datakey[$i] = explode('=>',$dataarr[$i]);
+//                $param[$datakey[$i][0]] = $datakey[$i][1];
+//                $datai[$i]['sjdjs'.$i] = $param;
+//            }
+//            //$gatakey['herf'] = url($value['url'],$datai);
+//        }
 
+//		dump($datai);die;
 		// 使用ZBuilder快速创建数据表格
 		return ZBuilder::make('table')
 			->setSearch($data_search)
+            ->setPageTips('注意事项:<br> 由于系统未实现自定义按钮,所以还是沿用系统的规定的按钮方法')
 			->addFilter($datafilesea)
 			->addColumn('__INDEX__', '#')
 			->addColumns($data)
 			->addColumn('right_button', '操作', 'btn')
 //			->addRightButtons(['edit','delete'])
 			->addTopButtons($topbutton)
+			//->addTopButtons($datai)
 			->addRightButtons($rightbutton)
 			->setRowList($dataList)
 			->setPages($page)// 设置分页数据

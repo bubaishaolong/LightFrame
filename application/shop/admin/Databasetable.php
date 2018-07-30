@@ -47,9 +47,9 @@ class  Databasetable extends Admin
         ];
         // 生成菜单节点
         $btnFieldNode = [
-            'title' => '生成菜单节点',
+            'title' => '菜单列表',
             'icon' => 'glyphicon glyphicon-sort-by-attributes-alt',
-            'href' => url('admin/fieldnode/index', ['group' => '__name__'])
+            'href' => url('admin/fieldnode/index', ['id' => '__id__', 'group' => '__name__'])
         ];
         // 配置参数
         $btnFieldCof = [
@@ -57,16 +57,22 @@ class  Databasetable extends Admin
             'icon' => 'glyphicon glyphicon-sort-by-attributes-alt',
             'href' => url('admin/moduleconfig/index', ['group' => $mashu])
         ];
+        // 参数配置
+        $btnFieldCofList = [
+            'title' => '参数配置',
+            'icon' => 'fa fa-fw fa-gears',
+            'href' => url('shop/databasetable/getConfigureList', ['group' => $mashu])
+        ];
         // 配置参数
         $btnButton = [
             'title' => '按钮配置',
             'icon' => 'fa fa-fw fa-address-card-o',
-            'href' => url('admin/button/index', ['group' => $mashu,'id'=>'__id__'])
+            'href' => url('admin/button/index', ['group' => $mashu, 'id' => '__id__'])
         ];
         // 使用ZBuilder快速创建数据表格
         return ZBuilder::make('table')
             ->setSearch(['name' => '标识', 'title' => '标题'])// 设置搜索框
-			->setPageTips('目前只能添加系统自带: <br>顶部按钮包括 : add,enable,disable,custom,back <br>
+            ->setPageTips('目前只能添加系统自带: <br>顶部按钮包括 : add,enable,disable,custom,back <br>
 右边按钮包括：edit,delete,disable,custom', 'danger')
             ->addColumns([ // 批量添加数据列
                 ['id', 'ID'],
@@ -81,16 +87,17 @@ class  Databasetable extends Admin
                 ['is_right_button', '右侧按钮', 'switch'],
                 ['right_button_value', '右侧按钮值', 'textarea.edit'],
                 ['status', '状态', 'switch'],
-				['create_time', '创建时间', 'datetime'],
+                ['create_time', '创建时间', 'datetime'],
                 ['right_button', '操作', 'btn']
             ])
             //->addValidate('ModelModel', 'title,sort') // 添加快捷编辑的验证器
             ->addFilter('type', ['系统', '普通', '独立'])
             ->addTopButtons(['back', 'add'])// 批量添加顶部按钮
-            ->addTopButton('custom' , $btnFieldCof ,true)// 批量添加顶部按钮
-            ->addRightButton('custombutton' , $btnButton,true)
-            ->addRightButton('customnode' , $btnFieldNode,true)
-            ->addRightButtons(['custom' => $btnField,'edit', 'delete' => ['data-tips' => '删除模型将同时删除该模型下的所有字段，且无法恢复。']])// 批量添加右侧按钮,'custombutton'=>$btnButton,'customnode' => $btnFieldNode, 'custom' => $btnField,
+            ->addTopButton('custom', $btnFieldCof, true)// 批量添加顶部按钮
+            ->addRightButton('custombutton', $btnButton, true)
+            ->addRightButton('customnode', $btnFieldNode, true)
+            ->addTopButton('customConf', $btnFieldCofList, true)
+            ->addRightButtons(['custom' => $btnField, 'edit', 'delete' => ['data-tips' => '删除模型将同时删除该模型下的所有字段，且无法恢复。']])// 批量添加右侧按钮,'custombutton'=>$btnButton,'customnode' => $btnFieldNode, 'custom' => $btnField,
             ->setRowList($data_list)// 设置表格数据
             ->fetch(); // 渲染模板
     }
@@ -142,7 +149,7 @@ class  Databasetable extends Admin
                     "online_hide" => "0",
                     "sort" => "100",
                 ];
-				$menu = MenuModel::create($menu_data);
+                $menu = MenuModel::create($menu_data);
 //				$dataaray = ['add','edit','delete'];
 //				for ($i=0;$i<3 ;$i++){
 //					$url_type =  $mashu . "/" . convertUnderline($data['table']) . "/".$dataaray[$i];
@@ -176,9 +183,9 @@ class  Databasetable extends Admin
         }
 
         $type_tips = '此选项添加后不可更改。如果为 <code>系统模型</code> 将禁止删除，对于 <code>独立模型</code>，将强制创建字段id,cid,uid,model,title,create_time,update_time,sort,status,trash,view';
-        $datalists =Db::table('cj_admin_menu')->where(array('module'=>$mashu,'pid'=>0))->value('id');
-        $dataarray = Db::table('cj_admin_menu')->where(array('pid'=>$datalists))->column('id,title');
-        $dataarray[$datalists] ='顶级菜单';
+        $datalists = Db::table('cj_admin_menu')->where(array('module' => $mashu, 'pid' => 0))->value('id');
+        $dataarray = Db::table('cj_admin_menu')->where(array('pid' => $datalists))->column('id,title');
+        $dataarray[$datalists] = '顶级菜单';
         // 显示添加页面
         return ZBuilder::make('form')
             ->addFormItems([
@@ -186,7 +193,7 @@ class  Databasetable extends Admin
                 ['text', 'title', '表名', '可填写中文'],
                 ['text', 'table', '数据表', '创建后不可更改。由小写字母、数字或下划线组成，如果不填写默认为 <code>' . config('database.prefix') . $mashu . '_模型标识</code>，如果需要自定义，请务必填写系统表前缀，<code>#@__</code>表示当前系统表前缀'],
                 ['radio', 'type', '模型类别', $type_tips, ['系统模型', '普通模型', '独立模型(不使用主表)'], 1],
-                ['select','pid','选择上级菜单','',$dataarray],
+                ['select', 'pid', '选择上级菜单', '', $dataarray],
                 ['icon', 'icon', '图标'],
                 ['radio', 'is_top_button', '顶部按钮', '', ['不显示', '显示'], 1],
                 ['radio', 'is_right_button', '右侧按钮', '', ['不显示', '显示'], 1],
@@ -242,8 +249,8 @@ class  Databasetable extends Admin
                 ['static', 'table', '附加表'],
                 ['text', 'title', '模型标题', '可填写中文'],
                 ['icon', 'icon', '图标'],
-                ['radio', 'is_top_button', '顶部按钮','',['不显示','显示'],1],
-                ['radio', 'is_right_button', '右侧按钮','',['不显示','显示'],1],
+                ['radio', 'is_top_button', '顶部按钮', '', ['不显示', '显示'], 1],
+                ['radio', 'is_right_button', '右侧按钮', '', ['不显示', '显示'], 1],
                 ['textarea', 'top_button_value', '顶部按钮值'],
                 ['textarea', 'right_button_value', '右侧按钮值'],
                 ['radio', 'status', '立即启用', '', ['否', '是']],
@@ -264,9 +271,9 @@ class  Databasetable extends Admin
         if ($ids === null) $this->error('参数错误');
 
         $model = ModelModel::where('id', $ids)->find();
-        $datapp = explode(config('database.prefix').$model['name'].'_',$model['table']);
-        if($datapp[1]){
-            DeleteCorrespondingFile('shop',$datapp[1]);
+        $datapp = explode(config('database.prefix') . $model['name'] . '_', $model['table']);
+        if ($datapp[1]) {
+            DeleteCorrespondingFile('shop', $datapp[1]);
         }
         if ($model['type'] == 0) {
             $this->error('禁止删除系统模型');
@@ -288,8 +295,8 @@ class  Databasetable extends Admin
                 $datamingzi = $module . "/{$model['table']}/index";
                 if (false !== Db::name('admin_menu')->where('url_value', $datamingzi)->delete()) {
                     //删除对用的文件及文件夹
-                    if($datapp[1]){
-                        DeleteCorrespondingFile('shop',$datapp[1]);
+                    if ($datapp[1]) {
+                        DeleteCorrespondingFile('shop', $datapp[1]);
                     }
                     $this->success('删除成功', 'index');
                 }
@@ -311,64 +318,86 @@ class  Databasetable extends Admin
      */
     public function quickEdit($record = [])
     {
-        $id      = input('post.pk', '');
-        $field   = input('post.name', '');
-        $value   = input('post.value', '');
-        $config  = ModelModel::where('id', $id)->value($field);
+        $id = input('post.pk', '');
+        $field = input('post.name', '');
+        $value = input('post.value', '');
+        $config = ModelModel::where('id', $id)->value($field);
         //$details = '字段(' . $field . ')，原值(' . $config . ')，新值：(' . $value . ')';
-        $where = array('id'=>$id,$field=>$config);
+        $where = array('id' => $id, $field => $config);
         $update[$field] = $value;
-        $updateInfo = ModelModel::update($update,$where);
-        if($updateInfo){
-            $this->success('快速编辑成功','index');
+        $updateInfo = ModelModel::update($update, $where);
+        if ($updateInfo) {
+            $this->success('快速编辑成功', 'index');
         }
 
         //return parent::quickEdit(['model_edit', 'admin_model', $id, UID, $details]);
     }
 
-	/**
-	 * 添加子节点
-	 * @param array $data 节点数据
-	 * @param string $pid 父节点id
-	 * @author 无名氏
-	 */
-	private function createChildNode($data = [], $pid = '')
-	{
-		$url_value  = substr($data['url_value'], 0, strrpos($data['url_value'], '/')).'/';
-		$child_node = [];
-		$data['pid'] = $pid;
+    /**
+     * 添加子节点
+     * @param array $data 节点数据
+     * @param string $pid 父节点id
+     * @author 无名氏
+     */
+    private function createChildNode($data = [], $pid = '')
+    {
+        $url_value = substr($data['url_value'], 0, strrpos($data['url_value'], '/')) . '/';
+        $child_node = [];
+        $data['pid'] = $pid;
 
-		foreach ($data['child_node'] as $item) {
-			switch ($item) {
-				case 'add':
-					$data['title'] = '新增';
-					break;
-				case 'edit':
-					$data['title'] = '编辑';
-					break;
-				case 'delete':
-					$data['title'] = '删除';
-					break;
-				case 'enable':
-					$data['title'] = '启用';
-					break;
-				case 'disable':
-					$data['title'] = '禁用';
-					break;
-				case 'quickedit':
-					$data['title'] = '快速编辑';
-					break;
-			}
-			$data['url_value']   = $url_value.$item;
-			$data['create_time'] = $this->request->time();
-			$data['update_time'] = $this->request->time();
-			$child_node[] = $data;
-		}
+        foreach ($data['child_node'] as $item) {
+            switch ($item) {
+                case 'add':
+                    $data['title'] = '新增';
+                    break;
+                case 'edit':
+                    $data['title'] = '编辑';
+                    break;
+                case 'delete':
+                    $data['title'] = '删除';
+                    break;
+                case 'enable':
+                    $data['title'] = '启用';
+                    break;
+                case 'disable':
+                    $data['title'] = '禁用';
+                    break;
+                case 'quickedit':
+                    $data['title'] = '快速编辑';
+                    break;
+            }
+            $data['url_value'] = $url_value . $item;
+            $data['create_time'] = $this->request->time();
+            $data['update_time'] = $this->request->time();
+            $child_node[] = $data;
+        }
 
-		if ($child_node) {
-			$MenuModel = new MenuModel();
-			$MenuModel->insertAll($child_node);
-		}
-	}
+        if ($child_node) {
+            $MenuModel = new MenuModel();
+            $MenuModel->insertAll($child_node);
+        }
+    }
 
+    public function getConfigureList($group = '', $tab = 'tab0')
+    {
+        $data = getConfigure('shop');
+        $group_name = Db::table('cj_admin_module_config')->where(array('module_name' => $group, 'status' => 1))->distinct(true)->column('group_name');
+        for ($i = 0; $i < count($group_name); $i++) {
+            $list_tab['tab' . $i] = ['title' => $group_name[$i], 'url' => url('getConfigureList', ['tab' => 'tab' . $i])];
+            $dataLists = Db::table('cj_admin_module_config')->where(array('group_name' => $group_name[$i]))->select();
+            foreach ($dataLists as $key => $value) {
+                $datas[$i] = [$value['field_type'], $value['name'], $value['title']];
+            }
+        }
+//        foreach ($data as $key=>$value){
+//            $list_tab['tab'.$key] = ['title' => $value['group_name'], 'url' => url('getConfigureList', ['tab' => 'tab'.$key])];
+//        }field_type
+        dump($list_tab);die;
+        return ZBuilder::make('form')
+            ->setTabNav($list_tab, $tab)
+            ->addFormItems($datas)
+            ->addText('name', '名称')
+            ->fetch();
+
+    }
 }

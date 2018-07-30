@@ -272,8 +272,6 @@ class Module extends Admin
                 $this->error('菜单添加失败，请重新安装');
             }
         }
-        $dataadd = [''];
-
         // 检查是否有模块设置信息
         if (isset($module_info['config']) && !empty($module_info['config'])) {
             $module_info['config'] = json_encode(parse_config($module_info['config']));
@@ -743,23 +741,23 @@ INFO;
             }
             //生成info和menus文件
             $info = [
-                //// 模块名[必填]
+                // 模块名[必填]
                 'name' => $name,
-                //// 模块标题[必填]
+                // 模块标题[必填]
                 'title' => $data['title'],
-                //// 模块唯一标识[必填]，格式：模块名.开发者标识.module
+                // 模块唯一标识[必填]，格式：模块名.开发者标识.module
                 'identifier' => $data['identifier'],
-                //// 模块图标[选填]
+                // 模块图标[选填]
                 'icon' => $data['icon'],
-               // // 模块描述[选填]
+                // 模块描述[选填]
                 'description' => $data['description'],
-                //// 开发者[必填]
+                // 开发者[必填]
                 'author' => $data['author'],
-                //// 开发者网址[选填]
+                // 开发者网址[选填]
                 'author_url' => $data['author_url'],
-                //// 版本[必填],格式采用三段式：主版本号.次版本号.修订版本号
+                // 版本[必填],格式采用三段式：主版本号.次版本号.修订版本号
                 'version' => $data['version'],
-                //// 模块依赖[可选]，格式[[模块名, 模块唯一标识, 依赖版本, 对比方式]]
+                // 模块依赖[可选]，格式[[模块名, 模块唯一标识, 依赖版本, 对比方式]]
                 'need_module' => [
                     ['admin', 'admin.dolphinphp.module', '1.0.0']
                 ],

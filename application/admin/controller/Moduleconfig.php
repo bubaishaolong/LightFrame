@@ -66,7 +66,7 @@ class Moduleconfig extends Admin
             ->addFilter('name,title')// 添加标题字段筛选
             ->addFilter('type', config('form_item_type'))// 添加标题字段筛选
             ->addFilterMap('name,title', ['module_name' => $group])// 添加标题字段筛选条件
-            ->addTopButtons('add', ['href' => url('add', ['group' => $group])], true)// 添加单个顶部按钮
+            ->addTopButton('add', ['href' => url('add', ['group' => $group])], true)// 添加单个顶部按钮
             ->addTopButtons('enable,disable,delete')// 批量添加顶部按钮
             ->addRightButton('edit', [], true)
             ->addRightButton('delete')// 批量添加右侧按钮
@@ -110,7 +110,7 @@ class Moduleconfig extends Admin
             ->addText('name', '字段名称')
             ->addText('group_name','分组名称')
             ->addStatic('module_name','模块标识','',$group)
-            ->addSelect('field_type', '字段类型', '', config('database_data_type'))
+            ->addSelect('field_type', '文本类型', '', config('form_item_type'))
             ->addText('default_value','默认值','',0)
             ->addText('field_hints','字段提示')
             ->addRadio('is_required','是否必填','',['必填','不必填'],0)
@@ -165,7 +165,7 @@ class Moduleconfig extends Admin
             ->addText('name', '字段名称')
             ->addText('group_name','分组名称')
             ->addStatic('module_name','模块标识','',$info['module_name'])
-            ->addSelect('field_type', '字段类型', '', config('database_data_type'))
+            ->addSelect('field_type', '文本类型', '', config('form_item_type'))
             ->addText('default_value','默认值','',0)
             ->addText('field_hints','字段提示')
             ->addRadio('is_required','是否必填','',['必填','不必填'],0)
