@@ -11,6 +11,7 @@
 namespace app\shop\admin;
 
 use app\admin\controller\Admin;
+use app\admin\controller\Ajax;
 use app\common\builder\ZBuilder;
 
 use app\admin\model\Model as ModelModel;

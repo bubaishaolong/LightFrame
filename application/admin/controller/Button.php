@@ -72,11 +72,24 @@ class Button extends Admin
             $data = $this->request->post();
             $data['module_id'] = $id;
             $data['button_type'] = $tab;
-            $top_button_value = '['."'title'".'=>'."'".$data['title']."'".','."'name'".'=>'."'".$data['name']."'".','."'icon'".'=>'."'".$data['icon']."'".','."'href'".'=>'.'url('.$data['url'].','.$data['param'].')'.']';
+            $param = $data['param'];
+            if($param){
+                $param_list = 'url('.$data['url'].','.$param.')';
+            }else{
+                $param_list = 'url('.$data['url'].')';
+            }
+
+            $top_button_value = [
+                'title'=>$data['title'],
+                'name'=>$data['name'],
+                'icon'=>$data['icon'],
+                'href'=>$param_list,
+            ];
             //查询model之前的数据
             $top_button =  ModelModel::where(array('id'=>$id))->value('top_button_value');
             //拼接成自己需要的数据
-            $datavalue = $top_button.$top_button_value;
+            $datavalue = $top_button.','.serialize($top_button_value);
+
             if($tab == 'tab1'){
                 $update['top_button_value'] =$datavalue;
             }elseif ($tab == 'tab2'){

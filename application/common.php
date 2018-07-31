@@ -1727,6 +1727,7 @@ class  {$datarow[$i]} extends Admin
         // 使用ZBuilder快速创建数据表格
         return ZBuilder::make('table')
             ->setSearch(\$data_search)
+            ->setPageTips('注意事项:  由于系统未实现自定义按钮,所以还是沿用系统的规定的按钮方法,去对应的文件新增按钮')
             ->addFilter(\$datafilesea)
             ->addColumn('__INDEX__', '#')
             ->addColumns(\$data)
@@ -1994,7 +1995,7 @@ class  Databasetable extends Admin
         \$btnButton = [
             'title' => '按钮配置',
             'icon' => 'fa fa-fw fa-address-card-o',
-            'href' => url('admin/button/index', ['group' => $mashu,'id'=>'__id__'])
+            'href' => url('admin/button/index', ['group' => \$mashu,'id'=>'__id__'])
         ];
 		// 使用ZBuilder快速创建数据表格
 		return ZBuilder::make('table')
@@ -2619,6 +2620,7 @@ function delDirAndFile($path, $delDir = FALSE) {
  * 获取配置
  */
 function getConfigure($module = ''){
-	return Moduleconfig::where(array('module_name'=>$module,'status'=>1))->order('sort asc')->column('name,title,group_name,default_value,field_type,sort');
+	return Moduleconfig::where(array('module_name'=>$module,'status'=>1))->order('sort asc')->field('name,title,group_name,default_value,field_type,sort')->select();
 }
+
 
