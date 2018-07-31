@@ -18,14 +18,14 @@ class  Menber extends Validate
     // 定义验证规则
     
    protected $rule = [
-  'status|状态' => NULL,
-  'delete_time|删除时间' => NULL,
-  'update_time|更新时间' => NULL,
-  'create_time|创建时间' => NULL,
-  'id|id' => NULL,
-  'user_token|用户' => NULL,
-  'title|标题' => NULL,
-  'liste|列表' => NULL,
+  'status|状态' => '',
+  'delete_time|删除时间' => '',
+  'update_time|更新时间' => '',
+  'create_time|创建时间' => '',
+  'id|id' => '',
+  'user_token|用户' => '',
+  'title|标题' => '',
+  'liste|列表' => 'max:255',
 ];
     //定义验证提示
     protected $message = [

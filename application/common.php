@@ -1836,7 +1836,7 @@ class  {$datarow[$i]} extends ThinkModel
     // 自动写入时间戳
     protected \$autoWriteTimestamp = true;
     //软删
-	use SoftDelete;
+	//use SoftDelete;
      //设置主键，如果不同请修改
     protected \$pk = 'id';
     //自定义初始化

@@ -79,7 +79,7 @@ class Model extends ThinkModel
      */
     public static function createTable($data)
     {
-        if ($data['type'] == 2) {
+        if ($data['type'] == 2 || $data['type'] == 1) {
             // 新建独立扩展表
             $sql = <<<EOF
             CREATE TABLE IF NOT EXISTS `{$data['table']}` (
@@ -125,7 +125,7 @@ EOF;
             return false;
         }
 
-        if ($data['type'] == 2) {
+        if ($data['type'] == 2 || $data['type'] == 1) {
             // 添加默认字段
             $default = [
                 'model'       => $data['id'],
