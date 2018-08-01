@@ -22,6 +22,8 @@ if (version_compare(PHP_VERSION, '5.5', '<')) {
 // 定义应用目录
 define('APP_PATH', __DIR__ . '/../application/');
 
+
+
 // 定义后台入口文件
 define('ADMIN_FILE', 'admin.php');
 

@@ -724,7 +724,7 @@ INFO;
             //先生成文件目录
             $name = $data['name'];
             //判断模块是否存在
-            $dataINfo = Db::table('cj_admin_module')->where('name','=',$name)->value('name');
+            $dataINfo = Db::name('admin_module')->where('name','=',$name)->value('name');
             if($dataINfo){
                 $this->error('模块已存在');
             }
@@ -738,7 +738,53 @@ INFO;
             for ($i = 0; $i < $data_count; $i++) {
                 $infoname =config('database.prefix').$name.'_'.$datas[$i];
                 $dataq[$i] = $infoname;
+                //生成数据表固定字段
+                AutomaticGenerationOfDataTables($datas[$i],$name);
+                $strtolower[$i] = strtolower(convertUnderline($datas[$i]));
+                $strtolowerArray[$i] = [
+                    'title' => $strtolower[$i],
+                    'icon' => '',
+                    'url_type' => 'module_admin',
+                    'url_value' => $name.'/'.$strtolower[$i].'/index',
+                    'url_target' => '_self',
+                    'online_hide' => 0,
+                    'sort' => 100,
+                    'status' => 1,
+                    'child' => [
+                        [
+                            'title' => '新增',
+                            'icon' => '',
+                            'url_type' => 'module_admin',
+                            'url_value' => $name.'/'.$strtolower[$i].'/add',
+                            'url_target' => '_self',
+                            'online_hide' => 0,
+                            'sort' => 100,
+                            'status' => 0,
+                        ],
+                        [
+                            'title' => '编辑',
+                            'icon' => '',
+                            'url_type' => 'module_admin',
+                            'url_value' => $name.'/'.$strtolower[$i].'/edit',
+                            'url_target' => '_self',
+                            'online_hide' => 0,
+                            'sort' => 100,
+                            'status' => 0,
+                        ],
+                        [
+                            'title' => '删除',
+                            'icon' => '',
+                            'url_type' => 'module_admin',
+                            'url_value' => $name.'/'.$strtolower[$i].'/delete',
+                            'url_target' => '_self',
+                            'online_hide' => 0,
+                            'sort' => 100,
+                            'status' => 0,
+                        ],
+                    ],
+                ];
             }
+            //dump('2222');die;
             //生成info和menus文件
             $info = [
                 // 模块名[必填]
@@ -759,7 +805,8 @@ INFO;
                 'version' => $data['version'],
                 // 模块依赖[可选]，格式[[模块名, 模块唯一标识, 依赖版本, 对比方式]]
                 'need_module' => [
-                    ['admin', 'admin.dolphinphp.module', '1.0.0']
+                    ['admin', 'admin.dolphinphp.module', '1.0.0'],
+                    //['admin', $data['identifier'], $data['version']]
                 ],
                 //// 数据表[有数据库表时必填]
 
@@ -768,6 +815,50 @@ INFO;
             //生成info文件内容
             buildInfoFile($info,$name);
             //生成menus文件内容
+            $menu2 =[
+                [
+                    'title' => '新增',
+                    'icon' => '',
+                    'url_type' => 'module_admin',
+                    'url_value' => $name.'/index/add',
+                    'url_target' => '_self',
+                    'online_hide' => 0,
+                    'sort' => 100,
+                    'status' => 0,
+                ],
+                [
+                    'title' => '编辑',
+                    'icon' => '',
+                    'url_type' => 'module_admin',
+                    'url_value' => $name.'/index/edit',
+                    'url_target' => '_self',
+                    'online_hide' => 0,
+                    'sort' => 100,
+                    'status' => 0,
+                ],
+                [
+                    'title' => '删除',
+                    'icon' => '',
+                    'url_type' => 'module_admin',
+                    'url_value' => $name.'/index/delete',
+                    'url_target' => '_self',
+                    'online_hide' => 0,
+                    'sort' => 100,
+                    'status' => 0,
+                ],
+                [
+                    'title' => '参数配置',
+                    'icon' => '',
+                    'url_type' => 'module_admin',
+                    'url_value' => $name.'/index/getConfigureList',
+                    'url_target' => '_self',
+                    'online_hide' => 0,
+                    'sort' => 100,
+                    'status' => 0,
+                ],
+            ];
+			$menu1 = array_merge($menu2,$strtolowerArray);
+
             $menus = [[
                 'title' => $data['title'],
                 'icon' => 'fa fa-fw fa-newspaper-o',
@@ -781,90 +872,16 @@ INFO;
 						'title' => '模型管理',
 						'icon' => '',
 						'url_type' => 'module_admin',
-						'url_value' => $name.'/Databasetable/index',
+						'url_value' => $name.'/index/index',
 						'url_target' => '_self',
 						'online_hide' => 0,
 						'sort' => 100,
 						'status' => 1,
-						'child' => [
-							[
-								'title' => '新增',
-								'icon' => '',
-								'url_type' => 'module_admin',
-								'url_value' => $name.'/Databasetable/add',
-								'url_target' => '_self',
-								'online_hide' => 0,
-								'sort' => 100,
-								'status' => 0,
-							],
-							[
-								'title' => '编辑',
-								'icon' => '',
-								'url_type' => 'module_admin',
-								'url_value' => $name.'/Databasetable/edit',
-								'url_target' => '_self',
-								'online_hide' => 0,
-								'sort' => 100,
-								'status' => 0,
-							],
-							[
-								'title' => '删除',
-								'icon' => '',
-								'url_type' => 'module_admin',
-								'url_value' => $name.'/Databasetable/delete',
-								'url_target' => '_self',
-								'online_hide' => 0,
-								'sort' => 100,
-								'status' => 0,
-							],
-							[
-								'title' => '字段管理',
-								'icon' => '',
-								'url_type' => 'module_admin',
-								'url_value' => 'admin/field/index',
-								'url_target' => '_self',
-								'online_hide' => 0,
-								'sort' => 100,
-								'status' => 0,
-								'child' => [
-									[
-										'title' => '新增',
-										'icon' => '',
-										'url_type' => 'module_admin',
-										'url_value' => 'admin/field/add',
-										'url_target' => '_self',
-										'online_hide' => 0,
-										'sort' => 100,
-										'status' => 1,
-									],
-									[
-										'title' => '编辑',
-										'icon' => '',
-										'url_type' => 'module_admin',
-										'url_value' => 'admin/field/edit',
-										'url_target' => '_self',
-										'online_hide' => 0,
-										'sort' => 100,
-										'status' => 1,
-									],
-									[
-										'title' => '删除',
-										'icon' => '',
-										'url_type' => 'module_admin',
-										'url_value' => 'admin/field/delete',
-										'url_target' => '_self',
-										'online_hide' => 0,
-										'sort' => 100,
-										'status' => 1,
-									],
-								],
-							],
-						],
-					],
-				],]];
+						'child' => $menu1,
+                ]],]];
+
             buildMenuFile($menus,$name);
-            //生成数据表固定字段
-            AutomaticGenerationOfDataTables($table,$name);
+
             //根据数据表名生成文件
             GenerateFile($table,$name);
 			$this->success('生成成功,请去安装','index');

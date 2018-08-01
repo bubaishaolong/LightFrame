@@ -24,5 +24,6 @@ class Plugin extends Validate
     protected $rule = [
         'name|插件名称'  => 'require|unique:admin_plugin',
         'title|插件标题' => 'require',
+        //'plugin|所属钩子' => 'require',
     ];
 }

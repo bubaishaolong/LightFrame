@@ -82,8 +82,9 @@ class Field extends Admin
         $map['model'] = $id;
         // 数据列表
         $data_list = FieldModel::where($map)->order('id desc')->paginate();
-        $modeldata = ModelModel::where(array('id' => $id))->column('name');
-        $modeltable = ModelModel::where(array('id' => $id))->column('table');
+        $modeldata = ModelModel::where(array('id' => $id))->value('name');
+        $modeltable = ModelModel::where(array('id' => $id))->value('table');
+
         // 生成校验规则
         $btn_access = [
             'title' => '生成校验规则',
@@ -142,7 +143,7 @@ class Field extends Admin
             &nbsp;&nbsp;关联字段必须：<span style="color:red;">requireWith:field</span><br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;比如  //当account有值的时候password字段必须 "password"=&gt;"requireWith:account"<br>
     </div>')
-            ->setPageTitle($modeltable[0] . '表字段添加')
+            ->setPageTitle($modeltable . '表字段添加')
             ->addColumns([ // 批量添加数据列
                 ['id', 'ID'],
                 ['name', '名称'],
@@ -154,18 +155,17 @@ class Field extends Admin
                 ['length', '数据长度', 'text.edit'],
                 ['value', '默认值', 'text.edit'],
                 ['is_null', '是否为空', 'switch'],
-                ['new_type', '新增类型', 'select', config('form_item_type'),'','add'],
+                ['new_type', '新增类型', 'select', config('form_item_type')],
                 ['edit_type', '编辑类型', 'select', config('form_item_type')],
                 ['list_type', '列表类型', 'select', config('form_item_type')],
                 ['field_check', '校验', 'textarea.edit'],
                 ['show', '显示', 'switch'],
                 ['is_search', '搜索', 'switch'],
                 ['is_filter', '过滤', 'switch'],
-                ['is_total', '总计', 'switch'],
                 ['status', '启用', 'switch'],
                 ['right_button', '操作', 'btn']
             ])
-            ->addTopButton('back', ['href' => url($modeldata[0] . '/databasetable/index')])// 批量添加顶部按钮
+            ->addTopButton('back', ['href' => url($modeldata . '/index/index')])// 批量添加顶部按钮
             ->addTopButton('add', ['href' => url('add', ['model' => $id])])// 添加顶部按钮
             ->addTopButton('custom', $btn_access)
             //->addTopButton('customs', $btn_menu,true)
@@ -540,10 +540,10 @@ INFO;
 
     }
 
-	/**
-	 * @param string $model
-	 * 自动生成菜单节点
-	 */
+    /**
+     * @param string $model
+     * 自动生成菜单节点
+     */
 //    public function generate_menu($model = ''){
 //		$modeldata = ModelModel::where(array('id' => $model))->value('name');
 //		$modeltable = ModelModel::where(array('id' => $model))->value('table');

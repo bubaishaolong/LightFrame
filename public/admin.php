@@ -22,6 +22,7 @@ if (version_compare(PHP_VERSION, '5.5', '<')) {
 // 定义应用目录
 define('APP_PATH', __DIR__ . '/../application/');
 
+
 // 检查是否安装
 if(!is_file('../data/install.lock')){
     define('BIND_MODULE', 'install');

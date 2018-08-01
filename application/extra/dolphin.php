@@ -11,12 +11,12 @@
 
 return [
     // 产品信息
-    'product_name'      => 'DolphinPHP',
+    'product_name'      => 'ThinkPHP',
     'product_version'   => '1.3.0',
     'build_version'     => '201805121805',
-    'product_website'   => 'http://www.dolphinphp.com',
-    'product_update'    => 'http://www.dolphinphp.com/checkUpdate',
-    'develop_team'      => 'DolphinPHP',
+    'product_website'   => 'http://www.xiaomage.com',
+    'product_update'    => 'http://www.xiaomage.com/checkUpdate',
+    'develop_team'      => 'ThinkPHP',
 
     // 公司信息
     'company_name'    => '',

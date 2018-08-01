@@ -58,6 +58,7 @@
                                     <a title="已禁用" class="btn btn-warning" href="{:url('index', ['status' => '0'])}">已禁用({$total['0']|default='0'})</a>
                                     <a title="未安装" class="btn btn-info" href="{:url('index', ['status' => '-1'])}">未安装({$total['-1']|default='0'})</a>
                                     <a title="已损坏" class="btn btn-danger" href="{:url('index', ['status' => '-2'])}" id="hide_disable">已损坏({$total['-2']|default='0'})</a>
+                                    <a title="新增" class="btn btn-danger" href="{:url('addPlug')}">新增</a>
                                 </div>
                             </div>
                         </div>

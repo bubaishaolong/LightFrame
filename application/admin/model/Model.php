@@ -121,68 +121,66 @@ EOF;
 
         try {
             Db::execute($sql);
+            if ($data['type'] >0) {
+                // 添加默认字段
+                $default = [
+                    'model'       => $data['id'],
+                    'create_time' => request()->time(),
+                    'update_time' => request()->time(),
+                    'delete_time' => request()->time(),
+                    'status'      => 1
+                ];
+                $data = [
+                    [
+                        'name'        => 'id',
+                        'title'       => 'id',
+                        'define'      => 'int(11) UNSIGNED NOT NULL',
+                        'type'        => 'text',
+                        'show'        => 1
+                    ],
+                    [
+                        'name'        => 'create_time',
+                        'title'       => '创建时间',
+                        'define'      => 'int(11) UNSIGNED NOT NULL',
+                        'type'        => 'datetime',
+                        'show'        => 1,
+                        'value'       => 0,
+                    ],
+                    [
+                        'name'        => 'update_time',
+                        'title'       => '更新时间',
+                        'define'      => 'int(11) UNSIGNED NOT NULL',
+                        'type'        => 'datetime',
+                        'show'        => 1,
+                        'value'       => 0,
+                    ],
+                    [
+                        'name'        => 'delete_time',
+                        'title'       => '删除时间',
+                        'define'      => 'int(11) UNSIGNED NOT NULL',
+                        'type'        => 'datetime',
+                        'show'        => 1,
+                        'value'       => 0,
+                    ],
+                    [
+                        'name'        => 'status',
+                        'title'       => '状态',
+                        'define'      => 'tinyint(2) NOT NULL',
+                        'type'        => 'radio',
+                        'show'        => 1,
+                        'value'       => 1,
+                        'options'     => '0:禁用
+1:启用'
+                    ],
+                ];
+
+                foreach ($data as $item) {
+                    $item = array_merge($item, $default);
+                    Db::name('admin_field')->insert($item);
+                }
+            }
         } catch(\Exception $e) {
             return false;
         }
-
-        if ($data['type'] == 2) {
-            // 添加默认字段
-            $default = [
-                'model'       => $data['id'],
-                'create_time' => request()->time(),
-                'update_time' => request()->time(),
-                'delete_time' => request()->time(),
-                'status'      => 1
-            ];
-            $data = [
-                [
-                    'name'        => 'id',
-                    'title'       => 'id',
-                    'define'      => 'int(11) UNSIGNED NOT NULL',
-                    'type'        => 'text',
-                    'show'        => 1
-                ],
-                [
-                    'name'        => 'create_time',
-                    'title'       => '创建时间',
-                    'define'      => 'int(11) UNSIGNED NOT NULL',
-                    'type'        => 'datetime',
-                    'show'        => 1,
-                    'value'       => 0,
-                ],
-                [
-                    'name'        => 'update_time',
-                    'title'       => '更新时间',
-                    'define'      => 'int(11) UNSIGNED NOT NULL',
-                    'type'        => 'datetime',
-                    'show'        => 1,
-                    'value'       => 0,
-                ],
-				[
-					'name'        => 'delete_time',
-					'title'       => '删除时间',
-					'define'      => 'int(11) UNSIGNED NOT NULL',
-					'type'        => 'datetime',
-					'show'        => 1,
-					'value'       => 0,
-				],
-                [
-                    'name'        => 'status',
-                    'title'       => '状态',
-                    'define'      => 'tinyint(2) NOT NULL',
-                    'type'        => 'radio',
-                    'show'        => 1,
-                    'value'       => 1,
-                    'options'     => '0:禁用
-1:启用'
-                ],
-            ];
-
-            foreach ($data as $item) {
-                $item = array_merge($item, $default);
-                Db::name('admin_field')->insert($item);
-            }
-        }
-        return true;
     }
 }

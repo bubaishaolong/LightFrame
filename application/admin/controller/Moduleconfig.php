@@ -23,15 +23,6 @@ class Moduleconfig extends Admin
      */
     public function index($group = '')
     {
-
-        // 配置分组信息
-//        $list_group = config('config_group');
-//        $tab_list   = [];
-//        foreach ($list_group as $key => $value) {
-//            $tab_list[$key]['title'] = $value;
-//            $tab_list[$key]['url']   = url('index', ['group' => $key]);
-//        }
-
         // 查询
         $map = $this->getMap();
         $map['module_name'] = $group;
@@ -62,7 +53,7 @@ class Moduleconfig extends Admin
                 ['right_button', '操作', 'btn']
             ])
             ->addValidate('Config', 'name,title')// 添加快捷编辑的验证器
-            ->addOrder('name,title,status')// 添加标题字段排序
+            //->addOrder('name,title,status')// 添加标题字段排序
             ->addFilter('name,title')// 添加标题字段筛选
             ->addFilter('type', config('form_item_type'))// 添加标题字段筛选
             ->addFilterMap('name,title', ['module_name' => $group])// 添加标题字段筛选条件
@@ -105,10 +96,11 @@ class Moduleconfig extends Admin
         // 使用ZBuilder快速创建表单
         return ZBuilder::make('form')
             ->setPageTitle('新增')
+            ->setPageTips('分组默认为基础配置,不然会报错')
             //->addSelect('selection', '配置分组', '', config('config_group'), $group)
             ->addText('title', '字段标题', '一般由中文组成，仅用于显示')
             ->addText('name', '字段名称')
-            ->addText('group_name','分组名称')
+            ->addText('group_name','分组名称','','基本配置')
             ->addStatic('module_name','模块标识','',$group)
             ->addSelect('field_type', '文本类型', '', config('form_item_type'))
             ->addText('default_value','默认值','',0)

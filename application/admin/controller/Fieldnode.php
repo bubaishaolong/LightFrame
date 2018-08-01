@@ -15,6 +15,7 @@ use app\admin\model\Module as ModuleModel;
 use app\admin\model\Menu as MenuModel;
 use app\user\model\Role as RoleModel;
 use think\Cache;
+use think\Request;
 
 /**
  * Class Fieldnode
@@ -37,11 +38,14 @@ class Fieldnode extends Admin
             'icon' => 'glyphicon glyphicon-book',
             'href' => url('admin/fieldnode/edit', ['id' => '__id__', 'module' => $group])
         ];
+        $request = Request::instance();
+        $data = $request->dispatch();
+        $mashu = $data['module'][0];
         //$data_list = MenuModel::getMenusByGroup($group);
         $map['module'] = $group;
         $tables = Model::where(array('id'=>$id,'name'=>$group,'status'=>1))->value('table');
         if($tables){
-            $ex = explode('cj_shop_',$tables);
+            $ex = explode('cj_'.$group.'_',$tables);
             $map['url_value'] = ['like','%'.lcfirst(convertUnderline($ex[1])).'%'];
         }
         $data_list = MenuModel::where($map)->order('sort,id')->select();

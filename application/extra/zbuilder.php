@@ -29,7 +29,7 @@ return [
     // 右侧按钮
     'right_button' => [
         // 是否显示按钮文字
-        'title' => false,
+        'title' => true,
         // 是否显示图标，只有显示文字时才起作用
         'icon'  => true,
         // 按钮大小：xs/sm/lg，留空则为普通大小
@@ -39,5 +39,5 @@ return [
     ],
 
     // 搜索框
-    'search_button' => false
+    'search_button' => true
 ];

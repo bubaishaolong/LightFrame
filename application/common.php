@@ -1540,7 +1540,7 @@ INFO;
             try {
                 Db::execute($sql);
                 //写入Sql文件里面
-                file_put_contents($pathsql, $content);
+                file_put_contents($pathsql, $content,FILE_APPEND);
                 $uninstall = <<<INFO
 DROP TABLE IF EXISTS `$data[$i]`;
 INFO;
@@ -1550,13 +1550,13 @@ INFO;
                 $dataadd[$i] = ['name' => $name, 'title' => $name, 'table' => $data[$i], 'type' => 2, 'system' => 0, 'status' => 1, 'create_time' => time(), 'update_time' => time(), 'icon' => 'fa fa-fw fa-home'];
                 $modelID = Db::table(config('database.prefix') . 'admin_model')->insertGetId($dataadd[$i]);
                 //把对应的子段插入admin_field
-                $datanameid[$i] = [['name' => 'id', 'title' => 'id', 'type' => 'text', 'define' => 'int(11) UNSIGNED NOT NULL', 'value' => '', 'options' => '', 'tips' => '', 'fixed' => 0, 'show' => 1, 'model' => $modelID, 'ajax_url' => '', 'level' => 0, 'table' => $data[$i], 'create_time' => time(), 'update_time' => time(),'data_type'=>'int','length'=>11],
-                    ['name' => 'status', 'title' => '状态', 'type' => 'radio', 'define' => 'tinyint(2) UNSIGNED NOT NULL', 'value' => 1, 'options' => '0:禁用
-1:启用', 'tips' => '', 'fixed' => 0, 'show' => 1, 'model' => $modelID, 'ajax_url' => '', 'level' => 0, 'table' => $data[$i], 'create_time' => time(), 'update_time' => time(),'data_type'=>'tinyint','length'=>1,'is_null'=>1],
-                    ['name' => 'create_time', 'title' => '创建时间', 'type' => 'datetime', 'define' => 'int(11) UNSIGNED NOT NULL', 'value' => 0, 'options' => '', 'tips' => '', 'fixed' => 0, 'show' => 1, 'model' => $modelID, 'ajax_url' => '', 'level' => 0, 'table' => $data[$i], 'create_time' => time(), 'update_time' => time(),'data_type'=>'int','length'=>11,'is_null'=>1],
-                    ['name' => 'update_time', 'title' => '更新时间', 'type' => 'datetime', 'define' => 'int(11) UNSIGNED NOT NULL', 'value' => 0, 'options' => '', 'tips' => '', 'fixed' => 0, 'show' => 1, 'model' => $modelID, 'ajax_url' => '', 'level' => 0, 'table' => $data[$i], 'create_time' => time(), 'update_time' => time(),'data_type'=>'int','length'=>11,'is_null'=>1],
-                    ['name' => 'delete_time', 'title' => '删除时间', 'type' => 'datetime', 'define' => 'int(11) UNSIGNED NOT NULL', 'value' => 0, 'options' => '', 'tips' => '', 'fixed' => 0, 'show' => 1, 'model' => $modelID, 'ajax_url' => '', 'level' => 0, 'table' => $data[$i], 'create_time' => time(), 'update_time' => time(),'data_type'=>'int','length'=>11,'is_null'=>1]];
-                Db::table(config('database.prefix') . 'admin_field')->insertAll($datanameid[$i]);
+                $datanameid[$i] = [
+                    ['name' => 'id', 'title' => 'id', 'type' => 'text', 'define' => 'int(11) UNSIGNED NOT NULL', 'value' => '', 'options' => '', 'tips' => '', 'fixed' => 0, 'show' => 1, 'model' => $modelID, 'ajax_url' => '', 'level' => 0, 'table' => $data[$i], 'create_time' => time(), 'update_time' => time()],
+                    ['name' => 'status', 'title' => '状态', 'type' => 'radio', 'define' => 'tinyint(2) UNSIGNED NOT NULL', 'value' => 1, 'options' => '0:禁用1:启用', 'tips' => '', 'fixed' => 0, 'show' => 1, 'model' => $modelID, 'ajax_url' => '', 'level' => 0, 'table' => $data[$i], 'create_time' => time(), 'update_time' => time()],
+                    ['name' => 'create_time', 'title' => '创建时间', 'type' => 'datetime', 'define' => 'int(11) UNSIGNED NOT NULL', 'value' => 0, 'options' => '', 'tips' => '', 'fixed' => 0, 'show' => 1, 'model' => $modelID, 'ajax_url' => '', 'level' => 0, 'table' => $data[$i], 'create_time' => time(), 'update_time' => time()],
+                    ['name' => 'update_time', 'title' => '更新时间', 'type' => 'datetime', 'define' => 'int(11) UNSIGNED NOT NULL', 'value' => 0, 'options' => '', 'tips' => '', 'fixed' => 0, 'show' => 1, 'model' => $modelID, 'ajax_url' => '', 'level' => 0, 'table' => $data[$i], 'create_time' => time(), 'update_time' => time()],
+                    ['name' => 'delete_time', 'title' => '删除时间', 'type' => 'datetime', 'define' => 'int(11) UNSIGNED NOT NULL', 'value' => 0, 'options' => '', 'tips' => '', 'fixed' => 0, 'show' => 1, 'model' => $modelID, 'ajax_url' => '', 'level' => 0, 'table' => $data[$i], 'create_time' => time(), 'update_time' => time()]];
+                Db::name( 'admin_field')->insertAll($datanameid[$i]);
             } catch (\Exception $e) {
                 return false;
             }
@@ -1595,6 +1595,7 @@ function GenerateFile($file_name = null, $name)
 //                $datainfo[$i] = $data_xhx[$i][$j];
 //            }
             $datarow[$i] = convertUnderline($datas[$i]);
+
             //生成对应文件
             if (!file_exists($pathhome . DS . $datarow[$i] . '.php')) {
                 fopen($pathhome . DS . $datarow[$i] . '.php', "w");
@@ -1643,7 +1644,7 @@ class  Common extends Home
 }
 INFO;
                 // 写入到文件
-                file_put_contents($pathhome . DS . 'common.php', $content_com);
+                file_put_contents($pathhome . DS . 'Common.php', $content_com);
             }
             if (!file_exists($pathadmin . DS . $datarow[$i] . '.php')) {
                 fopen($pathadmin . DS . $datarow[$i] . '.php', "w");
@@ -1837,7 +1838,7 @@ class  {$datarow[$i]} extends ThinkModel
     // 自动写入时间戳
     protected \$autoWriteTimestamp = true;
     //软删
-	use SoftDelete;
+	//use SoftDelete;
      //设置主键，如果不同请修改
     protected \$pk = 'id';
     //自定义初始化
@@ -1889,8 +1890,8 @@ INFO;
                 // 写入到文件
                 file_put_contents($pathvalidate . DS . $datarow[$i] . '.php', $contentvalidate[$i]);
             }
-            if (!file_exists($pathvalidate . DS . 'Databasetable.php')) {
-                fopen($pathvalidate . DS . 'Databasetable.php', "w");
+            if (!file_exists($pathvalidate . DS . 'Index.php')) {
+                fopen($pathvalidate . DS . 'Index.php', "w");
                 //写入对应php文件
                 $contentvalidatetable = <<<INFO
 <?php
@@ -1907,7 +1908,7 @@ namespace app\\{$name}\\validate;
 
 use think\Validate;
 
-class  Databasetable extends Validate
+class  Index extends Validate
 {
     //定义验证规则
     protected \$rule = [
@@ -1927,7 +1928,7 @@ class  Databasetable extends Validate
 }
 INFO;
                 // 写入到文件
-                file_put_contents($pathvalidate . DS . 'Databasetable.php', $contentvalidatetable);
+                file_put_contents($pathvalidate . DS . 'Index.php', $contentvalidatetable);
             }
 
             if (!file_exists($pathsql . DS . 'install.sql')) {
@@ -1936,8 +1937,8 @@ INFO;
             if (!file_exists($pathsql . DS . 'uninstall.sql')) {
                 fopen($pathsql . DS . 'uninstall.sql', "w");
             }
-            if (!file_exists($pathadmin . DS . 'Databasetable.php')) {
-                fopen($pathadmin . DS . 'Databasetable.php', "w");
+            if (!file_exists($pathadmin . DS . 'Index.php')) {
+                fopen($pathadmin . DS . 'Index.php', "w");
                 $DataTable = <<<INFO
 <?php
 // +----------------------------------------------------------------------
@@ -1960,7 +1961,7 @@ use think\Cache;
 use think\Db;
 use think\Request;
 
-class  Databasetable extends Admin
+class  Index extends Admin
 {
 
     /**
@@ -1980,22 +1981,34 @@ class  Databasetable extends Admin
 		\$data_list = ModelModel::where(\$map)->order('sort,id desc')->paginate();
 
 		// 字段管理按钮
-		\$btnField = [
-			'title' => '模型管理',
-			'icon'  => 'fa fa-fw fa-navicon',
-			'href'  => url('admin/field/index', ['id' => '__id__'])
-		];
+        \$btnField = [
+            'title' => '字段管理',
+            'icon' => 'fa fa-fw fa-navicon',
+            'href' => url('admin/field/index', ['id' => '__id__'])
+        ];
         // 生成菜单节点
         \$btnFieldNode = [
-            'title' => '生成菜单节点',
-            'icon'  => 'glyphicon glyphicon-sort-by-attributes-alt',
-            'href'  => url('admin/fieldnode/index', ['group'=>'__name__'])
+            'title' => '菜单列表',
+            'icon' => 'glyphicon glyphicon-sort-by-attributes-alt',
+            'href' => url('admin/fieldnode/index', ['id' => '__id__', 'group' => '__name__'])
         ];
-         // 配置参数
+        // 配置参数
+        \$btnFieldCof = [
+            'title' => '配置管理',
+            'icon' => 'glyphicon glyphicon-sort-by-attributes-alt',
+            'href' => url('admin/moduleconfig/index', ['group' => \$mashu])
+        ];
+        // 参数配置
+        \$btnFieldCofList = [
+            'title' => '参数配置',
+            'icon' => 'fa fa-fw fa-gears',
+            'href' => url('{$name}/index/getConfigureList', ['group' => \$mashu])
+        ];
+        // 配置参数
         \$btnButton = [
             'title' => '按钮配置',
             'icon' => 'fa fa-fw fa-address-card-o',
-            'href' => url('admin/button/index', ['group' => \$mashu,'id'=>'__id__'])
+            'href' => url('admin/button/index', ['group' => \$mashu, 'id' => '__id__'])
         ];
 		// 使用ZBuilder快速创建数据表格
 		return ZBuilder::make('table')
@@ -2018,10 +2031,12 @@ class  Databasetable extends Admin
 				['status', '状态', 'switch'],
 				['right_button', '操作', 'btn']
 			])
-			->addFilter('type', ['系统', '普通', '独立'])
-			->addTopButtons('add,enable,disable') // 批量添加顶部按钮
-			->addRightButton('custombutton' , \$btnButton,true)
-            ->addRightButton('customnode' , \$btnFieldNode,true)
+			 ->addFilter('type', ['系统', '普通', '独立'])
+            ->addTopButtons(['back', 'add'])// 批量添加顶部按钮
+            ->addTopButton('custom', \$btnFieldCof, true)// 批量添加顶部按钮
+			 ->addRightButton('custombutton', \$btnButton, true)
+            ->addRightButton('customnode', \$btnFieldNode, true)
+            ->addTopButton('customConf', \$btnFieldCofList, true)
             ->addRightButtons([ 'custom' => \$btnField,'edit', 'delete' => ['data-tips' => '删除模型将同时删除该模型下的所有字段，且无法恢复。']])
 			->setRowList(\$data_list) // 设置表格数据
 			->fetch(); // 渲染模板
@@ -2040,17 +2055,18 @@ class  Databasetable extends Admin
 		// 保存数据
 		if (\$this->request->isPost()) {
 			\$data = \$this->request->post();
-			\$datamingzi =  \$mashu."/{\$data['table']}/index";
+			 GenerateFile(\$data['table'], \$mashu);
+			\$datamingzi = \$mashu . "/" . convertUnderline(\$data['table']) . "/index";
 			if (\$data['table'] == '') {
 				\$data['table'] = config('database.prefix') . \$mashu .'_'. \$data['table'];
 			} else {
 				\$data['table'] = config('database.prefix') . \$mashu .'_'. \$data['table'];
 			}
 			// 验证
-			\$result = \$this->validate(\$data, 'Databasetable');
+			\$result = \$this->validate(\$data, 'Index');
 			if(true !== \$result) \$this->error(\$result);
 			// 严格验证附加表是否存在
-			if (table_exist(\$data['table'])) {
+			if (table_exist(config('database.prefix').\$mashu.'_'.\$data['table'])) {
 				\$this->error('附加表已存在');
 			}
               \$data['name'] = \$mashu;
@@ -2120,14 +2136,14 @@ class  Databasetable extends Admin
 		if (\$this->request->isPost()) {
 			\$data = \$this->request->post();
 			// 验证
-			\$result = \$this->validate(\$data, 'Databasetable.edit');
+			\$result = \$this->validate(\$data, 'Index.edit');
 			if(true !== \$result) \$this->error(\$result);
 
 			if (ModelModel::update(\$data)) {
 				cache('admin_model_list', null);
 				cache('admin_model_title_list', null);
 				// 记录行为
-				action_log('databasetable_edit', \$mashu.'_edit', \$id, UID, "ID({\$id}),标题({\$data['title']})");
+				action_log('index', \$mashu.'_edit', \$id, UID, "ID({\$id}),标题({\$data['title']})");
 				\$this->success('编辑成功', 'index');
 			} else {
 				\$this->error('编辑失败');
@@ -2207,13 +2223,145 @@ class  Databasetable extends Admin
 			return \$this->error('删除内容模型表失败');
 		}
 	}
+	  /**
+     * 快速编辑
+     * @param array \$record 行为日志
+     * @author 无名氏
+     * @return mixed
+     */
+    public function quickEdit(\$record = [])
+    {
+        \$id = input('post.pk', '');
+        \$field = input('post.name', '');
+        \$value = input('post.value', '');
+        \$config = ModelModel::where('id', \$id)->value(\$field);
+        //\$details = '字段(' . \$field . ')，原值(' . \$config . ')，新值：(' . \$value . ')';
+        \$where = array('id' => \$id, \$field => \$config);
+        \$update[\$field] = \$value;
+        \$updateInfo = ModelModel::update(\$update, \$where);
+        if (\$updateInfo) {
+            \$this->success('快速编辑成功', 'index');
+        }
+
+        //return parent::quickEdit(['model_edit', 'admin_model', \$id, UID, \$details]);
+    }
+
+    /**
+     * 添加子节点
+     * @param array \$data 节点数据
+     * @param string \$pid 父节点id
+     * @author 无名氏
+     */
+    private function createChildNode(\$data = [], \$pid = '')
+    {
+        \$url_value = substr(\$data['url_value'], 0, strrpos(\$data['url_value'], '/')) . '/';
+        \$child_node = [];
+        \$data['pid'] = \$pid;
+
+        foreach (\$data['child_node'] as \$item) {
+            switch (\$item) {
+                case 'add':
+                    \$data['title'] = '新增';
+                    break;
+                case 'edit':
+                    \$data['title'] = '编辑';
+                    break;
+                case 'delete':
+                   \$data['title'] = '删除';
+                    break;
+                case 'enable':
+                    \$data['title'] = '启用';
+                    break;
+                case 'disable':
+                    \$data['title'] = '禁用';
+                    break;
+                case 'quickedit':
+                    \$data['title'] = '快速编辑';
+                    break;
+            }
+            \$data['url_value'] = \$url_value . \$item;
+            \$data['create_time'] = \$this->request->time();
+            \$data['update_time'] = \$this->request->time();
+            \$child_node[] = \$data;
+        }
+
+        if (\$child_node) {
+            \$MenuModel = new MenuModel();
+            \$MenuModel->insertAll(\$child_node);
+        }
+    }
+
+    /**
+     * @param string \$name 分组的名称
+     * @param string \$group 所在模块
+     * @param string \$tab 按钮列表
+     * @return mixed
+     * 配置参数
+     */
+    public function getConfigureList(\$name = '基本配置',\$group = '', \$tab = 'tab0')
+    {
+
+        if(\$this->request->isPost()){
+            \$data = \$this->request->post();
+            foreach (\$data as \$key=>\$value){
+                 \$where = array('name'=>\$key,'module_name'=>\$group);
+                 \$updata['default_value'] =  \$value;
+                ModuleconfigModel::update(\$updata,\$where);
+            }
+            \$this->success('编辑成功');
+        }
+        \$group_name = Db::name('admin_module_config')->where(array('module_name' => \$group, 'status' => 1))->distinct(true)->order('sort asc')->column('group_name');
+        for (\$i = 0; \$i < count(\$group_name); \$i++) {
+            \$list_tab['tab' . \$i] = ['title' => \$group_name[\$i], 'url' => url('getConfigureList', ['name' => \$group_name[\$i], 'group' => \$group, 'tab' => 'tab' . \$i])];
+            \$dataLists = ModuleconfigModel::where(array('group_name' => ['like','%'.\$group_name[\$i].'%']))->select();
+            foreach (\$dataLists as \$key => \$value) {
+                if($name ==\$value['group_name'] ){
+                    \$datas[\$key] = [\$value['field_type'], \$value['name'], \$value['title']];
+                    \$info =  ModuleconfigModel::where(array('module_name' => \$group, 'status' => 1,'group_name' => \$value['group_name']))->column('name,default_value');
+                }
+            }
+        }
+        return ZBuilder::make('form')
+            ->setTabNav(\$list_tab, \$tab)
+            ->addFormItems(\$datas)
+            ->setFormData(\$info)
+            ->fetch();
+
+    }
 
 }
 INFO;
                 //$DataTable
                 // 写入到文件
-                file_put_contents($pathadmin . DS . 'Databasetable.php', $DataTable);
+                file_put_contents($pathadmin . DS . 'Index.php', $DataTable);
             }
+            //生成common公共文件
+            $pathcommon = $path.DS.'common.php';
+            $commentcommon =<<<INFO
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Administrator
+ * Date: 2018/7/23
+ * Time: 14:10
+ */
+use think\Db;
+if (!function_exists('table_exist')) {
+    /**
+     * 检查附加表是否存在
+     * @param string \$table_name 表名
+     * @author 无名氏
+     * @return string
+     */
+    function table_exist(\$table_name = '')
+    {
+        return true == Db::query("SHOW TABLES LIKE '{\$table_name}'");
+    }
+}
+INFO;
+
+            // 写入到文件
+            file_put_contents($pathcommon, $commentcommon);
             //如果是文件夹就生成
             $pathviewinfo = $pathview . DS . $datas[$i];
             if (!is_dir($pathviewinfo)) {
@@ -2546,6 +2694,16 @@ function convertUnderline($str, $ucfirst = true)
     return $ucfirst ? ucfirst($str) : $str;
 }
 
+
+/**
+ * 根据下划线转化为大写
+ */
+function ucwordsUnderline($str, $ucfirst = true){
+    while (($pos = strpos($str, '_')) !== false)
+        $str = substr($str, 0, $pos) . ucwords(substr($str, $pos + 1));
+
+    return $ucfirst ? ucfirst($str) : $str;
+}
 
 /**
  * @param string $name 模块的名字

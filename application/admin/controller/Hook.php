@@ -15,6 +15,7 @@ use app\admin\model\HookPlugin;
 use app\common\builder\ZBuilder;
 use app\admin\model\Hook as HookModel;
 use app\admin\model\HookPlugin as HookPluginModel;
+use think\Db;
 
 /**
  * 钩子控制器
@@ -85,12 +86,15 @@ class Hook extends Admin
                 $this->error('新增失败');
             }
         }
-
+        $datalook = Db::name('admin_plugin')->column('name,title');
         // 使用ZBuilder快速创建表单
         return ZBuilder::make('form')
             ->setPageTitle('新增')
             ->addText('name', '钩子名称', '由字母和下划线组成，如：<code>page_tips</code>')
-            ->addText('description', '钩子描述')
+            ->addText('name', '钩子名称', '由字母和下划线组成，如：<code>page_tips</code>')
+            ->addRadio('system', '是否的系统钩子','',['是','不是'],0)
+            ->addSelect('plugin','插件来源','',$datalook)
+            ->setTrigger('system', '1', 'plugin')
             ->fetch();
     }
 

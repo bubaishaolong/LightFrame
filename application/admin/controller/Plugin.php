@@ -38,7 +38,7 @@ class Plugin extends Admin
         $list_group = ['local' => '本地插件'];
         foreach ($list_group as $key => $value) {
             $tab_list[$key]['title'] = $value;
-            $tab_list[$key]['url']   = url('index', ['group' => $key]);
+            $tab_list[$key]['url'] = url('index', ['group' => $key]);
         }
 
         // 监听tab钩子
@@ -52,7 +52,7 @@ class Plugin extends Admin
                 if (input('?param.status') && input('param.status') != '_all') {
                     $status = input('param.status');
                 } else {
-                    $status  = '';
+                    $status = '';
                 }
 
                 $PluginModel = new PluginModel;
@@ -102,8 +102,8 @@ class Plugin extends Admin
         // 实例化插件
         $plugin = new $plugin_class;
         // 插件预安装
-        if(!$plugin->install()) {
-            $this->error('插件预安装失败!原因：'. $plugin->getError());
+        if (!$plugin->install()) {
+            $this->error('插件预安装失败!原因：' . $plugin->getError());
         }
 
         // 添加钩子
@@ -115,7 +115,7 @@ class Plugin extends Admin
         }
 
         // 执行安装插件sql文件
-        $sql_file = realpath(config('plugin_path').$name.'/install.sql');
+        $sql_file = realpath(config('plugin_path') . $name . '/install.sql');
         if (file_exists($sql_file)) {
             if (isset($plugin->database_prefix) && $plugin->database_prefix != '') {
                 $sql_statement = Sql::getSqlFromFile($sql_file, false, [$plugin->database_prefix => config('database.prefix')]);
@@ -136,7 +136,7 @@ class Plugin extends Admin
         // 验证插件信息
         $result = $this->validate($plugin_info, 'Plugin');
         // 验证失败 输出错误信息
-        if(true !== $result) $this->error($result);
+        if (true !== $result) $this->error($result);
 
         // 并入插件配置值
         $plugin_info['config'] = $plugin->getConfigValue();
@@ -168,8 +168,8 @@ class Plugin extends Admin
         // 实例化插件
         $plugin = new $class;
         // 插件预卸
-        if(!$plugin->uninstall()) {
-            $this->error('插件预卸载失败!原因：'. $plugin->getError());
+        if (!$plugin->uninstall()) {
+            $this->error('插件预卸载失败!原因：' . $plugin->getError());
         }
 
         // 卸载插件自带钩子
@@ -181,7 +181,7 @@ class Plugin extends Admin
         }
 
         // 执行卸载插件sql文件
-        $sql_file = realpath(config('plugin_path').$plug_name.'/uninstall.sql');
+        $sql_file = realpath(config('plugin_path') . $plug_name . '/uninstall.sql');
         if (file_exists($sql_file)) {
             if (isset($plugin->database_prefix) && $plugin->database_prefix != '') {
                 $sql_statement = Sql::getSqlFromFile($sql_file, true, [$plugin->database_prefix => config('database.prefix')]);
@@ -221,7 +221,7 @@ class Plugin extends Admin
         // 加载系统的后台页面
         $class = get_plugin_class($name);
         if (!class_exists($class)) {
-            $this->error($name.'插件不存在！');
+            $this->error($name . '插件不存在！');
         }
 
         // 实例化插件
@@ -235,61 +235,61 @@ class Plugin extends Admin
         }
 
         if (!plugin_model_exists($name)) {
-            $this->error('插件: '.$name.' 缺少模型文件！');
+            $this->error('插件: ' . $name . ' 缺少模型文件！');
         }
 
         // 获取插件模型实例
         $PluginModel = get_plugin_model($name);
 
         $order = $this->getOrder();
-        $map   = $this->getMap();
+        $map = $this->getMap();
         $data_list = $PluginModel->where($map)->order($order)->paginate();
-        $page      = $data_list->render();
+        $page = $data_list->render();
 
         // 使用ZBuilder快速创建数据表格
         $builder = ZBuilder::make('table')
-            ->setPageTitle($admin['title']) // 设置页面标题
+            ->setPageTitle($admin['title'])// 设置页面标题
             ->setPluginName($name)
             ->setTableName($admin['table_name'])
-            ->setSearch($admin['search_field'], $admin['search_title']) // 设置搜索框
+            ->setSearch($admin['search_field'], $admin['search_title'])// 设置搜索框
             ->addOrder($admin['order'])
             ->addTopButton('back', [
                 'title' => '返回插件列表',
-                'icon'  => 'fa fa-reply',
-                'href'  => url('index')
+                'icon' => 'fa fa-reply',
+                'href' => url('index')
             ])
-            ->addTopButtons($admin['top_buttons']) // 批量添加顶部按钮
+            ->addTopButtons($admin['top_buttons'])// 批量添加顶部按钮
             ->addRightButtons($admin['right_buttons']); // 批量添加右侧按钮
 
-            // 自定义顶部按钮
-            if (!empty($admin['custom_top_buttons'])) {
-                foreach ($admin['custom_top_buttons'] as $custom) {
-                    $builder->addTopButton('custom', $custom);
-                }
+        // 自定义顶部按钮
+        if (!empty($admin['custom_top_buttons'])) {
+            foreach ($admin['custom_top_buttons'] as $custom) {
+                $builder->addTopButton('custom', $custom);
             }
-            // 自定义右侧按钮
-            if (!empty($admin['custom_right_buttons'])) {
-                foreach ($admin['custom_right_buttons'] as $custom) {
-                    $builder->addRightButton('custom', $custom);
-                }
+        }
+        // 自定义右侧按钮
+        if (!empty($admin['custom_right_buttons'])) {
+            foreach ($admin['custom_right_buttons'] as $custom) {
+                $builder->addRightButton('custom', $custom);
             }
+        }
 
-            // 表头筛选
-            if (is_array($admin['filter'])) {
-                foreach ($admin['filter'] as $column => $params) {
-                    $options = isset($params[0]) ? $params[0] : [];
-                    $default = isset($params[1]) ? $params[1] : [];
-                    $type    = isset($params[2]) ? $params[2] : 'checkbox';
-                    $builder->addFilter($column, $options, $default, $type);
-                }
-            } else {
-                $builder->addFilter($admin['filter']);
+        // 表头筛选
+        if (is_array($admin['filter'])) {
+            foreach ($admin['filter'] as $column => $params) {
+                $options = isset($params[0]) ? $params[0] : [];
+                $default = isset($params[1]) ? $params[1] : [];
+                $type = isset($params[2]) ? $params[2] : 'checkbox';
+                $builder->addFilter($column, $options, $default, $type);
             }
+        } else {
+            $builder->addFilter($admin['filter']);
+        }
 
         return $builder
-            ->addColumns($admin['columns']) // 批量添加数据列
-            ->setRowList($data_list) // 设置表格数据
-            ->setPages($page) // 设置分页数据
+            ->addColumns($admin['columns'])// 批量添加数据列
+            ->setRowList($data_list)// 设置表格数据
+            ->setPages($page)// 设置分页数据
             ->fetch(); // 渲染模板
     }
 
@@ -306,7 +306,6 @@ class Plugin extends Admin
             $params = $this->request->param();
             return plugin_action($plugin_name, 'Admin', 'add', $params);
         }
-
         // 保存数据
         if ($this->request->isPost()) {
             $data = $this->request->post();
@@ -331,10 +330,12 @@ class Plugin extends Admin
 
         // 获取插件模型
         $class = get_plugin_class($plugin_name);
+
         if (!class_exists($class)) {
             $this->error('插件不存在！');
         }
-
+        dump($class);
+        die;
         // 实例化插件
         $plugin = new $class;
         if (!isset($plugin->fields)) {
@@ -434,15 +435,15 @@ class Plugin extends Admin
 
         $plugin_class = get_plugin_class($name);
         // 实例化插件
-        $plugin  = new $plugin_class;
+        $plugin = new $plugin_class;
         $trigger = isset($plugin->trigger) ? $plugin->trigger : [];
 
         // 插件配置值
-        $info      = PluginModel::where('name', $name)->field('id,name,config')->find();
+        $info = PluginModel::where('name', $name)->field('id,name,config')->find();
         $db_config = json_decode($info['config'], true);
 
         // 插件配置项
-        $config    = include config('plugin_path'). $name. '/config.php';
+        $config = include config('plugin_path') . $name . '/config.php';
 
         // 使用ZBuilder快速创建表单
         return ZBuilder::make('form')
@@ -462,7 +463,7 @@ class Plugin extends Admin
      */
     public function setStatus($type = '', $record = [])
     {
-        $_t  = input('param._t', '');
+        $_t = input('param._t', '');
         $ids = $this->request->isPost() ? input('post.ids/a') : input('param.ids');
         empty($ids) && $this->error('缺少主键');
 
@@ -524,10 +525,10 @@ class Plugin extends Admin
      */
     public function execute()
     {
-        $plugin     = input('param._plugin');
+        $plugin = input('param._plugin');
         $controller = input('param._controller');
-        $action     = input('param._action');
-        $params     = $this->request->except(['_plugin', '_controller', '_action'], 'param');
+        $action = input('param._action');
+        $params = $this->request->except(['_plugin', '_controller', '_action'], 'param');
 
         if (empty($plugin) || empty($controller) || empty($action)) {
             $this->error('没有指定插件名称、控制器名称或操作名称');
@@ -548,16 +549,16 @@ class Plugin extends Admin
     private function parseAdmin($data = [])
     {
         $admin = [
-            'title'         => '数据列表',
-            'search_title'  => '',
-            'search_field'  => [],
-            'order'         => '',
-            'filter'        => '',
-            'table_name'    => '',
-            'columns'       => [],
+            'title' => '数据列表',
+            'search_title' => '',
+            'search_field' => [],
+            'order' => '',
+            'filter' => '',
+            'table_name' => '',
+            'columns' => [],
             'right_buttons' => [],
-            'top_buttons'   => [],
-            'customs'       => [],
+            'top_buttons' => [],
+            'customs' => [],
         ];
 
         if (empty($data)) {
@@ -592,9 +593,9 @@ class Plugin extends Admin
                 if (!empty($value)) {
                     foreach ($value as &$custom) {
                         if (isset($custom['href']['url']) && $custom['href']['url'] != '') {
-                            $params            = isset($custom['href']['params']) ? $custom['href']['params'] : [];
-                            $custom['href']    = plugin_url($custom['href']['url'], $params);
-                            $data['custom_'.$button][] = $custom;
+                            $params = isset($custom['href']['params']) ? $custom['href']['params'] : [];
+                            $custom['href'] = plugin_url($custom['href']['url'], $params);
+                            $data['custom_' . $button][] = $custom;
                         }
                     }
                 }
@@ -604,5 +605,223 @@ class Plugin extends Admin
                 $value['href'] = plugin_url($value['href']['url']);
             }
         }
+    }
+
+    /**
+     * @return mixed
+     * 插件新增,判断是否存在
+     */
+    public function addPlug()
+    {
+        if ($this->request->isPost()) {
+            $data = $this->request->post();
+            $name = $data['name'];
+            $title = $data['title'];
+            $description = $data['description'];
+            $author = $data['author'];
+            $plugin = $data['plugin'];
+            $author_url = $data['author_url'];
+            $admin = $data['admin'];
+            $icon = $data['icon'];
+            $identifier = $data['identifier'];
+            //验证插件的名称和标题是存在
+            $dataInfo = PluginModel::where(array('name' => $name))->whereOr(array('title' => $title))->find();
+            if ($dataInfo) {
+                $this->error('插件名称或标题已存在,请用其他的名称');
+            }
+            //验证器
+            // 验证
+            $result = $this->validate($data, 'Plugin.addPlug');
+            if (true !== $result) $this->error($result);
+            $path = ROOT_PATH . 'plugins/';
+            //获取名称
+            $convertUnderline = ucwordsUnderline($name);
+            $pathucwords = $path . DS . $convertUnderline;
+            $data['name'] = $convertUnderline;
+            //数据添加
+            if ($menu = PluginModel::create($data)) {
+                //生成文件
+                //生成插件目录
+                if (!is_dir($pathucwords)) {
+                    mkdir($pathucwords, 0777, true);
+                    $controller_path = $pathucwords . DS . 'controller';
+                    //生成对应的文件
+                    if (!is_dir($controller_path)) {
+                        mkdir($controller_path, 0777, true);
+                    }
+
+                    $convertc = $controller_path . DS . $convertUnderline . '.php';
+                    if(!file_exists($convertc)){
+                        fopen($convertc, "w");
+                        $datatttt = <<<INFO
+<?php
+// +----------------------------------------------------------------------
+// |THINKPHP
+// +----------------------------------------------------------------------
+// | 版权所有 2016~2017  [  ]
+// +----------------------------------------------------------------------
+// |
+// +----------------------------------------------------------------------
+// | 开源协议 ( http://www.apache.org/licenses/LICENSE-2.0 )
+// +----------------------------------------------------------------------
+
+namespace plugins\\{$convertUnderline}\controller;
+
+use app\common\controller\Common;
+
+/**
+ * 二维码生成控制器
+ * @package plugins\Barcode\controller
+ */
+class {$convertUnderline} extends Common
+{
+
+
+}
+INFO;
+                        // 写入到文件
+                        file_put_contents($convertc, $datatttt);
+                    }
+                    //生成对应的文件
+                    $convertPhp = $pathucwords . DS . $convertUnderline . '.php';
+                    if (!file_exists($convertPhp)) {
+                        fopen($convertPhp, "w");
+                        $cont = <<<INFO
+<?php
+// +----------------------------------------------------------------------
+// |THINKPHP
+// +----------------------------------------------------------------------
+// | 版权所有 2016~2017  [  ]
+// +----------------------------------------------------------------------
+// |
+// +----------------------------------------------------------------------
+// | 开源协议 ( http://www.apache.org/licenses/LICENSE-2.0 )
+// +----------------------------------------------------------------------
+
+namespace plugins\\{$convertUnderline};
+
+use app\common\controller\Plugin;
+
+/**
+ * 系统环境信息插件
+ * @package plugins\SystemInfo
+ * @author 无名氏
+ */
+class {$convertUnderline} extends Plugin
+{
+    /**
+     * @var array 插件信息
+     */
+    public \$info = [
+        // 插件名[必填]
+        'name'        => '{$convertUnderline}',
+        // 插件标题[必填]
+        'title'       => '{$title}',
+        // 插件唯一标识[必填],格式：插件名.开发者标识.plugin
+        'identifier'  => '{$identifier}',
+        // 插件图标[选填]
+        'icon'        => '{$icon}',
+        // 插件描述[选填]
+        'description' => '{$description}',
+        // 插件作者[必填]
+        'author'      => '{$author}',
+        // 作者主页[选填]
+        'author_url'  => '{$author_url}',
+        // 插件版本[必填],格式采用三段式：主版本号.次版本号.修订版本号
+        'version'     => '1.0.0',
+        // 是否有后台管理功能[选填]
+        'admin'       => '{$admin}',
+    ];
+
+    /**
+     * @var array 插件钩子
+     */
+    public \$hooks = [
+        '{$plugin}'
+    ];
+
+    /**
+     * 后台首页钩子
+     * @author 无名氏
+     */
+    public function adminIndex()
+    {
+        \$config = \$this->getConfigValue();
+        if (\$config['display']) {
+            \$this->fetch('widget', \$config);
+        }
+    }
+
+    /**
+     * 安装方法
+     * @author 无名氏
+     * @return bool
+     */
+    public function install(){
+        return true;
+    }
+
+    /**
+     * 卸载方法必
+     * @author 无名氏
+     * @return bool
+     */
+    public function uninstall(){
+        return true;
+    }
+}
+INFO;
+                        // 写入到文件
+                        file_put_contents($convertPhp, $cont);
+                    }
+                    //生成配置文件
+                    $convertConfig = $pathucwords . DS .'config.php';
+                    if (!file_exists($convertConfig)) {
+                        fopen($convertConfig, "w");
+                        $datacomment = <<<INFO
+<?php
+// +----------------------------------------------------------------------
+// | THINKPHP
+// +----------------------------------------------------------------------
+// | 版权所有 2016~2017  [  ]
+// +----------------------------------------------------------------------
+// |
+// +----------------------------------------------------------------------
+// | 开源协议 ( http://www.apache.org/licenses/LICENSE-2.0 )
+// +----------------------------------------------------------------------
+
+/**
+ * 插件配置信息
+ */
+return [
+    
+];
+INFO;
+                        // 写入到文件
+                        file_put_contents($convertConfig, $datacomment);
+
+                    }
+
+                }
+            } else {
+                $this->error('新增插件失败!');
+            }
+        }
+        $dataname =Db::name('admin_hook')->column('name,description');
+        return ZBuilder::make('form')
+            ->addFormItems([
+                ['text', 'name', '插件名称', '由小写字母、数字或下划线组成，不能以数字开头'],
+                ['text', 'title', '插件标题', '有中文组成'],
+                ['icon', 'icon', '选择图标'],
+                ['text', 'description', '插件描述'],
+                ['text', 'author', '作者', '例如 : 小马哥'],
+                ['text', 'author_url', '作者主页', '例如 : www.baidu.com'],
+                ['text', 'config', '配置信息'],
+                ['select', 'plugin', '所属钩子','',$dataname],
+                ['text', 'version', '版本号', '例如 : 1.0.0'],
+                ['text', 'identifier', '唯一标识符', '例如 : ceshi.ming.plugin'],
+                ['radio', 'admin', '是否有后台管理', '', ['是', '否'], 0],
+            ])->setBtnTitle(['submit' => '确定', 'back' => '返回前一页'])
+            ->fetch();
     }
 }
