@@ -41,27 +41,28 @@ class CeshiGangqiang extends Plugin
         // 插件版本[必填],格式采用三段式：主版本号.次版本号.修订版本号
         'version'     => '1.0.0',
         // 是否有后台管理功能[选填]
-        'admin'       => '0',
+        'admin'       => '1',
     ];
 
     /**
      * @var array 插件钩子
      */
     public $hooks = [
-        'admin_index'
+        'form_table' =>'表单插件'
     ];
-
     /**
-     * 后台首页钩子
-     * @author 无名氏
+     * page_tips钩子方法
+     * @param $params
+     * @author 页面的提示  这里可以做任何操作
      */
-    public function adminIndex()
+    public function pageTips(&$params)
     {
-        $config = $this->getConfigValue();
-        if ($config['display']) {
-            $this->fetch('widget', $config);
-        }
+        echo '<div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+            <p>我是测试页面</p>
+        </div>';
     }
+
 
     /**
      * 安装方法

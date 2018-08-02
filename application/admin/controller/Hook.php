@@ -91,7 +91,7 @@ class Hook extends Admin
         return ZBuilder::make('form')
             ->setPageTitle('新增')
             ->addText('name', '钩子名称', '由字母和下划线组成，如：<code>page_tips</code>')
-            ->addText('name', '钩子名称', '由字母和下划线组成，如：<code>page_tips</code>')
+            ->addTextarea('description', '钩子描述')
             ->addRadio('system', '是否的系统钩子','',['是','不是'],0)
             ->addSelect('plugin','插件来源','',$datalook)
             ->setTrigger('system', '1', 'plugin')

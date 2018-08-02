@@ -185,13 +185,13 @@ class HelloWorld extends Plugin
     /**
      * page_tips钩子方法
      * @param $params
-     * @author 无名氏
+     * @author 页面的提示  这里可以做任何操作
      */
     public function pageTips(&$params)
     {
         echo '<div class="alert alert-success alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-            <p>Hello World</p>
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+            <p>欢迎来到我的页面</p>
         </div>';
     }
 

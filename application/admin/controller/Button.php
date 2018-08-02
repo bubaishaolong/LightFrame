@@ -13,6 +13,8 @@ use app\common\builder\ZBuilder;
 use app\admin\model\Button as ButtonModel;
 use think\Cache;
 
+use think\Hook;
+
 class Button extends Admin
 {
 
@@ -21,6 +23,9 @@ class Button extends Admin
      */
     public function index($group = '', $tab = 'tab1', $id = '')
     {
+
+        // 监听tab钩子
+        Hook::listen('module_index_tab_list');
         $map = $this->getMap();
         $dataList = ButtonModel::where(array('module_id' => $id, 'button_type' => $tab))->whereOr($map)->order('sort,id desc')->paginate();
         $list_tab = [

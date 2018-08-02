@@ -23,7 +23,6 @@ use util\File;
 use util\PHPZip;
 use util\Tree;
 use think\Db;
-use think\Hook;
 
 /**
  * 模块管理控制器
@@ -46,10 +45,6 @@ class Module extends Admin
             $tab_list[$key]['title'] = $value;
             $tab_list[$key]['url'] = url('index', ['group' => $key]);
         }
-
-        // 监听tab钩子
-        Hook::listen('module_index_tab_list', $tab_list);
-
         switch ($group) {
             case 'local':
                 // 查询条件
