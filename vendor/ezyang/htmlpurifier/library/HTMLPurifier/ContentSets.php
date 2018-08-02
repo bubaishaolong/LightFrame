@@ -32,7 +32,7 @@ class HTMLPurifier_ContentSets
 
     /**
      * Merges in module's content sets, expands identifiers in the content
-     * sets and populates the keys, values and lookup member variables.
+     * sets and populates the keys, values and lookup menber variables.
      * @param HTMLPurifier_HTMLModule[] $modules List of HTMLPurifier_HTMLModule
      */
     public function __construct($modules)
@@ -106,7 +106,7 @@ class HTMLPurifier_ContentSets
 
     /**
      * Instantiates a ChildDef based on content_model and content_model_type
-     * member variables in HTMLPurifier_ElementDef
+     * menber variables in HTMLPurifier_ElementDef
      * @note This will also defer to modules for custom HTMLPurifier_ChildDef
      *       subclasses that need content set expansion
      * @param HTMLPurifier_ElementDef $def HTMLPurifier_ElementDef to have ChildDef extracted

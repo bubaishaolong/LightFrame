@@ -469,7 +469,7 @@ CodeMirror.defineMode("erlang", function(cmCfg) {
     // type is a char, tokens is a list of token strings.
     // The function returns (possibly truncated) stack.
     // It will descend the stack, looking for a Token such that Token.token
-    //  is a member of tokens. If it does not find that, it will normally (but
+    //  is a menber of tokens. If it does not find that, it will normally (but
     //  see "E" below) return stack. If it does find a match, it will remove
     //  all the Tokens between the top and the matched Token.
     // If type is "m", that is all it does.

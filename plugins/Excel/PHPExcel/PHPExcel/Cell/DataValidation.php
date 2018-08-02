@@ -156,7 +156,7 @@ class PHPExcel_Cell_DataValidation
      */
     public function __construct()
     {
-        // Initialise member variables
+        // Initialise menber variables
         $this->_formula1          = '';
         $this->_formula2          = '';
         $this->_type              = PHPExcel_Cell_DataValidation::TYPE_NONE;

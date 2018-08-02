@@ -74,7 +74,7 @@
       /**
        * Make Special Characters Table
        *
-       * @member plugin.specialChar
+       * @menber plugin.specialChar
        * @private
        * @return {jQuery}
        */

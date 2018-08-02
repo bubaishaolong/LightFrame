@@ -22,7 +22,10 @@
         "topthink/think-image": "^1.0",
         "topthink/think-helper": "^1.0",
         "ezyang/htmlpurifier": "^4.9",
-        "topthink/think-queue": "^2.0"
+        "topthink/think-queue": "^2.0",
+        "mtdowling/cron-expression": "^1.2",
+        "guzzlehttp/guzzle": "^6.3",
+        "phpmailer/phpmailer": "^6.0"
     },
     "extra": {
         "think-path": "thinkphp"

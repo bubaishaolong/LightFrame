@@ -81,7 +81,7 @@ class HTMLPurifier_Strategy_MakeWellFormed extends HTMLPurifier_Strategy
         $reprocess = false; // whether or not to reprocess the same token
         $stack = array();
 
-        // member variables
+        // menber variables
         $this->stack =& $stack;
         $this->tokens =& $tokens;
         $this->token =& $token;

@@ -40,9 +40,9 @@ class QiNiu extends Plugin
         // 插件描述[选填]
         'description' => '仅支持DolphinPHP1.0.6以上版本，安装后，需将【<a href="/admin.php/admin/system/index/group/upload.html">上传驱动</a>】将其设置为“七牛云”。在附件管理中删除文件，并不会同时删除七牛云上的文件。',
         // 插件作者[必填]
-        'author'      => '蔡伟明',
+        'author'      => '楚留香',
         // 作者主页[选填]
-        'author_url'  => 'http://www.caiweiming.com',
+        'author_url'  => '',
         // 插件版本[必填],格式采用三段式：主版本号.次版本号.修订版本号
         'version'     => '1.0.0',
         // 是否有后台管理功能[选填]

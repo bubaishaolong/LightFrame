@@ -30,4 +30,8 @@ class  Order extends ThinkModel
         //TODO:自定义的初始化
     }
 
+    /**
+     * 模型类支持before_delete、after_delete、before_write、after_write、before_update、after_update、before_insert、after_insert事件行为
+     */
+
 }

@@ -34,9 +34,9 @@ class Excel extends Plugin
         // 插件描述[选填]
         'description' => '导入或导出excel',
         // 插件作者[必填]
-        'author'      => '蔡伟明',
+        'author'      => '楚留香',
         // 作者主页[选填]
-        'author_url'  => 'http://www.caiweiming.com',
+        'author_url'  => '',
         // 插件版本[必填],格式采用三段式：主版本号.次版本号.修订版本号
         'version'     => '1.0.0',
         // 是否有后台管理功能[选填]

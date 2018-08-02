@@ -34,12 +34,25 @@ class Barcode extends Plugin
         // 插件描述[选填]
         'description' => '条形码生成插件',
         // 插件作者[必填]
-        'author'      => '蔡伟明',
+        'author'      => '楚留香',
         // 作者主页[选填]
-        'author_url'  => 'http://www.dolphinphp.com',
+        'author_url'  => '',
         // 插件版本[必填],格式采用三段式：主版本号.次版本号.修订版本号
         'version'     => '1.0.0'
     ];
+
+    /**
+     * page_tips钩子方法
+     * @param $params
+     * @author 页面的提示  这里可以做任何操作
+     */
+    public function pageTips(&$params)
+    {
+        echo '<div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+            <p>欢迎来到我的页面</p>
+        </div>';
+    }
 
     /**
      * 安装方法必须实现

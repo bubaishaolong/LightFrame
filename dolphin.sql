@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2018-08-01 17:39:23
+Date: 2018-08-02 17:37:16
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -151,7 +151,7 @@ CREATE TABLE `cj_admin_button` (
   `update_time` int(11) unsigned DEFAULT '0' COMMENT '更新时间',
   `button_type` varchar(255) NOT NULL DEFAULT 'tab1' COMMENT '按钮的类型',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='按钮列表';
 
 -- ----------------------------
 -- Records of cj_admin_button
@@ -312,12 +312,12 @@ CREATE TABLE `cj_admin_hook` (
   `update_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
   `status` tinyint(2) NOT NULL DEFAULT '1' COMMENT '状态',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='钩子表';
+) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='钩子表';
 
 -- ----------------------------
 -- Records of cj_admin_hook
 -- ----------------------------
-INSERT INTO `cj_admin_hook` VALUES ('1', 'admin_index', '', '后台首页', '1', '1468174214', '1477757518', '1');
+INSERT INTO `cj_admin_hook` VALUES ('1', 'admin_index', '', '后台首页', '1', '1468174214', '1533196887', '1');
 INSERT INTO `cj_admin_hook` VALUES ('2', 'plugin_index_tab_list', '', '插件扩展tab钩子', '1', '1468174214', '1468174214', '1');
 INSERT INTO `cj_admin_hook` VALUES ('3', 'module_index_tab_list', '', '模块扩展tab钩子', '1', '1468174214', '1468174214', '1');
 INSERT INTO `cj_admin_hook` VALUES ('4', 'page_tips', '', '每个页面的提示', '1', '1468174214', '1468174214', '1');
@@ -334,7 +334,6 @@ INSERT INTO `cj_admin_hook` VALUES ('14', 'user_edit', '', '编辑用户钩子',
 INSERT INTO `cj_admin_hook` VALUES ('15', 'user_delete', '', '删除用户钩子', '1', '1503633591', '1503633591', '1');
 INSERT INTO `cj_admin_hook` VALUES ('16', 'user_enable', '', '启用用户钩子', '1', '1503633591', '1503633591', '1');
 INSERT INTO `cj_admin_hook` VALUES ('17', 'user_disable', '', '禁用用户钩子', '1', '1503633591', '1503633591', '1');
-INSERT INTO `cj_admin_hook` VALUES ('19', 'my_hook', 'HelloWorld', '我的钩子', '0', '1533114900', '1533114900', '1');
 
 -- ----------------------------
 -- Table structure for cj_admin_hook_plugin
@@ -349,16 +348,13 @@ CREATE TABLE `cj_admin_hook_plugin` (
   `sort` int(11) unsigned NOT NULL DEFAULT '100' COMMENT '排序',
   `status` tinyint(2) NOT NULL DEFAULT '1' COMMENT '状态',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='钩子-插件对应表';
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='钩子-插件对应表';
 
 -- ----------------------------
 -- Records of cj_admin_hook_plugin
 -- ----------------------------
 INSERT INTO `cj_admin_hook_plugin` VALUES ('1', 'admin_index', 'SystemInfo', '1477757503', '1477757503', '1', '1');
 INSERT INTO `cj_admin_hook_plugin` VALUES ('2', 'admin_index', 'DevTeam', '1477755780', '1477755780', '2', '1');
-INSERT INTO `cj_admin_hook_plugin` VALUES ('6', 'page_tips', 'HelloWorld', '1533114900', '1533114900', '100', '1');
-INSERT INTO `cj_admin_hook_plugin` VALUES ('5', 'admin_index', 'CeshiGangqiang', '1533103928', '1533103928', '100', '1');
-INSERT INTO `cj_admin_hook_plugin` VALUES ('7', 'my_hook', 'HelloWorld', '1533114900', '1533114900', '100', '1');
 
 -- ----------------------------
 -- Table structure for cj_admin_icon
@@ -670,7 +666,7 @@ CREATE TABLE `cj_admin_log` (
   KEY `action_ip_ix` (`action_ip`) USING BTREE,
   KEY `action_id_ix` (`action_id`) USING BTREE,
   KEY `user_id_ix` (`user_id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=156 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='行为日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=181 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='行为日志表';
 
 -- ----------------------------
 -- Records of cj_admin_log
@@ -830,6 +826,31 @@ INSERT INTO `cj_admin_log` VALUES ('152', '35', '1', '2130706433', 'admin_module
 INSERT INTO `cj_admin_log` VALUES ('153', '31', '1', '2130706433', 'admin_menu', '788', '超级管理员 编辑了节点：节点ID(788)', '1', '1533111542');
 INSERT INTO `cj_admin_log` VALUES ('154', '31', '1', '2130706433', 'admin_menu', '789', '超级管理员 编辑了节点：节点ID(789)', '1', '1533111566');
 INSERT INTO `cj_admin_log` VALUES ('155', '39', '1', '2130706433', 'admin_module', '0', '超级管理员 导出了模块：商城', '1', '1533113111');
+INSERT INTO `cj_admin_log` VALUES ('156', '22', '1', '2130706433', 'database', '0', '超级管理员 优化了数据表：cj_admin_field', '1', '1533173564');
+INSERT INTO `cj_admin_log` VALUES ('157', '25', '1', '2130706433', 'admin_hook', '20', '超级管理员 添加了钩子：form_table', '1', '1533173813');
+INSERT INTO `cj_admin_log` VALUES ('158', '30', '1', '2130706433', 'admin_menu', '800', '超级管理员 添加了节点：所属模块(shop),所属节点ID(580),节点标题(编辑),节点链接(shop/menber/edit)', '1', '1533175076');
+INSERT INTO `cj_admin_log` VALUES ('159', '25', '1', '2130706433', 'admin_hook', '22', '超级管理员 添加了钩子：erweima', '1', '1533193048');
+INSERT INTO `cj_admin_log` VALUES ('160', '27', '1', '2130706433', 'admin_hook', '0', '超级管理员 删除了钩子：erweima', '1', '1533193162');
+INSERT INTO `cj_admin_log` VALUES ('161', '25', '1', '2130706433', 'admin_hook', '23', '超级管理员 添加了钩子：er_weima', '1', '1533193193');
+INSERT INTO `cj_admin_log` VALUES ('162', '25', '1', '2130706433', 'admin_hook', '24', '超级管理员 添加了钩子：er_weima', '1', '1533193920');
+INSERT INTO `cj_admin_log` VALUES ('163', '26', '1', '2130706433', 'admin_hook', '24', '超级管理员 编辑了钩子：er_weima', '1', '1533195054');
+INSERT INTO `cj_admin_log` VALUES ('164', '26', '1', '2130706433', 'admin_hook', '24', '超级管理员 编辑了钩子：er_weima', '1', '1533195192');
+INSERT INTO `cj_admin_log` VALUES ('165', '27', '1', '2130706433', 'admin_hook', '0', '超级管理员 删除了钩子：er_weima', '1', '1533195230');
+INSERT INTO `cj_admin_log` VALUES ('166', '25', '1', '2130706433', 'admin_hook', '25', '超级管理员 添加了钩子：ceshi_erweima', '1', '1533195269');
+INSERT INTO `cj_admin_log` VALUES ('167', '25', '1', '2130706433', 'admin_hook', '26', '超级管理员 添加了钩子：ceshi_erweima', '1', '1533195448');
+INSERT INTO `cj_admin_log` VALUES ('168', '26', '1', '2130706433', 'admin_hook', '26', '超级管理员 编辑了钩子：ceshi_erweima', '1', '1533195598');
+INSERT INTO `cj_admin_log` VALUES ('169', '26', '1', '2130706433', 'admin_hook', '1', '超级管理员 编辑了钩子：admin_index', '1', '1533196245');
+INSERT INTO `cj_admin_log` VALUES ('170', '26', '1', '2130706433', 'admin_hook', '1', '超级管理员 编辑了钩子：admin_index', '1', '1533196687');
+INSERT INTO `cj_admin_log` VALUES ('171', '26', '1', '2130706433', 'admin_hook', '1', '超级管理员 编辑了钩子：admin_index', '1', '1533196886');
+INSERT INTO `cj_admin_log` VALUES ('172', '27', '1', '2130706433', 'admin_hook', '0', '超级管理员 删除了钩子：ceshi_erweima', '1', '1533197310');
+INSERT INTO `cj_admin_log` VALUES ('173', '35', '1', '2130706433', 'admin_module', '0', '超级管理员 安装了模块：定时任务', '1', '1533198710');
+INSERT INTO `cj_admin_log` VALUES ('174', '34', '1', '2130706433', 'admin_menu', '803', '超级管理员 禁用了节点：节点ID(803),节点标题(禁用),节点链接(crontab/index/disable)', '1', '1533198872');
+INSERT INTO `cj_admin_log` VALUES ('175', '34', '1', '2130706433', 'admin_menu', '804', '超级管理员 禁用了节点：节点ID(804),节点标题(编辑),节点链接(crontab/index/edit)', '1', '1533198874');
+INSERT INTO `cj_admin_log` VALUES ('176', '34', '1', '2130706433', 'admin_menu', '805', '超级管理员 禁用了节点：节点ID(805),节点标题(删除),节点链接(crontab/index/delete)', '1', '1533198876');
+INSERT INTO `cj_admin_log` VALUES ('177', '34', '1', '2130706433', 'admin_menu', '806', '超级管理员 禁用了节点：节点ID(806),节点标题(添加),节点链接(crontab/index/add)', '1', '1533198878');
+INSERT INTO `cj_admin_log` VALUES ('178', '34', '1', '2130706433', 'admin_menu', '807', '超级管理员 禁用了节点：节点ID(807),节点标题(启用),节点链接(crontab/index/enable)', '1', '1533198880');
+INSERT INTO `cj_admin_log` VALUES ('179', '34', '1', '2130706433', 'admin_menu', '811', '超级管理员 禁用了节点：节点ID(811),节点标题(编辑),节点链接(crontab/log/edit)', '1', '1533198888');
+INSERT INTO `cj_admin_log` VALUES ('180', '34', '1', '2130706433', 'admin_menu', '812', '超级管理员 禁用了节点：节点ID(812),节点标题(清空日志),节点链接(crontab/log/clear)', '1', '1533198903');
 
 -- ----------------------------
 -- Table structure for cj_admin_menu
@@ -852,7 +873,7 @@ CREATE TABLE `cj_admin_menu` (
   `status` tinyint(2) NOT NULL DEFAULT '1' COMMENT '状态',
   `params` varchar(255) NOT NULL DEFAULT '' COMMENT '参数',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=800 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='后台菜单表';
+) ENGINE=MyISAM AUTO_INCREMENT=813 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='后台菜单表';
 
 -- ----------------------------
 -- Records of cj_admin_menu
@@ -1003,13 +1024,25 @@ INSERT INTO `cj_admin_menu` VALUES ('598', '593', 'admin', '禁用', '', 'module
 INSERT INTO `cj_admin_menu` VALUES ('583', '580', 'shop', '新增', '', 'module_admin', 'shop/menber/add', '_self', '0', '1532506668', '1533088585', '100', '0', '0', '');
 INSERT INTO `cj_admin_menu` VALUES ('580', '426', 'shop', '会员管理', 'fa fa-fw fa-repeat', 'module_admin', 'shop/menber/index', '_self', '0', '1532490563', '1532740631', '100', '0', '1', '');
 INSERT INTO `cj_admin_menu` VALUES ('600', '33', 'admin', '生成校验规则', '', 'module_admin', 'admin/field/field_checkout', '_self', '0', '1532698768', '1532698768', '100', '0', '1', '');
-INSERT INTO `cj_admin_menu` VALUES ('728', '580', 'shop', '编辑', '', 'module_admin', 'shop/userlist/edit', '_self', '0', '1533088561', '1533088561', '100', '0', '1', '');
+INSERT INTO `cj_admin_menu` VALUES ('801', '0', 'crontab', '定时任务', 'glyphicon glyphicon-time', 'module_admin', 'crontab/index/index', '_self', '0', '1533198710', '1533198710', '100', '0', '1', '');
 INSERT INTO `cj_admin_menu` VALUES ('729', '41', 'admin', '新增插件', '', 'module_admin', 'admin/plugin/addplug', '_self', '0', '1533092148', '1533092148', '100', '0', '1', '');
 INSERT INTO `cj_admin_menu` VALUES ('727', '427', 'shop', '参数配置', '', 'module_admin', 'shop/databasetable/getconfigurelist', '_self', '0', '1533087168', '1533087168', '100', '0', '0', '');
+INSERT INTO `cj_admin_menu` VALUES ('800', '580', 'shop', '编辑', '', 'module_admin', 'shop/menber/edit', '_self', '0', '1533175076', '1533176595', '100', '0', '0', '');
+INSERT INTO `cj_admin_menu` VALUES ('802', '801', 'crontab', '任务列表', 'fa fa-fw fa-list', 'module_admin', 'crontab/index/index', '_self', '0', '1533198710', '1533198710', '100', '0', '1', '');
+INSERT INTO `cj_admin_menu` VALUES ('803', '802', 'crontab', '禁用', '', 'module_admin', 'crontab/index/disable', '_self', '1', '1533198710', '1533198710', '100', '0', '0', '');
+INSERT INTO `cj_admin_menu` VALUES ('804', '802', 'crontab', '编辑', '', 'module_admin', 'crontab/index/edit', '_self', '1', '1533198710', '1533198710', '100', '0', '0', '');
+INSERT INTO `cj_admin_menu` VALUES ('805', '802', 'crontab', '删除', '', 'module_admin', 'crontab/index/delete', '_self', '1', '1533198710', '1533198710', '100', '0', '0', '');
+INSERT INTO `cj_admin_menu` VALUES ('806', '802', 'crontab', '添加', '', 'module_admin', 'crontab/index/add', '_self', '1', '1533198710', '1533198710', '100', '0', '0', '');
 INSERT INTO `cj_admin_menu` VALUES ('796', '426', 'shop', '订单管理', 'fa fa-fw fa-calendar', 'module_admin', 'shop/order/index', '_self', '0', '1533112918', '1533112918', '100', '0', '1', '');
 INSERT INTO `cj_admin_menu` VALUES ('797', '796', 'shop', '新增', 'fa fa-fw fa-calendar', 'module_admin', 'shop/order/add', '_self', '0', '1533112918', '1533112918', '100', '0', '0', '');
 INSERT INTO `cj_admin_menu` VALUES ('798', '796', 'shop', '编辑', 'fa fa-fw fa-calendar', 'module_admin', 'shop/order/edit', '_self', '0', '1533112918', '1533112918', '100', '0', '0', '');
 INSERT INTO `cj_admin_menu` VALUES ('799', '796', 'shop', '删除', 'fa fa-fw fa-calendar', 'module_admin', 'shop/order/delete', '_self', '0', '1533112918', '1533112918', '100', '0', '0', '');
+INSERT INTO `cj_admin_menu` VALUES ('807', '802', 'crontab', '启用', '', 'module_admin', 'crontab/index/enable', '_self', '1', '1533198710', '1533198710', '100', '0', '0', '');
+INSERT INTO `cj_admin_menu` VALUES ('808', '802', 'crontab', '检查Crontab格式', '', 'module_admin', 'crontab/index/checkschedule', '_self', '1', '1533198710', '1533198710', '100', '0', '1', '');
+INSERT INTO `cj_admin_menu` VALUES ('809', '802', 'crontab', '获取未来N次的时间', '', 'module_admin', 'crontab/index/getschedulefuture', '_self', '1', '1533198710', '1533198710', '100', '0', '1', '');
+INSERT INTO `cj_admin_menu` VALUES ('810', '801', 'crontab', '执行日志', 'fa fa-fw fa-play', 'module_admin', 'crontab/log/index', '_self', '0', '1533198710', '1533198710', '100', '0', '1', '');
+INSERT INTO `cj_admin_menu` VALUES ('811', '810', 'crontab', '编辑', '', 'module_admin', 'crontab/log/edit', '_self', '1', '1533198710', '1533198710', '100', '0', '0', '');
+INSERT INTO `cj_admin_menu` VALUES ('812', '810', 'crontab', '清空日志', '', 'module_admin', 'crontab/log/clear', '_self', '1', '1533198710', '1533198710', '100', '0', '0', '');
 
 -- ----------------------------
 -- Table structure for cj_admin_message
@@ -1059,7 +1092,7 @@ CREATE TABLE `cj_admin_model` (
 -- Records of cj_admin_model
 -- ----------------------------
 INSERT INTO `cj_admin_model` VALUES ('73', 'shop', '会员列表', 'cj_shop_user_list', '2', 'fa fa-fw fa-film', '100', '1', '1', '1', '0', '1532490029', '1533087439', 'add,enable,disable,back', 'edit');
-INSERT INTO `cj_admin_model` VALUES ('75', 'shop', '会员管理', 'cj_shop_menber', '2', 'fa fa-fw fa-repeat', '100', '1', '1', '1', '0', '1532490563', '1533087446', 'add,enable,disable,back', 'edit,delete,custom');
+INSERT INTO `cj_admin_model` VALUES ('75', 'shop', '会员管理', 'cj_shop_menber', '2', 'fa fa-fw fa-repeat', '100', '1', '1', '1', '0', '1532490563', '1533191593', 'add,enable,disable,back', 'edit,delete');
 INSERT INTO `cj_admin_model` VALUES ('115', 'shop', '订单管理', 'cj_shop_order', '1', 'fa fa-fw fa-calendar', '100', '1', '1', '1', '0', '1533112918', '1533112918', 'back,add', 'edit,delete');
 
 -- ----------------------------
@@ -1084,14 +1117,15 @@ CREATE TABLE `cj_admin_module` (
   `sort` int(11) NOT NULL DEFAULT '100' COMMENT '排序',
   `status` tinyint(2) NOT NULL DEFAULT '1' COMMENT '状态',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='模块表';
+) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='模块表';
 
 -- ----------------------------
 -- Records of cj_admin_module
 -- ----------------------------
 INSERT INTO `cj_admin_module` VALUES ('1', 'admin', '系统', 'fa fa-fw fa-gear', '系统模块，DolphinPHP的核心模块', 'DolphinPHP', 'http://www.dolphinphp.com', '', '', '1.0.0', 'admin.dolphinphp.module', '1', '1468204902', '1468204902', '100', '1');
 INSERT INTO `cj_admin_module` VALUES ('2', 'user', '用户', 'fa fa-fw fa-user', '用户模块，DolphinPHP自带模块', 'DolphinPHP', 'http://www.dolphinphp.com', '', '', '1.0.0', 'user.dolphinphp.module', '1', '1468204902', '1468204902', '100', '1');
-INSERT INTO `cj_admin_module` VALUES ('21', 'shop', '商城', '', '的萨达萨达sad', ' 的sad', '大的', '', '', '1.0.0.2', 'shop.caijion.module', '0', '1532311581', '1532485213', '100', '1');
+INSERT INTO `cj_admin_module` VALUES ('21', 'shop', '商城', '', '的萨达萨达sad', ' 的sad', '大的', '', '', '1.0.0.2', 'shop.caijion.module', '0', '1532311581', '1533175927', '100', '1');
+INSERT INTO `cj_admin_module` VALUES ('30', 'crontab', '定时任务', 'glyphicon glyphicon-time', '模块依赖 composer 组件 <code>mtdowling/cron-expression</code> 和 <code>guzzlehttp/guzzle</code>', '流风回雪', 'http://www.dolphinphp.com/', null, null, '1.0.0', 'crontab.meishixiu.module', '0', '1533198710', '1533198710', '100', '1');
 
 -- ----------------------------
 -- Table structure for cj_admin_module_config
@@ -1164,16 +1198,17 @@ CREATE TABLE `cj_admin_plugin` (
   `sort` int(11) NOT NULL DEFAULT '100' COMMENT '排序',
   `status` tinyint(2) NOT NULL DEFAULT '1' COMMENT '状态',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='插件表';
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='插件表';
 
 -- ----------------------------
 -- Records of cj_admin_plugin
 -- ----------------------------
-INSERT INTO `cj_admin_plugin` VALUES ('1', 'SystemInfo', '系统环境信息', 'fa fa-fw fa-info-circle', '在后台首页显示服务器信息', '蔡伟明', 'http://www.caiweiming.com', '{\"display\":\"1\",\"width\":\"6\"}', '1.0.0', 'system_info.ming.plugin', '0', '1477757503', '1477757503', '100', '1');
-INSERT INTO `cj_admin_plugin` VALUES ('2', 'DevTeam', '开发团队成员信息', 'fa fa-fw fa-users', '开发团队成员信息', '蔡伟明', 'http://www.caiweiming.com', '{\"display\":\"0\",\"width\":\"6\"}', '1.0.0', 'dev_team.ming.plugin', '0', '1477755780', '1477755780', '100', '1');
-INSERT INTO `cj_admin_plugin` VALUES ('3', 'Barcode', '条形码生成插件', 'fa fa-fw fa-barcode', '条形码生成插件', '蔡伟明', 'http://www.dolphinphp.com', '{\"file_type\":\"PNG\",\"dpi\":\"72\",\"thickness\":\"30\",\"scale\":\"2\",\"rotation\":0,\"font_size\":\"10\"}', '1.0.0', 'barcode.ming.plugin', '0', '1533089343', '1533089343', '100', '1');
-INSERT INTO `cj_admin_plugin` VALUES ('8', 'CeshiGangqiang', '测试刚强', 'fa fa-fw fa-camera', '颠三倒四', '的速度', '都是都是', '{\"ak\":\"\",\"sk\":\"\",\"bucket\":\"\",\"domain\":\"http:\\/\\/\"}', '1.0.0', 'ceshi.ming.module', '0', '1533103928', '1533103928', '100', '1');
-INSERT INTO `cj_admin_plugin` VALUES ('9', 'HelloWorld', '你好，世界', 'fa fa-fw fa-globe', '这是一个演示插件，会在每个页面生成一个提示“Hello World”。您可以查看源码，里面包含了绝大部分插件所用到的方法，以及能做的事情。', '蔡伟明', 'http://www.dolphinphp.com', '{\"status\":1,\"text\":\"x\",\"textarea\":\"\",\"checkbox\":0,\"status1\":1,\"text1\":\"x\",\"textarea1\":\"\",\"checkbox1\":0,\"textarea2\":\"\",\"checkbox2\":0}', '1.0.0', 'helloworld.ming.plugin', '1', '1533114900', '1533114900', '100', '1');
+INSERT INTO `cj_admin_plugin` VALUES ('1', 'SystemInfo', '系统环境信息', 'fa fa-fw fa-info-circle', '在后台首页显示服务器信息', '楚留香', '', '{\"display\":\"1\",\"width\":\"6\"}', '1.0.0', 'system_info.ming.plugin', '0', '1477757503', '1477757503', '100', '1');
+INSERT INTO `cj_admin_plugin` VALUES ('2', 'DevTeam', '开发团队成员信息', 'fa fa-fw fa-users', '开发团队成员信息', '楚留香', '', '{\"display\":\"0\",\"width\":\"6\"}', '1.0.0', 'dev_team.ming.plugin', '0', '1477755780', '1477755780', '100', '1');
+INSERT INTO `cj_admin_plugin` VALUES ('3', 'Barcode', '条形码生成插件', 'fa fa-fw fa-barcode', '条形码生成插件', '楚留香', '', '{\"file_type\":\"PNG\",\"dpi\":\"72\",\"thickness\":\"30\",\"scale\":\"2\",\"rotation\":0,\"font_size\":\"10\"}', '1.0.0', 'barcode.ming.plugin', '0', '1533089343', '1533089343', '100', '1');
+INSERT INTO `cj_admin_plugin` VALUES ('14', 'Alipay', '支付宝插件', 'fa fa-fw fa-cc-paypal', '支付宝插件', '楚留香', '', '{\"partner\":\"\",\"key\":\"\",\"seller_email\":\"\",\"cacert\":\"\",\"sign_type\":\"\",\"private_key_path\":\"\",\"public_key_path\":\"\",\"input_charset\":\"\",\"transport\":\"\"}', '1.0.0', 'alipay.ming.plugin', '0', '1533201134', '1533201134', '100', '1');
+INSERT INTO `cj_admin_plugin` VALUES ('15', 'AmapSDK', '高德地图插件', 'fa fa-fw fa-map-marker', '集成了常用的一类查询接口', '楚留香', '', '{\"appKey\":\"\",\"isEncrypt\":0,\"encryptKey\":\"\"}', '1.0.1', 'amapSDK.herd21.plugin', '0', '1533201217', '1533201217', '100', '1');
+INSERT INTO `cj_admin_plugin` VALUES ('10', 'Qrcode', '二维码生成插件', 'fa fa-fw fa-qrcode', '二维码生成插件', '楚留香', '', '{\"outfile\":0,\"level\":\"H\",\"size\":3,\"margin\":\"4\",\"saveandprint\":0,\"back_color\":\"rgb(255,255,255)\",\"fore_color\":\"rgb(0,0,0)\",\"logo\":\"\"}', '1.0.0', 'qrcode.ming.plugin', '0', '1533193065', '1533193065', '100', '1');
 
 -- ----------------------------
 -- Table structure for cj_admin_role
@@ -1235,25 +1270,50 @@ INSERT INTO `cj_admin_user` VALUES ('1', 'admin', '超级管理员', '$2y$10$Brw
 INSERT INTO `cj_admin_user` VALUES ('2', 'admin110', '的撒打算', '$2y$10$8Mpt3CdvLB3HX39.2HvCDOm3mAfp41AmP9iXwZ53NZQgwURG/SGVW', '584887013@qq.com', '0', '15881098622', '0', '0', '0.00', '0', '2', '0', '0', '1532329204', '1532329204', '0', '0', '100', '1');
 
 -- ----------------------------
--- Table structure for cj_plugin_hello
+-- Table structure for cj_crontab
 -- ----------------------------
-DROP TABLE IF EXISTS `cj_plugin_hello`;
-CREATE TABLE `cj_plugin_hello` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(32) NOT NULL DEFAULT '' COMMENT '名人',
-  `said` text NOT NULL COMMENT '名言',
-  `status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态',
+DROP TABLE IF EXISTS `cj_crontab`;
+CREATE TABLE `cj_crontab` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `type` varchar(10) NOT NULL COMMENT '类型',
+  `title` varchar(150) NOT NULL COMMENT '标题',
+  `content` text NOT NULL COMMENT '内容',
+  `schedule` varchar(100) NOT NULL COMMENT 'Cron 表达式',
+  `sleep` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '延迟秒数执行',
+  `maximums` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '最大执行次数 0为不限',
+  `executes` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '已经执行的次数',
+  `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
+  `begin_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '开始时间',
+  `end_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '结束时间',
+  `execute_time` int(10) unsigned DEFAULT NULL COMMENT '最后执行时间',
+  `weigh` int(10) NOT NULL DEFAULT '0' COMMENT '权重',
+  `status` enum('completed','expired','disable','normal') NOT NULL DEFAULT 'normal' COMMENT '状态',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='定时任务表';
 
 -- ----------------------------
--- Records of cj_plugin_hello
+-- Records of cj_crontab
 -- ----------------------------
-INSERT INTO `cj_plugin_hello` VALUES ('1', '网络', '生活是一面镜子。你对它笑，它就对你笑；你对它哭，它也对你哭。', '1');
-INSERT INTO `cj_plugin_hello` VALUES ('2', '网络', '活着一天，就是有福气，就该珍惜。当我哭泣我没有鞋子穿的时候，我发现有人却没有脚。', '1');
-INSERT INTO `cj_plugin_hello` VALUES ('3', '爱迪生', '天才是百分之一的灵感加百分之九十九的汗水。', '1');
-INSERT INTO `cj_plugin_hello` VALUES ('4', '美华纳', '勿问成功的秘诀为何，且尽全力做你应该做的事吧。', '1');
-INSERT INTO `cj_plugin_hello` VALUES ('5', '陶铸', '如烟往事俱忘却，心底无私天地宽', '1');
+
+-- ----------------------------
+-- Table structure for cj_crontab_log
+-- ----------------------------
+DROP TABLE IF EXISTS `cj_crontab_log`;
+CREATE TABLE `cj_crontab_log` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `type` varchar(10) NOT NULL COMMENT '类型',
+  `cid` int(10) unsigned NOT NULL COMMENT '任务的ID',
+  `title` varchar(150) NOT NULL COMMENT '标题',
+  `remark` mediumtext COMMENT '备注',
+  `create_time` int(10) unsigned NOT NULL COMMENT '执行时间',
+  `status` tinyint(1) NOT NULL COMMENT '状态 0:失败 1:成功',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='定时任务日志表';
+
+-- ----------------------------
+-- Records of cj_crontab_log
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for cj_shop_goods
@@ -1291,8 +1351,6 @@ CREATE TABLE `cj_shop_menber` (
 -- ----------------------------
 -- Records of cj_shop_menber
 -- ----------------------------
-INSERT INTO `cj_shop_menber` VALUES ('2', '1532509044', '1532509044', '100', '1', '2', null, '1');
-INSERT INTO `cj_shop_menber` VALUES ('3', '1532509055', '1532509055', '100', '1', '2', null, '2');
 INSERT INTO `cj_shop_menber` VALUES ('4', '1532509261', '1532509261', '100', '1', '3', '3', '66');
 INSERT INTO `cj_shop_menber` VALUES ('5', '1532510021', '1532510021', '100', '1', '3', '4', '4');
 INSERT INTO `cj_shop_menber` VALUES ('6', '1532510871', '1532510871', '100', '1', '999', '999', '9999');

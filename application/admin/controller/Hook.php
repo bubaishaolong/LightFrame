@@ -71,16 +71,22 @@ class Hook extends Admin
         if ($this->request->isPost()) {
             // 表单数据
             $data = $this->request->post();
-            $data['system'] = 1;
-
+            //$data['system'] = 1;
             // 验证
             $result = $this->validate($data, 'Hook');
             if(true !== $result) $this->error($result);
-
+            $data['plugin'] = implode(',',$data['plugin']);
             if ($hook = HookModel::create($data)) {
                 cache('hook_plugins', null);
                 // 记录行为
                 action_log('hook_add', 'admin_hook', $hook['id'], UID, $data['name']);
+                $dataadd['hook']=$data['name'];
+                $dataadd['plugin']=$data['plugin'];
+                $datainfo = HookPluginModel::where(array('hook'=>$data['name'],'plugin'=>$data['plugin']))->find();
+                if(!$datainfo){
+                    HookPluginModel::create($dataadd);
+                }
+
                 $this->success('新增成功', 'index');
             } else {
                 $this->error('新增失败');
@@ -92,9 +98,10 @@ class Hook extends Admin
             ->setPageTitle('新增')
             ->addText('name', '钩子名称', '由字母和下划线组成，如：<code>page_tips</code>')
             ->addTextarea('description', '钩子描述')
-            ->addRadio('system', '是否的系统钩子','',['是','不是'],0)
-            ->addSelect('plugin','插件来源','',$datalook)
-            ->setTrigger('system', '1', 'plugin')
+            ->addRadio('system', '是否的系统钩子','',['不是','是'],0)
+            //->addSelect('plugin','插件来源','',$datalook)
+            ->addCheckbox('plugin','插件来源','',$datalook)
+            ->setTrigger('system', '0', 'plugin')
             ->fetch();
     }
 
@@ -113,11 +120,17 @@ class Hook extends Admin
             // 验证
             $result = $this->validate($data, 'Hook');
             if(true !== $result) $this->error($result);
-
+            $data['plugin'] = implode(',',$data['plugin']);
             if ($hook = HookModel::update($data)) {
                 // 调整插件顺序
                 if ($data['sort'] != '') {
                     HookPluginModel::sort($data['name'], $data['sort']);
+                }
+                $dataadd['hook']=$data['name'];
+                $dataadd['plugin']=$data['plugin'];
+                $datainfo = HookPluginModel::where(array('hook'=>$data['name'],'plugin'=>$data['plugin']))->find();
+                if(!$datainfo){
+                    HookPluginModel::where(array('hook'=>$data['name'],'plugin'=>$data['plugin']))->Update($dataadd);
                 }
                 cache('hook_plugins', null);
                 // 记录行为
@@ -133,14 +146,19 @@ class Hook extends Admin
 
         // 该钩子的所有插件
         $hooks = HookPluginModel::where('hook', $info['name'])->order('sort')->column('plugin');
-        $hooks = parse_array($hooks);
-
+        if($hooks){
+            $hooks = explode(',',$hooks[0]);
+            $hooks = parse_array($hooks);
+        }
+        $datalook = Db::name('admin_plugin')->column('name,title');
+       // dump($datalook);die;
         // 使用ZBuilder快速创建表单
         return ZBuilder::make('form')
             ->setPageTitle('编辑')
             ->addHidden('id')
             ->addText('name', '钩子名称', '由字母和下划线组成，如：<code>page_tips</code>')
             ->addText('description', '钩子描述')
+            ->addCheckbox('plugin','插件来源','',$datalook)
             ->addSort('sort', '插件排序', '', $hooks)
             ->setFormData($info)
             ->fetch();

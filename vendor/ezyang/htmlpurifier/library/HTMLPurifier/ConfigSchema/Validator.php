@@ -122,7 +122,7 @@ class HTMLPurifier_ConfigSchema_Validator
     }
 
     /**
-     * Extra validation if $allowed member variable of
+     * Extra validation if $allowed menber variable of
      * HTMLPurifier_ConfigSchema_Interchange_Directive is defined.
      * @param HTMLPurifier_ConfigSchema_Interchange_Directive $d
      */
@@ -147,7 +147,7 @@ class HTMLPurifier_ConfigSchema_Validator
     }
 
     /**
-     * Extra validation if $valueAliases member variable of
+     * Extra validation if $valueAliases menber variable of
      * HTMLPurifier_ConfigSchema_Interchange_Directive is defined.
      * @param HTMLPurifier_ConfigSchema_Interchange_Directive $d
      */
@@ -183,7 +183,7 @@ class HTMLPurifier_ConfigSchema_Validator
     }
 
     /**
-     * Extra validation if $aliases member variable of
+     * Extra validation if $aliases menber variable of
      * HTMLPurifier_ConfigSchema_Interchange_Directive is defined.
      * @param HTMLPurifier_ConfigSchema_Interchange_Directive $d
      */
@@ -211,7 +211,7 @@ class HTMLPurifier_ConfigSchema_Validator
 
     /**
      * Convenience function for generating HTMLPurifier_ConfigSchema_ValidatorAtom
-     * for validating simple member variables of objects.
+     * for validating simple menber variables of objects.
      * @param $obj
      * @param $member
      * @return HTMLPurifier_ConfigSchema_ValidatorAtom

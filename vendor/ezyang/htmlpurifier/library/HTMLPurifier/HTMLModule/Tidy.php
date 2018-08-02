@@ -101,7 +101,7 @@ class HTMLPurifier_HTMLModule_Tidy extends HTMLPurifier_HTMLModule
     }
 
     /**
-     * Dynamically populates the $fixesForLevel member variable using
+     * Dynamically populates the $fixesForLevel menber variable using
      * the fixes array. It may be custom overloaded, used in conjunction
      * with $defaultLevel, or not used at all.
      * @param array $fixes

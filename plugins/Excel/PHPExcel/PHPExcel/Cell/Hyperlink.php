@@ -57,7 +57,7 @@ class PHPExcel_Cell_Hyperlink
      */
     public function __construct($pUrl = '', $pTooltip = '')
     {
-        // Initialise member variables
+        // Initialise menber variables
         $this->_url         = $pUrl;
         $this->_tooltip     = $pTooltip;
     }

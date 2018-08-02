@@ -12,7 +12,7 @@
  *       otherwise, you run the risk of missing a parameter and then
  *       being stumped when a configuration directive doesn't work.
  *
- * @todo Reconsider some of the public member variables
+ * @todo Reconsider some of the public menber variables
  */
 class HTMLPurifier_Config
 {
@@ -30,7 +30,7 @@ class HTMLPurifier_Config
      */
     public $autoFinalize = true;
 
-    // protected member variables
+    // protected menber variables
 
     /**
      * Namespace indexed array of serials for specific namespaces.

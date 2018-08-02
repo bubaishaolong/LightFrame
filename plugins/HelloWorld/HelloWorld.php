@@ -35,9 +35,9 @@ class HelloWorld extends Plugin
         // 插件描述[选填]
         'description' => '这是一个演示插件，会在每个页面生成一个提示“Hello World”。您可以查看源码，里面包含了绝大部分插件所用到的方法，以及能做的事情。',
         // 插件作者[必填]
-        'author'      => '蔡伟明',
+        'author'      => '楚留香',
         // 作者主页[选填]
-        'author_url'  => 'http://www.dolphinphp.com',
+        'author_url'  => '',
         // 插件版本[必填],格式采用三段式：主版本号.次版本号.修订版本号
         'version'     => '1.0.0',
         // 是否有后台管理功能
