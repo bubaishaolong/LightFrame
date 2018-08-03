@@ -616,6 +616,42 @@
         ]
     },
     {
+        "name": "topthink/think-mongo",
+        "version": "v1.8.5",
+        "version_normalized": "1.8.5.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/top-think/think-mongo.git",
+            "reference": "657cc79bd5f090a58b0cc83776073dd69c83a3d1"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/top-think/think-mongo/zipball/657cc79bd5f090a58b0cc83776073dd69c83a3d1",
+            "reference": "657cc79bd5f090a58b0cc83776073dd69c83a3d1",
+            "shasum": ""
+        },
+        "time": "2018-06-03T01:51:27+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "think\\mongo\\": "src"
+            },
+            "files": []
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "Apache-2.0"
+        ],
+        "authors": [
+            {
+                "name": "liu21st",
+                "email": "liu21st@gmail.com"
+            }
+        ],
+        "description": "mongodb driver for thinkphp5"
+    },
+    {
         "name": "topthink/think-queue",
         "version": "v2.0.3",
         "version_normalized": "2.0.3.0",
