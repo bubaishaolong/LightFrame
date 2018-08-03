@@ -11,30 +11,38 @@
 namespace app\shop\home;
 
 use app\admin\model\Hook;
+use app\common\builder\ZBuilder;
 use plugins\PHPMailer\PHPMailer;
 
 class  Menber extends Common
 {
     public function index()
     {
+        $data = 'shop/menber/index';
+        $key = generate_rand_str(32);
+        $datal =  think_encrypt($data,$key);
+        return $datal;
+        return think_decrypt($datal,$key);
+
+
         // $res = plugin_action('Markdown','Markdown','output',['c:\\test.md']); //markdown插件应用测试
-        $res = plugin_action('Markdown', 'Markdown', 'output'); //默认解释显示parsedown库的使用readme.md文件
+        //$res = plugin_action('Markdown', 'Markdown', 'output'); //默认解释显示parsedown库的使用readme.md文件
 
         //return $res;
-        //换新支付配置
-        $payment_data = [
-            'GoodsName'         => '充值',
-            'MerBillNo'         => '订单号',
-            'Amount'            => '金额',
-            'Attach'            => '备注',
-            'Merchanturl'       => '',
-            'ServerUrl'         => '',
-            'UserRealName'      => '',//自动注册
-            'UserId'            => '',//自动注册
-        ];
-        plugin_action('Ipspay/Ipspay/payment', [$payment_data, 'h5']);
+        //环信支付配置
+//        $payment_data = [
+//            'GoodsName'         => '充值',
+//            'MerBillNo'         => '订单号',
+//            'Amount'            => '金额',
+//            'Attach'            => '备注',
+//            'Merchanturl'       => '',
+//            'ServerUrl'         => '',
+//            'UserRealName'      => '',//自动注册
+//            'UserId'            => '',//自动注册
+//        ];
+//        plugin_action('Ipspay/Ipspay/payment', [$payment_data, 'h5']);
         //邮件测试
-        $res = PHPMailer::send_email('测试宝宝','测试内容','to_user_emial','alias');
+        //$res = PHPMailer::send_email('测试宝宝','测试内容','to_user_emial','alias');
         //支付宝调用
         $data = [
             'out_trade_no'=>time(),
@@ -44,7 +52,7 @@ class  Menber extends Common
             'notify_url'=>'不能发连接',
             'return_url'=>'不能发连接',
         ];
-        plugin_action('Alipay/Alipay/alipay', $data);
+       // plugin_action('Alipay/Alipay/alipay', $data);
 
         // 引入插件包类库
        //use plugins\WeChatSDK\controller\WeChat;
@@ -93,6 +101,11 @@ class  Menber extends Common
             ])
             ->fetch();
         dump($res);
+
+        //plugin_url('链接', '参数', '模块名')
+        //plugin_action('插件名', '控制器', '动作', '参数')
+        //plugin_action_exists('插件名', '控制器', '动作')
+        //plugin_config('插件名', '配置值')
         return $this->fetch(); // 渲染模板
     }
 }

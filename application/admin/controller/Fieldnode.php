@@ -58,7 +58,7 @@ class Fieldnode extends Admin
                 ['module', '模块', 'text'],
                 ['title', '菜单', 'text'],
                 ['url_value', '链接'],
-                ['status', '是否启用', 'switch'],
+                ['status', '是否前端显示', 'switch'],
                 ['right_button', '操作', 'btn']
             ])
             ->addRightButtons(['delete'])// 批量添加右侧按钮

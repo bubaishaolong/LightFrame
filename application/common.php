@@ -1759,6 +1759,13 @@ class  {$datarow[$i]} extends Admin
             \$datavaluet['custom'] =  '';
             \$datavaluer['custom'] =  '';
         }
+         \$width = FieldModel::where(array('model' => \$datamodelID, 'status' => 1, 'show' => 1, 'is_filter' => 0))->column('name,width');
+         \$bind_title = <<<JS
+<script>
+td = $('.builder-table-body tr td:eq(3)');
+td.find('div').attr('title', td.text());
+</script>
+JS;
         // 使用ZBuilder快速创建数据表格
         return ZBuilder::make('table')
             ->setSearch(\$data_search)
@@ -1773,6 +1780,8 @@ class  {$datarow[$i]} extends Admin
             ->addTopButtons(\$datavaluet)
 			->addRightButtons(\$rightbutton)
 			->addRightButtons(\$datavaluer)
+			 ->setColumnWidth(\$width)
+			 ->setExtraJs(\$bind_title)
             ->setRowList(\$dataList)
             ->setPages(\$page) // 设置分页数据
             ->fetch();

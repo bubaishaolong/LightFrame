@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2018-08-02 17:37:16
+Date: 2018-08-03 17:29:19
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -151,14 +151,14 @@ CREATE TABLE `cj_admin_button` (
   `update_time` int(11) unsigned DEFAULT '0' COMMENT '更新时间',
   `button_type` varchar(255) NOT NULL DEFAULT 'tab1' COMMENT '按钮的类型',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='按钮列表';
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='按钮列表';
 
 -- ----------------------------
 -- Records of cj_admin_button
 -- ----------------------------
-INSERT INTO `cj_admin_button` VALUES ('3', '新增', 'add', 'fa fa-fw fa-search', '75', '', 'admin/menu/add', '1', '0', '0', '0', '', '[\'model_id\'=>\'__id__\']', '100', '', '1', '1532586274', '1532586274', 'tab1');
-INSERT INTO `cj_admin_button` VALUES ('4', '编辑', 'edit', 'fa fa-fw fa-home', '75', '', '', '1', '0', '0', '0', '', '[\'model_id\'=>\'__id__\']', '100', '', '1', '1532586465', '1532586465', 'tab2');
-INSERT INTO `cj_admin_button` VALUES ('6', '编辑', 'add', 'fa fa-fw fa-star', '75', '', 'admin/menu/add', '1', '0', '0', '0', '', '[\'model_id\'=>\'__id__\']', '100', '', '1', '1532596267', '1532596267', 'tab1');
+INSERT INTO `cj_admin_button` VALUES ('8', '顶部按钮', 'dingbuanniu', 'fa fa-fw fa-video-camera', '75', 'btn btn-danger', 'shop/menber/edit', '1', '0', '0', '0', '', '[\'id\'=>\'__id__\']', '100', '', '1', '1533264283', '1533268062', 'tab1');
+INSERT INTO `cj_admin_button` VALUES ('4', '乱搞的', 'cdjyj', 'fa fa-fw fa-home', '75', '', '', '1', '0', '0', '0', '', '[\'model_id\'=>\'__id__\']', '100', '', '1', '1532586465', '1533265463', 'tab2');
+INSERT INTO `cj_admin_button` VALUES ('6', '测试按钮', 'ceshi', 'fa fa-fw fa-star', '75', '', 'shop/menber/add', '1', '0', '0', '0', '', '', '100', '', '1', '1532596267', '1533263455', 'tab1');
 
 -- ----------------------------
 -- Table structure for cj_admin_config
@@ -266,37 +266,38 @@ CREATE TABLE `cj_admin_field` (
   `data_type` varchar(255) NOT NULL DEFAULT '' COMMENT '数据类型',
   `length` varchar(50) NOT NULL DEFAULT '' COMMENT '长度',
   `is_null` tinyint(2) NOT NULL DEFAULT '0' COMMENT '是否为空',
-  `new_type` varchar(255) DEFAULT '' COMMENT '新增类型',
-  `edit_type` varchar(255) DEFAULT '' COMMENT '编辑类型',
-  `list_type` varchar(255) DEFAULT '' COMMENT '列表类型',
+  `new_type` varchar(255) DEFAULT 'text' COMMENT '新增类型',
+  `edit_type` varchar(255) DEFAULT 'text' COMMENT '编辑类型',
+  `list_type` varchar(255) DEFAULT 'text' COMMENT '列表类型',
   `field_check` varchar(255) DEFAULT '' COMMENT '字段校验',
   `is_search` tinyint(1) DEFAULT '0' COMMENT '是否显示搜索 0不显示  1 是显示',
   `is_filter` tinyint(1) DEFAULT '0' COMMENT '是否显示过滤 0不显示  1 是显示',
   `is_total` tinyint(1) DEFAULT '0' COMMENT '是否显示合计 0不显示  1 是显示',
+  `width` int(11) DEFAULT '0' COMMENT '设置列的宽度',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=MyISAM AUTO_INCREMENT=506 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='文档字段表';
 
 -- ----------------------------
 -- Records of cj_admin_field
 -- ----------------------------
-INSERT INTO `cj_admin_field` VALUES ('370', 'status', '状态', 'radio', 'tinyint(2) NOT NULL', '1', '0:禁用\n1:启用', '', '0', '1', '75', '', '', '', '', '', '2', '', '', '', '', '1532490563', '1532490563', '100', '1', 'tinyint', '1', '0', 'switch', 'switch', 'switch', '', '0', '0', '0');
-INSERT INTO `cj_admin_field` VALUES ('369', 'delete_time', '删除时间', 'datetime', 'int(11) UNSIGNED NOT NULL', '0', null, '', '0', '1', '75', '', '', '', '', '', '2', '', '', '', '', '1532490563', '1532490563', '100', '1', '', '', '0', 'hidden', 'hidden', 'hidden', '', '0', '0', '0');
-INSERT INTO `cj_admin_field` VALUES ('368', 'update_time', '更新时间', 'datetime', 'int(11) UNSIGNED NOT NULL', '0', null, '', '0', '1', '75', '', '', '', '', '', '2', '', '', '', '', '1532490563', '1532490563', '100', '1', '', '', '0', 'hidden', 'hidden', 'text', '', '0', '0', '0');
-INSERT INTO `cj_admin_field` VALUES ('367', 'create_time', '创建时间', 'datetime', 'int(11) UNSIGNED NOT NULL', '0', null, '', '0', '1', '75', '', '', '', '', '', '2', '', '', '', '', '1532490563', '1532490563', '100', '1', '', '', '0', 'hidden', 'hidden', '', '', '0', '0', '0');
-INSERT INTO `cj_admin_field` VALUES ('366', 'id', 'id', 'text', 'int(11) UNSIGNED NOT NULL', null, null, '', '0', '1', '75', '', '', '', '', '', '2', '', '', '', '', '1532490563', '1532490563', '1', '1', '', '', '0', 'hidden', null, 'text', '', '0', '0', '0');
-INSERT INTO `cj_admin_field` VALUES ('356', 'id', 'id', 'text', 'int(11) UNSIGNED NOT NULL', null, null, '', '0', '1', '73', '', '', '', '', '', '2', '', '', '', '', '1532490029', '1532490029', '100', '1', 'int', '11', '0', '1', null, '', '', '0', '0', '0');
-INSERT INTO `cj_admin_field` VALUES ('357', 'create_time', '创建时间', 'datetime', 'int(11) UNSIGNED NOT NULL', '0', null, '', '0', '1', '73', '', '', '', '', '', '2', '', '', '', '', '1532490029', '1532490029', '100', '1', 'int', '11', '0', '0', null, '', '', '0', '0', '0');
-INSERT INTO `cj_admin_field` VALUES ('358', 'update_time', '更新时间', 'datetime', 'int(11) UNSIGNED NOT NULL', '0', null, '', '0', '1', '73', '', '', '', '', '', '2', '', '', '', '', '1532490029', '1532490029', '100', '1', 'int', '11', '0', '0', null, '', '', '0', '1', '0');
-INSERT INTO `cj_admin_field` VALUES ('359', 'delete_time', '删除时间', 'datetime', 'int(11) UNSIGNED NOT NULL', '0', null, '', '0', '1', '73', '', '', '', '', '', '2', '', '', '', '', '1532490029', '1532490029', '100', '1', 'int', '11', '0', '0', null, '', '', '0', '1', '0');
-INSERT INTO `cj_admin_field` VALUES ('360', 'status', '状态', 'radio', 'tinyint(2) NOT NULL', '1', '0:禁用\n1:启用', '', '0', '1', '73', '', '', '', '', '', '2', '', '', '', '', '1532490029', '1532490029', '100', '1', 'tinyint', '1', '0', 'hidden', null, '', '', '0', '1', '0');
-INSERT INTO `cj_admin_field` VALUES ('378', 'user_token', '用户', 'text', 'varchar(255)  not null', '', '', '', '0', '1', '75', '', '', '', '', '', '0', '', '', '', '', '1532502407', '1532502407', '3', '1', 'varchar', '255', '0', '1', '', '', '', '0', '0', '0');
-INSERT INTO `cj_admin_field` VALUES ('380', 'title', '标题', 'text', 'varchar(255)  NOT NULL', '', '', '', '0', '1', '75', '', '', '', '', '', '0', '', '', '', '', '1532502767', '1532502767', '2', '1', 'varchar', '255', '0', '1', 'text', 'text', '', '1', '1', '0');
-INSERT INTO `cj_admin_field` VALUES ('394', 'liste', '列表', 'text', 'varchar(255)  NOT NULL', '', '', '', '0', '1', '75', '', '', '', '', '', '0', '', '', '', '', '1532509193', '1532509193', '100', '1', 'varchar', '255', '0', 'textarea', '', 'text', 'max:255', '1', '1', '0');
-INSERT INTO `cj_admin_field` VALUES ('501', 'id', 'id', 'text', 'int(11) UNSIGNED NOT NULL', null, null, '', '0', '1', '115', '', '', '', '', '', '2', '', '', '', '', '1533112918', '1533112918', '100', '1', 'int', '11', '0', '', '', '', '', '0', '0', '0');
-INSERT INTO `cj_admin_field` VALUES ('502', 'create_time', '创建时间', 'datetime', 'int(11) UNSIGNED NOT NULL', '0', null, '', '0', '1', '115', '', '', '', '', '', '2', '', '', '', '', '1533112918', '1533112918', '100', '1', 'int', '11', '0', '', '', '', '', '0', '0', '0');
-INSERT INTO `cj_admin_field` VALUES ('503', 'update_time', '更新时间', 'datetime', 'int(11) UNSIGNED NOT NULL', '0', null, '', '0', '1', '115', '', '', '', '', '', '2', '', '', '', '', '1533112918', '1533112918', '100', '1', 'int', '11', '0', '', '', '', '', '0', '0', '0');
-INSERT INTO `cj_admin_field` VALUES ('504', 'delete_time', '删除时间', 'datetime', 'int(11) UNSIGNED NOT NULL', '0', null, '', '0', '1', '115', '', '', '', '', '', '2', '', '', '', '', '1533112918', '1533112918', '100', '1', 'int', '11', '0', '', '', '', '', '0', '0', '0');
-INSERT INTO `cj_admin_field` VALUES ('505', 'status', '状态', 'radio', 'tinyint(2) NOT NULL', '1', '0:禁用\n1:启用', '', '0', '1', '115', '', '', '', '', '', '2', '', '', '', '', '1533112918', '1533112918', '100', '1', 'tinyint', '1', '0', '', '', '', '', '0', '0', '0');
+INSERT INTO `cj_admin_field` VALUES ('370', 'status', '状态', 'radio', 'tinyint(2) NOT NULL', '1', '0:禁用\n1:启用', '', '0', '1', '75', '', '', '', '', '', '2', '', '', '', '', '1532490563', '1532490563', '100', '1', 'tinyint', '1', '0', 'switch', 'switch', 'switch', '', '0', '0', '0', null);
+INSERT INTO `cj_admin_field` VALUES ('369', 'delete_time', '删除时间', 'datetime', 'int(11) UNSIGNED NOT NULL', '0', null, '', '0', '1', '75', '', '', '', '', '', '2', '', '', '', '', '1532490563', '1532490563', '100', '1', 'int', '11', '0', 'hidden', 'hidden', 'hidden', '', '0', '0', '0', null);
+INSERT INTO `cj_admin_field` VALUES ('368', 'update_time', '更新时间', 'datetime', 'int(11) UNSIGNED NOT NULL', '0', null, '', '0', '1', '75', '', '', '', '', '', '2', '', '', '', '', '1532490563', '1532490563', '100', '1', 'int', '11', '0', 'hidden', 'hidden', 'datetime', '', '0', '0', '0', null);
+INSERT INTO `cj_admin_field` VALUES ('367', 'create_time', '创建时间', 'datetime', 'int(11) UNSIGNED NOT NULL', '0', null, '', '0', '1', '75', '', '', '', '', '', '2', '', '', '', '', '1532490563', '1532490563', '100', '1', 'int', '11', '0', 'hidden', 'hidden', 'datetime', '', '0', '0', '0', null);
+INSERT INTO `cj_admin_field` VALUES ('366', 'id', 'id', 'text', 'int(11) UNSIGNED NOT NULL', null, null, '', '0', '1', '75', '', '', '', '', '', '2', '', '', '', '', '1532490563', '1532490563', '1', '1', 'int', '11', '0', 'hidden', 'text', 'text', '', '0', '0', '0', '20');
+INSERT INTO `cj_admin_field` VALUES ('356', 'id', 'id', 'text', 'int(11) UNSIGNED NOT NULL', null, null, '', '0', '1', '73', '', '', '', '', '', '2', '', '', '', '', '1532490029', '1532490029', '100', '1', 'int', '11', '0', 'text', 'text', 'text', '', '0', '0', '0', null);
+INSERT INTO `cj_admin_field` VALUES ('357', 'create_time', '创建时间', 'datetime', 'int(11) UNSIGNED NOT NULL', '0', null, '', '0', '1', '73', '', '', '', '', '', '2', '', '', '', '', '1532490029', '1532490029', '100', '1', 'int', '11', '0', 'text', 'text', 'text', '', '0', '0', '0', null);
+INSERT INTO `cj_admin_field` VALUES ('358', 'update_time', '更新时间', 'datetime', 'int(11) UNSIGNED NOT NULL', '0', null, '', '0', '1', '73', '', '', '', '', '', '2', '', '', '', '', '1532490029', '1532490029', '100', '1', 'int', '11', '0', 'text', 'text', 'text', '', '0', '1', '0', null);
+INSERT INTO `cj_admin_field` VALUES ('359', 'delete_time', '删除时间', 'datetime', 'int(11) UNSIGNED NOT NULL', '0', null, '', '0', '1', '73', '', '', '', '', '', '2', '', '', '', '', '1532490029', '1532490029', '100', '1', 'int', '11', '0', 'text', 'text', 'text', '', '0', '1', '0', null);
+INSERT INTO `cj_admin_field` VALUES ('360', 'status', '状态', 'radio', 'tinyint(2) NOT NULL', '1', '0:禁用\n1:启用', '', '0', '1', '73', '', '', '', '', '', '2', '', '', '', '', '1532490029', '1532490029', '100', '1', 'tinyint', '1', '0', 'hidden', 'text', 'text', '', '0', '1', '0', null);
+INSERT INTO `cj_admin_field` VALUES ('378', 'user_token', '用户', 'text', 'varchar(255)  not null', '', '', '', '0', '1', '75', '', '', '', '', '', '0', '', '', '', '', '1532502407', '1532502407', '3', '1', 'varchar', '255', '0', 'text', 'text', 'text', '', '0', '0', '0', null);
+INSERT INTO `cj_admin_field` VALUES ('380', 'title', '标题', 'text', 'varchar(255)  NOT NULL', '', '', '', '0', '1', '75', '', '', '', '', '', '0', '', '', '', '', '1532502767', '1532502767', '2', '1', 'varchar', '255', '0', 'text', 'text', 'text', '', '1', '1', '0', '50');
+INSERT INTO `cj_admin_field` VALUES ('394', 'liste', '列表', 'text', 'varchar(255)  NOT NULL', '', '', '', '0', '1', '75', '', '', '', '', '', '0', '', '', '', '', '1532509193', '1532509193', '100', '1', 'varchar', '255', '0', 'textarea', 'text', 'text', 'max:255', '1', '1', '0', '10');
+INSERT INTO `cj_admin_field` VALUES ('501', 'id', 'id', 'text', 'int(11) UNSIGNED NOT NULL', null, null, '', '0', '1', '115', '', '', '', '', '', '2', '', '', '', '', '1533112918', '1533112918', '100', '1', 'int', '11', '0', 'text', 'text', 'text', '', '0', '0', '0', null);
+INSERT INTO `cj_admin_field` VALUES ('502', 'create_time', '创建时间', 'datetime', 'int(11) UNSIGNED NOT NULL', '0', null, '', '0', '1', '115', '', '', '', '', '', '2', '', '', '', '', '1533112918', '1533112918', '100', '1', 'int', '11', '0', 'text', 'text', 'text', '', '0', '0', '0', null);
+INSERT INTO `cj_admin_field` VALUES ('503', 'update_time', '更新时间', 'datetime', 'int(11) UNSIGNED NOT NULL', '0', null, '', '0', '1', '115', '', '', '', '', '', '2', '', '', '', '', '1533112918', '1533112918', '100', '1', 'int', '11', '0', 'text', 'text', 'text', '', '0', '0', '0', null);
+INSERT INTO `cj_admin_field` VALUES ('504', 'delete_time', '删除时间', 'datetime', 'int(11) UNSIGNED NOT NULL', '0', null, '', '0', '1', '115', '', '', '', '', '', '2', '', '', '', '', '1533112918', '1533112918', '100', '1', 'int', '11', '0', 'text', 'text', 'text', '', '0', '0', '0', null);
+INSERT INTO `cj_admin_field` VALUES ('505', 'status', '状态', 'radio', 'tinyint(2) NOT NULL', '1', '0:禁用\n1:启用', '', '0', '1', '115', '', '', '', '', '', '2', '', '', '', '', '1533112918', '1533112918', '100', '1', 'tinyint', '1', '0', 'text', 'text', 'text', '', '0', '0', '0', null);
 
 -- ----------------------------
 -- Table structure for cj_admin_hook
@@ -1092,7 +1093,7 @@ CREATE TABLE `cj_admin_model` (
 -- Records of cj_admin_model
 -- ----------------------------
 INSERT INTO `cj_admin_model` VALUES ('73', 'shop', '会员列表', 'cj_shop_user_list', '2', 'fa fa-fw fa-film', '100', '1', '1', '1', '0', '1532490029', '1533087439', 'add,enable,disable,back', 'edit');
-INSERT INTO `cj_admin_model` VALUES ('75', 'shop', '会员管理', 'cj_shop_menber', '2', 'fa fa-fw fa-repeat', '100', '1', '1', '1', '0', '1532490563', '1533191593', 'add,enable,disable,back', 'edit,delete');
+INSERT INTO `cj_admin_model` VALUES ('75', 'shop', '会员管理', 'cj_shop_menber', '2', 'fa fa-fw fa-repeat', '100', '0', '1', '1', '0', '1532490563', '1533278581', 'add,enable,disable,back', 'edit,delete');
 INSERT INTO `cj_admin_model` VALUES ('115', 'shop', '订单管理', 'cj_shop_order', '1', 'fa fa-fw fa-calendar', '100', '1', '1', '1', '0', '1533112918', '1533112918', 'back,add', 'edit,delete');
 
 -- ----------------------------
@@ -1351,8 +1352,8 @@ CREATE TABLE `cj_shop_menber` (
 -- ----------------------------
 -- Records of cj_shop_menber
 -- ----------------------------
-INSERT INTO `cj_shop_menber` VALUES ('4', '1532509261', '1532509261', '100', '1', '3', '3', '66');
-INSERT INTO `cj_shop_menber` VALUES ('5', '1532510021', '1532510021', '100', '1', '3', '4', '4');
+INSERT INTO `cj_shop_menber` VALUES ('4', '1532509261', '1533285808', '100', '1', '3', '11111', '66');
+INSERT INTO `cj_shop_menber` VALUES ('5', '1532510021', '1533285795', '100', '1', '3', '4', '4');
 INSERT INTO `cj_shop_menber` VALUES ('6', '1532510871', '1532510871', '100', '1', '999', '999', '9999');
 
 -- ----------------------------

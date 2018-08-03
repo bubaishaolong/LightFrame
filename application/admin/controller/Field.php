@@ -151,6 +151,7 @@ class Field extends Admin
                 ['type', '类型', 'text', '', config('form_item_type')],
                 ['create_time', '创建时间', 'datetime'],
                 ['sort', '排序', 'text.edit'],
+                ['width', '列宽', 'text.edit'],
                 ['data_type', '数据类型', 'select', config('database_data_type')],
                 ['length', '数据长度', 'text.edit'],
                 ['value', '默认值', 'text.edit'],

@@ -192,6 +192,7 @@ class  Databasetable extends Admin
         $dataarray[$datalists] = '顶级菜单';
         // 显示添加页面
         return ZBuilder::make('form')
+            ->setPageTips('系统会自动生成一些常规的节点,特殊节点需要自己去添加')
             ->addFormItems([
                 ['static', 'name', '模型标识', '由小写字母、数字或下划线组成，不能以数字开头', 'shop'],
                 ['text', 'title', '表名', '可填写中文'],

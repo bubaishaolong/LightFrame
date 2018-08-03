@@ -28,6 +28,7 @@ class  Menber extends Admin
 	 */
 	public function index()
 	{
+	    dump(get_location());die;
         $request = Request::instance();
         $datas = $request->dispatch();
         $mashu = $datas['module'][0];
@@ -112,7 +113,14 @@ class  Menber extends Admin
             $datavaluet['custom'] =  '';
             $datavaluer['custom'] =  '';
         }
-        //dump($datavalue);die;
+        $width = FieldModel::where(array('model' => $datamodelID, 'status' => 1, 'show' => 1, 'is_filter' => 0))->column('name,width');
+        //dump($width);die;
+        $bind_title = <<<JS
+<script>
+td = $('.builder-table-body tr td:eq(3)');
+td.find('div').attr('title', td.text());
+</script>
+JS;
 		// 使用ZBuilder快速创建数据表格
 		return ZBuilder::make('table')
 			->setSearch($data_search)
@@ -126,6 +134,9 @@ class  Menber extends Admin
 			->addRightButtons($rightbutton)
 			->addRightButtons($datavaluer)
 			->setRowList($dataList)
+            ->setColumnWidth('__INDEX__',30)
+            ->setColumnWidth($width)
+            ->setExtraJs($bind_title)
 			->setPages($page)// 设置分页数据
 			->fetch();
 	}
@@ -157,9 +168,15 @@ class  Menber extends Admin
 			$new_type = $value['new_type'];
 			$data[] = [$new_type, $names, $title, $tips];
 		}
+//        $html = <<<EOF
+//            <div style="background: #f6faff;height: 100px;width: 100%;">
+//
+//</div>
+//EOF;
 		// 显示添加页面
 		return ZBuilder::make('form')
 			->addFormItems($data)
+            //->setExtraHtml($html, 'content_top')
 			->fetch();
 	}
 
