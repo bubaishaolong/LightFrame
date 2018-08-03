@@ -78,11 +78,11 @@ class Button extends Admin
             $data['module_id'] = $id;
             $data['button_type'] = $tab;
             $param = $data['param'];
-            if ($param) {
-                $param_list = 'url(' . $data['url'] . ',' . $param . ')';
-            } else {
-                $param_list = 'url(' . $data['url'] . ')';
-            }
+//            if ($param) {
+//                $param_list = 'url(' . $data['url'] . ',' . $param . ')';
+//            } else {
+//                $param_list = 'url(' . $data['url'] . ')';
+//            }
 
 //            $top_button_value = [
 //                'title' => $data['title'],
@@ -113,7 +113,7 @@ class Button extends Admin
                 ['text', 'title', '按钮标题', '只能是中文的汉字(添加)'],
                 ['text', 'name', '按钮名称', '请填写字母的名称,例如: add delete'],
                 ['icon', 'icon', '图标'],
-                ['text', 'css_style', '按钮css样式'],
+                ['select', 'css_style', '按钮css样式','',['btn btn-primary'=>'primary','btn btn-default'=>'default','btn btn-info'=>'info','btn btn-success'=>'success','btn btn-warning'=>'warning','btn btn-danger'=>'danger',],'btn btn-primary'],
                 ['text', 'url', 'url链接', '例如 : admin/menu/add'],
                 ['radio', 'open_type', '打开显示类型', ' 默认|主要|警告|危险|成功', ['0' => '默认(info)', '1' => '警告(danger)', '3' => '危险(danger)', '4' => '成功(除此之外还有success)'], 0],
                 ['text', 'param', '携带参数', "请输入携带参数 php代码格式['model_id'=>'__id__']"],
@@ -177,7 +177,7 @@ class Button extends Admin
                 ['text', 'title', '按钮标题', '只能是中文的汉字(添加)'],
                 ['text', 'name', '按钮名称', '请填写字母的名称,例如: add delete'],
                 ['icon', 'icon', '图标'],
-                ['text', 'css_style', '按钮css样式'],
+                ['select', 'css_style', '按钮css样式','',['btn btn-primary'=>'primary(默认)','btn btn-default'=>'default','btn btn-info'=>'info','btn btn-success'=>'success','btn btn-warning'=>'warning','btn btn-danger'=>'danger',],'btn btn-primary'],
                 ['text', 'url', 'url链接', '例如 : admin/menu/add'],
                 ['radio', 'open_type', '打开显示类型', ' 默认|主要|警告|危险|成功', ['0' => '默认(info)', '1' => '警告(danger)', '3' => '危险(danger)', '4' => '成功(除此之外还有success)'], 0],
                 ['text', 'param', '携带参数', "请输入携带参数 php代码格式['model_id'=>'__id__']"],

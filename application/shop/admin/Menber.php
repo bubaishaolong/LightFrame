@@ -83,6 +83,7 @@ class  Menber extends Admin
             foreach ($module_id as $key=>$value){
                 $gatakey['title'] = $value['title'];
                 $gatakey['name'] = $value['name'];
+                $gatakey['class'] = $value['css_style']?$value['css_style']:'btn btn-primary';
                 $gatakey['icon'] = $value['icon'];
                 if($value['param']){
                     $dataarr= explode(',',$value['param']);
