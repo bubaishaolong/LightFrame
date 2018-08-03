@@ -17,6 +17,7 @@ use app\common\builder\ZBuilder;
 use app\admin\model\Model as ModelModel;
 use app\shop\model\Menber as MenberModel;
 use app\admin\model\Field as FieldModel;
+use think\Request;
 
 class  Menber extends Admin
 {
@@ -27,6 +28,9 @@ class  Menber extends Admin
 	 */
 	public function index()
 	{
+        $request = Request::instance();
+        $datas = $request->dispatch();
+        $mashu = $datas['module'][0];
 		//获取数据
 		$order = $this->getOrder();
 		// 获取筛选
@@ -73,21 +77,41 @@ class  Menber extends Admin
 		if (!$datafilesea) {
 			$datafilesea = '';
 		}
-//        $module_id =ButtonModel::where(array('module_id'=>$datamodelID,'status' => 1,'button_type'=>'tab1'))->select();
-//		foreach ($module_id as $key=>$value){
-//            $gatakey['title'] = $value['title'];
-//            $gatakey['name'] = $value['name'];
-//            $gatakey['icon'] = $value['icon'];
-//		    $dataarr= explode(',',$value['param']);
-//		    for ($i=0;$i<count($dataarr);$i++){
-//                $datakey[$i] = explode('=>',$dataarr[$i]);
-//                $param[$datakey[$i][0]] = $datakey[$i][1];
-//                $datai[$i]['sjdjs'.$i] = $param;
-//            }
-//            //$gatakey['herf'] = url($value['url'],$datai);
-//        }
+		//顶部和右侧按钮自定义
+        $module_id =ButtonModel::where(array('module_id'=>$datamodelID,'status' => 1))->select();
+		if($module_id){
+            foreach ($module_id as $key=>$value){
+                $gatakey['title'] = $value['title'];
+                $gatakey['name'] = $value['name'];
+                $gatakey['icon'] = $value['icon'];
+                if($value['param']){
+                    $dataarr= explode(',',$value['param']);
+                    //$gatakey['herf'] = url($value['url'],$dataarr);
+                    for ($i=0;$i<count($dataarr);$i++){
+                        $datapppp[$i] = str_replace('[','',$dataarr[$i]);
+                        $datassss[$i] = str_replace(']','',$datapppp[$i]);
+                        $dataeee[$i] = str_replace("'",'',$datassss[$i]);
+                        $datakey[$i] = explode('=>',$dataeee[$i]);
+                        $param[$datakey[$i][0]] = $datakey[$i][1];
+                    }
+                    $gatakey['href'] = url($value['url'],$param);
+                }else{
+                    $gatakey['href'] = url($value['url']);
+                }
+                //tab1 是顶部按钮  tab2是右侧按钮
+                if($value['button_type'] == 'tab1'){
+                    $datavaluet['custom'.$key] =  $gatakey;
+                }elseif ($value['button_type'] == 'tab2'){
+                    $datavaluer['custom'.$key] =  $gatakey;
+                }
 
-//		dump($datai);die;
+            }
+
+        }else{
+            $datavaluet['custom'] =  '';
+            $datavaluer['custom'] =  '';
+        }
+        //dump($datavalue);die;
 		// 使用ZBuilder快速创建数据表格
 		return ZBuilder::make('table')
 			->setSearch($data_search)
@@ -96,10 +120,10 @@ class  Menber extends Admin
 			->addColumn('__INDEX__', '#')
 			->addColumns($data)
 			->addColumn('right_button', '操作', 'btn')
-//			->addRightButtons(['edit','delete'])
 			->addTopButtons($topbutton)
-			//->addTopButtons($datai)
+			->addTopButtons($datavaluet)
 			->addRightButtons($rightbutton)
+			->addRightButtons($datavaluer)
 			->setRowList($dataList)
 			->setPages($page)// 设置分页数据
 			->fetch();
@@ -137,6 +161,13 @@ class  Menber extends Admin
 			->addFormItems($data)
 			->fetch();
 	}
+
+
+    /**
+     * @param string $id
+     * @return mixed
+     * 编辑页面
+     */
 	public function edit($id=''){
 		if($this->request->isPost()){
 			$data= $this->request->post();
