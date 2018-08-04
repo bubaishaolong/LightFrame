@@ -216,6 +216,7 @@ class  Databasetable extends Admin
      */
     public function edit($id = null)
     {
+		$menuinfo = ModelModel::get($id);
         if ($id === null) $this->error('参数错误');
         $request = Request::instance();
         $datas = $request->dispatch();
@@ -228,6 +229,17 @@ class  Databasetable extends Admin
             if (true !== $result) $this->error($result);
 
             if (ModelModel::update($data)) {
+				$request = Request::instance();
+				$datas =$request->dispatch();
+				$mashu =$datas['module'][0];
+				$menutitle = $menuinfo['table'];
+				$datamenu = explode(config('database.prefix').$mashu.'_',$menutitle);
+				$datamenuname = strtolower(ucwordsUnderline($datamenu[1]));
+				//拼接链接
+				$lianjie = $mashu.'/'.$datamenuname.'/index';
+				$update_menu['title']= $data['title'];
+				$where_menu['url_value']= $lianjie;
+				MenuModel::update($update_menu,$where_menu);
                 cache('admin_model_list', null);
                 cache('admin_model_title_list', null);
                 // 记录行为

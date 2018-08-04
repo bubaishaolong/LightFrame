@@ -1665,7 +1665,7 @@ namespace app\\{$name}\\admin;
 
 use app\admin\controller\Admin;
 use app\common\\builder\ZBuilder;
-
+use app\admin\model\Button as ButtonModel;
 use app\admin\model\Model as ModelModel;
 use app\\{$name}\\model\\{$datarow[$i]} as {$datarow[$i]}Model;
 use app\admin\model\Field as FieldModel;
@@ -2173,6 +2173,7 @@ class  Index extends Admin
 	 * @return mixed
 	 */
 	public function edit(\$id = null) {
+	   \$menuinfo = ModelModel::get(\$id);
 		if (\$id === null) \$this->error('参数错误');
 		\$request = Request::instance();
 		\$datas =\$request->dispatch();
@@ -2185,6 +2186,18 @@ class  Index extends Admin
 			if(true !== \$result) \$this->error(\$result);
 
 			if (ModelModel::update(\$data)) {
+			\$request = Request::instance();
+				\$datas =\$request->dispatch();
+				\$mashu =\$datas['module'][0];
+			   \$menutitle =\$menuinfo['table'];
+				\$datamenu = explode(config('database.prefix').\$mashu.'_',\$menutitle);
+				\$datamenuname = strtolower(ucwordsUnderline(\$datamenu[1]));
+				//拼接链接
+				\$lianjie = \$mashu.'/'.\$datamenuname.'/index';
+				\$update_menu['title']= \$data['title'];
+				\$update_menu['icon']= \$data['icon'];
+				\$where_menu['url_value']=\$lianjie;
+				MenuModel::update(\$update_menu,\$where_menu);
 				cache('admin_model_list', null);
 				cache('admin_model_title_list', null);
 				// 记录行为
@@ -2356,16 +2369,23 @@ class  Index extends Admin
             \$this->success('编辑成功');
         }
         \$group_name = Db::name('admin_module_config')->where(array('module_name' => \$group, 'status' => 1))->distinct(true)->order('sort asc')->column('group_name');
+        if(\$group_name){
         for (\$i = 0; \$i < count(\$group_name); \$i++) {
             \$list_tab['tab' . \$i] = ['title' => \$group_name[\$i], 'url' => url('getConfigureList', ['name' => \$group_name[\$i], 'group' => \$group, 'tab' => 'tab' . \$i])];
             \$dataLists = ModuleconfigModel::where(array('group_name' => ['like','%'.\$group_name[\$i].'%']))->select();
             foreach (\$dataLists as \$key => \$value) {
-                if($name ==\$value['group_name'] ){
+                if(\$name ==\$value['group_name'] ){
                     \$datas[\$key] = [\$value['field_type'], \$value['name'], \$value['title']];
                     \$info =  ModuleconfigModel::where(array('module_name' => \$group, 'status' => 1,'group_name' => \$value['group_name']))->column('name,default_value');
                 }
             }
         }
+        }else{
+        	\$list_tab = '';
+			\$datas = '';
+			\$info= '';
+        }
+        
         return ZBuilder::make('form')
             ->setTabNav(\$list_tab, \$tab)
             ->addFormItems(\$datas)
