@@ -28,7 +28,6 @@ class  Menber extends Admin
 	 */
 	public function index()
 	{
-	    dump(get_location());die;
         $request = Request::instance();
         $datas = $request->dispatch();
         $mashu = $datas['module'][0];

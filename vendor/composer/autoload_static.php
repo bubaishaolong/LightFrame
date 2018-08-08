@@ -30,6 +30,10 @@ class ComposerStaticInitea24a8d88377c9cd0962665edfe67ce8
             'Psr\\Http\\Message\\' => 17,
             'PHPMailer\\PHPMailer\\' => 20,
         ),
+        'O' => 
+        array (
+            'Overtrue\\Pinyin\\' => 16,
+        ),
         'G' => 
         array (
             'GuzzleHttp\\Psr7\\' => 16,
@@ -72,6 +76,10 @@ class ComposerStaticInitea24a8d88377c9cd0962665edfe67ce8
         'PHPMailer\\PHPMailer\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
+        ),
+        'Overtrue\\Pinyin\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/overtrue/pinyin/src',
         ),
         'GuzzleHttp\\Psr7\\' => 
         array (

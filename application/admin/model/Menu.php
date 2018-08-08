@@ -213,12 +213,13 @@ class Menu extends Model
         if (!$location) {
             $map['pid'] = ['<>', 0];
             $map['url_value'] = strtolower($model.'/'.trim(preg_replace("/[A-Z]/", "_\\0", $controller), "_").'/'.$action);
-
+            //dump($map);die;
             // 当前操作对应的节点ID
             $curr_id  = $id == '' ? self::where($map)->value('id') : $id;
 
             // 获取节点ID是所有父级节点
             $location = Tree::getParents(self::column('id,pid,title,url_value'), $curr_id);
+
 
             if ($check && empty($location)) {
                 throw new Exception('获取不到当前节点地址，可能未添加节点', 9001);
