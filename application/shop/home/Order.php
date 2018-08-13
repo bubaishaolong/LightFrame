@@ -35,7 +35,7 @@ class  Order extends Common
         if (!$mqtt->connect(true, NULL, $username, $password)) { //链接不成功再重复执行监听连接
             exit(1);
         }
-        $topics['MyUser'] = array("qos" => 0, "function" => "procmsg");
+        $topics['mqtt'] = array("qos" => 0, "function" => "procmsg");
         // 订阅主题为 myhome qos为0
          $mqtt->subscribe($topics, 0);
 

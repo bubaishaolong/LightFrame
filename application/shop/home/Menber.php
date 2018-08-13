@@ -20,6 +20,11 @@ class  Menber extends Common
 {
     public function index()
     {
+        $Mqtt = 'Mqtt';
+        include_once dirname(__FILE__).'/api/'.$Mqtt.'.php';
+        $data = new $Mqtt();
+        $data->index();
+
         header("Content-type: text/html; charset=GBK");
         // 发送给订阅号信息,创建socket,无sam队列
         $server = "mamios.com";     // 服务代理地址(mqtt服务端地址)
@@ -31,7 +36,6 @@ class  Menber extends Common
 //        $username = "admin";                   // 用户名(如果需要)
 //        $password = "password";                   // 密码(如果需要
         $client_id = "mybroker"; // 设置你的连接客户端id
-
         $mqtt = new Mqtt($server, $port, $client_id); //实例化MQTT类
         if ($mqtt->connect(true, NULL, $username, $password)) {
             //如果创建链接成功
