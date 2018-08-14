@@ -13,13 +13,16 @@ class ComposerStaticInitea24a8d88377c9cd0962665edfe67ce8
         '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         '1cfd2761b63b0a29ed23657ea394cb2d' => __DIR__ . '/..' . '/topthink/think-captcha/src/helper.php',
+        'ddc3cd2a04224f9638c5d0de6a69c7e3' => __DIR__ . '/..' . '/topthink/think-migration/src/config.php',
         'cc56288302d9df745d97c934d6a6e5f0' => __DIR__ . '/..' . '/topthink/think-queue/src/common.php',
     );
 
     public static $prefixLengthsPsr4 = array (
         't' => 
         array (
+            'think\\sae\\' => 10,
             'think\\mongo\\' => 12,
+            'think\\migration\\' => 16,
             'think\\helper\\' => 13,
             'think\\composer\\' => 15,
             'think\\captcha\\' => 14,
@@ -28,6 +31,7 @@ class ComposerStaticInitea24a8d88377c9cd0962665edfe67ce8
         'P' => 
         array (
             'Psr\\Http\\Message\\' => 17,
+            'Phinx\\' => 6,
             'PHPMailer\\PHPMailer\\' => 20,
         ),
         'O' => 
@@ -47,9 +51,17 @@ class ComposerStaticInitea24a8d88377c9cd0962665edfe67ce8
     );
 
     public static $prefixDirsPsr4 = array (
+        'think\\sae\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/topthink/think-sae/src',
+        ),
         'think\\mongo\\' => 
         array (
             0 => __DIR__ . '/..' . '/topthink/think-mongo/src',
+        ),
+        'think\\migration\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/topthink/think-migration/src',
         ),
         'think\\helper\\' => 
         array (
@@ -72,6 +84,10 @@ class ComposerStaticInitea24a8d88377c9cd0962665edfe67ce8
         'Psr\\Http\\Message\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-message/src',
+        ),
+        'Phinx\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/topthink/think-migration/phinx/src/Phinx',
         ),
         'PHPMailer\\PHPMailer\\' => 
         array (
