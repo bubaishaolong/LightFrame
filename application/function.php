@@ -153,8 +153,8 @@ function deurl_info_token($token)
 
 /** * 加密方法
  * @param string $data 要加密的字符串
- * @param string $key  加密密钥
- * @param int $expire  过期时间 (单位:秒)
+ * @param string $key 加密密钥
+ * @param int $expire 过期时间 (单位:秒)
  * @return string
  */
 function think_encrypt($data, $key, $expire = 0)
@@ -182,7 +182,7 @@ function think_encrypt($data, $key, $expire = 0)
 /**
  * 解密方法
  * @param string $data 要解密的字符串 （必须是think_encrypt方法加密的字符串）
- * @param string $key  加密密钥
+ * @param string $key 加密密钥
  * @return string
  */
 function think_decrypt($data, $key)
@@ -219,7 +219,8 @@ function think_decrypt($data, $key)
  * @param int $age_time
  * @return boolean|int
  */
-function getAge($age_time) {
+function getAge($age_time)
+{
     $age = $age_time;
     if ($age === false) {
         return false;
@@ -240,14 +241,15 @@ function getAge($age_time) {
  * 输出：星座名称或者错误信息
  */
 
-function get_zodiac_sign($month, $day) {
+function get_zodiac_sign($month, $day)
+{
     // 检查参数有效性
     if ($month < 1 || $month > 12 || $day < 1 || $day > 31) {
         return (false);
     }
 
     // 星座名称以及开始日期
-    $signs = array( array("20" => "水瓶座"), array("19" => "双鱼座"), array("21" => "白羊座"), array("20" => "金牛座"), array("21" => "双子座"), array("22" => "巨蟹座"), array("23" => "狮子座"), array("23" => "处女座"), array("23" => "天秤座"), array("24" => "天蝎座"), array("22" => "射手座"), array("22" => "摩羯座"), );
+    $signs = array(array("20" => "水瓶座"), array("19" => "双鱼座"), array("21" => "白羊座"), array("20" => "金牛座"), array("21" => "双子座"), array("22" => "巨蟹座"), array("23" => "狮子座"), array("23" => "处女座"), array("23" => "天秤座"), array("24" => "天蝎座"), array("22" => "射手座"), array("22" => "摩羯座"),);
     list($sign_start, $sign_name) = each($signs[(int)$month - 1]);
     if ($day < $sign_start) {
         list($sign_start, $sign_name) = each($signs[($month - 2 < 0) ? $month = 11 : $month -= 2]);
@@ -255,4 +257,5 @@ function get_zodiac_sign($month, $day) {
 
     return $sign_name;
 }
+
 
