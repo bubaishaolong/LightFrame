@@ -12,60 +12,87 @@ namespace app\shop\home;
 
 use app\admin\model\Hook;
 use app\common\builder\ZBuilder;
+use Lcobucci\JWT\Builder;
+use Lcobucci\JWT\Parser;
+use Lcobucci\JWT\Signer\Hmac\Sha256;
+use Lcobucci\JWT\Signer\Keychain;
+use lmxdawn\jwt\JWT;
 use plugins\PHPMailer\PHPMailer;
 
 use Overtrue\Pinyin\Pinyin;
+use think\Exception;
 
 class  Menber extends Common
 {
     public function index()
     {
 
-        //$getIp=$_SERVER["REMOTE_ADDR"];
-        $getIp=get_client_ip();
-        echo 'IP:',$getIp;
-        echo '<br/>';
-        $content = file_get_contents("http://api.map.baidu.com/location/ip?ak=7IZ6fgGEGohCrRKUE9Rj4TSQ&ip={$getIp}&coor=bd09ll");
-        $json = json_decode($content);
+        $key = "example_key";
+        $time = time();
+        $token = array(
+            "iss" => "http://example.org",//该JWT的签发者
+            "aud" => "http://example.com",//接收该JWT的一方
+            "sub" => "xxx@example.com",//该JWT所面向的用户
+            "iat" => $time,//在什么时候签发的
+            "exp" => $time + 3600,// 什么时候过期，这里是一个Unix时间戳
 
-        echo 'log:',$json->{'content'}->{'point'}->{'x'};//按层级关系提取经度数据
-        echo '<br/>';
-        echo 'lat:',$json->{'content'}->{'point'}->{'y'};//按层级关系提取纬度数据
-        echo '<br/>';
-        print $json->{'content'}->{'address'};//按层级关系提取address数据
-
-        $Mqtt = 'Mqtt';
-        include_once dirname(__FILE__).'/api/'.$Mqtt.'.php';
-        $data = new $Mqtt();
-        $data->index();
-
-        header("Content-type: text/html; charset=GBK");
-        // 发送给订阅号信息,创建socket,无sam队列
-        $server = "mamios.com";     // 服务代理地址(mqtt服务端地址)
-        $port = 1833;                     // 通信端口
-//        $server = "127.0.0.1";     // 服务代理地址(mqtt服务端地址)
-//        $port = 61613;
-        $username = "";                   // 用户名(如果需要)
-        $password = "";
-//        $username = "admin";                   // 用户名(如果需要)
-//        $password = "password";                   // 密码(如果需要
-        $client_id = "mybroker"; // 设置你的连接客户端id
-        $mqtt = new Mqtt($server, $port, $client_id); //实例化MQTT类
-        if ($mqtt->connect(true, NULL, $username, $password)) {
-            //如果创建链接成功
-            $mqtt->publish("mqtt", "mysql", 0);
-            //$command = 'mosquitto_sub -h mamios.com -t "mqtt" -v -p 1833';
-//            $command = "mosquitto_pub -h mamios.com -t 'mqtt' -m 'Hello Stonegeek' -p 1833";
-//            $a = exec($command,$out,$status);
-//            print_r($a);
-//            print_r($out);
-//            print_r($status);
-            //dump($mqtt->connect_auto());die;
-            // 发送到 xxx3809293670ctr 的主题 一个信息 内容为 setr=3xxxxxxxxx Qos 为 0
-            $mqtt->close();    //发送后关闭链接
-        } else {
-            echo "Time out!\n";
+        );
+        //加密出来的字符串
+        $jwt = JWT::encode($token, $key, 'HS256');
+        try {
+            JWT::$leeway = 60; // $leeway in seconds
+            $decoded = JWT::decode($jwt, $key, array('HS256'));
+        } catch (Exception $exception) {
+            echo '失败';
         }
+        print_r($jwt);
+        die;
+        return think_encrypt('shop/member/index', 'ABC');
+        //$getIp=$_SERVER["REMOTE_ADDR"];
+//        $getIp=get_client_ip();
+//        echo 'IP:',$getIp;
+//        echo '<br/>';
+//        $content = file_get_contents("http://api.map.baidu.com/location/ip?ak=7IZ6fgGEGohCrRKUE9Rj4TSQ&ip={$getIp}&coor=bd09ll");
+//        $json = json_decode($content);
+//
+//        echo 'log:',$json->{'content'}->{'point'}->{'x'};//按层级关系提取经度数据
+//        echo '<br/>';
+//        echo 'lat:',$json->{'content'}->{'point'}->{'y'};//按层级关系提取纬度数据
+//        echo '<br/>';
+//        print $json->{'content'}->{'address'};//按层级关系提取address数据
+//
+//        $Mqtt = 'Mqtt';
+//        include_once dirname(__FILE__).'/api/'.$Mqtt.'.php';
+//        $data = new $Mqtt();
+//        $data->index();
+//
+//        header("Content-type: text/html; charset=GBK");
+//        // 发送给订阅号信息,创建socket,无sam队列
+//        $server = "mamios.com";     // 服务代理地址(mqtt服务端地址)
+//        $port = 1833;                     // 通信端口
+////        $server = "127.0.0.1";     // 服务代理地址(mqtt服务端地址)
+////        $port = 61613;
+//        $username = "";                   // 用户名(如果需要)
+//        $password = "";
+////        $username = "admin";                   // 用户名(如果需要)
+////        $password = "password";                   // 密码(如果需要
+//        $client_id = "mybroker"; // 设置你的连接客户端id
+//        $mqtt = new Mqtt($server, $port, $client_id); //实例化MQTT类
+//        if ($mqtt->connect(true, NULL, $username, $password)) {
+//            //如果创建链接成功
+//            $mqtt->publish("mqtt", "mysql", 0);
+//            //$command = 'mosquitto_sub -h mamios.com -t "mqtt" -v -p 1833';
+////            $command = "mosquitto_pub -h mamios.com -t 'mqtt' -m 'Hello Stonegeek' -p 1833";
+////            $a = exec($command,$out,$status);
+////            print_r($a);
+////            print_r($out);
+////            print_r($status);
+//            //dump($mqtt->connect_auto());die;
+//            // 发送到 xxx3809293670ctr 的主题 一个信息 内容为 setr=3xxxxxxxxx Qos 为 0
+//            $mqtt->close();    //发送后关闭链接
+//        } else {
+//            echo "Time out!\n";
+//        }
 
 //
 //        //把汉字转换为拼音
@@ -163,12 +190,76 @@ class  Menber extends Common
     }
 
 
-    public function procmsg($topic, $msg){ //信息回调函数 打印信息
-        echo "Msg Recieved: " . date("r") . "\n";
-        echo "Topic: {$topic}\n\n";
-        echo "\t$msg\n\n";
-        $xxx = json_decode($msg);
-        var_dump($xxx->aa);
-        die;
+//    public function procmsg($topic, $msg){ //信息回调函数 打印信息
+//        echo "Msg Recieved: " . date("r") . "\n";
+//        echo "Topic: {$topic}\n\n";
+//        echo "\t$msg\n\n";
+//        $xxx = json_decode($msg);
+//        var_dump($xxx->aa);
+//        die;
+//    }
+
+    /**
+     * @return string
+     * iss (issuer)	issuer 请求实体，可以是发起请求的用户的信息，也可是jwt的签发者
+        sub (Subject)	设置主题，类似于发邮件时的主题
+        aud (audience)	接收jwt的一方
+        exp (expire)	token过期时间
+        nbf (not before)	当前时间在nbf设定时间之前，该token无法使用
+        iat (issued at)	token创建时间
+        jti (JWT ID)	对当前token设置唯一标示
+     */
+    public function token()
+    {
+
+        $builder = new Builder();
+        $signer = new Sha256();
+        $key = '签名key';
+        // 设置发行人
+        $builder->setIssuer('http://example.com');
+        // 设置接收人
+        $builder->setAudience('http://example.org');
+        // 设置id
+        $builder->setId('4f1g23a12aa', true);
+        // 设置生成token的时间
+        $builder->setIssuedAt(time());
+        // 设置在60秒内该token无法使用
+        $builder->setNotBefore(time() + 60);
+        // 设置过期时间
+        $builder->setExpiration(time() + 60);
+        // 给token设置一个id
+        $builder->set('uid', 1);
+        // 对上面的信息使用sha256算法签名
+        $builder->sign($signer, $key);
+        // 获取生成的token
+        $token = $builder->getToken();
+        return (string)$token;
     }
+
+    public function stoken(){
+        $signer = new \Lcobucci\JWT\Signer\Rsa\Sha256();
+        $keychain = new Keychain();
+
+        $builder = new Builder();
+        $builder->setIssuer('http://example.com');
+        $builder->setAudience('http://example.org');
+        $builder->setId('4f1g23a12aa', true);
+        $builder->setIssuedAt(time());
+        $builder->setNotBefore(time() + 60);
+        $builder->setExpiration(time() + 3600);
+        $builder->set('uid', 1);
+        // 与上面不同的是这里使用的是你的私钥，并提供私钥的地址
+        $builder->sign($signer, $keychain->getPrivateKey('file://{私钥地址}'));
+        $toekn = $builder->getToken();
+        return $toekn;
+    }
+
+    public function yanzhengtoken($token = ''){
+    //use Lcobucci\JWT\Signer\Hmac\Sha256;
+
+        $parse = (new Parser())->parse($token);
+        $signer = new Sha256();
+        dump($parse->verify($signer,'签名key'));// 验证成功返回true 失败false
+    }
+
 }

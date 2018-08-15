@@ -13,5 +13,7 @@ namespace app\shop\home;
 class  Userlist extends Common
 {
 
+    public function index(){
 
+    }
 }

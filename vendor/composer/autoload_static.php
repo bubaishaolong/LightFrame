@@ -28,6 +28,10 @@ class ComposerStaticInitea24a8d88377c9cd0962665edfe67ce8
             'think\\captcha\\' => 14,
             'think\\' => 6,
         ),
+        'l' => 
+        array (
+            'lmxdawn\\jwt\\' => 12,
+        ),
         'P' => 
         array (
             'Psr\\Http\\Message\\' => 17,
@@ -37,6 +41,10 @@ class ComposerStaticInitea24a8d88377c9cd0962665edfe67ce8
         'O' => 
         array (
             'Overtrue\\Pinyin\\' => 16,
+        ),
+        'L' => 
+        array (
+            'Lcobucci\\JWT\\' => 13,
         ),
         'G' => 
         array (
@@ -81,6 +89,10 @@ class ComposerStaticInitea24a8d88377c9cd0962665edfe67ce8
             1 => __DIR__ . '/..' . '/topthink/think-image/src',
             2 => __DIR__ . '/..' . '/topthink/think-queue/src',
         ),
+        'lmxdawn\\jwt\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/lmxdawn/php-jwt/src',
+        ),
         'Psr\\Http\\Message\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-message/src',
@@ -96,6 +108,10 @@ class ComposerStaticInitea24a8d88377c9cd0962665edfe67ce8
         'Overtrue\\Pinyin\\' => 
         array (
             0 => __DIR__ . '/..' . '/overtrue/pinyin/src',
+        ),
+        'Lcobucci\\JWT\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/lcobucci/jwt/src',
         ),
         'GuzzleHttp\\Psr7\\' => 
         array (

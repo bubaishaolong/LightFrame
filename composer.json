@@ -29,7 +29,9 @@
         "topthink/think-mongo": "1.*",
         "overtrue/pinyin": "~3.0",
         "topthink/think-migration": "^2.0",
-        "topthink/think-sae": "^1.1"
+        "topthink/think-sae": "^1.1",
+        "lmxdawn/php-jwt": "^1.0",
+        "lcobucci/jwt": "^3.2"
     },
     "extra": {
         "think-path": "thinkphp"
