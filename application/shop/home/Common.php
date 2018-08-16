@@ -43,27 +43,27 @@ class  Common extends Home
 //        exit();
         $key = '签名key';
         $this->token = input('get.token');
-        if(!isset($this->token) || empty($this->token)){
-          echo 'token值不存在,请检验链接';
-          exit();
+        if (!isset($this->token) || empty($this->token)) {
+            echo 'token值不存在,请检验链接';
+            exit();
         }
         try {
             JWT::$leeway = 60;//当前时间减去60，把时间留点余地
-            $decoded = JWT::decode( $this->token, $key, ['HS256']); //HS256方式，这里要和签发的时候对应
+            $decoded = JWT::decode($this->token, $key, ['HS256']); //HS256方式，这里要和签发的时候对应
             //验证成功
-            if((array)$decoded){
+            if ((array)$decoded) {
                 return true;
             };
-        } catch(SignatureInvalidException $e) {  //签名不正确
+        } catch (SignatureInvalidException $e) {  //签名不正确
             echo $e->getMessage();
             exit();
-        }catch(BeforeValidException $e) {  // 签名在某个时间点之后才能用
+        } catch (BeforeValidException $e) {  // 签名在某个时间点之后才能用
             echo $e->getMessage();
             exit();
-        }catch(ExpiredException $e) {  // token过期
+        } catch (ExpiredException $e) {  // token过期
             echo $e->getMessage();
             exit();
-        }catch(Exception $e) {  //其他错误
+        } catch (Exception $e) {  //其他错误
             echo $e->getMessage();
             exit();
         }
@@ -88,7 +88,7 @@ class  Common extends Home
         // 设置在60秒内该token无法使用
         $builder->setNotBefore(time() + 60);
         // 设置过期时间
-        $builder->setExpiration(time() + 3600);
+        $builder->setExpiration(time() + 7200);
         // 给token设置一个id
         $builder->set('uid', 1);
         // 对上面的信息使用sha256算法签名
@@ -103,7 +103,8 @@ class  Common extends Home
     /**
      * 生成token的另一种方法
      */
-    public function usertoken(){
+    public function usertoken()
+    {
         $key = 'ffdsfsd@4_45'; //key
         $time = time(); //当前时间
         //公用信息
@@ -116,20 +117,29 @@ class  Common extends Home
         ];
         $access_token = $token;
         $access_token['scopes'] = 'role_access'; //token标识，请求接口的token
-        $access_token['exp'] = $time+7200; //access_token过期时间,这里设置2个小时
+        $access_token['exp'] = $time + 7200; //access_token过期时间,这里设置2个小时
 
         $refresh_token = $token;
         $refresh_token['scopes'] = 'role_refresh'; //token标识，刷新access_token
-        $refresh_token['exp'] = $time+(86400 * 30); //access_token过期时间,这里设置30天
+        $refresh_token['exp'] = $time + (86400 * 30); //access_token过期时间,这里设置30天
 
         $jsonList = [
-            'access_token'=>JWT::encode($access_token,$key),
-            'refresh_token'=>JWT::encode($refresh_token,$key),
-            'token_type'=>'bearer' //token_type：表示令牌类型，该值大小写不敏感，这里用bearer
+            'access_token' => JWT::encode($access_token, $key),
+            'refresh_token' => JWT::encode($refresh_token, $key),
+            'token_type' => 'bearer' //token_type：表示令牌类型，该值大小写不敏感，这里用bearer
         ];
         Header("HTTP/1.1 201 Created");
         echo json_encode($jsonList); //返回给客户端token信息
     }
 
+    public function Api($code = '', $data = '', $massage = '')
+    {
+        $json = [
+            'code' => $code,
+            'data' => $data,
+            'massage' => $massage
+        ];
+        return json_encode($json);
 
+    }
 }

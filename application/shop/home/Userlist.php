@@ -14,6 +14,15 @@ class  Userlist extends Common
 {
 
     public function index(){
-        return 111;
+        //$data = $this->request->post();
+        $data = [
+            'a'=>'disjid',
+            'b'=>'颠三倒四',
+            'c'=>'sdsd',
+        ];
+        $dd = opssl_encrypt(json_encode($data));//参数加密
+        //$cc = opssl_decrypt($dd);//参数解密
+        return $this->Api(200,$dd,'成功');
+
     }
 }

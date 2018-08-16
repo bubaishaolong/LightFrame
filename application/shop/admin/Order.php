@@ -118,6 +118,8 @@ class  Order extends Admin
        // 显示添加页面
         return ZBuilder::make('form')
                ->addFormItems($data)
+
+           // ->addBtn('<button type="button" class="btn btn-default"><a href="../menber/index">额外按钮2</a></button>')
                ->fetch();
      }
      public function edit($id=''){
