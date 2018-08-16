@@ -211,7 +211,7 @@ class  Menber extends Common
      */
     public function token()
     {
-
+        dump(111);die;
         $builder = new Builder();
         $signer = new Sha256();
         $key = '签名key';

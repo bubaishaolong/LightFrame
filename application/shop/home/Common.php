@@ -15,7 +15,11 @@ use Lcobucci\JWT\Builder;
 use Lcobucci\JWT\Parser;
 use Lcobucci\JWT\Signer\Hmac\Sha256;
 use Lcobucci\JWT\Signer\Keychain;
+use lmxdawn\jwt\BeforeValidException;
+use lmxdawn\jwt\ExpiredException;
 use lmxdawn\jwt\JWT;
+use lmxdawn\jwt\SignatureInvalidException;
+use think\Exception;
 use think\Request;
 
 class  Common extends Home
@@ -31,25 +35,43 @@ class  Common extends Home
      * nbf (not before)    当前时间在nbf设定时间之前，该token无法使用
      * iat (issued at)    token创建时间
      * jti (JWT ID)    对当前token设置唯一标示
+     * 校验token值是否过期或者失败
      */
     public function _initialize()
     {
+//        $this->get_token();
+//        exit();
+        $key = '签名key';
         $this->token = input('get.token');
-        $mytoken = $this->get_token();
-        if(!$this->token){
-            echo '验证失败,token值不存在!';
+        if(!isset($this->token) || empty($this->token)){
+          echo 'token值不存在,请检验链接';
+          exit();
         }
-        if ($mytoken != $this->token) {
-            return '验证失败，token值不匹配!' . $mytoken;
-        }
-
-        if ($this->token) {
-            $parse = (new Parser())->parse($this->token);
-            $signer = new Sha256();
-            echo $parse->verify($signer, '签名key');// 验证成功返回true 失败false
+        try {
+            JWT::$leeway = 60;//当前时间减去60，把时间留点余地
+            $decoded = JWT::decode( $this->token, $key, ['HS256']); //HS256方式，这里要和签发的时候对应
+            //验证成功
+            if((array)$decoded){
+                return true;
+            };
+        } catch(SignatureInvalidException $e) {  //签名不正确
+            echo $e->getMessage();
+            exit();
+        }catch(BeforeValidException $e) {  // 签名在某个时间点之后才能用
+            echo $e->getMessage();
+            exit();
+        }catch(ExpiredException $e) {  // token过期
+            echo $e->getMessage();
+            exit();
+        }catch(Exception $e) {  //其他错误
+            echo $e->getMessage();
+            exit();
         }
     }
 
+    /**
+     * 生成token
+     */
     private function get_token()
     {
         $builder = new Builder();
@@ -66,16 +88,47 @@ class  Common extends Home
         // 设置在60秒内该token无法使用
         $builder->setNotBefore(time() + 60);
         // 设置过期时间
-        $builder->setExpiration(time() + 60);
+        $builder->setExpiration(time() + 3600);
         // 给token设置一个id
         $builder->set('uid', 1);
         // 对上面的信息使用sha256算法签名
         $builder->sign($signer, $key);
         // 获取生成的token
         $get_token = $builder->getToken();
-        return (string)$get_token;
+        //return (string)$get_token;
 
-        //echo (string)$get_token;
+        echo (string)$get_token;
+    }
+
+    /**
+     * 生成token的另一种方法
+     */
+    public function usertoken(){
+        $key = 'ffdsfsd@4_45'; //key
+        $time = time(); //当前时间
+        //公用信息
+        $token = [
+            'iss' => 'http://www.helloweba.net', //签发者 可选
+            'iat' => $time, //签发时间
+            'data' => [ //自定义信息，不要定义敏感信息
+                'userid' => 1,
+            ]
+        ];
+        $access_token = $token;
+        $access_token['scopes'] = 'role_access'; //token标识，请求接口的token
+        $access_token['exp'] = $time+7200; //access_token过期时间,这里设置2个小时
+
+        $refresh_token = $token;
+        $refresh_token['scopes'] = 'role_refresh'; //token标识，刷新access_token
+        $refresh_token['exp'] = $time+(86400 * 30); //access_token过期时间,这里设置30天
+
+        $jsonList = [
+            'access_token'=>JWT::encode($access_token,$key),
+            'refresh_token'=>JWT::encode($refresh_token,$key),
+            'token_type'=>'bearer' //token_type：表示令牌类型，该值大小写不敏感，这里用bearer
+        ];
+        Header("HTTP/1.1 201 Created");
+        echo json_encode($jsonList); //返回给客户端token信息
     }
 
 

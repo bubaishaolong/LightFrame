@@ -14,6 +14,6 @@ class  Userlist extends Common
 {
 
     public function index(){
-
+        return 111;
     }
 }

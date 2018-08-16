@@ -90,7 +90,7 @@ class Parser
         }
 
         $data = explode('.', $jwt);
-
+        //dump($data);die;
         if (count($data) != 3) {
             throw new InvalidArgumentException('The JWT string must have two dots');
         }
