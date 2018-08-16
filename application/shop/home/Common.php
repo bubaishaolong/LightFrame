@@ -139,7 +139,7 @@ class  Common extends Home
             'data' => $data,
             'massage' => $massage
         ];
-        return json_encode($json);
+        return json_encode($json,JSON_UNESCAPED_UNICODE);
 
     }
 }

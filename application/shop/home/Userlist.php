@@ -14,14 +14,17 @@ class  Userlist extends Common
 {
 
     public function index(){
+        /**
+         * 在写接口的时候可以用下面的实例去封装自己需要传递的参数进行加密,解密
+         */
         //$data = $this->request->post();
         $data = [
             'a'=>'disjid',
             'b'=>'颠三倒四',
             'c'=>'sdsd',
         ];
-        $dd = opssl_encrypt(json_encode($data));//参数加密
-        //$cc = opssl_decrypt($dd);//参数解密
+        $dd = opssl_encrypt(json_encode($data,JSON_UNESCAPED_UNICODE));//参数加密
+        $cc = opssl_decrypt($dd);//参数解密
         return $this->Api(200,$dd,'成功');
 
     }
