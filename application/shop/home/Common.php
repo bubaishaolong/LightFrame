@@ -44,7 +44,7 @@ class  Common extends Home
         $key = '签名key';
         $this->token = input('get.token');
         if (!isset($this->token) || empty($this->token)) {
-            echo 'token值不存在,请检验链接';
+            echo 'token值不存在或者为空';
             exit();
         }
         try {

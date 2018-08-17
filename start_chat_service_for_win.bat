@@ -1,0 +1,2 @@
+php application\shop\gatewayworker\start_win_register.php application\shop\gatewayworker\start_win_web.php application\shop\gatewayworker\start_win_gateway.php application\shop\gatewayworker\start_win_businessworker.php
+pause

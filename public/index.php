@@ -31,7 +31,8 @@ define('ADMIN_FILE', 'admin.php');
 if(!is_file('../data/install.lock')){
     define('BIND_MODULE', 'install');
 }
-define('BINDMODULE','index/Events');
+//查找到聊天服务器的位置Events
+define('BINDMODULE','shop/gatewayworker/Events');
 
 // 加载框架引导文件
 require '../thinkphp/start.php';

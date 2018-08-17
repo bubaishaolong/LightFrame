@@ -49,7 +49,7 @@ function headers()
 function opssl_encrypt($param)
 {
     $param = serialize($param);
-    $key = md5('www.baidu.com');
+    $key = md5('www.baidu.com');//加密密钥
     $data['iv'] = base64_encode(substr('openlist;encrypt', 0, 16));
     $data['value'] = openssl_encrypt($param, 'AES-256-CBC', $key, 0, base64_decode($data['iv']));
     $encrypt = base64_encode(json_encode($data));

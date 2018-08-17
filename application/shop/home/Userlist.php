@@ -15,11 +15,13 @@ use GatewayClient\Gateway;
 //调用kafka
 use Kafka\Consumer;
 use Kafka\ConsumerConfig;
+use Kafka\Producer;
 use Kafka\ProducerConfig;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use think\Db;
 
+date_default_timezone_set('PRC');
 class  Userlist extends Common
 {
 
@@ -29,12 +31,12 @@ class  Userlist extends Common
          * 使用方要去获取到client_id 参考手册的函数操作
          * WorkerMan支持TCP和UDP两种传输层协议
          */
-        $user_token = 1;//绑定当前用户的标识
-        $ClientIds = Gateway::getClientIdByUid($user_token);//绑定的$user_token在线的client_id
-        foreach ($ClientIds as $ClientId) {
-            Gateway::sendToClient($ClientId,'我是发送的测试内容');
-            return false;
-        }
+//        $user_token = 1;//绑定当前用户的标识
+//        $ClientIds = Gateway::getClientIdByUid($user_token);//绑定的$user_token在线的client_id
+//        foreach ($ClientIds as $ClientId) {
+//            Gateway::sendToClient($ClientId,'我是发送的测试内容');
+//            return false;
+//        }
         /**
          * 在写接口的时候可以用下面的实例去封装自己需要传递的参数进行加密,解密
          */
@@ -90,7 +92,7 @@ class  Userlist extends Common
         $config->setRequiredAck(1);
         $config->setIsAsyn(false);
         $config->setProduceInterval(500);
-        $producer = new \Kafka\Producer();
+        $producer = new Producer();
         $producer->setLogger($logger);
         for ($i = 0; $i < 10; $i++) {
             $producer->send([
