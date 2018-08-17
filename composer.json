@@ -31,7 +31,16 @@
         "topthink/think-migration": "^2.0",
         "topthink/think-sae": "^1.1",
         "lmxdawn/php-jwt": "^1.0",
-        "lcobucci/jwt": "^3.2"
+        "lcobucci/jwt": "^3.2",
+        "workerman/workerman-for-win": "^3.5",
+        "workerman/gatewayclient": "^3.0",
+        "clue/redis-react": "^2.2",
+        "react/http-client": "^0.5.9",
+        "react/dns": "^0.4.15",
+        "nmred/kafka-php": "v0.2.0.8"
+    },
+    "require-dev" :{
+     "kwn/php-rdkafka-stubs":"~1.1.0"
     },
     "extra": {
         "think-path": "thinkphp"

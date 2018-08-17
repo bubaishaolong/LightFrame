@@ -7,8 +7,12 @@ namespace Composer\Autoload;
 class ComposerStaticInitea24a8d88377c9cd0962665edfe67ce8
 {
     public static $files = array (
+        'ad155f8f1cf0d418fe49e248db8c661b' => __DIR__ . '/..' . '/react/promise/src/functions_include.php',
+        '6b06ce8ccf69c43a60a1e48495a034c9' => __DIR__ . '/..' . '/react/promise-timer/src/functions.php',
+        'e8aa6e4b5a1db2f56ae794f1505391a8' => __DIR__ . '/..' . '/amphp/amp/lib/functions.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
+        'ebf8799635f67b5d7248946fe2154f4a' => __DIR__ . '/..' . '/ringcentral/psr7/src/functions_include.php',
         '9b552a3cc426e3287cc811caefa3cf53' => __DIR__ . '/..' . '/topthink/think-helper/src/helper.php',
         '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
@@ -32,8 +36,25 @@ class ComposerStaticInitea24a8d88377c9cd0962665edfe67ce8
         array (
             'lmxdawn\\jwt\\' => 12,
         ),
+        'W' => 
+        array (
+            'Workerman\\' => 10,
+        ),
+        'R' => 
+        array (
+            'RingCentral\\Psr7\\' => 17,
+            'React\\Stream\\' => 13,
+            'React\\Socket\\' => 13,
+            'React\\Promise\\Timer\\' => 20,
+            'React\\Promise\\' => 14,
+            'React\\HttpClient\\' => 17,
+            'React\\EventLoop\\' => 16,
+            'React\\Dns\\' => 10,
+            'React\\Cache\\' => 12,
+        ),
         'P' => 
         array (
+            'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
             'Phinx\\' => 6,
             'PHPMailer\\PHPMailer\\' => 20,
@@ -51,10 +72,16 @@ class ComposerStaticInitea24a8d88377c9cd0962665edfe67ce8
             'GuzzleHttp\\Psr7\\' => 16,
             'GuzzleHttp\\Promise\\' => 19,
             'GuzzleHttp\\' => 11,
+            'GatewayClient\\' => 14,
         ),
         'C' => 
         array (
             'Cron\\' => 5,
+            'Clue\\React\\Redis\\' => 17,
+        ),
+        'A' => 
+        array (
+            'Amp\\' => 4,
         ),
     );
 
@@ -93,6 +120,50 @@ class ComposerStaticInitea24a8d88377c9cd0962665edfe67ce8
         array (
             0 => __DIR__ . '/..' . '/lmxdawn/php-jwt/src',
         ),
+        'Workerman\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/workerman/workerman-for-win',
+        ),
+        'RingCentral\\Psr7\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/ringcentral/psr7/src',
+        ),
+        'React\\Stream\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/react/stream/src',
+        ),
+        'React\\Socket\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/react/socket/src',
+        ),
+        'React\\Promise\\Timer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/react/promise-timer/src',
+        ),
+        'React\\Promise\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/react/promise/src',
+        ),
+        'React\\HttpClient\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/react/http-client/src',
+        ),
+        'React\\EventLoop\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/react/event-loop/src',
+        ),
+        'React\\Dns\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/react/dns/src',
+        ),
+        'React\\Cache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/react/cache/src',
+        ),
+        'Psr\\Log\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
         'Psr\\Http\\Message\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-message/src',
@@ -125,18 +196,51 @@ class ComposerStaticInitea24a8d88377c9cd0962665edfe67ce8
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
         ),
+        'GatewayClient\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/workerman/gatewayclient',
+        ),
         'Cron\\' => 
         array (
             0 => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron',
         ),
+        'Clue\\React\\Redis\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/clue/redis-react/src',
+        ),
+        'Amp\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/amphp/amp/lib',
+        ),
     );
 
     public static $prefixesPsr0 = array (
+        'K' => 
+        array (
+            'Kafka\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/nmred/kafka-php/src',
+            ),
+        ),
         'H' => 
         array (
             'HTMLPurifier' => 
             array (
                 0 => __DIR__ . '/..' . '/ezyang/htmlpurifier/library',
+            ),
+        ),
+        'E' => 
+        array (
+            'Evenement' => 
+            array (
+                0 => __DIR__ . '/..' . '/evenement/evenement/src',
+            ),
+        ),
+        'C' => 
+        array (
+            'Clue\\Redis\\Protocol' => 
+            array (
+                0 => __DIR__ . '/..' . '/clue/redis-protocol/src',
             ),
         ),
     );
