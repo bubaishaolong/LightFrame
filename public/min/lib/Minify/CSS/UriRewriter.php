@@ -107,8 +107,8 @@ class Minify_CSS_UriRewriter {
      * <code>
      * Minify_CSS_UriRewriter::rewriteRelative(
      *       '../img/hello.gif'
-     *     , '/home/user/www/css'  // path of CSS file
-     *     , '/home/user/www'      // doc root
+     *     , '/controller/user/www/css'  // path of CSS file
+     *     , '/controller/user/www'      // doc root
      * );
      * // returns '/img/hello.gif'
      * 
@@ -116,8 +116,8 @@ class Minify_CSS_UriRewriter {
      * Minify_CSS_UriRewriter::rewriteRelative(
      *       'hello.gif'
      *     , '/var/staticFiles/theme'
-     *     , '/home/user/www'
-     *     , array('/home/user/www/static' => '/var/staticFiles')
+     *     , '/controller/user/www'
+     *     , array('/controller/user/www/static' => '/var/staticFiles')
      * );
      * // returns '/static/theme/hello.gif'
      * </code>
@@ -133,7 +133,7 @@ class Minify_CSS_UriRewriter {
      * real target paths, where the link paths "appear" to be within the document 
      * root. E.g.:
      * <code>
-     * array('/home/foo/www/not/real/path' => '/real/target/path') // unix
+     * array('/controller/foo/www/not/real/path' => '/real/target/path') // unix
      * array('C:\\htdocs\\not\\real' => 'D:\\real\\target\\path')  // Windows
      * </code>
      * 

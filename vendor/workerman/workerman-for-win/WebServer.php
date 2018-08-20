@@ -24,7 +24,7 @@ class WebServer extends Worker
     /**
      * Virtual host to path mapping.
      *
-     * @var array ['workerman.net'=>'/home', 'www.workerman.net'=>'home/www']
+     * @var array ['workerman.net'=>'/controller', 'www.workerman.net'=>'controller/www']
      */
     protected $serverRoot = array();
 

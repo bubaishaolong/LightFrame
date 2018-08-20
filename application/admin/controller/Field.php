@@ -94,7 +94,7 @@ class Field extends Admin
 //        //生成菜单
 //		$btn_menu = [
 //			'title' => '生成菜单',
-//			'icon' => 'fa fa-fw fa-home',
+//			'icon' => 'fa fa-fw fa-controller',
 //			'href' => url('admin/field/generate_menu', ['model' =>$id])
 //		];
         // 使用ZBuilder快速创建数据表格

@@ -13,7 +13,7 @@
  *     'files' => array(
  *         '//js/jquery.js'
  *         ,'//js/plugins.js'
- *         ,'/home/username/file.js'
+ *         ,'/controller/username/file.js'
  *     )
  * ));
  * </code>

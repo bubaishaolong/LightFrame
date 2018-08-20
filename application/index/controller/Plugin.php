@@ -13,7 +13,7 @@ namespace app\index\controller;
 
 /**
  * 插件控制器
- * @package app\index\home
+ * @package app\index\controller
  */
 class Plugin extends Home
 {

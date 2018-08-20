@@ -32,7 +32,7 @@ class Cli {
      *      'a' => false              // option was missing
      *     ,'b' => true               // option was present
      *     ,'c' => "Hello"            // option had value
-     *     ,'f' => "/home/user/file"  // file path from root
+     *     ,'f' => "/controller/user/file"  // file path from root
      *     ,'f.raw' => "~/file"       // file path as given to option
      * )
      */

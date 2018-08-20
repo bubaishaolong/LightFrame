@@ -18,7 +18,7 @@ use think\Db;
 
 /**
  * 文档控制器
- * @package app\cms\home
+ * @package app\cms\controller
  */
 class Document extends Common
 {

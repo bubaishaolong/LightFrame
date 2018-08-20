@@ -116,7 +116,7 @@ function replace_br($value)
 /**
  * 反射系统模块类函数
  * @param array $params 需要传递的参数
- * @param string $model_class_path 模块的类路径，如lp_company\\home\\Mainuserex
+ * @param string $model_class_path 模块的类路径，如lp_company\\controller\\Mainuserex
  * @param string $actionName 请求函数
  * @return object 方法返回对象
  * @throws \Exception 类或函数不存在

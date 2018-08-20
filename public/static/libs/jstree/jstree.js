@@ -685,7 +685,7 @@
 							case 106: // aria defines * on numpad as open_all - not very common
 								this.open_all();
 								break;
-							case 36: // home
+							case 36: // controller
 								e.preventDefault();
 								o = this._firstChild(this.get_container_ul()[0]);
 								if(o) { $(o).children('.jstree-anchor').filter(':visible').focus(); }
