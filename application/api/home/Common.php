@@ -41,6 +41,10 @@ class Common extends Controller
             echo 'token值不存在或者为空';
             exit();
         }
+        $server = varify_url($_SERVER['HTTP_HOST']);
+        if($server === false){
+            return Api(500,'','网络连接错误');
+        }
         try {
             JWT::$leeway = 60;//当前时间减去60，把时间留点余地
             $decoded = JWT::decode($this->token, $key, ['HS256']); //HS256方式，这里要和签发的时候对应

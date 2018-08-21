@@ -41,20 +41,37 @@ function opssl_decrypt($encrypt)
     }
 }
 
-function Api($code = '', $data = [], $massage = '')
+/**
+ * @param string $code
+ * @param array $data
+ * @param string $massage
+ * @return string
+ * api的json输出
+ */
+function Api($code = 200, $data = [], $massage = '')
 {
-    if(!isset($data)){
-        $json = [
-            'code' => $code,
-            'massage' => $massage
-        ];
-    }else{
-        $json = [
-            'code' => $code,
-            'data' => $data,
-            'massage' => $massage
-        ];
-    }
-    return json_encode($json,JSON_UNESCAPED_UNICODE);
+    $json = [
+        'code' => $code,
+        'data' => $data,
+        'massage' => $massage
+    ];
+    return json_encode($json, JSON_UNESCAPED_UNICODE);
 
+}
+
+
+/**
+ * @param $url 当前所在的域名
+ * @return bool
+ * 检测网络是否连接
+ */
+function varify_url($url)
+{
+    $check = @fopen($url, "r");
+    if ($check) {
+        $status = true;
+    } else {
+        $status = false;
+    }
+    return $status;
 }

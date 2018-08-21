@@ -17,6 +17,9 @@ class Index extends Common
      * public/index.php/api/v1/index/index
      */
     public function index(){
+        $data =model('shop/menber')->select();//model(模块/模型下的模型名)
+        //model('shop/menber')->validate($data);
+        return Api(200,$data,'获取消息成功');
         $data = $this->request->Post();
         //json格式的内容输出
         $value['value'] = '584@qq.com';
