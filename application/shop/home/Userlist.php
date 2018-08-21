@@ -20,7 +20,6 @@ use Kafka\ProducerConfig;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use think\Db;
-
 date_default_timezone_set('PRC');
 class  Userlist extends Common
 {
@@ -104,4 +103,5 @@ class  Userlist extends Common
             ]);
         }
     }
+
 }

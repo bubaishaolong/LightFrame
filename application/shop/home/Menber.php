@@ -12,6 +12,8 @@ namespace app\shop\home;
 
 use app\admin\model\Hook;
 use app\common\builder\ZBuilder;
+
+use GatewayWorker\Lib\Gateway;
 use Lcobucci\JWT\Builder;
 use Lcobucci\JWT\Parser;
 use Lcobucci\JWT\Signer\Hmac\Sha256;
@@ -26,6 +28,7 @@ class  Menber extends Common
 {
     public function index()
     {
+        //Gateway::sendToAll();
         $key = "example_key";
         $time = time();
         $token = array(
