@@ -15,7 +15,7 @@ use app\common\controller\Common;
 
 /**
  * 前台公共控制器
- * @package app\index\controller
+ * @package app\index\home
  */
 class Home extends Common
 {

@@ -206,7 +206,7 @@ if (!function_exists('controller')) {
      * @param bool      $appendSuffix 是否添加类名后缀
      * @return \think\Controller
      */
-    function controller($name, $layer = 'controller', $appendSuffix = false)
+    function controller($name, $layer = 'home', $appendSuffix = false)
     {
         return Loader::controller($name, $layer, $appendSuffix);
     }
@@ -221,7 +221,7 @@ if (!function_exists('action')) {
      * @param bool          $appendSuffix 是否添加类名后缀
      * @return mixed
      */
-    function action($url, $vars = [], $layer = 'controller', $appendSuffix = false)
+    function action($url, $vars = [], $layer = 'home', $appendSuffix = false)
     {
         return Loader::action($url, $vars, $layer, $appendSuffix);
     }

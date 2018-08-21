@@ -26,7 +26,6 @@ class  Menber extends Common
 {
     public function index()
     {
-
         $key = "example_key";
         $time = time();
         $token = array(
@@ -135,7 +134,7 @@ class  Menber extends Common
         // plugin_action('Alipay/Alipay/alipay', $data);
 
         // 引入插件包类库
-        //use plugins\WeChatSDK\controller\WeChat;
+        //use plugins\WeChatSDK\home\WeChat;
 
         // 发起微信授权
         // WeChat::instance()->Oauth_Redirect('yourCallbackUrl',true);

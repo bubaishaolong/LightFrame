@@ -21,7 +21,7 @@ use think\Hook;
 
 /**
  * 插件管理控制器
- * @package app\admin\controller
+ * @package app\admin\home
  */
 class Plugin extends Admin
 {
@@ -644,7 +644,7 @@ class Plugin extends Admin
                 //生成插件目录
                 if (!is_dir($pathucwords)) {
                     mkdir($pathucwords, 0777, true);
-                    $controller_path = $pathucwords . DS . 'controller';
+                    $controller_path = $pathucwords . DS . 'home';
                     //生成对应的文件
                     if (!is_dir($controller_path)) {
                         mkdir($controller_path, 0777, true);

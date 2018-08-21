@@ -6,9 +6,9 @@
  * Time: 9:12
  */
 
-namespace app\api\controller\v1;
+namespace app\api\home\v1;
 
-use app\api\controller\Common;
+use app\api\home\Common;
 
 class Index extends Common
 {

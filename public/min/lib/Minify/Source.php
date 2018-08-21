@@ -48,7 +48,7 @@ class Minify_Source {
      * the content), 'content' (the string content) and 'lastModified' 
      * (unixtime of last update).
      * 
-     * As a shortcut, the controller will replace "//" at the beginning
+     * As a shortcut, the home will replace "//" at the beginning
      * of a filepath with $_SERVER['DOCUMENT_ROOT'] . '/'.
      *
      * @param array $spec options

@@ -20,7 +20,7 @@
  * If the above code were placed in /serve.php, it would enable the URLs
  * /serve.php/js and /serve.php/css
  * 
- * As a shortcut, the controller will replace "//" at the beginning
+ * As a shortcut, the home will replace "//" at the beginning
  * of a filename with $_SERVER['DOCUMENT_ROOT'] . '/'.
  * 
  * @package Minify
@@ -31,7 +31,7 @@ class Minify_Controller_Groups extends Minify_Controller_Base {
     /**
      * Set up groups of files as sources
      * 
-     * @param array $options controller and Minify options
+     * @param array $options home and Minify options
      *
      * 'groups': (required) array mapping PATH_INFO strings to arrays
      * of complete file paths. @see Minify_Controller_Groups
@@ -39,7 +39,7 @@ class Minify_Controller_Groups extends Minify_Controller_Base {
      * @return array Minify options
      */
     public function setupSources($options) {
-        // strip controller options
+        // strip home options
         $groups = $options['groups'];
         unset($options['groups']);
         

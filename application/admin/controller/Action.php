@@ -17,7 +17,7 @@ use app\admin\model\Module as ModuleModel;
 
 /**
  * 行为管理控制器
- * @package app\admin\controller
+ * @package app\admin\home
  */
 class Action extends Admin
 {

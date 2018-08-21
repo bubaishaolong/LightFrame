@@ -456,10 +456,10 @@ class App
                     isset($dispatch['convert']) ? $dispatch['convert'] : null
                 );
                 break;
-            case 'controller': // 执行控制器操作
+            case 'home': // 执行控制器操作
                 $vars = array_merge(Request::instance()->param(), $dispatch['var']);
                 $data = Loader::action(
-                    $dispatch['controller'],
+                    $dispatch['home'],
                     $vars,
                     $config['url_controller_layer'],
                     $config['controller_suffix']
@@ -555,11 +555,7 @@ class App
 
         // 获取操作名
         $actionName = strip_tags($result[2] ?: $config['default_action']);
-        if (!empty($config['action_convert'])) {
-            $actionName = Loader::parseName($actionName, 1);
-        } else {
-            $actionName = $convert ? strtolower($actionName) : $actionName;
-        }
+        $actionName = $convert ? strtolower($actionName) : $actionName;
 
         // 设置当前请求的控制器、操作
         $request->controller(Loader::parseName($controller, 1))->action($actionName);
@@ -575,7 +571,7 @@ class App
                 $config['empty_controller']
             );
         } catch (ClassNotFoundException $e) {
-            throw new HttpException(404, 'controller not exists:' . $e->getClass());
+            throw new HttpException(404, 'home not exists:' . $e->getClass());
         }
 
         // 获取当前操作名
@@ -585,13 +581,6 @@ class App
         if (is_callable([$instance, $action])) {
             // 执行操作方法
             $call = [$instance, $action];
-            // 严格获取当前操作方法名
-            $reflect    = new \ReflectionMethod($instance, $action);
-            $methodName = $reflect->getName();
-            $suffix     = $config['action_suffix'];
-            $actionName = $suffix ? substr($methodName, 0, -strlen($suffix)) : $methodName;
-            $request->action($actionName);
-
         } elseif (is_callable([$instance, '_empty'])) {
             // 空操作
             $call = [$instance, '_empty'];

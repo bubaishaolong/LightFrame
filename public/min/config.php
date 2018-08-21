@@ -74,7 +74,7 @@ $min_cachePath = dirname(__FILE__). '/../../runtime/temp';
  *
  * On some servers, this value may be misconfigured or missing. If so, set this 
  * to your full document root path with no trailing slash.
- * E.g. '/controller/accountname/public_html' or 'c:\\xampp\\htdocs'
+ * E.g. '/home/accountname/public_html' or 'c:\\xampp\\htdocs'
  *
  * If /min/ is directly inside your document root, just uncomment the 
  * second line. The third line might work on some Apache servers.

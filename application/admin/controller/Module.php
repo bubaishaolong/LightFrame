@@ -26,7 +26,7 @@ use think\Db;
 
 /**
  * 模块管理控制器
- * @package app\admin\controller
+ * @package app\admin\home
  */
 class Module extends Admin
 {

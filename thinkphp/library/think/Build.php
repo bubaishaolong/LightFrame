@@ -118,7 +118,7 @@ class Build
         if (empty($list)) {
             $list = [
                 '__file__' => ['config.php', 'common.php'],
-                '__dir__'  => ['controller', 'model', 'view'],
+                '__dir__'  => ['home', 'model', 'view'],
             ];
         }
 
@@ -150,7 +150,7 @@ class Build
                     $class    = $val . ($suffix ? ucfirst($path) : '');
 
                     switch ($path) {
-                        case 'controller': // 控制器
+                        case 'home': // 控制器
                             $content = "<?php\nnamespace {$space};\n\nclass {$class}\n{\n\n}";
                             break;
                         case 'model': // 模型
@@ -185,7 +185,7 @@ class Build
     protected static function buildHello($module, $namespace, $suffix = false)
     {
         $filename = APP_PATH . ($module ? $module . DS : '') .
-            'controller' . DS . 'Index' .
+            'home' . DS . 'Index' .
             ($suffix ? 'Controller' : '') . EXT;
 
         if (!is_file($filename)) {
@@ -193,7 +193,7 @@ class Build
             $suffix = $suffix ? 'Controller' : '';
             $content = str_replace(
                 ['{$app}', '{$module}', '{layer}', '{$suffix}'],
-                [$namespace, $module, 'controller', $suffix],
+                [$namespace, $module, 'home', $suffix],
                 file_get_contents(THINK_PATH . 'tpl' . DS . 'default_index.tpl')
             );
 

@@ -19,7 +19,7 @@ use think\Db;
 
 /**
  * 用于处理ajax请求的控制器
- * @package app\admin\controller
+ * @package app\admin\home
  */
 class Ajax extends Common
 {

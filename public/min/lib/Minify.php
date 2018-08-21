@@ -89,7 +89,7 @@ class Minify {
     /**
      * Serve a request for a minified file. 
      * 
-     * Here are the available options and defaults in the base controller:
+     * Here are the available options and defaults in the base home:
      * 
      * 'isPublic' : send "public" instead of "private" in Cache-Control 
      * headers, allowing shared caches to cache the output. (default true)
@@ -121,7 +121,7 @@ class Minify {
      * files will be move to the top. Note this may alter effective CSS values
      * due to a change in order. (default false)
      * 
-     * 'debug' : set to true to minify all sources with the 'Lines' controller, which
+     * 'debug' : set to true to minify all sources with the 'Lines' home, which
      * eases the debugging of combined files. This also prevents 304 responses.
      * @see Minify_Lines::minify()
      *
@@ -151,12 +151,12 @@ class Minify {
      * extension, so this should not be used in a Groups config with other
      * Javascript/CSS files.
      * 
-     * Any controller options are documented in that controller's setupSources() method.
+     * Any home options are documented in that home's setupSources() method.
      * 
      * @param mixed $controller instance of subclass of Minify_Controller_Base or string
-     * name of controller. E.g. 'Files'
+     * name of home. E.g. 'Files'
      * 
-     * @param array $options controller/serve options
+     * @param array $options home/serve options
      * 
      * @return null|array if the 'quiet' option is set to true, an array
      * with keys "success" (bool), "statusCode" (int), "content" (string), and
@@ -171,14 +171,14 @@ class Minify {
         }
 
         if (is_string($controller)) {
-            // make $controller into object
+            // make $home into object
             $class = 'Minify_Controller_' . $controller;
             $controller = new $class();
             /* @var Minify_Controller_Base $controller */
         }
         
-        // set up controller sources and mix remaining options with
-        // controller defaults
+        // set up home sources and mix remaining options with
+        // home defaults
         $options = $controller->setupSources($options);
         $options = $controller->analyzeSources($options);
         self::$_options = $controller->mixInDefaultOptions($options);
@@ -210,7 +210,7 @@ class Minify {
         if (self::$_options['encodeOutput']) {
             $sendVary = true;
             if (self::$_options['encodeMethod'] !== null) {
-                // controller specifically requested this
+                // home specifically requested this
                 $contentEncoding = self::$_options['encodeMethod'];
             } else {
                 // sniff request header
@@ -419,7 +419,7 @@ class Minify {
     private static $_cache = null;
     
     /**
-     * Active controller for current request
+     * Active home for current request
      *
      * @var Minify_Controller_Base
      */

@@ -13,12 +13,12 @@
  *     'files' => array(
  *         '//js/jquery.js'
  *         ,'//js/plugins.js'
- *         ,'/controller/username/file.js'
+ *         ,'/home/username/file.js'
  *     )
  * ));
  * </code>
  * 
- * As a shortcut, the controller will replace "//" at the beginning
+ * As a shortcut, the home will replace "//" at the beginning
  * of a filename with $_SERVER['DOCUMENT_ROOT'] . '/'.
  *
  * @package Minify
@@ -29,7 +29,7 @@ class Minify_Controller_Files extends Minify_Controller_Base {
     /**
      * Set up file sources
      * 
-     * @param array $options controller and Minify options
+     * @param array $options home and Minify options
      * @return array Minify options
      * 
      * Controller options:
@@ -37,7 +37,7 @@ class Minify_Controller_Files extends Minify_Controller_Base {
      * 'files': (required) array of complete file paths, or a single path
      */
     public function setupSources($options) {
-        // strip controller options
+        // strip home options
         
         $files = $options['files'];
         // if $files is a single object, casting will break it

@@ -17,7 +17,7 @@ use app\admin\model\Module as ModuleModel;
 
 /**
  * 系统模块控制器
- * @package app\admin\controller
+ * @package app\admin\home
  */
 class System extends Admin
 {

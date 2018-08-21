@@ -1,6 +1,6 @@
 <?php
 /**
- * Front controller for default Minify implementation
+ * Front home for default Minify implementation
  * 
  * DO NOT EDIT! Configure this utility via config.php and groupsConfig.php
  * 

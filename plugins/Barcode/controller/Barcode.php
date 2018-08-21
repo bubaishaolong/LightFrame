@@ -20,7 +20,7 @@ require_once(dirname(dirname(__FILE__))."/sdk/class/BCGcode128.barcode.php");
 
 /**
  * 条形码控制器
- * @package plugins\Sms\controller
+ * @package plugins\Sms\home
  */
 class Barcode extends Common
 {

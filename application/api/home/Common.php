@@ -5,7 +5,7 @@
  * Date: 2018/8/20
  * Time: 9:45
  */
-namespace app\api\controller;
+namespace app\api\home;
 
 use Lcobucci\JWT\Builder;
 use Lcobucci\JWT\Signer\Hmac\Sha256;

@@ -6,9 +6,9 @@
  * Time: 9:12
  */
 
-namespace app\api\controller\v2;
+namespace app\api\home\v2;
 
-use app\api\controller\Common;
+use app\api\home\Common;
 use app\api\model\User as UserModel;
 
 class Index extends Common

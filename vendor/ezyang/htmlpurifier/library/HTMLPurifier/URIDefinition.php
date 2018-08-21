@@ -14,7 +14,7 @@ class HTMLPurifier_URIDefinition extends HTMLPurifier_Definition
     public $base;
 
     /**
-     * String host to consider "controller" base, derived off of $base
+     * String host to consider "home" base, derived off of $base
      */
     public $host;
 

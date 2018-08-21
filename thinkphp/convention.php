@@ -97,7 +97,7 @@ return [
     // 是否自动转换URL中的控制器和操作名
     'url_convert'            => true,
     // 默认的访问控制器层
-    'url_controller_layer'   => 'controller',
+    'url_controller_layer'   => 'home',
     // 表单请求类型伪装变量
     'var_method'             => '_method',
     // 表单ajax伪装变量
@@ -116,8 +116,6 @@ return [
     // +----------------------------------------------------------------------
 
     'template'               => [
-        // 默认模板渲染规则 1 解析为小写+下划线 2 全部转换小写
-        'auto_rule'    => 1,
         // 模板引擎类型 支持 php think 支持扩展
         'type'         => 'Think',
         // 视图基础目录，配置目录为所有模块的视图起始目录
@@ -286,13 +284,6 @@ return [
         'type'      => 'bootstrap',
         'var_page'  => 'page',
         'list_rows' => 15,
-    ],
-
-    //控制台配置
-    'console'                => [
-        'name'    => 'Think Console',
-        'version' => '0.1',
-        'user'    => null,
     ],
 
 ];

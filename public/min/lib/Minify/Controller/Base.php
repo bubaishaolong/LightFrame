@@ -5,9 +5,9 @@
  */
 
 /**
- * Base class for Minify controller
+ * Base class for Minify home
  * 
- * The controller class validates a request and uses it to create sources
+ * The home class validates a request and uses it to create sources
  * for minification and set options like contentType. It's also responsible
  * for loading minifier code upon request.
  * 
@@ -17,22 +17,22 @@
 abstract class Minify_Controller_Base {
     
     /**
-     * Setup controller sources and set an needed options for Minify::source
+     * Setup home sources and set an needed options for Minify::source
      * 
-     * You must override this method in your subclass controller to set 
+     * You must override this method in your subclass home to set
      * $this->sources. If the request is NOT valid, make sure $this->sources 
-     * is left an empty array. Then strip any controller-specific options from 
+     * is left an empty array. Then strip any home-specific options from
      * $options and return it. To serve files, $this->sources must be an array of
      * Minify_Source objects.
      * 
-     * @param array $options controller and Minify options
+     * @param array $options home and Minify options
      * 
      * @return array $options Minify::serve options
      */
     abstract public function setupSources($options);
     
     /**
-     * Get default Minify options for this controller.
+     * Get default Minify options for this home.
      * 
      * Override in subclass to change defaults
      *
@@ -66,7 +66,7 @@ abstract class Minify_Controller_Base {
     }  
 
     /**
-     * Get default minifiers for this controller.
+     * Get default minifiers for this home.
      * 
      * Override in subclass to change defaults
      *
@@ -162,7 +162,7 @@ abstract class Minify_Controller_Base {
     public $selectionId = '';
 
     /**
-     * Mix in default controller options with user-given options
+     * Mix in default home options with user-given options
      * 
      * @param array $options user options
      * 

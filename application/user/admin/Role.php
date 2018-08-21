@@ -20,7 +20,7 @@ use think\Db;
 
 /**
  * 角色控制器
- * @package app\admin\controller
+ * @package app\admin\home
  */
 class Role extends Admin
 {

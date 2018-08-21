@@ -60,11 +60,11 @@ class Config
             // 后台IMG目录
             '__ADMIN_IMG__' => PUBLIC_PATH. 'static/admin/img',
             // 前台CSS目录
-            '__HOME_CSS__'  => PUBLIC_PATH. 'static/controller/css',
+            '__HOME_CSS__'  => PUBLIC_PATH. 'static/home/css',
             // 前台JS目录
-            '__HOME_JS__'   => PUBLIC_PATH. 'static/controller/js',
+            '__HOME_JS__'   => PUBLIC_PATH. 'static/home/js',
             // 前台IMG目录
-            '__HOME_IMG__'  => PUBLIC_PATH. 'static/controller/img',
+            '__HOME_IMG__'  => PUBLIC_PATH. 'static/home/img',
             // 表单项扩展目录
             '__EXTEND_FORM__' => PUBLIC_PATH.'extend/form'
         ];
@@ -94,7 +94,7 @@ class Config
 
             if ($module != '' && !in_array($module, config('module.default_controller_layer'))) {
                 // 修改默认访问控制器层
-                config('url_controller_layer', 'controller');
+                config('url_controller_layer', 'home');
             }
         }
 

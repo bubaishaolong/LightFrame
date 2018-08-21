@@ -6,7 +6,7 @@ use MrClay\Cli\Arg;
 use InvalidArgumentException;
 
 /**
- * Forms a front controller for a console app, handling and validating arguments (options)
+ * Forms a front home for a console app, handling and validating arguments (options)
  *
  * Instantiate, add arguments, then call validate(). Afterwards, the user's valid arguments
  * and their values will be available in $cli->values.
@@ -32,7 +32,7 @@ class Cli {
      *      'a' => false              // option was missing
      *     ,'b' => true               // option was present
      *     ,'c' => "Hello"            // option had value
-     *     ,'f' => "/controller/user/file"  // file path from root
+     *     ,'f' => "/home/user/file"  // file path from root
      *     ,'f.raw' => "~/file"       // file path as given to option
      * )
      */

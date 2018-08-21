@@ -19,7 +19,7 @@ class Minify_Controller_Version1 extends Minify_Controller_Base {
     /**
      * Set up groups of files as sources
      * 
-     * @param array $options controller and Minify options
+     * @param array $options home and Minify options
      * @return array Minify options
      * 
      */

@@ -16,7 +16,7 @@ use think\Request;
 
 /**
  * Class Amap 高德地图Web接口封装类
- * @package plugins\AmapSDK\controller
+ * @package plugins\AmapSDK\home
  */
 class Amap extends Common {
     /**

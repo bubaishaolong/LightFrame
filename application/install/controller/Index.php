@@ -18,7 +18,7 @@ define('INSTALL_APP_PATH', realpath('./') . '/');
 
 /**
  * 安装控制器
- * @package app\install\controller
+ * @package app\install\home
  */
 class Index extends Controller
 {

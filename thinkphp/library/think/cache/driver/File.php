@@ -215,10 +215,7 @@ class File extends Driver
     public function rm($name)
     {
         $filename = $this->getCacheKey($name);
-        try {
-            return $this->unlink($filename);
-        } catch (\Exception $e) {
-        }
+        return $this->unlink($filename);
     }
 
     /**

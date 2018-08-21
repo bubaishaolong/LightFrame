@@ -14,7 +14,7 @@ namespace app\index\controller;
 use think\Db;
 /**
  * 前台首页控制器
- * @package app\index\controller
+ * @package app\index\home
  */
 class Index extends Home
 {

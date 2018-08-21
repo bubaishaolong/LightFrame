@@ -19,7 +19,7 @@ use app\user\model\User as UserModel;
 
 /**
  * 后台默认控制器
- * @package app\admin\controller
+ * @package app\admin\home
  */
 class Index extends Admin
 {

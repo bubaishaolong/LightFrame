@@ -4,7 +4,7 @@ use app\common\controller\Common;
 
 /**
  * 环讯支付控制器
- * @package plugins\Ipspay\controller
+ * @package plugins\Ipspay\home
  */
 class Ipspay extends Common
 { 

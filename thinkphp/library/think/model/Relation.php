@@ -49,7 +49,7 @@ abstract class Relation
     }
 
     /**
-     * 获取当前的关联模型对象实例
+     * 获取当前的关联模型类
      * @access public
      * @return Model
      */

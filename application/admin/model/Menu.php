@@ -123,7 +123,7 @@ class Menu extends Model
                 }
                 if ($menu['url_value'] != '' && ($menu['url_type'] == 'module_admin' || $menu['url_type'] == 'module_home')) {
                     $url = explode('/', $menu['url_value']);
-                    $menu['controller'] = $url[1];
+                    $menu['home'] = $url[1];
                     $menu['action']     = $url[2];
                     $menu['url_value']  = $menu['url_type'] == 'module_admin' ? admin_url($menu['url_value'], $menu['params']) : home_url($menu['url_value'], $menu['params']);
                 }

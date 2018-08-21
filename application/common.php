@@ -779,7 +779,7 @@ if (!function_exists('plugin_action_exists')) {
         if (strpos($name, '/')) {
             list($name, $controller, $action) = explode('/', $name);
         }
-        return method_exists("plugins\\{$name}\\controller\\{$controller}", $action);
+        return method_exists("plugins\\{$name}\\home\\{$controller}", $action);
     }
 }
 
@@ -843,7 +843,7 @@ if (!function_exists('plugin_action')) {
         if (!is_array($params)) {
             $params = (array)$params;
         }
-        $class = "plugins\\{$name}\\controller\\{$controller}";
+        $class = "plugins\\{$name}\\home\\{$controller}";
         $obj = new $class;
         return call_user_func_array([$obj, $action], $params);
     }
@@ -1547,7 +1547,7 @@ INFO;
                 //写入Sql文件里面
                 file_put_contents($pathuninstall, $uninstall);
                 //根据表生成模型子段admin_model
-                $dataadd[$i] = ['name' => $name, 'title' => $name, 'table' => $data[$i], 'type' => 2, 'system' => 0, 'status' => 1, 'create_time' => time(), 'update_time' => time(), 'icon' => 'fa fa-fw fa-controller'];
+                $dataadd[$i] = ['name' => $name, 'title' => $name, 'table' => $data[$i], 'type' => 2, 'system' => 0, 'status' => 1, 'create_time' => time(), 'update_time' => time(), 'icon' => 'fa fa-fw fa-home'];
                 $modelID = Db::table(config('database.prefix') . 'admin_model')->insertGetId($dataadd[$i]);
                 //把对应的子段插入admin_field
                 $datanameid[$i] = [
@@ -1577,7 +1577,7 @@ function GenerateFile($file_name = null, $name)
     //生成文件目录
     $path = APP_PATH . $name;
     //在这个目录下面生成固定的目录
-    $pathhome = $path . DS . 'controller';
+    $pathhome = $path . DS . 'home';
     $pathadmin = $path . DS . 'admin';
     $pathview = $path . DS . 'view';
     $pathmodel = $path . DS . 'model';
@@ -1611,7 +1611,7 @@ function GenerateFile($file_name = null, $name)
 // +----------------------------------------------------------------------
 // | 开源协议 ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
-namespace app\\{$name}\\controller;
+namespace app\\{$name}\\home;
 
 class  {$datarow[$i]} extends Common
 {
@@ -1633,9 +1633,9 @@ INFO;
 // +----------------------------------------------------------------------
 // | 开源协议 ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
-namespace app\\{$name}\\controller;
+namespace app\\{$name}\\home;
 
-use app\index\controller\Home;
+use app\index\home\Home;
 
 class  Common extends Home
 {
@@ -2494,7 +2494,7 @@ function AutomaticGeneration($name)
     //生成文件目录
     $path = APP_PATH . $name;
     //在这个目录下面生成固定的目录
-    $pathhome = $path . DS . 'controller';
+    $pathhome = $path . DS . 'home';
     $pathadmin = $path . DS . 'admin';
     $pathview = $path . DS . 'view';
     $pathmodel = $path . DS . 'model';
@@ -2780,7 +2780,7 @@ function DeleteCorrespondingFile($name = '', $filename = '')
     //生成文件目录
     $path = APP_PATH . $name;
     //在这个目录下面生成固定的目录
-    $pathhome = $path . DS . 'controller';
+    $pathhome = $path . DS . 'home';
     $pathadmin = $path . DS . 'admin';
     $pathview = $path . DS . 'view';
     $pathmodel = $path . DS . 'model';
