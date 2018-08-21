@@ -1,2 +1,2 @@
-php Applications\shop\start_register.php Applications\shop\start_web.php Applications\shop\start_gateway.php Applications\shop\start_businessworker.php  start_web.php start_io.php
+php Applications\shop\gatewayworker\start_win_register.php Applications\shop\gatewayworker\start_win_web.php Applications\shop\gatewayworker\start_win_gateway.php Applications\shop\gatewayworker\start_win_businessworker.php  start_web.php start_io.php
 pause
