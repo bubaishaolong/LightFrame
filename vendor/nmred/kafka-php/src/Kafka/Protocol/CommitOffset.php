@@ -16,7 +16,7 @@ namespace Kafka\Protocol;
 
 /**
 +------------------------------------------------------------------------------
-* Kafka protocol for commit offset api
+* Kafka protocol for commit offset Interface
 +------------------------------------------------------------------------------
 *
 * @package

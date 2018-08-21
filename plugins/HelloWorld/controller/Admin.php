@@ -18,7 +18,7 @@ use plugins\HelloWorld\validate\HelloWorld as HelloWorldValidate;
 
 /**
  * 插件后台管理控制器
- * @package plugins\HelloWorld\home
+ * @package plugins\HelloWorld\controller
  */
 class Admin extends Common
 {

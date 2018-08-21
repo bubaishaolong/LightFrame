@@ -23,9 +23,9 @@ class Controller extends Make
     protected function configure()
     {
         parent::configure();
-        $this->setName('make:home')
-            ->addOption('plain', null, Option::VALUE_NONE, 'Generate an empty home class.')
-            ->setDescription('Create a new resource home class');
+        $this->setName('make:controller')
+            ->addOption('plain', null, Option::VALUE_NONE, 'Generate an empty controller class.')
+            ->setDescription('Create a new resource controller class');
     }
 
     protected function getStub()

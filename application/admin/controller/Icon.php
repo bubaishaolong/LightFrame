@@ -17,7 +17,7 @@ use app\admin\model\IconList as IconListModel;
 
 /**
  * 图标控制器
- * @package app\admin\home
+ * @package app\admin\controller
  */
 class Icon extends Admin
 {

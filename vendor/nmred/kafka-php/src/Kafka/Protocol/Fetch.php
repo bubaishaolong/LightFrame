@@ -16,7 +16,7 @@ namespace Kafka\Protocol;
 
 /**
 +------------------------------------------------------------------------------
-* Kafka protocol for consumer fetch api
+* Kafka protocol for consumer fetch Interface
 +------------------------------------------------------------------------------
 *
 * @package

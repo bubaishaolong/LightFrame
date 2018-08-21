@@ -14,7 +14,7 @@
 
 // 自动加载类
 require_once __DIR__ . '/../../../vendor/autoload.php';
-use \GatewayWorker\Gateway;
+use \GatewayClient\Gateway;
 use \Workerman\Worker;
 
 include "gateway_config.php";

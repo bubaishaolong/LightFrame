@@ -32,7 +32,7 @@ class Definition
     /**
      * 构造方法
      * @param array $definition
-     * @api
+     * @Interface
      */
     public function __construct(array $definition = [])
     {
@@ -75,7 +75,7 @@ class Definition
     /**
      * 添加参数
      * @param Argument[] $arguments 参数数组
-     * @api
+     * @Interface
      */
     public function addArguments($arguments = [])
     {
@@ -139,7 +139,7 @@ class Definition
      * 根据名称或位置检查是否具有某个参数
      * @param string|int $name 参数名或者位置
      * @return bool
-     * @api
+     * @Interface
      */
     public function hasArgument($name)
     {
@@ -203,7 +203,7 @@ class Definition
     /**
      * 添加选项
      * @param Option[] $options 选项数组
-     * @api
+     * @Interface
      */
     public function addOptions($options = [])
     {
@@ -216,7 +216,7 @@ class Definition
      * 添加一个选项
      * @param Option $option 选项
      * @throws \LogicException
-     * @api
+     * @Interface
      */
     public function addOption(Option $option)
     {
@@ -247,7 +247,7 @@ class Definition
      * @param string $name 选项名
      * @return Option
      * @throws \InvalidArgumentException
-     * @api
+     * @Interface
      */
     public function getOption($name)
     {
@@ -262,7 +262,7 @@ class Definition
      * 根据名称检查是否有这个选项
      * @param string $name 选项名
      * @return bool
-     * @api
+     * @Interface
      */
     public function hasOption($name)
     {
@@ -272,7 +272,7 @@ class Definition
     /**
      * 获取所有选项
      * @return Option[]
-     * @api
+     * @Interface
      */
     public function getOptions()
     {

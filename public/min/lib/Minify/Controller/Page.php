@@ -16,7 +16,7 @@ class Minify_Controller_Page extends Minify_Controller_Base {
     /**
      * Set up source of HTML content
      * 
-     * @param array $options home and Minify options
+     * @param array $options controller and Minify options
      * @return array Minify options
      * 
      * Controller options:
@@ -40,7 +40,7 @@ class Minify_Controller_Page extends Minify_Controller_Base {
             );
             $f = $options['file'];
         } else {
-            // strip home options
+            // strip controller options
             $sourceSpec = array(
                 'content' => $options['content']
                 ,'id' => $options['id']

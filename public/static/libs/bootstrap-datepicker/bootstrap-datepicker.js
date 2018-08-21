@@ -2071,7 +2071,7 @@
 	* ================== */
 
 	$(document).on(
-		'focus.datepicker.data-api click.datepicker.data-api',
+		'focus.datepicker.data-Interface click.datepicker.data-Interface',
 		'[data-provide="datepicker"]',
 		function(e){
 			var $this = $(this);

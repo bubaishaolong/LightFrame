@@ -19,7 +19,7 @@ use think\Cache;
 
 /**
  * 节点管理
- * @package app\admin\home
+ * @package app\admin\controller
  */
 class Menu extends Admin
 {

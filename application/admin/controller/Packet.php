@@ -16,7 +16,7 @@ use app\admin\model\Packet as PacketModel;
 
 /**
  * 数据包控制器
- * @package app\admin\home
+ * @package app\admin\controller
  */
 class Packet extends Admin
 {

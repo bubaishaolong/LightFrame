@@ -59,7 +59,7 @@ class RsaTokenTest extends \PHPUnit_Framework_TestCase
 
         (new Builder())->setId(1)
                        ->setAudience('http://client.abc.com')
-                       ->setIssuer('http://api.abc.com')
+                       ->setIssuer('http://Interface.abc.com')
                        ->set('user', $user)
                        ->sign($this->signer, new Key('testing'));
     }
@@ -86,7 +86,7 @@ class RsaTokenTest extends \PHPUnit_Framework_TestCase
 
         (new Builder())->setId(1)
                        ->setAudience('http://client.abc.com')
-                       ->setIssuer('http://api.abc.com')
+                       ->setIssuer('http://Interface.abc.com')
                        ->set('user', $user)
                        ->sign($this->signer, static::$ecdsaKeys['private']);
     }
@@ -111,7 +111,7 @@ class RsaTokenTest extends \PHPUnit_Framework_TestCase
 
         $token = (new Builder())->setId(1)
                               ->setAudience('http://client.abc.com')
-                              ->setIssuer('http://api.abc.com')
+                              ->setIssuer('http://Interface.abc.com')
                               ->set('user', $user)
                               ->setHeader('jki', '1234')
                               ->sign($this->signer, static::$rsaKeys['private'])
@@ -120,7 +120,7 @@ class RsaTokenTest extends \PHPUnit_Framework_TestCase
         $this->assertAttributeInstanceOf(Signature::class, 'signature', $token);
         $this->assertEquals('1234', $token->getHeader('jki'));
         $this->assertEquals('http://client.abc.com', $token->getClaim('aud'));
-        $this->assertEquals('http://api.abc.com', $token->getClaim('iss'));
+        $this->assertEquals('http://Interface.abc.com', $token->getClaim('iss'));
         $this->assertEquals($user, $token->getClaim('user'));
 
         return $token;

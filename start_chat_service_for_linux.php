@@ -27,7 +27,7 @@ define('GLOBAL_START', 1);
 require_once __DIR__ . '/vendor/autoload.php';
 
 // 加载所有Applications/*/start.php，以便启动所有服务
-foreach (glob(__DIR__ . '/application/shop/gatewayworker/start_linux*.php') as $start_file) {
+foreach (glob(__DIR__ . '/application/lp_worker_im/gatewayworker/start_linux*.php') as $start_file) {
     require_once $start_file;
 }
 // 运行所有服务

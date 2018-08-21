@@ -19,7 +19,7 @@ use think\Request;
 
 /**
  * Class Fieldnode
- * @package app\admin\home
+ * @package app\admin\controller
  * 生成菜单节点
  */
 class Fieldnode extends Admin

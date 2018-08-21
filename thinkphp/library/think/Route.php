@@ -122,7 +122,7 @@ class Route
      * 设置路由绑定
      * @access public
      * @param mixed     $bind 绑定信息
-     * @param string    $type 绑定类型 默认为module 支持 namespace class home
+     * @param string    $type 绑定类型 默认为module 支持 namespace class controller
      * @return mixed
      */
     public static function bind($bind, $type = 'module')
@@ -737,7 +737,7 @@ class Route
         $rules = self::$rules['domain'];
         // 开启子域名部署 支持二级和三级域名
         if (!empty($rules)) {
-            $host = $request->host();
+            $host = $request->host(true);
             if (isset($rules[$host])) {
                 // 完整域名或者IP配置
                 $item = $rules[$host];
@@ -809,7 +809,7 @@ class Route
                         // 绑定到命名空间 例如 \app\index\behavior
                         self::$bind = ['type' => 'namespace', 'namespace' => $result];
                     } elseif (0 === strpos($result, '@')) {
-                        // 绑定到类 例如 @app\index\home\User
+                        // 绑定到类 例如 @app\index\controller\User
                         self::$bind = ['type' => 'class', 'class' => substr($result, 1)];
                     } else {
                         // 绑定到模块/控制器 例如 index/user
@@ -1035,7 +1035,7 @@ class Route
                 case 'class':
                     // 绑定到类
                     return self::bindToClass($url, $bind, $depr);
-                case 'home':
+                case 'controller':
                     // 绑定到控制器类
                     return self::bindToController($url, $bind, $depr);
                 case 'namespace':
@@ -1101,7 +1101,7 @@ class Route
         if (!empty($array[1])) {
             self::parseUrlParams($array[1]);
         }
-        return ['type' => 'home', 'home' => $controller . '/' . $action, 'var' => []];
+        return ['type' => 'controller', 'controller' => $controller . '/' . $action, 'var' => []];
     }
 
     /**
@@ -1499,14 +1499,14 @@ class Route
             // 路由到控制器
             $route             = substr($route, 1);
             list($route, $var) = self::parseUrlPath($route);
-            $result            = ['type' => 'home', 'home' => implode('/', $route), 'var' => $var];
+            $result            = ['type' => 'controller', 'controller' => implode('/', $route), 'var' => $var];
             $request->action(array_pop($route));
             $request->controller($route ? array_pop($route) : Config::get('default_controller'));
             $request->module($route ? array_pop($route) : Config::get('default_module'));
             App::$modulePath = APP_PATH . (Config::get('app_multi_module') ? $request->module() . DS : '');
         } else {
             // 路由到模块/控制器/操作
-            $result = self::parseModule($route);
+            $result = self::parseModule($route, isset($option['convert']) ? $option['convert'] : false);
         }
         // 开启请求缓存
         if ($request->isGet() && isset($option['cache'])) {
@@ -1527,9 +1527,10 @@ class Route
      * 解析URL地址为 模块/控制器/操作
      * @access private
      * @param string    $url URL地址
+     * @param bool      $convert 是否自动转换URL地址
      * @return array
      */
-    private static function parseModule($url)
+    private static function parseModule($url, $convert = false)
     {
         list($path, $var) = self::parseUrlPath($url);
         $action           = array_pop($path);
@@ -1543,7 +1544,7 @@ class Route
         // 设置当前请求的路由变量
         Request::instance()->route($var);
         // 路由到模块/控制器/操作
-        return ['type' => 'module', 'module' => [$module, $controller, $action], 'convert' => false];
+        return ['type' => 'module', 'module' => [$module, $controller, $action], 'convert' => $convert];
     }
 
     /**

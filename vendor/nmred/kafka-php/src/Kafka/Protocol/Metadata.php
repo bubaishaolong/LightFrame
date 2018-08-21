@@ -16,7 +16,7 @@ namespace Kafka\Protocol;
 
 /**
 +------------------------------------------------------------------------------
-* Kafka protocol for meta data api
+* Kafka protocol for meta data Interface
 +------------------------------------------------------------------------------
 *
 * @package

@@ -25,7 +25,7 @@ use think\helper\Hash;
 
 /**
  * 后台公共控制器
- * @package app\admin\home
+ * @package app\admin\controller
  */
 class Admin extends Common
 {
@@ -72,7 +72,7 @@ class Admin extends Common
                 'table'      => 'admin_config', // 表名或模型名
                 'prefix'     => 1,
                 'module'     => 'admin',
-                'home' => 'system',
+                'controller' => 'system',
                 'action'     => 'quickedit',
             ];
             $table_token = substr(sha1('_aside'), 0, 8);
@@ -122,7 +122,7 @@ class Admin extends Common
         } else {
             // 使用DB类
             $table == '' && $this->error('缺少表名');
-            if ($table_data['module'] != $module || $table_data['home'] != $controller) {
+            if ($table_data['module'] != $module || $table_data['controller'] != $controller) {
                 $this->error('非法操作');
             }
             //修改前

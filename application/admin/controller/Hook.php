@@ -19,7 +19,7 @@ use think\Db;
 
 /**
  * 钩子控制器
- * @package app\admin\home
+ * @package app\admin\controller
  */
 class Hook extends Admin
 {

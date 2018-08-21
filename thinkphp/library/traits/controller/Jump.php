@@ -1,10 +1,10 @@
 <?php
 /**
  * 用法：
- * load_trait('home/Jump');
+ * load_trait('controller/Jump');
  * class index
  * {
- *     use \traits\home\Jump;
+ *     use \traits\controller\Jump;
  *     public function index(){
  *         $this->error();
  *         $this->redirect();

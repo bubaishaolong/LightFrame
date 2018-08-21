@@ -6,7 +6,7 @@ require_once(dirname(dirname(__FILE__))."/sdk/alipay/AlipayNotify.class.php");
 
 /**
  * 支付宝控制器
- * @package plugins\Barcode\home
+ * @package plugins\Barcode\controller
  */
 class Alipay extends Common
 {

@@ -16,7 +16,7 @@ require_once(dirname(dirname(__FILE__))."/sdk/phpqrcode.php");
 
 /**
  * 二维码生成控制器
- * @package plugins\Barcode\home
+ * @package plugins\Barcode\controller
  */
 class Qrcode extends Common
 {

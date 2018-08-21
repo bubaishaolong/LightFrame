@@ -110,7 +110,7 @@ class Publics extends Common
 
         $menu_url = explode('/', $menu['url_value']);
         role_auth();
-        $url = action('admin/ajax/getSidebarMenu', ['module_id' => $default_module, 'module' => $menu['module'], 'home' => $menu_url[1]]);
+        $url = action('admin/ajax/getSidebarMenu', ['module_id' => $default_module, 'module' => $menu['module'], 'controller' => $menu_url[1]]);
         if ($url == '') {
             $this->error('权限不足');
         } else {

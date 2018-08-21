@@ -15,7 +15,7 @@ use app\common\controller\Common;
 
 /**
  * ie提示页面控制器
- * @package app\admin\home
+ * @package app\admin\controller
  */
 class Ie extends Common
 {

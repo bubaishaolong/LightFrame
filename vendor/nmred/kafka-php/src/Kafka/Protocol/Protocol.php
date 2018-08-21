@@ -348,9 +348,9 @@ abstract class Protocol
     // {{{ public function getApiVersion()
 
     /**
-     * Get kafka api version according to specifiy kafka broker version
+     * Get kafka Interface version according to specifiy kafka broker version
      *
-     * @param int kafka api key
+     * @param int kafka Interface key
      * @access public
      * @return int
      */
@@ -425,9 +425,9 @@ abstract class Protocol
     // {{{ public static function getApiText()
 
     /**
-     * Get kafka api text
+     * Get kafka Interface text
      *
-     * @param int kafka api key
+     * @param int kafka Interface key
      * @access public
      * @return string
      */

@@ -779,7 +779,7 @@ if (!function_exists('plugin_action_exists')) {
         if (strpos($name, '/')) {
             list($name, $controller, $action) = explode('/', $name);
         }
-        return method_exists("plugins\\{$name}\\home\\{$controller}", $action);
+        return method_exists("plugins\\{$name}\\controller\\{$controller}", $action);
     }
 }
 
@@ -843,7 +843,7 @@ if (!function_exists('plugin_action')) {
         if (!is_array($params)) {
             $params = (array)$params;
         }
-        $class = "plugins\\{$name}\\home\\{$controller}";
+        $class = "plugins\\{$name}\\controller\\{$controller}";
         $obj = new $class;
         return call_user_func_array([$obj, $action], $params);
     }
@@ -1635,7 +1635,7 @@ INFO;
 // +----------------------------------------------------------------------
 namespace app\\{$name}\\home;
 
-use app\index\home\Home;
+use app\index\controller\Home;
 
 class  Common extends Home
 {

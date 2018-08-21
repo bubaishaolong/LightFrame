@@ -8010,10 +8010,10 @@ var fillCharReg = new RegExp(domUtils.fillChar, 'g');
          * @param { String } action action名称
          * @example
          * ```javascript
-         * editor.getActionUrl('config'); //返回 "/ueditor/php/home.php?action=config"
-         * editor.getActionUrl('image'); //返回 "/ueditor/php/home.php?action=uplaodimage"
-         * editor.getActionUrl('scrawl'); //返回 "/ueditor/php/home.php?action=uplaodscrawl"
-         * editor.getActionUrl('imageManager'); //返回 "/ueditor/php/home.php?action=listimage"
+         * editor.getActionUrl('config'); //返回 "/ueditor/php/controller.php?action=config"
+         * editor.getActionUrl('image'); //返回 "/ueditor/php/controller.php?action=uplaodimage"
+         * editor.getActionUrl('scrawl'); //返回 "/ueditor/php/controller.php?action=uplaodscrawl"
+         * editor.getActionUrl('imageManager'); //返回 "/ueditor/php/controller.php?action=listimage"
          * ```
          */
         getActionUrl: function(action){
@@ -28883,13 +28883,13 @@ UE.ui = baidu.editor.ui = {};
                         if (img.className.indexOf("edui-faked-webapp") != -1) {
                             dialogName = "webappDialog"
                         }
-                        if (img.src.indexOf("http://api.map.baidu.com") != -1) {
+                        if (img.src.indexOf("http://Interface.map.baidu.com") != -1) {
                             dialogName = "mapDialog"
                         }
                         if (img.className.indexOf("edui-faked-music") != -1) {
                             dialogName = "musicDialog"
                         }
-                        if (img.src.indexOf("http://maps.google.com/maps/api/staticmap") != -1) {
+                        if (img.src.indexOf("http://maps.google.com/maps/Interface/staticmap") != -1) {
                             dialogName = "gmapDialog"
                         }
                         if (img.getAttribute("anchorname")) {

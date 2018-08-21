@@ -133,7 +133,7 @@ var is = module.exports = {};
  * @param {Mixed} value value to test
  * @param {String} type type
  * @return {Boolean} true if `value` is a type of `type`, false otherwise
- * @api public
+ * @Interface public
  */
 
 is.a = is.type = function (value, type) {
@@ -146,7 +146,7 @@ is.a = is.type = function (value, type) {
  *
  * @param {Mixed} value value to test
  * @return {Boolean} true if 'value' is defined, false otherwise
- * @api public
+ * @Interface public
  */
 
 is.defined = function (value) {
@@ -159,7 +159,7 @@ is.defined = function (value) {
  *
  * @param {Mixed} value value to test
  * @return {Boolean} true if `value` is empty, false otherwise
- * @api public
+ * @Interface public
  */
 
 is.empty = function (value) {
@@ -246,7 +246,7 @@ is.equal = function equal(value, other) {
  * @param {Mixed} value to test
  * @param {Mixed} host host to test with
  * @return {Boolean} true if `value` is hosted by `host`, false otherwise
- * @api public
+ * @Interface public
  */
 
 is.hosted = function (value, host) {
@@ -260,7 +260,7 @@ is.hosted = function (value, host) {
  *
  * @param {Mixed} value value to test
  * @return {Boolean} true if `value` is an instance of `constructor`
- * @api public
+ * @Interface public
  */
 
 is.instance = is['instanceof'] = function (value, constructor) {
@@ -273,7 +273,7 @@ is.instance = is['instanceof'] = function (value, constructor) {
  *
  * @param {Mixed} value value to test
  * @return {Boolean} true if `value` is null, false otherwise
- * @api public
+ * @Interface public
  */
 
 is.nil = is['null'] = function (value) {
@@ -286,7 +286,7 @@ is.nil = is['null'] = function (value) {
  *
  * @param {Mixed} value value to test
  * @return {Boolean} true if `value` is undefined, false otherwise
- * @api public
+ * @Interface public
  */
 
 is.undef = is.undefined = function (value) {
@@ -303,7 +303,7 @@ is.undef = is.undefined = function (value) {
  *
  * @param {Mixed} value value to test
  * @return {Boolean} true if `value` is an arguments object, false otherwise
- * @api public
+ * @Interface public
  */
 
 is.args = is.arguments = function (value) {
@@ -322,7 +322,7 @@ is.args = is.arguments = function (value) {
  *
  * @param {Mixed} value value to test
  * @return {Boolean} true if `value` is an array, false otherwise
- * @api public
+ * @Interface public
  */
 
 is.array = Array.isArray || function (value) {
@@ -335,7 +335,7 @@ is.array = Array.isArray || function (value) {
  *
  * @param {Mixed} value value to test
  * @return {Boolean} true if `value` is an empty arguments object, false otherwise
- * @api public
+ * @Interface public
  */
 is.args.empty = function (value) {
   return is.args(value) && value.length === 0;
@@ -347,7 +347,7 @@ is.args.empty = function (value) {
  *
  * @param {Mixed} value value to test
  * @return {Boolean} true if `value` is an empty array, false otherwise
- * @api public
+ * @Interface public
  */
 is.array.empty = function (value) {
   return is.array(value) && value.length === 0;
@@ -359,7 +359,7 @@ is.array.empty = function (value) {
  *
  * @param {Mixed} value value to test
  * @return {Boolean} true if `value` is an arguments object, false otherwise
- * @api public
+ * @Interface public
  */
 
 is.arraylike = function (value) {
@@ -380,7 +380,7 @@ is.arraylike = function (value) {
  *
  * @param {Mixed} value value to test
  * @return {Boolean} true if `value` is a boolean, false otherwise
- * @api public
+ * @Interface public
  */
 
 is.bool = is['boolean'] = function (value) {
@@ -393,7 +393,7 @@ is.bool = is['boolean'] = function (value) {
  *
  * @param {Mixed} value value to test
  * @return {Boolean} true if `value` is false, false otherwise
- * @api public
+ * @Interface public
  */
 
 is['false'] = function (value) {
@@ -406,7 +406,7 @@ is['false'] = function (value) {
  *
  * @param {Mixed} value value to test
  * @return {Boolean} true if `value` is true, false otherwise
- * @api public
+ * @Interface public
  */
 
 is['true'] = function (value) {
@@ -423,7 +423,7 @@ is['true'] = function (value) {
  *
  * @param {Mixed} value value to test
  * @return {Boolean} true if `value` is a date, false otherwise
- * @api public
+ * @Interface public
  */
 
 is.date = function (value) {
@@ -440,7 +440,7 @@ is.date = function (value) {
  *
  * @param {Mixed} value value to test
  * @return {Boolean} true if `value` is an HTML Element, false otherwise
- * @api public
+ * @Interface public
  */
 
 is.element = function (value) {
@@ -460,7 +460,7 @@ is.element = function (value) {
  *
  * @param {Mixed} value value to test
  * @return {Boolean} true if `value` is an error object, false otherwise
- * @api public
+ * @Interface public
  */
 
 is.error = function (value) {
@@ -477,7 +477,7 @@ is.error = function (value) {
  *
  * @param {Mixed} value value to test
  * @return {Boolean} true if `value` is a function, false otherwise
- * @api public
+ * @Interface public
  */
 
 is.fn = is['function'] = function (value) {
@@ -495,7 +495,7 @@ is.fn = is['function'] = function (value) {
  *
  * @param {Mixed} value value to test
  * @return {Boolean} true if `value` is a number, false otherwise
- * @api public
+ * @Interface public
  */
 
 is.number = function (value) {
@@ -508,7 +508,7 @@ is.number = function (value) {
  *
  * @param {Mixed} value value to test
  * @return {Boolean} true if `value` is positive or negative Infinity, false otherwise
- * @api public
+ * @Interface public
  */
 is.infinite = function (value) {
   return value === Infinity || value === -Infinity;
@@ -520,7 +520,7 @@ is.infinite = function (value) {
  *
  * @param {Mixed} value value to test
  * @return {Boolean} true if `value` is a decimal number, false otherwise
- * @api public
+ * @Interface public
  */
 
 is.decimal = function (value) {
@@ -534,7 +534,7 @@ is.decimal = function (value) {
  * @param {Number} value value to test
  * @param {Number} n dividend
  * @return {Boolean} true if `value` is divisible by `n`, false otherwise
- * @api public
+ * @Interface public
  */
 
 is.divisibleBy = function (value, n) {
@@ -550,7 +550,7 @@ is.divisibleBy = function (value, n) {
  *
  * @param value to test
  * @return {Boolean} true if `value` is an integer, false otherwise
- * @api public
+ * @Interface public
  */
 
 is.integer = is['int'] = function (value) {
@@ -564,7 +564,7 @@ is.integer = is['int'] = function (value) {
  * @param {Number} value value to test
  * @param {Array} others values to compare with
  * @return {Boolean} true if `value` is greater than `others` values
- * @api public
+ * @Interface public
  */
 
 is.maximum = function (value, others) {
@@ -591,7 +591,7 @@ is.maximum = function (value, others) {
  * @param {Number} value value to test
  * @param {Array} others values to compare with
  * @return {Boolean} true if `value` is less than `others` values
- * @api public
+ * @Interface public
  */
 
 is.minimum = function (value, others) {
@@ -617,7 +617,7 @@ is.minimum = function (value, others) {
  *
  * @param {Mixed} value value to test
  * @return {Boolean} true if `value` is not a number, false otherwise
- * @api public
+ * @Interface public
  */
 
 is.nan = function (value) {
@@ -630,7 +630,7 @@ is.nan = function (value) {
  *
  * @param {Number} value value to test
  * @return {Boolean} true if `value` is an even number, false otherwise
- * @api public
+ * @Interface public
  */
 
 is.even = function (value) {
@@ -643,7 +643,7 @@ is.even = function (value) {
  *
  * @param {Number} value value to test
  * @return {Boolean} true if `value` is an odd number, false otherwise
- * @api public
+ * @Interface public
  */
 
 is.odd = function (value) {
@@ -657,7 +657,7 @@ is.odd = function (value) {
  * @param {Number} value value to test
  * @param {Number} other value to compare with
  * @return {Boolean}
- * @api public
+ * @Interface public
  */
 
 is.ge = function (value, other) {
@@ -674,7 +674,7 @@ is.ge = function (value, other) {
  * @param {Number} value value to test
  * @param {Number} other value to compare with
  * @return {Boolean}
- * @api public
+ * @Interface public
  */
 
 is.gt = function (value, other) {
@@ -691,7 +691,7 @@ is.gt = function (value, other) {
  * @param {Number} value value to test
  * @param {Number} other value to compare with
  * @return {Boolean} if 'value' is less than or equal to 'other'
- * @api public
+ * @Interface public
  */
 
 is.le = function (value, other) {
@@ -708,7 +708,7 @@ is.le = function (value, other) {
  * @param {Number} value value to test
  * @param {Number} other value to compare with
  * @return {Boolean} if `value` is less than `other`
- * @api public
+ * @Interface public
  */
 
 is.lt = function (value, other) {
@@ -726,7 +726,7 @@ is.lt = function (value, other) {
  * @param {Number} start lower bound
  * @param {Number} finish upper bound
  * @return {Boolean} true if 'value' is is within 'start' and 'finish'
- * @api public
+ * @Interface public
  */
 is.within = function (value, start, finish) {
   if (isActualNaN(value) || isActualNaN(start) || isActualNaN(finish)) {
@@ -748,7 +748,7 @@ is.within = function (value, start, finish) {
  *
  * @param {Mixed} value value to test
  * @return {Boolean} true if `value` is an object, false otherwise
- * @api public
+ * @Interface public
  */
 
 is.object = function (value) {
@@ -761,7 +761,7 @@ is.object = function (value) {
  *
  * @param {Mixed} value value to test
  * @return {Boolean} true if `value` is a hash, false otherwise
- * @api public
+ * @Interface public
  */
 
 is.hash = function (value) {
@@ -778,7 +778,7 @@ is.hash = function (value) {
  *
  * @param {Mixed} value value to test
  * @return {Boolean} true if `value` is a regexp, false otherwise
- * @api public
+ * @Interface public
  */
 
 is.regexp = function (value) {
@@ -795,7 +795,7 @@ is.regexp = function (value) {
  *
  * @param {Mixed} value value to test
  * @return {Boolean} true if 'value' is a string, false otherwise
- * @api public
+ * @Interface public
  */
 
 is.string = function (value) {
@@ -812,7 +812,7 @@ is.string = function (value) {
  *
  * @param {Mixed} value value to test
  * @return {Boolean} true if 'value' is a base64 encoded string, false otherwise
- * @api public
+ * @Interface public
  */
 
 is.base64 = function (value) {
@@ -829,7 +829,7 @@ is.base64 = function (value) {
  *
  * @param {Mixed} value value to test
  * @return {Boolean} true if 'value' is a hex encoded string, false otherwise
- * @api public
+ * @Interface public
  */
 
 is.hex = function (value) {
@@ -842,7 +842,7 @@ is.hex = function (value) {
  *
  * @param {Mixed} value value to test
  * @return {Boolean} true if `value` is a Symbol, false otherise
- * @api public
+ * @Interface public
  */
 
 is.symbol = function (value) {

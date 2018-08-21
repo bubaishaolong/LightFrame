@@ -406,7 +406,7 @@ class PHPExcel_Worksheet implements PHPExcel_IComparable
 	}
 
    /**
-     * Return the cache home for the cell collection
+     * Return the cache controller for the cell collection
      *
      * @return PHPExcel_CachedObjectStorage_xxx
      */

@@ -893,7 +893,7 @@ class Builder extends ZBuilder
             'table'      => $table, // 表名或模型名
             'prefix'     => $prefix,
             'module'     => $this->_module,
-            'home' => $this->_controller,
+            'controller' => $this->_controller,
             'action'     => $this->_action,
         ];
 

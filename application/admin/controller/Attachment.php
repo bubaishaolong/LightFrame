@@ -20,7 +20,7 @@ use think\Db;
 
 /**
  * 附件控制器
- * @package app\admin\home
+ * @package app\admin\controller
  */
 class Attachment extends Admin
 {

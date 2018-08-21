@@ -16,7 +16,7 @@ require dirname(__FILE__) . DS . '..' . DS . 'Wechat/Loader.php';
 
 /**
  * Class WeChat 微信SDK操作接口类
- * @package plugins\WeChatSDK\home
+ * @package plugins\WeChatSDK\controller
  */
 class WeChat extends Common {
     /**

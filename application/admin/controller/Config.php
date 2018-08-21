@@ -16,7 +16,7 @@ use app\admin\model\Config as ConfigModel;
 
 /**
  * 系统配置控制器
- * @package app\admin\home
+ * @package app\admin\controller
  */
 class Config extends Admin
 {

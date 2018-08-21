@@ -16,8 +16,8 @@ use Wechat\Loader;
 class Common {
 
     /** API接口URL需要使用此前缀 */
-    const API_BASE_URL_PREFIX = 'https://api.weixin.qq.com';
-    const API_URL_PREFIX = 'https://api.weixin.qq.com/cgi-bin';
+    const API_BASE_URL_PREFIX = 'https://Interface.weixin.qq.com';
+    const API_URL_PREFIX = 'https://Interface.weixin.qq.com/cgi-bin';
     const GET_TICKET_URL = '/ticket/getticket?';
     const AUTH_URL = '/token?grant_type=client_credential&';
     public $token;

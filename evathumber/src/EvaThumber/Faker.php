@@ -78,7 +78,7 @@ class Faker
             break;
             case 'picasa':
             default:
-            $rss = 'https://picasaweb.google.com/data/feed/api/featured?alt=json';
+            $rss = 'https://picasaweb.google.com/data/feed/Interface/featured?alt=json';
         }
         return $rss;
     }

@@ -98,7 +98,7 @@ class PHPExcel_Cell
 
 
 	/**
-	 *	Send notification to the cache home
+	 *	Send notification to the cache controller
 	 *
 	 *	@return void
 	 **/

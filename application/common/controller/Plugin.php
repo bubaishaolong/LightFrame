@@ -16,7 +16,7 @@ use think\Exception;
 
 /**
  * 插件类
- * @package app\common\home
+ * @package app\common\controller
  * @author 无名氏
  */
 abstract class Plugin

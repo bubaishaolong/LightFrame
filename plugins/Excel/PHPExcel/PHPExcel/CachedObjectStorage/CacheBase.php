@@ -80,7 +80,7 @@ abstract class PHPExcel_CachedObjectStorage_CacheBase {
 	 */
 	public function __construct(PHPExcel_Worksheet $parent) {
 		//	Set our parent worksheet.
-		//	This is maintained within the cache home to facilitate re-attaching it to PHPExcel_Cell objects when
+		//	This is maintained within the cache controller to facilitate re-attaching it to PHPExcel_Cell objects when
 		//		they are woken from a serialized state
 		$this->_parent = $parent;
 	}	//	function __construct()

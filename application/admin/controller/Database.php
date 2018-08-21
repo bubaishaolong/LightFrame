@@ -17,7 +17,7 @@ use util\Database as DatabaseModel;
 
 /**
  * 数据库管理
- * @package app\admin\home
+ * @package app\admin\controller
  */
 class Database extends Admin
 {

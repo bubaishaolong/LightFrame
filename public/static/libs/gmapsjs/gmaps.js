@@ -176,7 +176,7 @@ var GMaps = (function(global) {
 
     if (!(typeof window.google === 'object' && window.google.maps)) {
       if (typeof window.console === 'object' && window.console.error) {
-        console.error('Google Maps API is required. Please register the following JavaScript library https://maps.googleapis.com/maps/api/js.');
+        console.error('Google Maps API is required. Please register the following JavaScript library https://maps.googleapis.com/maps/Interface/js.');
       }
 
       return function() {};
@@ -1872,7 +1872,7 @@ GMaps.prototype.toImage = function(options) {
 GMaps.staticMapURL = function(options){
   var parameters = [],
       data,
-      static_root = (location.protocol === 'file:' ? 'http:' : location.protocol ) + '//maps.googleapis.com/maps/api/staticmap';
+      static_root = (location.protocol === 'file:' ? 'http:' : location.protocol ) + '//maps.googleapis.com/maps/Interface/staticmap';
 
   if (options.url) {
     static_root = options.url;

@@ -12,8 +12,6 @@ namespace app\shop\home;
 
 use app\admin\model\Hook;
 use app\common\builder\ZBuilder;
-
-use GatewayWorker\Lib\Gateway;
 use Lcobucci\JWT\Builder;
 use Lcobucci\JWT\Parser;
 use Lcobucci\JWT\Signer\Hmac\Sha256;
@@ -28,7 +26,7 @@ class  Menber extends Common
 {
     public function index()
     {
-        //Gateway::sendToAll();
+
         $key = "example_key";
         $time = time();
         $token = array(
@@ -64,7 +62,7 @@ class  Menber extends Common
 //        print $json->{'content'}->{'address'};//按层级关系提取address数据
 //
 //        $Mqtt = 'Mqtt';
-//        include_once dirname(__FILE__).'/api/'.$Mqtt.'.php';
+//        include_once dirname(__FILE__).'/Interface/'.$Mqtt.'.php';
 //        $data = new $Mqtt();
 //        $data->index();
 //
@@ -137,7 +135,7 @@ class  Menber extends Common
         // plugin_action('Alipay/Alipay/alipay', $data);
 
         // 引入插件包类库
-        //use plugins\WeChatSDK\home\WeChat;
+        //use plugins\WeChatSDK\controller\WeChat;
 
         // 发起微信授权
         // WeChat::instance()->Oauth_Redirect('yourCallbackUrl',true);

@@ -16,7 +16,7 @@ use app\user\model\Message as MessageModel;
 
 /**
  * 消息控制器
- * @package app\admin\home
+ * @package app\admin\controller
  */
 class Message extends Admin
 {

@@ -15,7 +15,7 @@ class Minify_Controller_MinApp extends Minify_Controller_Base {
     /**
      * Set up groups of files as sources
      * 
-     * @param array $options home and Minify options
+     * @param array $options controller and Minify options
      *
      * @return array Minify options
      */
@@ -27,7 +27,7 @@ class Minify_Controller_MinApp extends Minify_Controller_Base {
             }
         }
 
-        // filter home options
+        // filter controller options
         $cOptions = array_merge(
             array(
                 'allowDirs' => '//'

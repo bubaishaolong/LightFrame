@@ -6,7 +6,7 @@ use MrClay\Cli\Arg;
 use InvalidArgumentException;
 
 /**
- * Forms a front home for a console app, handling and validating arguments (options)
+ * Forms a front controller for a console app, handling and validating arguments (options)
  *
  * Instantiate, add arguments, then call validate(). Afterwards, the user's valid arguments
  * and their values will be available in $cli->values.

@@ -15,9 +15,8 @@
 // 自动加载类
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-use \Workerman\Worker;
 use \GatewayWorker\Register;
-
+use \Workerman\Worker;
 include "gateway_config.php";
 
 // register 服务必须是text协议

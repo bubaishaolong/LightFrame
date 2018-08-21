@@ -18,7 +18,7 @@ require_once dirname(dirname(__FILE__)) . '/PHPExcel/PHPExcel/IOFactory.php';
 
 /**
  * Excel控制器
- * @package plugins\Excel\home
+ * @package plugins\Excel\controller
  */
 class Excel extends Common
 {

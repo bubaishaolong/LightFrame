@@ -15,7 +15,7 @@ use think\Controller;
 
 /**
  * 项目公共控制器
- * @package app\common\home
+ * @package app\common\controller
  */
 class Common extends Controller
 {
