@@ -14,7 +14,7 @@ namespace Monolog\Handler;
 use Monolog\Logger;
 
 /**
- * Sends notifications through the hipchat Interface to a hipchat room
+ * Sends notifications through the hipchat api to a hipchat room
  *
  * Notes:
  * API token - HipChat API token
@@ -95,7 +95,7 @@ class HipChatHandler extends SocketHandler
      * @param string $host    The HipChat server hostname.
      * @param string $version The HipChat API version (default HipChatHandler::API_V1)
      */
-    public function __construct($token, $room, $name = 'Monolog', $notify = false, $level = Logger::CRITICAL, $bubble = true, $useSSL = true, $format = 'text', $host = 'Interface.hipchat.com', $version = self::API_V1)
+    public function __construct($token, $room, $name = 'Monolog', $notify = false, $level = Logger::CRITICAL, $bubble = true, $useSSL = true, $format = 'text', $host = 'api.hipchat.com', $version = self::API_V1)
     {
         if ($version == self::API_V1 && !$this->validateStringLength($name, static::MAXIMUM_NAME_LENGTH)) {
             throw new \InvalidArgumentException('The supplied name is too long. HipChat\'s v1 API supports names up to 15 UTF-8 characters.');
@@ -157,7 +157,7 @@ class HipChatHandler extends SocketHandler
         }
 
         // append the sender name if it is set
-        // always append it if we use the v1 Interface (it is required in v1)
+        // always append it if we use the v1 api (it is required in v1)
         if ($this->version == self::API_V1 || $this->name !== null) {
             $dataArray['from'] = (string) $this->name;
         }

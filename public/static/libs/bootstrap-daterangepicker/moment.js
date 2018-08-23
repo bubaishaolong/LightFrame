@@ -1861,7 +1861,7 @@
         if (model._isUTC) {
             res = model.clone();
             diff = (isMoment(input) || isDate(input) ? input.valueOf() : local__createLocal(input).valueOf()) - res.valueOf();
-            // Use low-level Interface, because this fn is low-level Interface.
+            // Use low-level api, because this fn is low-level api.
             res._d.setTime(res._d.valueOf() + diff);
             utils_hooks__hooks.updateOffset(res, false);
             return res;

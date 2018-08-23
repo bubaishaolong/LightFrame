@@ -133,7 +133,7 @@ _e(function (E, $) {
     };
 
 });
-// editor Interface
+// editor api
 _e(function (E, $) {
 
     // 预定义 ready 事件
@@ -1591,7 +1591,7 @@ _e(function (E, $) {
     };
 
 });
-// dropListfn Interface
+// dropListfn api
 _e(function (E, $) {
     
     var DropList = E.DropList;
@@ -1812,7 +1812,7 @@ _e(function (E, $) {
     };
 
 });
-// dropPanel fn Interface
+// dropPanel fn api
 _e(function (E, $) {
    
     var DropPanel = E.DropPanel;
@@ -2059,7 +2059,7 @@ _e(function (E, $) {
         });
     };
 });
-// modal fn Interface
+// modal fn api
 _e(function (E, $) {
 
     var Modal = E.Modal;
@@ -2681,7 +2681,7 @@ _e(function (E, $) {
         };
     };
 });
-// Txt.fn Interface
+// Txt.fn api
 _e(function (E, $) {
 
     var Txt = E.Txt;
@@ -5649,7 +5649,7 @@ _e(function (E, $) {
         mapData.loadMapScript = function () {
             var script = document.createElement("script");
             script.type = "text/javascript";
-            script.src = "https://Interface.map.baidu.com/Interface?v=2.0&ak=" + ak + "&s=1&callback=baiduMapCallBack";  // baiduMapCallBack是一个本地函数
+            script.src = "https://api.map.baidu.com/api?v=2.0&ak=" + ak + "&s=1&callback=baiduMapCallBack";  // baiduMapCallBack是一个本地函数
             try {
                 // IE10- 报错
                 document.body.appendChild(script);
@@ -5780,7 +5780,7 @@ _e(function (E, $) {
                 src = 'http://ueditor.baidu.com/ueditor/dialogs/map/show.html#';
             }else{
                 //静态地址
-                src = 'http://Interface.map.baidu.com/staticimage?';
+                src = 'http://api.map.baidu.com/staticimage?';
             }
 
             //src参数

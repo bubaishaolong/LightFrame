@@ -7,6 +7,7 @@
  */
 namespace app\api\home;
 
+
 use Lcobucci\JWT\Builder;
 use Lcobucci\JWT\Signer\Hmac\Sha256;
 use lmxdawn\jwt\BeforeValidException;
@@ -16,7 +17,7 @@ use lmxdawn\jwt\SignatureInvalidException;
 use think\Controller;
 use think\Exception;
 
-class Common extends Controller
+class Home extends Controller
 {
     private $token;    //客户端传递过来的 验证密码
 
@@ -66,6 +67,7 @@ class Common extends Controller
             exit();
         }
     }
+
 
     /**
      * 生成token

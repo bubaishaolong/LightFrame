@@ -121,7 +121,7 @@ class Process
      * @param int|float|null $timeout     超时时间
      * @param array          $options     proc_open的选项
      * @throws \RuntimeException
-     * @Interface
+     * @api
      */
     public function __construct($commandline, $cwd = null, array $env = null, $input = null, $timeout = 60, array $options = [])
     {
@@ -370,7 +370,7 @@ class Process
      * @return string
      * @throws \LogicException
      * @throws \LogicException
-     * @Interface
+     * @api
      */
     public function getOutput()
     {

@@ -62,7 +62,7 @@ class  Menber extends Common
 //        print $json->{'content'}->{'address'};//按层级关系提取address数据
 //
 //        $Mqtt = 'Mqtt';
-//        include_once dirname(__FILE__).'/Interface/'.$Mqtt.'.php';
+//        include_once dirname(__FILE__).'/api/'.$Mqtt.'.php';
 //        $data = new $Mqtt();
 //        $data->index();
 //

@@ -51,7 +51,7 @@ class Style
      * @param string|null $foreground 字体颜色
      * @param string|null $background 背景色
      * @param array       $options    格式
-     * @Interface
+     * @api
      */
     public function __construct($foreground = null, $background = null, array $options = [])
     {
@@ -70,7 +70,7 @@ class Style
      * 设置字体颜色
      * @param string|null $color 颜色名
      * @throws \InvalidArgumentException
-     * @Interface
+     * @api
      */
     public function setForeground($color = null)
     {
@@ -91,7 +91,7 @@ class Style
      * 设置背景色
      * @param string|null $color 颜色名
      * @throws \InvalidArgumentException
-     * @Interface
+     * @api
      */
     public function setBackground($color = null)
     {
@@ -112,7 +112,7 @@ class Style
      * 设置字体格式
      * @param string $option 格式名
      * @throws \InvalidArgumentException When the option name isn't defined
-     * @Interface
+     * @api
      */
     public function setOption($option)
     {

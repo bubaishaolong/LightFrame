@@ -6172,7 +6172,7 @@ Editableform based on Twitter Bootstrap 3
 	* ================== */
 
 	$(document).on(
-		'focus.datepicker.data-Interface click.datepicker.data-Interface',
+		'focus.datepicker.data-api click.datepicker.data-api',
 		'[data-provide="datepicker"]',
 		function(e){
 			var $this = $(this);

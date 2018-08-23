@@ -16,7 +16,7 @@ namespace Kafka\Protocol;
 
 /**
 +------------------------------------------------------------------------------
-* Kafka protocol for sync group Interface
+* Kafka protocol for sync group api
 +------------------------------------------------------------------------------
 *
 * @package

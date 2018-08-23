@@ -35,14 +35,14 @@ class UnsignedTokenTest extends \PHPUnit_Framework_TestCase
 
         $token = (new Builder())->setId(1)
                               ->setAudience('http://client.abc.com')
-                              ->setIssuer('http://Interface.abc.com')
+                              ->setIssuer('http://api.abc.com')
                               ->setExpiration(self::CURRENT_TIME + 3000)
                               ->set('user', $user)
                               ->getToken();
 
         $this->assertAttributeEquals(null, 'signature', $token);
         $this->assertEquals('http://client.abc.com', $token->getClaim('aud'));
-        $this->assertEquals('http://Interface.abc.com', $token->getClaim('iss'));
+        $this->assertEquals('http://api.abc.com', $token->getClaim('iss'));
         $this->assertEquals(self::CURRENT_TIME + 3000, $token->getClaim('exp'));
         $this->assertEquals($user, $token->getClaim('user'));
 
@@ -90,7 +90,7 @@ class UnsignedTokenTest extends \PHPUnit_Framework_TestCase
     {
         $data = new ValidationData(self::CURRENT_TIME - 10);
         $data->setAudience('http://client.abc.com');
-        $data->setIssuer('http://Interface.abc.com');
+        $data->setIssuer('http://api.abc.com');
 
         $this->assertTrue($generated->validate($data));
     }
@@ -122,11 +122,11 @@ class UnsignedTokenTest extends \PHPUnit_Framework_TestCase
     {
         $expired = new ValidationData(self::CURRENT_TIME + 3020);
         $expired->setAudience('http://client.abc.com');
-        $expired->setIssuer('http://Interface.abc.com');
+        $expired->setIssuer('http://api.abc.com');
 
         $invalidAudience = new ValidationData(self::CURRENT_TIME - 10);
         $invalidAudience->setAudience('http://cclient.abc.com');
-        $invalidAudience->setIssuer('http://Interface.abc.com');
+        $invalidAudience->setIssuer('http://api.abc.com');
 
         $invalidIssuer = new ValidationData(self::CURRENT_TIME - 10);
         $invalidIssuer->setAudience('http://client.abc.com');

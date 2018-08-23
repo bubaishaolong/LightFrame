@@ -16,7 +16,7 @@ namespace Kafka\Protocol;
 
 /**
 +------------------------------------------------------------------------------
-* Kafka protocol for join group Interface
+* Kafka protocol for join group api
 +------------------------------------------------------------------------------
 *
 * @package

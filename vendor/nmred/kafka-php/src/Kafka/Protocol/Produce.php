@@ -16,7 +16,7 @@ namespace Kafka\Protocol;
 
 /**
 +------------------------------------------------------------------------------
-* Kafka protocol for produce Interface
+* Kafka protocol for produce api
 +------------------------------------------------------------------------------
 *
 * @package

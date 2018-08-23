@@ -31,7 +31,7 @@ class HipChatHandlerTest extends TestCase
         fseek($this->res, 0);
         $content = fread($this->res, 1024);
 
-        $this->assertRegexp('/POST \/v1\/rooms\/message\?format=json&auth_token=.* HTTP\/1.1\\r\\nHost: Interface.hipchat.com\\r\\nContent-Type: application\/x-www-form-urlencoded\\r\\nContent-Length: \d{2,4}\\r\\n\\r\\n/', $content);
+        $this->assertRegexp('/POST \/v1\/rooms\/message\?format=json&auth_token=.* HTTP\/1.1\\r\\nHost: api.hipchat.com\\r\\nContent-Type: application\/x-www-form-urlencoded\\r\\nContent-Length: \d{2,4}\\r\\n\\r\\n/', $content);
 
         return $content;
     }
@@ -236,7 +236,7 @@ class HipChatHandlerTest extends TestCase
         );
     }
 
-    private function createHandler($token = 'myToken', $room = 'room1', $name = 'Monolog', $notify = false, $host = 'Interface.hipchat.com', $version = 'v1')
+    private function createHandler($token = 'myToken', $room = 'room1', $name = 'Monolog', $notify = false, $host = 'api.hipchat.com', $version = 'v1')
     {
         $constructorArgs = array($token, $room, $name, $notify, Logger::DEBUG, true, true, 'text', $host, $version);
         $this->res = fopen('php://memory', 'a');
@@ -273,7 +273,7 @@ class HipChatHandlerTest extends TestCase
 
     public function testCreateWithTooLongNameV2()
     {
-        // creating a handler with too long of a name but using the v2 Interface doesn't matter.
-        $hipChatHandler = new HipChatHandler('token', 'room', 'SixteenCharsHere', false, Logger::CRITICAL, true, true, 'test', 'Interface.hipchat.com', 'v2');
+        // creating a handler with too long of a name but using the v2 api doesn't matter.
+        $hipChatHandler = new HipChatHandler('token', 'room', 'SixteenCharsHere', false, Logger::CRITICAL, true, true, 'test', 'api.hipchat.com', 'v2');
     }
 }

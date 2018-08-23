@@ -14,7 +14,7 @@ use Wechat\Lib\Tools;
  */
 class WechatService {
 
-    const URL_PREFIX = 'https://Interface.weixin.qq.com/cgi-bin/component';
+    const URL_PREFIX = 'https://api.weixin.qq.com/cgi-bin/component';
     // 获取服务access_token
     const COMPONENT_TOKEN_URL = '/api_component_token';
     // 获取（刷新）授权公众号的令牌
@@ -339,7 +339,7 @@ class WechatService {
         if (empty($this->component_access_token)) {
             return false;
         }
-        $url = "https://Interface.weixin.qq.com/sns/oauth2/component/access_token?"
+        $url = "https://api.weixin.qq.com/sns/oauth2/component/access_token?"
             . "appid={$appid}&code={$code}&"
             . "grant_type=authorization_code&"
             . "component_appid={$this->component_appid}&"
@@ -374,7 +374,7 @@ class WechatService {
      * 注意：unionid字段 只有在用户将公众号绑定到公众号第三方平台账号后，才会出现。建议调用前用isset()检测一下
      */
     public function getOauthUserInfo($openid, $oauthAccessToken) {
-        $url = "https://Interface.weixin.qq.com/sns/userinfo?access_token={$oauthAccessToken}&openid={$openid}&lang=zh_CN";
+        $url = "https://api.weixin.qq.com/sns/userinfo?access_token={$oauthAccessToken}&openid={$openid}&lang=zh_CN";
         return $this->parseJson(Tools::httpGet($url));
     }
 

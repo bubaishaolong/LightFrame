@@ -8,9 +8,9 @@
 
 namespace app\api\home\v1;
 
-use app\api\home\Common;
+use app\api\home\Home;
 
-class Index extends Common
+class Index extends Home
 {
     /**
      * 请求的链接

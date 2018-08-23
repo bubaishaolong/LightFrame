@@ -16,7 +16,7 @@ namespace Kafka\Protocol;
 
 /**
 +------------------------------------------------------------------------------
-* Kafka protocol for leave group Interface
+* Kafka protocol for leave group api
 +------------------------------------------------------------------------------
 *
 * @package

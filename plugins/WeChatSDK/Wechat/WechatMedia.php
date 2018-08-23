@@ -13,7 +13,7 @@ use Wechat\Lib\Tools;
  */
 class WechatMedia extends Common {
 
-    const UPLOAD_MEDIA_URL = 'http://file.Interface.weixin.qq.com/cgi-bin';
+    const UPLOAD_MEDIA_URL = 'http://file.api.weixin.qq.com/cgi-bin';
     const MEDIA_UPLOAD_URL = '/media/upload?';
     const MEDIA_UPLOADIMG_URL = '/media/uploadimg?'; //图片上传接口
     const MEDIA_GET_URL = '/media/get?';

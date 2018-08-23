@@ -5,7 +5,7 @@ class TopClient
 
 	public $secretKey;
 
-	public $gatewayUrl = "http://gw.Interface.taobao.com/router/rest";
+	public $gatewayUrl = "http://gw.api.taobao.com/router/rest";
 
 	public $format = "xml";
 
@@ -341,14 +341,14 @@ class TopClient
 	{
 		if (!isset($paramsArray["method"]))
 		{
-			trigger_error("No Interface name passed");
+			trigger_error("No api name passed");
 		}
 		$inflector = new LtInflector;
 		$inflector->conf["separator"] = ".";
 		$requestClassName = ucfirst($inflector->camelize(substr($paramsArray["method"], 7))) . "Request";
 		if (!class_exists($requestClassName))
 		{
-			trigger_error("No such Interface: " . $paramsArray["method"]);
+			trigger_error("No such api: " . $paramsArray["method"]);
 		}
 
 		$session = isset($paramsArray["session"]) ? $paramsArray["session"] : null;

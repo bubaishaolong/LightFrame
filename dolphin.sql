@@ -11,7 +11,7 @@
  Target Server Version : 50553
  File Encoding         : 65001
 
- Date: 04/08/2018 23:10:00
+ Date: 23/08/2018 20:05:20
 */
 
 SET NAMES utf8mb4;
@@ -197,7 +197,7 @@ INSERT INTO `cj_admin_config` VALUES (7, 'web_site_copyright', '版权信息', '
 INSERT INTO `cj_admin_config` VALUES (8, 'web_site_icp', '备案信息', 'base', 'text', '', '', '调用方式：<code>config(\'web_site_icp\')</code>', '', '', '', '', '', 2, '', '', '', '', 1475241441, 1477710441, 9, 1);
 INSERT INTO `cj_admin_config` VALUES (9, 'web_site_statistics', '站点统计', 'base', 'textarea', '', '', '网站统计代码，支持百度、Google、cnzz等，调用方式：<code>config(\'web_site_statistics\')</code>', '', '', '', '', '', 2, '', '', '', '', 1475241498, 1477710455, 10, 1);
 INSERT INTO `cj_admin_config` VALUES (10, 'config_group', '配置分组', 'system', 'array', 'base:基本\r\nsystem:系统\r\nupload:上传\r\ndevelop:开发\r\ndatabase:数据库', '', '', '', '', '', '', '', 2, '', '', '', '', 1475241716, 1477649446, 100, 1);
-INSERT INTO `cj_admin_config` VALUES (11, 'form_item_type', '配置类型', 'system', 'array', 'text:单行文本 text\r\ntextarea:多行文本 textarea\r\nstatic:静态文本 static\r\npassword:密码 password\r\ncheckbox:复选框 checkbox\r\nradio:单选按钮 radio\r\ndate:日期 date\r\ndatetime:日期时间 datetime\r\nhidden:隐藏 hidden\r\nswitch:开关 switch\r\narray:数组 array\r\nselect:下拉框 select\r\nlinkage:普通联动下拉框 linkage\r\nlinkages:快速联动下拉框 linkages\r\nimage:单张图片 image\r\nimages:多张图片 images\r\nfile:单个文件 file\r\nfiles:多个文件 files\r\nueditor:UEditor 编辑器 ueditor\r\nwangeditor:wangEditor 编辑器 wangeditor\r\neditormd:markdown 编辑器 editormd\r\nckeditor:ckeditor 编辑器 ckeditor\r\nicon:字体图标 icon\r\ntags:标签 tags\r\nnumber:数字 number\r\nbmap:百度地图 bmap\r\ncolorpicker:取色器 colorpicker\r\njcrop:图片裁剪 jcrop\r\nmasked:格式文本 masked\r\nrange:范围 range\r\ntime:时间 time', '', '', '', '', '', '', '', 2, '', '', '', '', 1475241835, 1532501082, 100, 1);
+INSERT INTO `cj_admin_config` VALUES (11, 'form_item_type', '配置类型', 'system', 'array', 'tiptext:文本提示 tiptext\r\ntext:单行文本 text\r\ntextarea:多行文本 textarea\r\nstatic:静态文本 static\r\npassword:密码 password\r\ncheckbox:复选框 checkbox\r\nradio:单选按钮 radio\r\ndate:日期 date\r\ndatetime:日期时间 datetime\r\nhidden:隐藏 hidden\r\nswitch:开关 switch\r\narray:数组 array\r\nselect:下拉框 select\r\nlinkage:普通联动下拉框 linkage\r\nlinkages:快速联动下拉框 linkages\r\nimage:单张图片 image\r\nimages:多张图片 images\r\nfile:单个文件 file\r\nfiles:多个文件 files\r\nueditor:UEditor 编辑器 ueditor\r\nwangeditor:wangEditor 编辑器 wangeditor\r\neditormd:markdown 编辑器 editormd\r\nckeditor:ckeditor 编辑器 ckeditor\r\nicon:字体图标 icon\r\ntags:标签 tags\r\nnumber:数字 number\r\nbmap:百度地图 bmap\r\ncolorpicker:取色器 colorpicker\r\njcrop:图片裁剪 jcrop\r\nmasked:格式文本 masked\r\nrange:范围 range\r\ntime:时间 time', '', '', '', '', '', '', '', 2, '', '', '', '', 1475241835, 1535024713, 100, 1);
 INSERT INTO `cj_admin_config` VALUES (12, 'upload_file_size', '文件上传大小限制', 'upload', 'text', '0', '', '0为不限制大小，单位：kb', '', '', '', '', '', 2, '', '', '', '', 1475241897, 1477663520, 100, 1);
 INSERT INTO `cj_admin_config` VALUES (13, 'upload_file_ext', '允许上传的文件后缀', 'upload', 'tags', 'doc,docx,xls,xlsx,ppt,pptx,pdf,wps,txt,rar,zip,gz,bz2,7z', '', '多个后缀用逗号隔开，不填写则不限制类型', '', '', '', '', '', 2, '', '', '', '', 1475241975, 1477649489, 100, 1);
 INSERT INTO `cj_admin_config` VALUES (14, 'upload_image_size', '图片上传大小限制', 'upload', 'text', '0', '', '0为不限制大小，单位：kb', '', '', '', '', '', 2, '', '', '', '', 1475242015, 1477663529, 100, 1);
@@ -292,7 +292,7 @@ INSERT INTO `cj_admin_field` VALUES (502, 'create_time', '创建时间', 'dateti
 INSERT INTO `cj_admin_field` VALUES (503, 'update_time', '更新时间', 'datetime', 'int(11) UNSIGNED NOT NULL', '0', NULL, '', 0, 1, 115, '', '', '', '', '', 2, '', '', '', '', 1533112918, 1533112918, 100, 1, 'int', '11', 0, 'hidden', 'hidden', 'hidden', '', 0, 0, 0, NULL);
 INSERT INTO `cj_admin_field` VALUES (504, 'delete_time', '删除时间', 'datetime', 'int(11) UNSIGNED NOT NULL', '0', NULL, '', 0, 1, 115, '', '', '', '', '', 2, '', '', '', '', 1533112918, 1533112918, 100, 1, 'int', '11', 0, 'hidden', 'hidden', 'hidden', '', 0, 0, 0, NULL);
 INSERT INTO `cj_admin_field` VALUES (505, 'status', '状态', 'radio', 'tinyint(2) NOT NULL', '1', '0:禁用\n1:启用', '', 0, 1, 115, '', '', '', '', '', 2, '', '', '', '', 1533112918, 1533112918, 100, 1, 'tinyint', '1', 0, 'text', 'text', 'switch', '', 0, 0, 0, NULL);
-INSERT INTO `cj_admin_field` VALUES (506, 'wen', '测试', 'text', 'varchar(255)  NOT NULL', '', '', '', 0, 1, 115, '', '', '', '', '', 0, '', '', '', '', 1533378234, 1533378234, 100, 1, 'varchar', '255', 0, 'text', 'text', 'text', 'max:255', 1, 1, 0, 0);
+INSERT INTO `cj_admin_field` VALUES (506, 'wen', '测试', 'text', 'varchar(255)  NOT NULL', '', '', '', 0, 1, 115, '', '', '', '', '', 0, '', '', '', '', 1533378234, 1533378234, 100, 1, 'varchar', '255', 0, 'text', 'text', 'tiptext', 'max:255', 1, 1, 0, 0);
 INSERT INTO `cj_admin_field` VALUES (507, 'id', 'id', 'text', 'int(11) UNSIGNED NOT NULL', '', '', '', 0, 1, 116, '', '', '', '', 'cj_enterprise_setting', 0, '', '', '', '', 1533378780, 1533378780, 100, 1, '', '', 0, 'text', 'text', 'text', '', 0, 0, 0, 100);
 INSERT INTO `cj_admin_field` VALUES (508, 'status', '状态', 'radio', 'tinyint(2) UNSIGNED NOT NULL', '1', '0:禁用1:启用', '', 0, 1, 116, '', '', '', '', 'cj_enterprise_setting', 0, '', '', '', '', 1533378780, 1533378780, 100, 1, '', '', 0, 'text', 'text', 'text', '', 0, 0, 0, 100);
 INSERT INTO `cj_admin_field` VALUES (509, 'create_time', '创建时间', 'datetime', 'int(11) UNSIGNED NOT NULL', '0', '', '', 0, 1, 116, '', '', '', '', 'cj_enterprise_setting', 0, '', '', '', '', 1533378780, 1533378780, 100, 1, '', '', 0, 'text', 'text', 'text', '', 0, 0, 0, 100);
@@ -672,7 +672,7 @@ CREATE TABLE `cj_admin_log`  (
   INDEX `action_ip_ix`(`action_ip`) USING BTREE,
   INDEX `action_id_ix`(`action_id`) USING BTREE,
   INDEX `user_id_ix`(`user_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 182 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '行为日志表' ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 183 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '行为日志表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of cj_admin_log
@@ -858,6 +858,7 @@ INSERT INTO `cj_admin_log` VALUES (178, 34, 1, 2130706433, 'admin_menu', 807, '�
 INSERT INTO `cj_admin_log` VALUES (179, 34, 1, 2130706433, 'admin_menu', 811, '超级管理员 禁用了节点：节点ID(811),节点标题(编辑),节点链接(crontab/log/edit)', 1, 1533198888);
 INSERT INTO `cj_admin_log` VALUES (180, 34, 1, 2130706433, 'admin_menu', 812, '超级管理员 禁用了节点：节点ID(812),节点标题(清空日志),节点链接(crontab/log/clear)', 1, 1533198903);
 INSERT INTO `cj_admin_log` VALUES (181, 35, 1, 2130706433, 'admin_module', 0, '超级管理员 安装了模块：企业站点', 1, 1533378790);
+INSERT INTO `cj_admin_log` VALUES (182, 16, 1, 2130706433, 'admin_config', 11, '超级管理员 编辑了配置：原数据：分组(system)、类型(array)、标题(配置类型)、名称(form_item_type)', 1, 1535024713);
 
 -- ----------------------------
 -- Table structure for cj_admin_menu
@@ -1283,7 +1284,7 @@ CREATE TABLE `cj_admin_user`  (
 -- ----------------------------
 -- Records of cj_admin_user
 -- ----------------------------
-INSERT INTO `cj_admin_user` VALUES (1, 'admin', '超级管理员', '$2y$10$Brw6wmuSLIIx3Yabid8/Wu5l8VQ9M/H/CG3C9RqN9dUCwZW3ljGOK', '', 0, '', 0, 0, 0.00, 0, 1, 0, 0, 1476065410, 1533085669, 1533085668, 2130706433, 100, 1);
+INSERT INTO `cj_admin_user` VALUES (1, 'admin', '超级管理员', '$2y$10$Brw6wmuSLIIx3Yabid8/Wu5l8VQ9M/H/CG3C9RqN9dUCwZW3ljGOK', '', 0, '', 0, 0, 0.00, 0, 1, 0, 0, 1476065410, 1534583129, 1534583129, 2130706433, 100, 1);
 INSERT INTO `cj_admin_user` VALUES (2, 'admin110', '的撒打算', '$2y$10$8Mpt3CdvLB3HX39.2HvCDOm3mAfp41AmP9iXwZ53NZQgwURG/SGVW', '584887013@qq.com', 0, '15881098622', 0, 0, 0.00, 0, 2, 0, 0, 1532329204, 1532329204, 0, 0, 100, 1);
 
 -- ----------------------------
@@ -1451,7 +1452,7 @@ CREATE TABLE `cj_shop_order`  (
 -- ----------------------------
 -- Records of cj_shop_order
 -- ----------------------------
-INSERT INTO `cj_shop_order` VALUES (1, 1, 1, 100, 1, '126512561', 1);
+INSERT INTO `cj_shop_order` VALUES (1, 1, 1535024862, 100, 1, '126512561就OK好机会会不会有我U搞不好与不V我共同发财V发财方法一次V刹V姑姑旅游  ', 1);
 
 -- ----------------------------
 -- Table structure for cj_shop_user_list

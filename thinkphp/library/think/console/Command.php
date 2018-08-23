@@ -43,7 +43,7 @@ class Command
      * 构造方法
      * @param string|null $name 命令名称,如果没有设置则比如在 configure() 里设置
      * @throws \LogicException
-     * @Interface
+     * @api
      */
     public function __construct($name = null)
     {
@@ -80,7 +80,7 @@ class Command
     /**
      * 获取控制台
      * @return Console
-     * @Interface
+     * @api
      */
     public function getConsole()
     {
@@ -234,7 +234,7 @@ class Command
      * 设置参数定义
      * @param array|Definition $definition
      * @return Command
-     * @Interface
+     * @api
      */
     public function setDefinition($definition)
     {
@@ -252,7 +252,7 @@ class Command
     /**
      * 获取参数定义
      * @return Definition
-     * @Interface
+     * @api
      */
     public function getDefinition()
     {

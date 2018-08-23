@@ -12,7 +12,7 @@ use Wechat\Lib\Tools;
 class WechatPay {
 
     /** 支付接口基础地址 */
-    const MCH_BASE_URL = 'https://Interface.mch.weixin.qq.com';
+    const MCH_BASE_URL = 'https://api.mch.weixin.qq.com';
 
     /** 公众号appid */
     public $appid;

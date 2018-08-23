@@ -16,7 +16,7 @@ namespace Kafka\Protocol;
 
 /**
 +------------------------------------------------------------------------------
-* Kafka protocol for fetch offset Interface
+* Kafka protocol for fetch offset api
 +------------------------------------------------------------------------------
 *
 * @package

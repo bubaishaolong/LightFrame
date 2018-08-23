@@ -8,10 +8,10 @@
 
 namespace app\api\home\v2;
 
-use app\api\home\Common;
+use app\api\home\Home;
 use app\api\model\User as UserModel;
 
-class Index extends Common
+class Index extends Home
 {
     /**
      * 请求的链接

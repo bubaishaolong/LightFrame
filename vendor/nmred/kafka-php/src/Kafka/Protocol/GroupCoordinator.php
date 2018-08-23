@@ -16,7 +16,7 @@ namespace Kafka\Protocol;
 
 /**
 +------------------------------------------------------------------------------
-* Kafka protocol for group coordinator Interface
+* Kafka protocol for group coordinator api
 +------------------------------------------------------------------------------
 *
 * @package

@@ -16,7 +16,7 @@ namespace Kafka\Protocol;
 
 /**
 +------------------------------------------------------------------------------
-* Kafka protocol for heart beat Interface
+* Kafka protocol for heart beat api
 +------------------------------------------------------------------------------
 *
 * @package
